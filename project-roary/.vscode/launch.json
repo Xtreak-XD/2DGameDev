@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Play",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${env:GODOT4}", //we will need to have everyone set env varable for godot!!
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+    }
+  ]
+}

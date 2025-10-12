@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_bl6ii")
+Health = 100
+MaxHealth = 100

@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca11nyq5g8i65"]
+[gd_scene load_steps=8 format=3 uid="uid://ca11nyq5g8i65"]
 
 [ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/Enemy.cs" id="1_jxk5p"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_kinsv"]
-[ext_resource type="Resource" uid="uid://b6fblarq8eoyi" path="res://Resources/entities/Data.tres" id="2_y8wk6"]
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/Data.cs" id="2_y8wk6"]
+[ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/EnemyStateMachine.cs" id="3_yqnki"]
+
+[sub_resource type="Resource" id="Resource_rkctb"]
+script = ExtResource("2_y8wk6")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
 radius = 42.107006
@@ -12,9 +16,10 @@ radius = 394.0114
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_jxk5p")
-data = ExtResource("2_y8wk6")
+data = SubResource("Resource_rkctb")
 
-[node name="EnemyStateMachine" type="Node2D" parent="."]
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("3_yqnki")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 position = Vector2(47, 25)

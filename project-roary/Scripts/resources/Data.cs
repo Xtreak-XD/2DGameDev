@@ -1,13 +1,14 @@
 using Godot;
 
+[GlobalClass]
 public partial class Data : Resource
 {
 	[Export]
-	public int Health { get; set; } = 10;
+	public int Health { get; set; }
 	[Export]
-	public int MaxHealth { get; set; } = 10;
+	public int MaxHealth { get; set; }
 	[Export]
-	public int Damage { get; set; } = 1;
+	public int Damage { get; set; }
 	[Export]
-	public int Speed { get; set; } = 200;
+	public int Speed { get; set; }
 }

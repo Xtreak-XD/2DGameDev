@@ -1,0 +1,46 @@
+name: Sync main to dev
+
+on:
+  push:
+    branches:
+      - main  # triggers whenever main is updated (e.g. after a merge PR)
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Check if dev branch exists
+        run: |
+          if ! git ls-remote --exit-code --heads origin dev; then
+            echo "dev branch does not exist, creating it..."
+            git checkout -b dev
+            git push origin dev
+          fi
+
+      - name: Create PR from main → dev
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: sync-main-to-dev
+          base: dev
+          title: "Sync main → dev"
+          body: |
+            This PR was automatically created to keep `dev` up to date with `main`.
+            Merged from the latest main branch changes.
+          commit-message: "chore: sync main → dev"
+          delete-branch: true

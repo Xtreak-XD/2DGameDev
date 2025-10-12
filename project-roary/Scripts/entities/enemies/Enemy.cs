@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Ennemy : CharacterBody2D
+public partial class Enemy : CharacterBody2D
 {
 	const int speed = 100;
 	const double attackRange = 10.0;
@@ -23,6 +23,8 @@ public partial class Ennemy : CharacterBody2D
 
 		Velocity = direction * speed;
 		MoveAndSlide();
+
+	
 
 		if(Position.DistanceTo(targetPos) < attackRange)
 		{

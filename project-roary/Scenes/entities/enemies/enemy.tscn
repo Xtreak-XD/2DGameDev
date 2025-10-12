@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ca11nyq5g8i65"]
 
-[ext_resource type="Script" uid="uid://c8le31rn657o3" path="res://Scripts/entities/enemies/EnemyMovement.cs" id="1_kinsv"]
+[ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/Enemy.cs" id="1_jxk5p"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_kinsv"]
-[ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/EnemyState.cs" id="3_tdsod"]
+[ext_resource type="Resource" uid="uid://b6fblarq8eoyi" path="res://Resources/entities/Data.tres" id="2_y8wk6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
 radius = 42.107006
@@ -10,25 +10,23 @@ radius = 42.107006
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
 radius = 394.0114
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_jxk5p")
+data = ExtResource("2_y8wk6")
 
-[node name="EnemyBody" type="CharacterBody2D" parent="."]
-script = ExtResource("1_kinsv")
+[node name="EnemyStateMachine" type="Node2D" parent="."]
 
-[node name="EnemyState" type="Node2D" parent="EnemyBody"]
-script = ExtResource("3_tdsod")
-
-[node name="EnemySprite" type="Sprite2D" parent="EnemyBody"]
+[node name="EnemySprite" type="Sprite2D" parent="."]
 position = Vector2(47, 25)
 scale = Vector2(0.24000004, 0.28444445)
 texture = ExtResource("2_kinsv")
 
-[node name="EnemyCollider" type="CollisionShape2D" parent="EnemyBody"]
+[node name="EnemyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(47, 25)
 shape = SubResource("CircleShape2D_kinsv")
 
-[node name="TargetDetector" type="Area2D" parent="EnemyBody"]
+[node name="TargetDetector" type="Area2D" parent="."]
 
-[node name="DetectionRadius" type="CollisionShape2D" parent="EnemyBody/TargetDetector"]
+[node name="DetectionRadius" type="CollisionShape2D" parent="TargetDetector"]
 position = Vector2(46, 25)
 shape = SubResource("CircleShape2D_tdsod")

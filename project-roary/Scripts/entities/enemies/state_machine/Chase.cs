@@ -1,15 +1,19 @@
 using Godot;
-using System;
 
-public partial class EnemyState : Node
+public partial class Chase : EnemyState
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	[Export]
+	public int Speed;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override EnemyState Process(double delta)
 	{
+		Vector2 targetPos = GetTree().Root.GetMousePosition();
+		//Vector2 targetPos = state.Target.GlobalPosition; // USE THIS LATER INSTEAD OF MOUSE POS
+		Vector2 direction = (targetPos - ActiveEnemy.GlobalPosition).Normalized();
+
+		ActiveEnemy.Velocity = direction * 100;
+		ActiveEnemy.MoveAndSlide();
+
+		return null;
 	}
 }

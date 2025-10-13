@@ -1,7 +1,7 @@
 using Godot;
 
 [GlobalClass]
-public partial class Data : Resource
+public partial class GenericData : Resource
 {
 	[Export]
 	public int Health { get; set; }

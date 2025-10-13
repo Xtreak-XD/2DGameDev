@@ -1,6 +1,5 @@
 using Godot;
 
-namespace state_machine;
 
 public partial class EnemyState : Node
 {

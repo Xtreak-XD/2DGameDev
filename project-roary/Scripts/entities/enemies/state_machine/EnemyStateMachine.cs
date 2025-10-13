@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace state_machine;
-
 public partial class EnemyStateMachine : Node
 {
 	public List<EnemyState> states;
@@ -28,14 +26,19 @@ public partial class EnemyStateMachine : Node
 			if (node is EnemyState state)
 			{
 				states.Add(state);
+				state.ActiveEnemy = enemy;
 			}
 		}
 
 		if (states.Count > 0)
 		{
-			states[0].ActiveEnemy = enemy;
-			ChangeState(states[0]);
+			states[1].ActiveEnemy = enemy;
+			ChangeState(states[1]);
 			ProcessMode = ProcessModeEnum.Inherit;
+		}
+		else
+		{
+			GD.PrintErr("No states found in state machine.");
 		}
 	}
 

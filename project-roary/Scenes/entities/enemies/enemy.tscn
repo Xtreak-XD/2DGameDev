@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/Enemy.cs" id="1_jxk5p"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_kinsv"]
-[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/Data.cs" id="2_y8wk6"]
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="2_y8wk6"]
 [ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/state_machine/EnemyStateMachine.cs" id="3_yqnki"]
 [ext_resource type="Script" uid="uid://xkflm4opmlnh" path="res://Scripts/entities/enemies/state_machine/Roam.cs" id="4_rkctb"]
 [ext_resource type="Script" uid="uid://cxv4qk5u52coo" path="res://Scripts/entities/enemies/state_machine/Chase.cs" id="5_ww43p"]
@@ -25,9 +25,11 @@ script = ExtResource("3_yqnki")
 
 [node name="Roam" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("4_rkctb")
+Speed = 500
 
 [node name="Chase" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("5_ww43p")
+Speed = 500
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 position = Vector2(47, 25)

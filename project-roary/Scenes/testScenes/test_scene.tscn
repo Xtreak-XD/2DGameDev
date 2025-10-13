@@ -7,9 +7,9 @@
 [node name="testScene" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("1_sjud2")]
-position = Vector2(160, 106)
+position = Vector2(31, 552)
 data = ExtResource("2_w27vw")
 
 [node name="Enemy2" parent="." instance=ExtResource("1_sjud2")]
-position = Vector2(1149, -238)
+position = Vector2(1017, 37)
 data = ExtResource("3_laoyu")

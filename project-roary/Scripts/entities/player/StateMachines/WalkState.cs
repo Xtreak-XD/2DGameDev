@@ -4,6 +4,8 @@ public partial class WalkState: State
 {
 
     [Export]
+    public GenericData data;
+    [Export]
     public float moveSpeed = 100.0f;
     [Export]
     public State idle;

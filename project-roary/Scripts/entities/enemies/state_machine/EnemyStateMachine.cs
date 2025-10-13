@@ -13,27 +13,32 @@ public partial class EnemyStateMachine : Node
 	}
 
 	public override void _Process(double delta)
+	{
+		ChangeState(currentState?.Process(delta));
+	}
+
+    public override void _PhysicsProcess(double delta)
     {
-        ChangeState(currentState.Process(delta));
+        ChangeState(currentState?.Physics(delta));
     }
 
 	public void Initialize(Enemy enemy)
 	{
-		states = [];
-
+		states = new List<EnemyState>();
+		
+		GD.Print(GetChildCount());
 		foreach (Node node in GetChildren())
 		{
 			if (node is EnemyState state)
 			{
 				states.Add(state);
-				state.ActiveEnemy = enemy;
 			}
 		}
 
 		if (states.Count > 0)
 		{
-			states[1].ActiveEnemy = enemy;
-			ChangeState(states[1]);
+			EnemyState.ActiveEnemy = enemy;
+			ChangeState(states[0]);
 			ProcessMode = ProcessModeEnum.Inherit;
 		}
 		else

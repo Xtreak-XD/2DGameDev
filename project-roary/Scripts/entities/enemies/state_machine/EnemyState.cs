@@ -3,7 +3,7 @@ using Godot;
 
 public partial class EnemyState : Node
 {
-	public Enemy ActiveEnemy;
+	public static Enemy ActiveEnemy;
 
 	public override void _Ready()
 	{
@@ -23,4 +23,9 @@ public partial class EnemyState : Node
 	{
 		return null;
 	}
+
+	public virtual EnemyState Physics(double delta)
+    {
+		return null;
+    }
 }

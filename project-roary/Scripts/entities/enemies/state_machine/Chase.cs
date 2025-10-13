@@ -4,6 +4,19 @@ public partial class Chase : EnemyState
 {
 	[Export]
 	public int Speed;
+	public override void _Ready()
+	{
+	}
+	
+	// Called when the state is entered	
+	public override void EnterState()
+	{
+	}
+
+	// Called when the state is exited
+	public override void ExitState()
+	{
+	}
 
 	public override EnemyState Process(double delta)
 	{

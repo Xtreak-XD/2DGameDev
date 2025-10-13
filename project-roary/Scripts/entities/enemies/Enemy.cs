@@ -4,10 +4,11 @@ public partial class Enemy : CharacterBody2D
 {
 	[Export]
 	public Resource data;
-	public EnemyStateMachine stateMachine = new EnemyStateMachine();
+	public EnemyStateMachine stateMachine;
 	
 	public override void _Ready()
 	{
+		stateMachine = GetNode<EnemyStateMachine>("EnemyStateMachine");
 		stateMachine.Initialize(this);
     }
 

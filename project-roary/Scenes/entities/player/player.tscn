@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://v2ybqe80tyj4"]
+
+[ext_resource type="Script" path="res://Scenes/entities/player/Player.cs" id="1_yl34j"]
+[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
+[ext_resource type="Script" uid="uid://bnaxclisdkc0b" path="res://Scripts/entities/player/StateMachines/PlayerStateMachine.cs" id="3_7yyei"]
+[ext_resource type="Script" uid="uid://caltl6nhd2gte" path="res://Scripts/entities/player/StateMachines/IdleState.cs" id="4_0etk1"]
+[ext_resource type="Script" uid="uid://bykciy4t76ir2" path="res://Scripts/entities/player/StateMachines/WalkState.cs" id="5_0etk1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ah8g8"]
+animations = []
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3n3"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_cwd6f"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pu3il"]
+_data = {
+&"RESET": SubResource("Animation_cwd6f")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_yl34j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -12)
+sprite_frames = SubResource("SpriteFrames_ah8g8")
+animation = &"idle"
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(5.9604645e-08, -8)
+scale = Vector2(0.08472531, 0.1048211)
+texture = ExtResource("2_0etk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_qn3n3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pu3il")
+}
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("3_7yyei")
+
+[node name="idle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_0etk1")
+
+[node name="walk" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_0etk1")

@@ -25,3 +25,4 @@ Data = ExtResource("2_w27vw")
 [node name="Enemy2" parent="." instance=ExtResource("1_sjud2")]
 position = Vector2(1017, 37)
 Data = ExtResource("3_laoyu")
+Data = ExtResource("3_laoyu")

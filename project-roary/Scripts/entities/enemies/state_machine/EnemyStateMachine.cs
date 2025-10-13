@@ -29,21 +29,18 @@ public partial class EnemyStateMachine : Node
 		GD.Print(GetChildCount());
 		foreach (Node node in GetChildren())
 		{
-			if (node is EnemyState state)
+			if(node is EnemyState state)
 			{
 				states.Add(state);
+				state.ActiveEnemy = enemy;
 			}
 		}
 
 		if (states.Count > 0)
 		{
-			EnemyState.ActiveEnemy = enemy;
-			ChangeState(states[0]);
+			//EnemyState.ActiveEnemy = enemy;
+			ChangeState(states[1]);
 			ProcessMode = ProcessModeEnum.Inherit;
-		}
-		else
-		{
-			GD.PrintErr("No states found in state machine.");
 		}
 	}
 

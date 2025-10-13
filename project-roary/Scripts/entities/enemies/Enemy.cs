@@ -3,7 +3,7 @@ using Godot;
 public partial class Enemy : CharacterBody2D
 {
 	[Export]
-	public Resource data;
+	public GenericData Data;
 	public EnemyStateMachine stateMachine;
 	
 	public override void _Ready()

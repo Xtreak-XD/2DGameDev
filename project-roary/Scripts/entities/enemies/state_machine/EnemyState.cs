@@ -1,12 +1,17 @@
+using System;
 using Godot;
 
 
 public partial class EnemyState : Node
 {
-	public static Enemy ActiveEnemy;
+	public Enemy ActiveEnemy;
 
 	public override void _Ready()
 	{
+		if (ActiveEnemy != null)
+		{
+			GD.Print("State ready for " + ActiveEnemy.Name);
+		}
 	}
 
 	// Called when the state is entered	

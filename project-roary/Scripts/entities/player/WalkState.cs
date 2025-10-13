@@ -32,11 +32,11 @@ public partial class WalkState: State
             return idle;
         }
 
-        player.Velocity = player.direction * moveSpeed;
+        player.Velocity = player.direction.Normalized() * moveSpeed;
 
         if (player.SetDirection())
         {
-            player.UpdateAnimation("walk");
+            player.UpdateAnimation("walk"); 
         }
 
         return null;

@@ -4,7 +4,8 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-
+	[Export]
+    public GenericData data;
 	public AnimationPlayer animationPlayer;
 	public AnimatedSprite2D anim;
 	public PlayerStateMachine stateMachine;

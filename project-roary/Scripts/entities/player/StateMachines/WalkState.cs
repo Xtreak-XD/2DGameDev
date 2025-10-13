@@ -15,7 +15,7 @@ public partial class WalkState: State
 
     public override void Enter()
     {
-        player.UpdateAnimation("walk");
+        // Walk animation goes here
     }
 
 // what happens when player exits their current state

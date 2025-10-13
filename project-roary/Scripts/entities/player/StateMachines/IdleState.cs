@@ -12,7 +12,7 @@ public partial class IdleState: State
 // what happens when player enters their new state
     public override void Enter()
     {
-        player.UpdateAnimation("idle");
+        // idle animation goes here
     }
 
 // what happens when player exits their current state

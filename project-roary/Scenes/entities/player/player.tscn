@@ -1,13 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://v2ybqe80tyj4"]
 
-[ext_resource type="Script" path="res://Scenes/entities/player/Player.cs" id="1_yl34j"]
+[ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
+[ext_resource type="Resource" uid="uid://uyep6yujeiow" path="res://Resources/entities/player/PlayerStats.tres" id="2_ah8g8"]
 [ext_resource type="Script" uid="uid://bnaxclisdkc0b" path="res://Scripts/entities/player/StateMachines/PlayerStateMachine.cs" id="3_7yyei"]
 [ext_resource type="Script" uid="uid://caltl6nhd2gte" path="res://Scripts/entities/player/StateMachines/IdleState.cs" id="4_0etk1"]
 [ext_resource type="Script" uid="uid://bykciy4t76ir2" path="res://Scripts/entities/player/StateMachines/WalkState.cs" id="5_0etk1"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ah8g8"]
-animations = []
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3n3"]
 radius = 6.0
@@ -23,11 +21,10 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yl34j")
+data = ExtResource("2_ah8g8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -12)
-sprite_frames = SubResource("SpriteFrames_ah8g8")
-animation = &"idle"
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(5.9604645e-08, -8)
@@ -51,3 +48,4 @@ script = ExtResource("4_0etk1")
 
 [node name="walk" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_0etk1")
+moveSpeed = null

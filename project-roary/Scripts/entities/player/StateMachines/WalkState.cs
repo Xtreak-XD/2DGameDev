@@ -3,8 +3,6 @@ using Godot;
 public partial class WalkState: State
 {
     [Export]
-    public float moveSpeed = 100.0f;
-    [Export]
     public State idle;
 
     public override void _Ready()
@@ -14,6 +12,7 @@ public partial class WalkState: State
 
     public override void Enter()
     {
+        GD.Print("entered walk");
         // Walk animation goes here
     }
 
@@ -31,7 +30,7 @@ public partial class WalkState: State
             return idle;
         }
 
-        player.Velocity = player.direction.Normalized() * moveSpeed;
+        player.Velocity = player.direction.Normalized() * player.data.Speed;
 
         if (player.SetDirection())
         {

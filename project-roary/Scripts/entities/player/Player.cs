@@ -5,7 +5,7 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Export]
-    public GenericData data;
+	public GenericData data;
 	public AnimationPlayer animationPlayer;
 	public AnimatedSprite2D anim;
 	public PlayerStateMachine stateMachine;
@@ -14,8 +14,8 @@ public partial class Player : CharacterBody2D
 	public Vector2 direction = Vector2.Zero;
 
     public override void _Ready()
-	{	
-		
+	{
+		AddToGroup("player");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
@@ -73,7 +73,7 @@ public partial class Player : CharacterBody2D
 		}
 	}
 	
-	public String AnimDirection()
+	public string AnimDirection()
     {
 		if (cardinalDirection == Vector2.Down) return "down";
 		else if (cardinalDirection == Vector2.Up) return "up";

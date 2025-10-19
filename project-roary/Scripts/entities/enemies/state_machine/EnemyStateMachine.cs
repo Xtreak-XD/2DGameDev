@@ -32,14 +32,13 @@ public partial class EnemyStateMachine : Node
 			if(node is EnemyState state)
 			{
 				states.Add(state);
-				state.ActiveEnemy = enemy;
 			}
 		}
 
 		if (states.Count > 0)
 		{
-			//EnemyState.ActiveEnemy = enemy;
-			ChangeState(states[1]);
+			EnemyState.ActiveEnemy = enemy;
+			ChangeState(states[0]);
 			ProcessMode = ProcessModeEnum.Inherit;
 		}
 	}
@@ -58,9 +57,10 @@ public partial class EnemyStateMachine : Node
 		if (currentState != null)
 		{
 			currentState.ExitState();
-			previousState = currentState;
-		}
 
+		}
+		
+		previousState = currentState;
 		currentState = newState;
 		currentState.EnterState();
 	}

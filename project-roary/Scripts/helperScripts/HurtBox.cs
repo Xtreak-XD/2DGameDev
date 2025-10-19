@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-public partial class Hitbox : Area2D
+public partial class HurtBox : Area2D
 {
-    public GenericData data;
     public Eventbus eventbus;
-
+    public GenericData data;
     public override void _Ready()
     {
-        
-        AddToGroup("hitbox");
+        AddToGroup("hurtbox");
         eventbus = GetNode<Eventbus>("/root/Eventbus");
+        eventbus.applyDamage += onApplyDmg;
+
         Node parent = GetParent();
 
         if (parent is Player playerParent)
@@ -37,18 +37,14 @@ public partial class Hitbox : Area2D
         }
         else
         {
-            GD.PushWarning("Hitbox parent is not a 'Character' type!");
+            GD.PushWarning("Hurtbox parent is not a 'Character' type!");
         }
-
-        AreaEntered += onAreaEntered;
     }
 
-    public void onAreaEntered(Area2D area)
+    public void onApplyDmg(string dmgReceiverName,string dmgDealerName, int dmg)
     {
-        if (area.IsInGroup("hurtbox") && !(area.GetParent() == GetParent()))
-        {
-            eventbus.EmitSignal("applyDamage", area.GetParent().Name,GetParent().Name, data.Damage);
-        }
+        GD.Print($"incoming dmg: {dmg} dealing to {dmgReceiverName} by {dmgDealerName}");
+        //add functionality here!
     }
 
 }

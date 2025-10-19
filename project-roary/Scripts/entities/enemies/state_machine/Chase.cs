@@ -7,7 +7,7 @@ public partial class Chase : EnemyState
         
     }
 	
-	// Called when the state is entered	
+	// Called when the state is entered
 	public override void EnterState()
 	{
         

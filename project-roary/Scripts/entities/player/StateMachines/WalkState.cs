@@ -2,7 +2,6 @@ using Godot;
 
 public partial class WalkState: State
 {
-    [Export]
     public State idle;
 
     public override void _Ready()
@@ -12,7 +11,6 @@ public partial class WalkState: State
 
     public override void Enter()
     {
-        GD.Print("entered walk");
         // Walk animation goes here
     }
 

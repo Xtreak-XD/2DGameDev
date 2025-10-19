@@ -9,7 +9,7 @@ public partial class Chase : EnemyState
 	
 	// Called when the state is entered	
 	public override void EnterState()
-    {
+	{
         
     }
 
@@ -24,7 +24,7 @@ public partial class Chase : EnemyState
 		//Vector2 targetPos = state.Target.GlobalPosition; // USE THIS LATER INSTEAD OF MOUSE POS
 		Vector2 direction = (targetPos - ActiveEnemy.GlobalPosition).Normalized();
 
-		ActiveEnemy.Velocity = direction * ActiveEnemy.Data.Speed;
+		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 		ActiveEnemy.MoveAndSlide();
 
 		return null;

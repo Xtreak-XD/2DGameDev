@@ -3,11 +3,12 @@ using Godot;
 public partial class Enemy : CharacterBody2D
 {
 	[Export]
-	public GenericData Data;
+	public GenericData data;
 	public EnemyStateMachine stateMachine;
 	
 	public override void _Ready()
 	{
+		AddToGroup("enemy");
 		stateMachine = GetNode<EnemyStateMachine>("EnemyStateMachine");
 		stateMachine.Initialize(this);
     }

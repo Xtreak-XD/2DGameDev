@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf7x4f3mkvl4y"]
+
+[ext_resource type="Script" uid="uid://dru6cffoc8cvk" path="res://Scripts/entities/enemies/BookEnemy.cs" id="1_qyygv"]
+[ext_resource type="Texture2D" uid="uid://b35dx7wmx5psl" path="res://Sprites/entities/enemies/FLYING.png" id="2_4trei"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjjt3"]
+atlas = ExtResource("2_4trei")
+region = Rect2(0, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4relb"]
+atlas = ExtResource("2_4trei")
+region = Rect2(81, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe1al"]
+atlas = ExtResource("2_4trei")
+region = Rect2(162, 0, 81, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycb5m"]
+atlas = ExtResource("2_4trei")
+region = Rect2(243, 0, 81, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fqjiw"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjjt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4relb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe1al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycb5m")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5wo71"]
+radius = 24.020824
+
+[node name="BookEnemy" type="CharacterBody2D"]
+script = ExtResource("1_qyygv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fqjiw")
+animation = &"flap"
+frame = 2
+frame_progress = 0.2741645
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 6)
+shape = SubResource("CircleShape2D_5wo71")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

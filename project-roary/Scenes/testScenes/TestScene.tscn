@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=4 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
+[ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="3_6tqdf"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -9,3 +10,6 @@
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(102, 138)
+
+[node name="BookEnemy" parent="." instance=ExtResource("3_6tqdf")]
+position = Vector2(243, 43)

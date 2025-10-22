@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf7x4f3mkvl4y"]
+[gd_scene load_steps=11 format=3 uid="uid://bf7x4f3mkvl4y"]
 
 [ext_resource type="Script" uid="uid://dru6cffoc8cvk" path="res://Scripts/entities/enemies/BookEnemy.cs" id="1_qyygv"]
 [ext_resource type="Texture2D" uid="uid://b35dx7wmx5psl" path="res://Sprites/entities/enemies/FLYING.png" id="2_4trei"]
+[ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/state_machine/EnemyStateMachine.cs" id="3_4relb"]
+[ext_resource type="Script" uid="uid://cvtoifgwtjhwj" path="res://Scripts/entities/enemies/state_machine/BookFlyingState.cs" id="4_xe1al"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yjjt3"]
 atlas = ExtResource("2_4trei")
@@ -62,3 +64,9 @@ position = Vector2(-8, 6)
 shape = SubResource("CircleShape2D_5wo71")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("3_4relb")
+
+[node name="FlyingState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_xe1al")

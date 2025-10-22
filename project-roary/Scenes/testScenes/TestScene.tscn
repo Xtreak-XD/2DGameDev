@@ -12,4 +12,4 @@
 position = Vector2(102, 138)
 
 [node name="BookEnemy" parent="." instance=ExtResource("3_6tqdf")]
-position = Vector2(243, 43)
+position = Vector2(413, 483)

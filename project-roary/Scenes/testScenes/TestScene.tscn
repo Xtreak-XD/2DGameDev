@@ -1,11 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=6 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
+[ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="3_6tqdf"]
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="4_bobsk"]
+
+[sub_resource type="Resource" id="Resource_4b6br"]
+script = ExtResource("4_bobsk")
+Health = 15
+MaxHealth = 15
+Damage = 2
+Speed = 50
+metadata/_custom_type_script = "uid://dkov12aknt46v"
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("2_6tqdf")]
+position = Vector2(-3, 227)
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(102, 138)
+
+[node name="Iguana" parent="." instance=ExtResource("3_6tqdf")]
+position = Vector2(136, 34)
+data = SubResource("Resource_4b6br")

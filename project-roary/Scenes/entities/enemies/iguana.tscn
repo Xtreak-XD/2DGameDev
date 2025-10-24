@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://drfioqbhwrfpj"]
+[gd_scene load_steps=11 format=3 uid="uid://drfioqbhwrfpj"]
 
 [ext_resource type="Script" uid="uid://bm7qi0doje7wr" path="res://Scripts/entities/enemies/iguana/Iguana.cs" id="1_jatro"]
 [ext_resource type="Resource" uid="uid://bosrshswacwcl" path="res://Resources/entities/enemy/EnemyData.tres" id="2_l4it4"]
 [ext_resource type="Script" uid="uid://jmo6etyfb6tt" path="res://Scripts/entities/enemies/iguana/iguana_state_machine/IguanaRoam.cs" id="3_7w56b"]
 [ext_resource type="Script" uid="uid://cptf27nnl2oqg" path="res://Scripts/entities/enemies/iguana/iguana_state_machine/IguanaStateMachine.cs" id="3_l4it4"]
 [ext_resource type="Script" uid="uid://dcsvgoijja10s" path="res://Scripts/entities/enemies/iguana/iguana_state_machine/IguanaChase.cs" id="4_0d8ee"]
+[ext_resource type="Script" uid="uid://dv5wsiqvh1bav" path="res://Scripts/entities/enemies/iguana/iguana_state_machine/IguanaAttack.cs" id="6_7w56b"]
 [ext_resource type="Texture2D" uid="uid://dh6go5rqdw8m2" path="res://Sprites/entities/enemies/iguana.jpeg" id="6_fhv8h"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="7_qt522"]
 
@@ -27,6 +28,9 @@ script = ExtResource("3_7w56b")
 [node name="IguanaChase" type="Node" parent="IguanaStateMachine"]
 script = ExtResource("4_0d8ee")
 
+[node name="IguanaAttack" type="Node" parent="IguanaStateMachine"]
+script = ExtResource("6_7w56b")
+
 [node name="IguanaSprite" type="Sprite2D" parent="."]
 position = Vector2(47, 25)
 scale = Vector2(0.24000004, 0.28444445)
@@ -47,3 +51,6 @@ shape = SubResource("CircleShape2D_tdsod")
 [node name="HurtBox" parent="." instance=ExtResource("7_qt522")]
 visible = false
 position = Vector2(47, 27)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.75

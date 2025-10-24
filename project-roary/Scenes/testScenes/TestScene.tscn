@@ -10,7 +10,7 @@ script = ExtResource("4_bobsk")
 Health = 15
 MaxHealth = 15
 Damage = 2
-Speed = 50
+Speed = 20
 metadata/_custom_type_script = "uid://dkov12aknt46v"
 
 [node name="TestScene" type="Node2D"]

@@ -17,15 +17,14 @@ radius = 394.0114
 [node name="Iguana" type="CharacterBody2D"]
 script = ExtResource("1_jatro")
 data = ExtResource("2_l4it4")
-data = ExtResource("2_l4it4")
 
 [node name="IguanaStateMachine" type="Node" parent="."]
 script = ExtResource("3_l4it4")
 
-[node name="Roam" type="Node" parent="IguanaStateMachine"]
+[node name="IguanaRoam" type="Node" parent="IguanaStateMachine"]
 script = ExtResource("3_7w56b")
 
-[node name="Chase" type="Node" parent="IguanaStateMachine"]
+[node name="IguanaChase" type="Node" parent="IguanaStateMachine"]
 script = ExtResource("4_0d8ee")
 
 [node name="IguanaSprite" type="Sprite2D" parent="."]

@@ -38,7 +38,7 @@ public partial class IguanaStateMachine : Node
 		if (states.Count > 0)
 		{
 			IguanaState.ActiveEnemy = enemy;
-			ChangeState(states[0]);
+			ChangeState(states[1]);
 			ProcessMode = ProcessModeEnum.Inherit;
 		}
 	}

@@ -5,6 +5,9 @@ public partial class Iguana : CharacterBody2D
 	[Export]
 	public GenericData data;
 	public IguanaStateMachine stateMachine;
+
+	[Export]
+	public CharacterBody2D target;
 	
 	public override void _Ready()
 	{

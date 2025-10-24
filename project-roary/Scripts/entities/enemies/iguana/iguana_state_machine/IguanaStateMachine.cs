@@ -38,7 +38,7 @@ public partial class IguanaStateMachine : Node
 		if (states.Count > 0)
 		{
 			IguanaState.ActiveEnemy = enemy;
-			ChangeState(states[1]);
+			ChangeState(states[0]); // This should default to roam once implemented
 			ProcessMode = ProcessModeEnum.Inherit;
 		}
 	}

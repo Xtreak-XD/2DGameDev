@@ -20,7 +20,7 @@ public partial class IguanaAttack : IguanaState
 	public override void ExitState()
 	{
 		timer.Stop();
-		timer.WaitTime = 0.75;
+		timer.WaitTime = 0.5;
     }
 
 	public override IguanaState Process(double delta)

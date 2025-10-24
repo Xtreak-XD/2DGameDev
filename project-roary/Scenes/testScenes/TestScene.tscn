@@ -23,6 +23,6 @@ position = Vector2(-3, 227)
 position = Vector2(102, 138)
 
 [node name="Iguana" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_6tqdf")]
-position = Vector2(136, 34)
+position = Vector2(122, 36)
 data = SubResource("Resource_4b6br")
 target = NodePath("../Player")

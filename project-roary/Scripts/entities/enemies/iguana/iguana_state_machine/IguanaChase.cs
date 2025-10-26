@@ -26,7 +26,13 @@ public partial class IguanaChase : IguanaState
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 		ActiveEnemy.MoveAndSlide();
 
-		if(ActiveEnemy.Position.DistanceTo(targetPos) <= 50) // SET THIS TO ACTUAL ATTACK RANGE
+		if(!ActiveEnemy.IsPlayerInChaseRange())
+        {
+			ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.Find(state => state is IguanaRoam));
+			return null;
+        }
+
+		if (ActiveEnemy.IsPLayerInAttackRange()) // SET THIS TO ACTUAL ATTACK RANGE
 		{
 			ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.Find(state => state is IguanaAttack));
 			return null;

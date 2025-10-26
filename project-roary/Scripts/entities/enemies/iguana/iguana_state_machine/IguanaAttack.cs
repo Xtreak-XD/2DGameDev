@@ -21,6 +21,9 @@ public partial class IguanaAttack : IguanaState
 	{
 		timer.Stop();
 		timer.WaitTime = 0.5;
+		
+		ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.
+		Find(state => state is IguanaChase));
     }
 
 	public override IguanaState Process(double delta)

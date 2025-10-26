@@ -20,9 +20,9 @@ visible = false
 position = Vector2(-3, 227)
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
-position = Vector2(102, 138)
+position = Vector2(958, 565)
 
 [node name="Iguana" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_6tqdf")]
-position = Vector2(122, 36)
+position = Vector2(122, 64)
 data = SubResource("Resource_4b6br")
 target = NodePath("../Player")

@@ -31,13 +31,13 @@ public partial class EnemyStateMachine : Node
 		{
 			if(node is EnemyState state)
 			{
+				state.ActiveEnemy = enemy;
 				states.Add(state);
 			}
 		}
 
 		if (states.Count > 0)
 		{
-			EnemyState.ActiveEnemy = enemy;
 			ChangeState(states[0]);
 			ProcessMode = ProcessModeEnum.Inherit;
 		}

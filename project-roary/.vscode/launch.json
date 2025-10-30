@@ -6,7 +6,8 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${env:GODOT4}", //we will need to have everyone set env varable for godot!!
+      // "program": "${env:GODOT4}", //we will need to have everyone set env varable for godot!!
+      "program": "/Applications/godot.app/Contents/MacOS/Godot",
       "args": [],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,

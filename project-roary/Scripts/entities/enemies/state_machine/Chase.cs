@@ -2,9 +2,10 @@ using Godot;
 
 public partial class Chase : EnemyState
 {
+	public Player Target;
 	public override void _Ready()
     {
-        
+        Target = GetTree().GetFirstNodeInGroup("player") as Player;
     }
 	
 	// Called when the state is entered
@@ -20,8 +21,8 @@ public partial class Chase : EnemyState
 
 	public override EnemyState Process(double delta)
 	{
-		Vector2 targetPos = GetTree().Root.GetMousePosition();
-		//Vector2 targetPos = state.Target.GlobalPosition; // USE THIS LATER INSTEAD OF MOUSE POS
+		//Vector2 targetPos = GetTree().Root.GetMousePosition();
+		Vector2 targetPos = Target.GlobalPosition;
 		Vector2 direction = (targetPos - ActiveEnemy.GlobalPosition).Normalized();
 
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl63x62myysqf"]
+
+[ext_resource type="Script" uid="uid://cj2hiqcvm4sy0" path="res://Scripts/helperScripts/EnemyManager.cs" id="1_7r3ax"]
+
+[node name="Enemymanager" type="Node" node_paths=PackedStringArray("EnemySpawnPoints")]
+script = ExtResource("1_7r3ax")
+EnemySpawnTimerMin = null
+EnemySpawnTimerMax = null
+EnemySpawnPoints = []
+MaxEnemiesAlive = null
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="EnemySpawnPointContainer" type="Node2D" parent="."]

@@ -6,6 +6,6 @@
 script = ExtResource("1_nkmmk")
 Health = 10
 MaxHealth = 10
-Damage = 1
-Speed = 1000
+Damage = 10
+Speed = 100
 metadata/_custom_type_script = "uid://dkov12aknt46v"

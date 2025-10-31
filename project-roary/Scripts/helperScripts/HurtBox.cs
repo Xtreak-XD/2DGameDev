@@ -9,7 +9,7 @@ public partial class HurtBox : Area2D
     {
         AddToGroup("hurtbox");
         eventbus = GetNode<Eventbus>("/root/Eventbus");
-        eventbus.applyDamage += onApplyDmg;
+        eventbus.Connect("applyDamage", new Callable(this, nameof(onApplyDmg)));
 
         Node parent = GetParent();
 
@@ -41,10 +41,22 @@ public partial class HurtBox : Area2D
         }
     }
 
-    public void onApplyDmg(string dmgReceiverName,string dmgDealerName, int dmg)
+    public void onApplyDmg(string dmgReceiverName, string dmgDealerName, int dmg)
     {
-        GD.Print($"incoming dmg: {dmg} dealing to {dmgReceiverName} by {dmgDealerName}");
-        //add functionality here!
-    }
+        if (Owner == null || Owner.Name != dmgReceiverName) return;
 
+        //Subracting health
+        data.Health -= dmg;
+        GD.Print($"{Owner.Name} took {dmg} damage, remaining health: {data.Health}");
+
+        //Calls Die() function if health reaches 0 or below
+        if(data.Health <= 0 && IsInstanceValid(Owner))
+        {
+            if (Owner is Enemy enemy) { enemy.Die(); }
+            /*
+            else if(Owner is Player player) {player.Die();}
+            -> We can implement this later. :). Don't feel like doing this right now.
+            */
+        }
+    }
 }

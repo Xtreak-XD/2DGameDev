@@ -32,7 +32,7 @@ public partial class IguanaChase : IguanaState
 			return null;
         }
 
-		if (ActiveEnemy.IsPLayerInAttackRange()) // SET THIS TO ACTUAL ATTACK RANGE
+		if (ActiveEnemy.IsPLayerInAttackRange())
 		{
 			ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.Find(state => state is IguanaAttack));
 			return null;

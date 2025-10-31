@@ -31,6 +31,12 @@ script = ExtResource("4_0d8ee")
 [node name="IguanaAttack" type="Node" parent="IguanaStateMachine"]
 script = ExtResource("6_7w56b")
 
+[node name="AttackTimer" type="Timer" parent="IguanaStateMachine"]
+wait_time = 0.5
+
+[node name="RoamTimer" type="Timer" parent="IguanaStateMachine"]
+wait_time = 0.5
+
 [node name="IguanaSprite" type="Sprite2D" parent="."]
 position = Vector2(47, 25)
 scale = Vector2(0.24000004, 0.28444445)
@@ -49,9 +55,3 @@ shape = SubResource("CircleShape2D_tdsod")
 [node name="HurtBox" parent="." instance=ExtResource("7_qt522")]
 visible = false
 position = Vector2(47, 27)
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
-
-[node name="RoamTimer" type="Timer" parent="."]
-wait_time = 0.5

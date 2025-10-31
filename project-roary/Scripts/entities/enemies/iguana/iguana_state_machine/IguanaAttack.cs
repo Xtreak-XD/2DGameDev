@@ -13,7 +13,14 @@ public partial class IguanaAttack : IguanaState
 	// Called when the state is entered
 	public override void EnterState()
 	{
-        timer.Start();
+		timer.Start();
+
+		timer.Timeout += () =>
+		{
+			// Attack 
+			ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.
+		Find(state => state is IguanaRoam));
+		};
     }
 
 	// Called when the state is exited

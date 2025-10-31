@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca11nyq5g8i65"]
+[gd_scene load_steps=11 format=3 uid="uid://ca11nyq5g8i65"]
 
 [ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/Enemy.cs" id="1_jxk5p"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_kinsv"]
@@ -8,15 +8,24 @@
 [ext_resource type="Script" uid="uid://cxv4qk5u52coo" path="res://Scripts/entities/enemies/state_machine/Chase.cs" id="5_ww43p"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="7_ww43p"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ww43p"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
 radius = 42.107006
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
-radius = 394.0114
+radius = 0.01
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_jxk5p")
 data = ExtResource("2_rkctb")
+
+[node name="HurtBox" parent="." instance=ExtResource("7_ww43p")]
+position = Vector2(49, 31)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ww43p")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("3_yqnki")
@@ -42,5 +51,6 @@ shape = SubResource("CircleShape2D_kinsv")
 position = Vector2(46, 25)
 shape = SubResource("CircleShape2D_tdsod")
 
-[node name="HurtBox" parent="." instance=ExtResource("7_ww43p")]
-position = Vector2(47, 27)
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(39, 12)
+rect = Rect2(-10, -10, 38, 43)

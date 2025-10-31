@@ -190,9 +190,37 @@ texture = ExtResource("3_awssp")
 expand_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="HUD/day cycle/PanelContainer"]
-modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_dhmg6")
 expand_mode = 1
+
+[node name="day" type="Label" parent="HUD/day cycle/PanelContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 67.48251
+offset_top = 10.664335
+offset_right = 130.48251
+offset_bottom = 33.664337
+theme_override_font_sizes/font_size = 16
+text = "Monday"
+horizontal_alignment = 1
+
+[node name="time" type="Label" parent="HUD/day cycle/PanelContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 64.68532
+offset_top = 40.034966
+offset_right = 135.68532
+offset_bottom = 63.034966
+text = "10:25 AM"
+horizontal_alignment = 1
+
+[node name="temp" type="Label" parent="HUD/day cycle/PanelContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 84.26573
+offset_top = 63.81119
+offset_right = 124.26573
+offset_bottom = 86.81119
+text = "98°"
+horizontal_alignment = 1

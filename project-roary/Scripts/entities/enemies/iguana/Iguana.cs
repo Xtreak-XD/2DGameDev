@@ -26,7 +26,7 @@ public partial class Iguana : CharacterBody2D
 		return aggroArea.GetOverlappingBodies().Contains(target);
 	}
 	
-	public bool IsPLayerInAttackRange()
+	public bool IsPlayerInAttackRange()
     {
         return hurtBox.GetOverlappingBodies().Contains(target);
     }

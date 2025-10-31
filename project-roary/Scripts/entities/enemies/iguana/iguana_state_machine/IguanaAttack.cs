@@ -4,10 +4,17 @@ using System;
 public partial class IguanaAttack : IguanaState
 {
 	public Timer timer;
+	public bool change;
+
+	public IguanaChase IguanaChase;
+
+	public IguanaRoam IguanaRoam;
 
 	public override void _Ready()
     {
-        timer = GetParent().GetNode<Timer>("AttackTimer");
+		timer = GetParent().GetNode<Timer>("AttackTimer");
+		IguanaChase = GetParent().GetNode<IguanaChase>("IguanaChase");
+		IguanaRoam = GetParent().GetNode<IguanaRoam>("IguanaRoam");
     }
 	
 	// Called when the state is entered
@@ -15,12 +22,7 @@ public partial class IguanaAttack : IguanaState
 	{
 		timer.Start();
 
-		timer.Timeout += () =>
-		{
-			// Attack 
-			ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.
-		Find(state => state is IguanaRoam));
-		};
+		timer.Timeout += TimeOut;
     }
 
 	// Called when the state is exited
@@ -28,13 +30,20 @@ public partial class IguanaAttack : IguanaState
 	{
 		timer.Stop();
 		timer.WaitTime = 0.5;
-		
-		ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.
-		Find(state => state is IguanaChase));
     }
 
 	public override IguanaState Process(double delta)
 	{
+        if (change)
+		{
+			return IguanaChase;
+        }
+
 		return null;
 	}
+	
+	public void TimeOut()
+    {
+		change = true;
+    }
 }

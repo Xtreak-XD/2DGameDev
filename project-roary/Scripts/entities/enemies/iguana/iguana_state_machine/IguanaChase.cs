@@ -2,9 +2,13 @@ using Godot;
 
 public partial class IguanaChase : IguanaState
 {
+	public IguanaRoam IguanaRoam;
+	public IguanaAttack IguanaAttack;
+
 	public override void _Ready()
     {
-        
+        IguanaRoam = GetParent().GetNode<IguanaRoam>("IguanaRoam");
+		IguanaAttack = GetParent().GetNode<IguanaAttack>("IguanaAttack");
     }
 	
 	// Called when the state is entered
@@ -28,14 +32,12 @@ public partial class IguanaChase : IguanaState
 
 		if(!ActiveEnemy.IsPlayerInChaseRange())
         {
-			ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.Find(state => state is IguanaRoam));
-			return null;
+			return IguanaRoam;
         }
 
-		if (ActiveEnemy.IsPLayerInAttackRange())
+		if (ActiveEnemy.IsPlayerInAttackRange())
 		{
-			ActiveEnemy.stateMachine.ChangeState(ActiveEnemy.stateMachine.states.Find(state => state is IguanaAttack));
-			return null;
+			return IguanaAttack;
 		}
 
 		return null;

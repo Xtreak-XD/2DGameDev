@@ -39,6 +39,11 @@ public partial class IguanaRoam : IguanaState
 			return IguanaChase;
 		}
 
+		if (ActiveEnemy.IsPlayerInAttackRange())
+		{
+			return IguanaAttack;
+		}
+
 		return null;
 	}
 	

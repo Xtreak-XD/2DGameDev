@@ -1,11 +1,11 @@
 using System;
 using Godot;
 
-public partial class Iguana : CharacterBody2D
+public partial class Iguana : Enemy
 {
 	[Export]
-	public GenericData data;
-	public IguanaStateMachine stateMachine;
+	public new GenericData data;
+	public new IguanaStateMachine stateMachine;
 
 	[Export]
 	public CharacterBody2D target;
@@ -31,7 +31,7 @@ public partial class Iguana : CharacterBody2D
 	{
 		return hurtBox.GetOverlappingBodies().Contains(target);
 	}
-	
+
 	public Vector2 GetRandomPositionInRoamRange()
 	{
 		Random random = new Random();
@@ -42,6 +42,11 @@ public partial class Iguana : CharacterBody2D
 		float randomY = random.Next((int)-roamRange, (int)roamRange + 1);
 
 		return Position + new Vector2(randomX, randomY);
+	}
+	
+	public void AttackPlayer()
+	{
+		GD.Print("The iguana has attacked.");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

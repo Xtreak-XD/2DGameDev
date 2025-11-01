@@ -22,7 +22,7 @@ public partial class IguanaAttack : IguanaState
 	{
 		timer.Start();
 
-		timer.Timeout += TimeOut;
+		timer.Timeout += Attack;
     }
 
 	// Called when the state is exited
@@ -36,14 +36,16 @@ public partial class IguanaAttack : IguanaState
 	{
         if (change)
 		{
+			change = false;
 			return IguanaChase;
         }
 
 		return null;
 	}
 	
-	public void TimeOut()
-    {
+	public void Attack()
+	{
+		ActiveEnemy.AttackPlayer();
 		change = true;
     }
 }

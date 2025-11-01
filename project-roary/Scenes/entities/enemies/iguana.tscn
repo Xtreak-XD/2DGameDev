@@ -32,7 +32,7 @@ script = ExtResource("4_0d8ee")
 script = ExtResource("6_7w56b")
 
 [node name="AttackTimer" type="Timer" parent="IguanaStateMachine"]
-wait_time = 0.5
+wait_time = 0.75
 
 [node name="RoamTimer" type="Timer" parent="IguanaStateMachine"]
 

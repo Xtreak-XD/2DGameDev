@@ -35,7 +35,7 @@ OffScreenDespawnTime = null
 
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
-INGAME_SPEED = 25.0
+INGAME_SPEED = 100.0
 INITIAL_HOUR = null
 
 [editable path="Enemymanager"]

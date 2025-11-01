@@ -56,6 +56,7 @@ public partial class DayNightCycle : CanvasModulate
         var hour = (int)(currentDayMins / MIUNTES_PER_HOUR);
         var mins = (int)(currentDayMins % MIUNTES_PER_HOUR);
 
+        if(day == 7){ day = 0; }
         if (pastMin != mins)
         {
             pastMin = mins;

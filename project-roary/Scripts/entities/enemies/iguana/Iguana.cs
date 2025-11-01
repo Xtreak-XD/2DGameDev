@@ -11,6 +11,7 @@ public partial class Iguana : Enemy
 	public CharacterBody2D target;
 	public Area2D aggroArea;
 	public Area2D hurtBox;
+
 	public const int ROAM_RANGE = 150;
 
 	public override void _Ready()

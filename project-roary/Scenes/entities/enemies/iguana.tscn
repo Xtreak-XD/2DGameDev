@@ -10,13 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="7_qt522"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
-radius = 42.107006
+radius = 26.019224
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
-radius = 155.01291
+radius = 218.02065
 
 [node name="Iguana" type="CharacterBody2D"]
 script = ExtResource("1_jatro")
+data = ExtResource("2_l4it4")
 data = ExtResource("2_l4it4")
 
 [node name="IguanaStateMachine" type="Node" parent="."]
@@ -37,12 +38,12 @@ wait_time = 0.75
 [node name="RoamTimer" type="Timer" parent="IguanaStateMachine"]
 
 [node name="IguanaSprite" type="Sprite2D" parent="."]
-position = Vector2(47, 25)
-scale = Vector2(0.24000004, 0.28444445)
+position = Vector2(48, 28)
+scale = Vector2(0.13818182, 0.17486338)
 texture = ExtResource("6_fhv8h")
 
 [node name="IguanaCollider" type="CollisionShape2D" parent="."]
-position = Vector2(47, 25)
+position = Vector2(47, 28)
 shape = SubResource("CircleShape2D_kinsv")
 
 [node name="TargetDetector" type="Area2D" parent="."]
@@ -52,5 +53,4 @@ position = Vector2(46, 25)
 shape = SubResource("CircleShape2D_tdsod")
 
 [node name="HurtBox" parent="." instance=ExtResource("7_qt522")]
-visible = false
 position = Vector2(47, 27)

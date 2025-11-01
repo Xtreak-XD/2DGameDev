@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class IguanaAttack : IguanaState
 {
@@ -45,6 +44,9 @@ public partial class IguanaAttack : IguanaState
 	
 	public void Attack()
 	{
+		Vector2 toPlayer = ActiveEnemy.target.Position - ActiveEnemy.Position;
+		ActiveEnemy.MoveAndCollide(toPlayer);
+
 		ActiveEnemy.AttackPlayer();
 		change = true;
     }

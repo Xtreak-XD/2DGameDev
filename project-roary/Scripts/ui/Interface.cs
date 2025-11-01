@@ -44,7 +44,6 @@ public partial class Interface : CanvasLayer
         }
 
         //setting day
-        GD.Print(day);
         switch (day)
         {
             case 0:

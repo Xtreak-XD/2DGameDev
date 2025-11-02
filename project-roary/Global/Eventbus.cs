@@ -11,6 +11,11 @@ using System;
 /// </summary>
 public partial class Eventbus : Node
 {
+    public static event Action<Enemy> OnEnemyDeath; //this is emitted by the enemy
+    public static void EnemyDied(Enemy enemy)
+    {
+        OnEnemyDeath?.Invoke(enemy);
+    }
     [Signal]
     public delegate void applyDamageEventHandler(string dmgReceiverName,string dmgDealerName, int dmg); //this is emitted by hitbox and used by hurtbox to pass dmg and information to deal dmg and apply effects.
 }

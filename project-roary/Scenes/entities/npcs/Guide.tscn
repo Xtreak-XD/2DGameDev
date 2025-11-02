@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddq3hijvn1xf3"]
+
+[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="1_gamnb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mviv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gamnb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.5
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7xepf"]
+radius = 14.108908
+height = 40.59405
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xepf"]
+radius = 50.681705
+
+[node name="Guide" type="CharacterBody2D"]
+
+[node name="WiseTurtle" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3, 1)
+scale = Vector2(1.7999997, 3.2629752)
+sprite_frames = SubResource("SpriteFrames_8mviv")
+frame_progress = 0.25390497
+
+[node name="NpcCollision" type="CollisionShape2D" parent="."]
+rotation = 3.1415927
+scale = Vector2(8.080002, -10.49111)
+shape = SubResource("CapsuleShape2D_7xepf")
+
+[node name="ProximityCheck" type="Area2D" parent="."]
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="ProximityCheck"]
+position = Vector2(-12, 258.00003)
+scale = Vector2(7.551529, 8.942918)
+shape = SubResource("CircleShape2D_7xepf")

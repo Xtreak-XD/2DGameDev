@@ -44,10 +44,11 @@ public partial class IguanaAttack : IguanaState
 	
 	public void Attack()
 	{
-		Vector2 toPlayer = ActiveEnemy.target.Position - ActiveEnemy.Position;
-		ActiveEnemy.MoveAndCollide(toPlayer);
+		if (ActiveEnemy.IsPlayerInAttackRange())
+		{
+			ActiveEnemy.AttackPlayer();
+		}
 
-		ActiveEnemy.AttackPlayer();
 		change = true;
     }
 }

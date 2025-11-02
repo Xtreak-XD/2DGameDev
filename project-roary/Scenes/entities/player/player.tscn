@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://v2ybqe80tyj4"]
+[gd_scene load_steps=13 format=3 uid="uid://v2ybqe80tyj4"]
 
-[ext_resource type="Script" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
+[ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
 [ext_resource type="Resource" uid="uid://uyep6yujeiow" path="res://Resources/entities/player/PlayerStats.tres" id="2_ah8g8"]
 [ext_resource type="Script" uid="uid://bnaxclisdkc0b" path="res://Scripts/entities/player/StateMachines/PlayerStateMachine.cs" id="3_7yyei"]
 [ext_resource type="Script" uid="uid://caltl6nhd2gte" path="res://Scripts/entities/player/StateMachines/IdleState.cs" id="4_0etk1"]
 [ext_resource type="Script" uid="uid://bykciy4t76ir2" path="res://Scripts/entities/player/StateMachines/WalkState.cs" id="5_0etk1"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="7_qn3n3"]
+[ext_resource type="Script" uid="uid://bt23yvbdxkl6c" path="res://Scripts/helperScripts/HurtBox.cs" id="8_bke8f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3n3"]
 radius = 6.0
@@ -19,6 +20,8 @@ length = 0.001
 _data = {
 &"RESET": SubResource("Animation_cwd6f")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_akm2x"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yl34j")
@@ -52,3 +55,9 @@ script = ExtResource("5_0etk1")
 
 [node name="Hitbox" parent="." instance=ExtResource("7_qn3n3")]
 position = Vector2(20, -7)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("8_bke8f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_akm2x")

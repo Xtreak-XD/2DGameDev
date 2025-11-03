@@ -8,9 +8,10 @@ public partial class Iguana : Enemy
 	public new IguanaStateMachine stateMachine;
 
 	[Export]
-	public CharacterBody2D target;
+	public Player target;
 	public Area2D aggroArea;
 	public Area2D hurtBox;
+	public Area2D hitbox;
 
 	public const int ROAM_RANGE = 150;
 
@@ -21,6 +22,7 @@ public partial class Iguana : Enemy
 		stateMachine.Initialize(this);
 		aggroArea = GetNode<Area2D>("TargetDetector");
 		hurtBox = GetNode<Area2D>("HurtBox");
+		hitbox = GetNode<Area2D>("Hitbox");
 	}
 
 	public bool IsPlayerInChaseRange()
@@ -47,7 +49,11 @@ public partial class Iguana : Enemy
 	
 	public void AttackPlayer()
 	{
-		GD.Print("The iguana has attacked.");
+		if(hitbox.GetOverlappingBodies().Contains(target))
+		{
+            // Deal damage when player is in hitbox range.
+			GD.Print("The iguana has attacked.");
+        }
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

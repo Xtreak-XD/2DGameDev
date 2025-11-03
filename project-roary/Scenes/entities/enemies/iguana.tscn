@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drfioqbhwrfpj"]
+[gd_scene load_steps=12 format=3 uid="uid://drfioqbhwrfpj"]
 
 [ext_resource type="Script" uid="uid://bm7qi0doje7wr" path="res://Scripts/entities/enemies/iguana/Iguana.cs" id="1_jatro"]
 [ext_resource type="Resource" uid="uid://bosrshswacwcl" path="res://Resources/entities/enemy/EnemyData.tres" id="2_l4it4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dv5wsiqvh1bav" path="res://Scripts/entities/enemies/iguana/iguana_state_machine/IguanaAttack.cs" id="6_7w56b"]
 [ext_resource type="Texture2D" uid="uid://dh6go5rqdw8m2" path="res://Sprites/entities/enemies/iguana.jpeg" id="6_fhv8h"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="7_qt522"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="9_0d8ee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
 radius = 26.019224
@@ -54,3 +55,7 @@ shape = SubResource("CircleShape2D_tdsod")
 
 [node name="HurtBox" parent="." instance=ExtResource("7_qt522")]
 position = Vector2(47, 27)
+
+[node name="Hitbox" parent="." instance=ExtResource("9_0d8ee")]
+position = Vector2(47.000004, 27)
+scale = Vector2(3.25, 3.25)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bosrshswacwcl"]
+[gd_resource type="Resource" script_class="GenericData" load_steps=2 format=3 uid="uid://bosrshswacwcl"]
 
 [ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="1_nkmmk"]
 
@@ -6,6 +6,6 @@
 script = ExtResource("1_nkmmk")
 Health = 10
 MaxHealth = 10
-Damage = 1
-Speed = 1000
+Damage = 10
+Speed = 100
 metadata/_custom_type_script = "uid://dkov12aknt46v"

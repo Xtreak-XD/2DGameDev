@@ -6,6 +6,6 @@
 script = ExtResource("1_pkxl8")
 Health = 100
 MaxHealth = 100
-Damage = 500
+Damage = 5
 Speed = 100
 metadata/_custom_type_script = "uid://dkov12aknt46v"

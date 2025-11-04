@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b35dx7wmx5psl"
-path="res://.godot/imported/FLYING.png-9ed36d21695c889ed90da5bbc6d2fd5b.ctex"
+uid="uid://bkbrgdjtum1r7"
+path="res://.godot/imported/Book_Bat_Sprites__1_-01-removebg-preview.png-76590cd84fb24f4bc9a2c212f046caae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/entities/enemies/FLYING.png"
-dest_files=["res://.godot/imported/FLYING.png-9ed36d21695c889ed90da5bbc6d2fd5b.ctex"]
+source_file="res://Sprites/entities/enemies/Book_Bat_Sprites__1_-01-removebg-preview.png"
+dest_files=["res://.godot/imported/Book_Bat_Sprites__1_-01-removebg-preview.png-76590cd84fb24f4bc9a2c212f046caae.ctex"]
 
 [params]
 

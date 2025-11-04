@@ -39,7 +39,7 @@ shape = SubResource("CircleShape2D_kinsv")
 [node name="TargetDetector" type="Area2D" parent="."]
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="TargetDetector"]
-position = Vector2(46, 25)
+position = Vector2(42, 32)
 shape = SubResource("CircleShape2D_tdsod")
 
 [node name="HurtBox" parent="." instance=ExtResource("7_ww43p")]

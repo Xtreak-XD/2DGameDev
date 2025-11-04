@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://v2ybqe80tyj4"]
 
-[ext_resource type="Script" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
+[ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
 [ext_resource type="Resource" uid="uid://uyep6yujeiow" path="res://Resources/entities/player/PlayerStats.tres" id="2_ah8g8"]
 [ext_resource type="Script" uid="uid://bnaxclisdkc0b" path="res://Scripts/entities/player/StateMachines/PlayerStateMachine.cs" id="3_7yyei"]
@@ -51,4 +51,4 @@ script = ExtResource("4_0etk1")
 script = ExtResource("5_0etk1")
 
 [node name="Hitbox" parent="." instance=ExtResource("7_qn3n3")]
-position = Vector2(20, -7)
+position = Vector2(0, -7)

@@ -19,7 +19,6 @@ radius = 218.02065
 [node name="Iguana" type="CharacterBody2D"]
 script = ExtResource("1_jatro")
 data = ExtResource("2_l4it4")
-data = ExtResource("2_l4it4")
 
 [node name="IguanaStateMachine" type="Node" parent="."]
 script = ExtResource("3_l4it4")
@@ -58,4 +57,4 @@ position = Vector2(47, 27)
 
 [node name="Hitbox" parent="." instance=ExtResource("9_0d8ee")]
 position = Vector2(47.000004, 27)
-scale = Vector2(3.25, 3.25)
+scale = Vector2(3.33, 3.33)

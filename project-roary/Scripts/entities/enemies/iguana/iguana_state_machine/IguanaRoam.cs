@@ -12,13 +12,13 @@ public partial class IguanaRoam : IguanaState
 		timer = GetParent().GetNode<Timer>("RoamTimer");
 		IguanaAttack = GetParent().GetNode<IguanaAttack>("IguanaAttack");
 		IguanaChase = GetParent().GetNode<IguanaChase>("IguanaChase");
+
+		timer.Timeout += PickPosition;
     }
 
 	public override void EnterState()
     {
 		timer.Start();
-
-		timer.Timeout += PickPosition;
 
 		newPos = ActiveEnemy.Position;
     }

@@ -22,4 +22,7 @@ public partial class Eventbus : Node
 
     [Signal]
     public delegate void timeTickEventHandler(int day, int hour, int min); //this signal is used for ticking time, emitted by dayNightcycle script
+
+    [Signal]
+    public delegate void finishedDisplayingEventHandler(); //this is emitted by text boxes when a set of text is done displaying.
 }  

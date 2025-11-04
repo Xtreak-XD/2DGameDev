@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=6 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
-[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
+[ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="5_4b6br"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -30,11 +31,9 @@ position = Vector2(290, 198)
 [node name="EntityContainer" type="Node2D" parent="Enemymanager"]
 
 [node name="Enemy" parent="." instance=ExtResource("2_6tqdf")]
+position = Vector2(0, 1)
 rotation = 0.00052142126
 OffScreenDespawnTime = null
-position = Vector2(617, -29)
-
-position = Vector2(0, 1)
 
 [node name="BookEnemy" parent="." instance=ExtResource("3_6tqdf")]
 position = Vector2(71, 206)
@@ -43,5 +42,8 @@ position = Vector2(71, 206)
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
 INITIAL_HOUR = null
+
+[node name="BookEnemy2" parent="." instance=ExtResource("5_4b6br")]
+position = Vector2(289, 118)
 
 [editable path="Enemymanager"]

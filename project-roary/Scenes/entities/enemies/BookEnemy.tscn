@@ -70,7 +70,7 @@ radius = 24.020824
 script = ExtResource("1_qyygv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(29, 30)
+position = Vector2(1.9073486e-06, 1.9073486e-06)
 scale = Vector2(0.3, 0.437)
 sprite_frames = SubResource("SpriteFrames_j6pin")
 animation = &"flapping"

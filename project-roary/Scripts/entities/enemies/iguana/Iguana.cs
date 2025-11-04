@@ -3,8 +3,6 @@ using Godot;
 
 public partial class Iguana : Enemy
 {
-	[Export]
-	public new GenericData data;
 	public new IguanaStateMachine stateMachine;
 
 	[Export]

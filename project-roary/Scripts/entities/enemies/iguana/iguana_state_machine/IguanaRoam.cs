@@ -51,9 +51,9 @@ public partial class IguanaRoam : IguanaState
 	{
 		if (ActiveEnemy.Position.DistanceTo(newPos) <= 50)
 		{
-			GD.Print("Reached roam position.");
+			//GD.Print("Reached roam position.");
 			newPos = ActiveEnemy.GetRandomPositionInRoamRange();
-			GD.Print("New Roam Position: " + newPos);
+			//GD.Print("New Roam Position: " + newPos);
 		}
 		
 		timer.Start();

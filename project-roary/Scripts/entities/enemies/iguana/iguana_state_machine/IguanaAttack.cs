@@ -47,6 +47,7 @@ public partial class IguanaAttack : IguanaState
 		if (ActiveEnemy.IsPlayerInAttackRange())
 		{
 			ActiveEnemy.AttackPlayer();
+			change = true;
 		}
 
 		change = true;

@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Threading.Tasks;
 
 public partial class dialogueManager : Node
 {
@@ -66,6 +65,7 @@ public partial class dialogueManager : Node
             {
                 isDialogActive = false;
                 currentLineIndex = 0;
+                eventbus.EmitSignal("finishedDisplaying");
                 return;
             }
             showTextBox();

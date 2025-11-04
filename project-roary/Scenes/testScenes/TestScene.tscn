@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
 [ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="8_hm8wl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
 radius = 174.3
@@ -53,8 +54,13 @@ actionName = "talk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testNpc/InteractableArea"]
 shape = SubResource("CircleShape2D_106wm")
 
-[node name="Iguana" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_bobsk")]
+[node name="Iguana" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(648, 316)
-target = NodePath("../Player")
+INGAME_SPEED = null
+INITIAL_HOUR = null
+
+[node name="IguanaEnemyTest" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(178, 147)
+OffScreenDespawnTime = null
 
 [editable path="Enemymanager"]

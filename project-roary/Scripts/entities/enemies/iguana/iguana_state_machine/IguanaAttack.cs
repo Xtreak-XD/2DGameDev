@@ -14,14 +14,14 @@ public partial class IguanaAttack : IguanaState
 		timer = GetParent().GetNode<Timer>("AttackTimer");
 		IguanaChase = GetParent().GetNode<IguanaChase>("IguanaChase");
 		IguanaRoam = GetParent().GetNode<IguanaRoam>("IguanaRoam");
+
+		timer.Timeout += Attack;
     }
 	
 	// Called when the state is entered
 	public override void EnterState()
 	{
 		timer.Start();
-
-		timer.Timeout += Attack;
     }
 
 	// Called when the state is exited

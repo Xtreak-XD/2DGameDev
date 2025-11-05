@@ -27,6 +27,8 @@ shape = SubResource("CircleShape2D_ptvhl")
 shape = SubResource("CircleShape2D_fqas6")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_a1ped")]
+ContinuousDamage = true
+DamageInterval = 0.5
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_jvh2m")

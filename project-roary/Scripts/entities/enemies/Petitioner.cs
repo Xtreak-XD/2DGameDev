@@ -3,10 +3,10 @@ using System;
 public partial class Petitioner : Enemy
 {
     // how often this enemy hurts you while you're touching it
-    public float ContactDamageInterval = 0.5f;
+   [Export] public float ContactDamageInterval = 0.5f;
 
     // can be turned off in the editor if you ever want a non-contact version
-    public bool UseContactDamage = true;
+    [Export] public bool UseContactDamage = true;
 
     private Hitbox _hitbox;
 

@@ -4,20 +4,26 @@ using System.Collections.Generic;
 
 public partial class Hitbox : Area2D
 {
-    public bool ContinuousDamage = false;
-    public float DamageInterval = 1.0f;
+   [Export] public bool ContinuousDamage = false;
+   [Export]  public float DamageInterval = 1.0f;
 
-    public float _contactTimer = 0f; // seconds between damage applications
+   [Export] public float _contactTimer = 0f; // seconds between damage applications
+
+    //enemy or player hitbox reference 
+    [Export] public string Attackergroup = "enemy";
+    [Export] public string Targetgroup = "player";
+
     public GenericData data;
     public Eventbus eventbus;
     private List<Area2D> targetsInRange = new List<Area2D>();
 
+    private Node parent;
     public override void _Ready()
     {
-        
+
         AddToGroup("hitbox");
         eventbus = GetNode<Eventbus>("/root/Eventbus");
-        Node parent = GetParent();
+        parent = GetParent();
 
         if (parent is Player playerParent)
         {
@@ -55,10 +61,14 @@ public partial class Hitbox : Area2D
 
     public void onAreaEntered(Area2D area)
     {
-        if (area.IsInGroup("hurtbox") && (area.GetParent() == GetParent()))
-        {
-            targetsInRange.Add(area);
-        }
+        if (!area.IsInGroup("hurtbox")) return;
+        Node targetParent = area.GetParent();
+        if (targetParent == parent) return;
+        if (!parent.IsInGroup(Attackergroup)) return;
+        if (!targetParent.IsInGroup(Targetgroup)) return;
+
+        targetsInRange.Add(area);
+        GD.Print($"ENTER: {parent.Name} saw {area.GetParent().Name}");
     }
 
     public void OnAreaExited(Area2D area)
@@ -106,6 +116,11 @@ public partial class Hitbox : Area2D
         {
             if (area != null && GodotObject.IsInstanceValid(area) && area.IsInsideTree())
             {
+                Node targetparent = area.GetParent();
+                if (targetparent == parent) continue;
+                if (!parent.IsInGroup(Attackergroup)) continue;
+                if (!targetparent.IsInGroup(Targetgroup)) continue;
+                
                 eventbus.EmitSignal("applyDamage", area.GetParent().Name, GetParent().Name, damageAmount);
             }
         }

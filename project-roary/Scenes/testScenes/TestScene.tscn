@@ -9,13 +9,19 @@
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(222, 143)
+collision_layer = 15
+collision_mask = 3
 
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
+process_mode = 4
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D"), NodePath("EnemySpawnPointContainer/Marker2D2"), NodePath("EnemySpawnPointContainer/Marker2D3"), NodePath("EnemySpawnPointContainer/Marker2D4")]
 EnemyScene = ExtResource("2_6tqdf")
 MaxEnemiesAlive = 4
+
+[node name="EnemySpawnPointContainer" parent="Enemymanager" index="1"]
+visible = false
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
 position = Vector2(631, 194)
@@ -36,6 +42,6 @@ visible = false
 rotation = 0.00052142126
 
 [node name="Petitioner" parent="." instance=ExtResource("4_bobsk")]
-position = Vector2(160, 135)
+position = Vector2(257, 142)
 
 [editable path="Enemymanager"]

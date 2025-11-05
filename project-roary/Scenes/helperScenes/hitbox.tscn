@@ -10,4 +10,4 @@ script = ExtResource("1_sv4nt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7dfu6")
-debug_color = Color(0.98179775, 0, 0.37202212, 0.41960785)
+debug_color = Color(0.9145488, 0.17921963, 0.5675475, 0.41960785)

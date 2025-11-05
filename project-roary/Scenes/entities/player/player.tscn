@@ -54,7 +54,9 @@ script = ExtResource("4_0etk1")
 script = ExtResource("5_0etk1")
 
 [node name="Hitbox" parent="." instance=ExtResource("7_qn3n3")]
-position = Vector2(20, -7)
+position = Vector2(1, 1)
+Attackergroup = "player"
+Targetgroup = "enemy"
 
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("8_bke8f")

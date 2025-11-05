@@ -1,0 +1,36 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://cqh47byd6y2cy"
+path="res://.godot/imported/Super Joyful.ttf-724ad375512119b10842c5c829bd8981.fontdata"
+
+[deps]
+
+source_file="res://placeholderTestAssets/Super Joyful.ttf"
+dest_files=["res://.godot/imported/Super Joyful.ttf-724ad375512119b10842c5c829bd8981.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+modulate_color_glyphs=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

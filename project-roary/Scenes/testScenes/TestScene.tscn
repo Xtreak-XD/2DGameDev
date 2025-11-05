@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
 [ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="8_hm8wl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
 radius = 174.3
@@ -22,35 +23,55 @@ EnemySpawnTimerMax = 3.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D"), NodePath("EnemySpawnPointContainer/Marker2D3")]
 EnemyScene = ExtResource("2_6tqdf")
 
+[node name="EnemySpawnPointContainer" parent="Enemymanager" index="1"]
+visible = false
+
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
+visible = false
 position = Vector2(631, 194)
 
 [node name="Marker2D2" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="1"]
+visible = false
 position = Vector2(731, 362)
 
 [node name="Marker2D3" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="2"]
+visible = false
 position = Vector2(419, 368)
 
 [node name="Marker2D4" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="3"]
 position = Vector2(290, 198)
 
 [node name="EntityContainer" type="Node2D" parent="Enemymanager"]
+visible = false
 
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
+visible = false
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
 INITIAL_HOUR = null
 
 [node name="testNpc" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(348, 109)
 scale = Vector2(0.14062509, 0.30078128)
 texture = ExtResource("5_4b6br")
 script = ExtResource("6_lfsl6")
 
 [node name="InteractableArea" parent="testNpc" instance=ExtResource("6_106wm")]
+visible = false
 actionName = "talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testNpc/InteractableArea"]
 shape = SubResource("CircleShape2D_106wm")
+
+[node name="Iguana" parent="." instance=ExtResource("4_bobsk")]
+visible = false
+position = Vector2(648, 316)
+INGAME_SPEED = null
+INITIAL_HOUR = null
+
+[node name="IguanaEnemyTest" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(425, 231)
+OffScreenDespawnTime = null
 
 [editable path="Enemymanager"]

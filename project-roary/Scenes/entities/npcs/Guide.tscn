@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddq3hijvn1xf3"]
+[gd_scene load_steps=6 format=3 uid="uid://ddq3hijvn1xf3"]
 
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="1_gamnb"]
+[ext_resource type="Script" uid="uid://domqpx52m38ol" path="res://Scripts/entities/npcs/Guide.cs" id="1_oxab3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8mviv"]
 animations = [{
@@ -21,6 +22,7 @@ height = 40.59405
 radius = 50.681705
 
 [node name="Guide" type="CharacterBody2D"]
+script = ExtResource("1_oxab3")
 
 [node name="WiseTurtle" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

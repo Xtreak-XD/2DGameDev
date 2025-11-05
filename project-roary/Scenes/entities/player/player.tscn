@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://v2ybqe80tyj4"]
+[gd_scene load_steps=12 format=3 uid="uid://v2ybqe80tyj4"]
 
 [ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://caltl6nhd2gte" path="res://Scripts/entities/player/StateMachines/IdleState.cs" id="4_0etk1"]
 [ext_resource type="Script" uid="uid://bykciy4t76ir2" path="res://Scripts/entities/player/StateMachines/WalkState.cs" id="5_0etk1"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="7_qn3n3"]
-[ext_resource type="Script" uid="uid://bt23yvbdxkl6c" path="res://Scripts/helperScripts/HurtBox.cs" id="8_bke8f"]
+[ext_resource type="PackedScene" uid="uid://ca3g24pmtocst" path="res://Scenes/ui/interface.tscn" id="8_bke8f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3n3"]
 radius = 6.0
@@ -58,8 +58,8 @@ position = Vector2(1, 1)
 Attackergroup = "player"
 Targetgroup = "enemy"
 
-[node name="Hurtbox" type="Area2D" parent="."]
-script = ExtResource("8_bke8f")
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("CapsuleShape2D_akm2x")
+[node name="Interface" parent="Camera2D" instance=ExtResource("8_bke8f")]
+follow_viewport_enabled = false

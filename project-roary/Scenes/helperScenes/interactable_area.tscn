@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dii1rr3g0rwfm"]
+
+[ext_resource type="Script" uid="uid://lljes4ot31en" path="res://Scripts/helperScripts/interactionArea.cs" id="1_xnftq"]
+
+[node name="InteractableArea" type="Area2D"]
+light_mask = 0
+script = ExtResource("1_xnftq")

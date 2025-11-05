@@ -17,7 +17,7 @@ public partial class TurtleNpc : Sprite2D
         "I am merely a humble passerby in these parts.",
         "There's been lots of trouble stirring around here recently.",
         "So something tells me you're here for a reason.",
-        "If that's the case, there may still be time in our currrent situation.",
+        "If that's the case, there may still be time in our current situation.",
         "You must go across campus in order to put a stop to a certain panther.",
         "Do not fret anytime on your way for our paths will surely cross again."
     };

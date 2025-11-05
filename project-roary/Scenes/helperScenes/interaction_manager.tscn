@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2fcp66inc3vn"]
+
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_gwmx4"]
+[ext_resource type="Script" uid="uid://ckcer5nex35cx" path="res://Scripts/helperScripts/InteractionManager.cs" id="1_mnh4d"]
+
+[node name="InteractionManager" type="Node2D"]
+script = ExtResource("1_mnh4d")
+
+[node name="Label" type="Label" parent="."]
+z_index = 20
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_right = 62.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_gwmx4")
+text = "[E] TO INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1

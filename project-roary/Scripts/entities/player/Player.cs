@@ -5,6 +5,8 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Export]
+	public Inventory inventory;
+	[Export]
 	public GenericData data;
 	public AnimationPlayer animationPlayer;
 	public AnimatedSprite2D anim;

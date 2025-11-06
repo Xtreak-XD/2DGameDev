@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://coomkf30cwip7"]
+
+[ext_resource type="Script" uid="uid://gcqgiehykydw" path="res://Scripts/ui/inventory/InventoryUI.cs" id="1_d6uvn"]
+[ext_resource type="Texture2D" uid="uid://dfynwlwkqh1xu" path="res://Sprites/inventory/Inventory.png" id="2_7u8lk"]
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.40800953, 0.3521643)
+script = ExtResource("1_d6uvn")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 242.19559
+offset_bottom = 134.55699
+scale = Vector2(0.07083722, 0.08441282)
+texture = ExtResource("2_7u8lk")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3

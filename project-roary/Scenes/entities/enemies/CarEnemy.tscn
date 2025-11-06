@@ -8,20 +8,19 @@
 size = Vector2(56, 20)
 
 [node name="Car Enemy" type="CharacterBody2D"]
-position = Vector2(194, 115)
-rotation = 1.5707964
+position = Vector2(194, 111)
 script = ExtResource("1_yekdc")
 speed = 1000
-currentDirection = 3
+currentDirection = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-18.000002, 11.999998)
+position = Vector2(0.28806686, -0.0041208267)
 scale = Vector2(0.25144947, 0.08885224)
 texture = ExtResource("2_al8n0")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_hf14f")]
-position = Vector2(0, 12)
+position = Vector2(18.28807, -0.004119873)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-18, 12)
+position = Vector2(0.28807068, -0.004119873)
 shape = SubResource("RectangleShape2D_h1t53")

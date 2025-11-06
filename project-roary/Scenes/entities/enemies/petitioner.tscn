@@ -1,11 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb03afcepoioc"]
+[gd_scene load_steps=7 format=3 uid="uid://cb03afcepoioc"]
 
 [ext_resource type="Script" uid="uid://dje6qhp85gpqg" path="res://Scripts/entities/enemies/Petitioner.cs" id="1_uqobr"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_hsg6v"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_a1ped"]
-[ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/state_machine/EnemyStateMachine.cs" id="4_4dy67"]
-[ext_resource type="Script" uid="uid://xkflm4opmlnh" path="res://Scripts/entities/enemies/state_machine/Roam.cs" id="5_6nq1m"]
-[ext_resource type="Script" uid="uid://cxv4qk5u52coo" path="res://Scripts/entities/enemies/state_machine/Chase.cs" id="6_24kyf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ptvhl"]
 
@@ -22,11 +19,14 @@ script = ExtResource("1_uqobr")
 shape = SubResource("CircleShape2D_ptvhl")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_hsg6v")]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_fqas6")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_a1ped")]
+collision_layer = 4
 ContinuousDamage = true
 DamageInterval = 0.5
 
@@ -36,10 +36,7 @@ shape = SubResource("CircleShape2D_jvh2m")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="EnemyStateMachine" type="Node" parent="."]
-script = ExtResource("4_4dy67")
 
 [node name="Roam" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("5_6nq1m")
 
 [node name="Chase" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("6_24kyf")

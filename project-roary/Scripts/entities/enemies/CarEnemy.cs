@@ -47,7 +47,10 @@ public partial class CarEnemy : Enemy
                 GetNode<CollisionShape2D>("CollisionShape2D").RotationDegrees = 270;
                 break;
         }
+    }
 
+    public override void _PhysicsProcess(double delta)
+    {
         MoveAndSlide();
     }
 }

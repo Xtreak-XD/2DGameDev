@@ -11,9 +11,8 @@ size = Vector2(56, 20)
 position = Vector2(194, 115)
 rotation = 1.5707964
 script = ExtResource("1_yekdc")
-speed = 400
-currentDirection = 1
-OffScreenDespawnTime = null
+speed = 1000
+currentDirection = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-18.000002, 11.999998)

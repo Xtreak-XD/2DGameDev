@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class TurtleNpc : Sprite2D
+public partial class Guide : Sprite2D
 {
     public interactionArea interactionArea;
     public dialogueManager dialogueManager;

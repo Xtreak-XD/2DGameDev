@@ -2,43 +2,29 @@
 
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="1_gamnb"]
 [ext_resource type="Script" uid="uid://domqpx52m38ol" path="res://Scripts/entities/npcs/Guide.cs" id="1_oxab3"]
+[ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="3_8mviv"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8mviv"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_gamnb")
-}],
-"loop": true,
-"name": &"default",
-"speed": 0.5
-}]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mviv"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7xepf"]
-radius = 14.108908
-height = 40.59405
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bwhm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7xepf"]
-radius = 50.681705
+[node name="WiseTurtle" type="CharacterBody2D"]
 
-[node name="Guide" type="CharacterBody2D"]
-script = ExtResource("1_oxab3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.9999998, 0.99999994)
+scale = Vector2(-1.8189454, -2.3682137)
+shape = SubResource("CircleShape2D_8mviv")
 
-[node name="WiseTurtle" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-3, 1)
-scale = Vector2(1.7999997, 3.2629752)
-sprite_frames = SubResource("SpriteFrames_8mviv")
-frame_progress = 0.25390497
+scale = Vector2(0.23999941, 0.34297517)
+texture = ExtResource("1_gamnb")
+script = ExtResource("1_oxab3")
 
-[node name="NpcCollision" type="CollisionShape2D" parent="."]
-rotation = 3.1415927
-scale = Vector2(8.080002, -10.49111)
-shape = SubResource("CapsuleShape2D_7xepf")
+[node name="InteractableArea" parent="Sprite2D" instance=ExtResource("3_8mviv")]
+actionName = "talk to me"
 
-[node name="ProximityCheck" type="Area2D" parent="."]
-
-[node name="DetectionRadius" type="CollisionShape2D" parent="ProximityCheck"]
-position = Vector2(-12, 258.00003)
-scale = Vector2(7.551529, 8.942918)
-shape = SubResource("CircleShape2D_7xepf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/InteractableArea"]
+scale = Vector2(12.222848, -9.518578)
+shape = SubResource("CircleShape2D_4bwhm")

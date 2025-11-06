@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://btdu4qy6kky3r"]
+[gd_scene load_steps=6 format=3 uid="uid://btdu4qy6kky3r"]
 
 [ext_resource type="Script" uid="uid://gevx8as36d6" path="res://Scripts/entities/enemies/CarEnemy.cs" id="1_yekdc"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_al8n0"]
+[ext_resource type="Resource" uid="uid://t8rmfwvdd7qf" path="res://Resources/entities/enemy/carEnemyData.tres" id="2_hf14f"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_hf14f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1t53"]
@@ -10,8 +11,10 @@ size = Vector2(56, 20)
 [node name="Car Enemy" type="CharacterBody2D"]
 position = Vector2(194, 111)
 script = ExtResource("1_yekdc")
-speed = 1000
+speed = 0
 currentDirection = 1
+data = ExtResource("2_hf14f")
+OffScreenDespawnTime = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.28806686, -0.0041208267)

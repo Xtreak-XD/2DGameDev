@@ -21,7 +21,6 @@ EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D"), NodePath("EnemySpawnPointContainer/Marker2D3")]
 EnemyScene = ExtResource("3_lfsl6")
-MaxEnemiesAlive = 4
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
 position = Vector2(631, 194)
@@ -40,6 +39,7 @@ position = Vector2(290, 198)
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
+INITIAL_HOUR = null
 
 [node name="testNpc" type="Sprite2D" parent="."]
 position = Vector2(348, 109)

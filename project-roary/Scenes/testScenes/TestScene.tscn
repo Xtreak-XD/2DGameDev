@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7tirj5mhu6f8"]
+[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]

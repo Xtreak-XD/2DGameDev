@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://btdu4qy6kky3r"]
+
+[ext_resource type="Script" uid="uid://gevx8as36d6" path="res://CarEnemy.cs" id="1_h1t53"]
+[ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_oe7r3"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_futxe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1t53"]
+size = Vector2(56, 20)
+
+[node name="Car Enemy" type="CharacterBody2D"]
+position = Vector2(194, 115)
+rotation = 1.5707964
+script = ExtResource("1_h1t53")
+speed = 400
+currentDirection = 1
+OffScreenDespawnTime = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-18.000002, 11.999998)
+scale = Vector2(0.25144947, 0.08885224)
+texture = ExtResource("2_oe7r3")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_futxe")]
+position = Vector2(0, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-18, 12)
+shape = SubResource("RectangleShape2D_h1t53")

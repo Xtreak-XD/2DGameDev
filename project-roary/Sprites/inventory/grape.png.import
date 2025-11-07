@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5ggit24m1rr3"
-path="res://.godot/imported/Inventory.png-d5e00dea0aabbd4c1c36676b262b7ee7.ctex"
+uid="uid://h55s6eqn1uxc"
+path="res://.godot/imported/grape.png-da4efb84dcd97d79924cefe4b2e6f433.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/inventory/Inventory.png"
-dest_files=["res://.godot/imported/Inventory.png-d5e00dea0aabbd4c1c36676b262b7ee7.ctex"]
+source_file="res://Sprites/inventory/grape.png"
+dest_files=["res://.godot/imported/grape.png-da4efb84dcd97d79924cefe4b2e6f433.ctex"]
 
 [params]
 

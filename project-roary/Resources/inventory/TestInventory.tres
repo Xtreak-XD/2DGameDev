@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://cnjq3jweptyr2"]
+
+[ext_resource type="Resource" uid="uid://b0oxnyrd3gfj8" path="res://Resources/inventory/items/apple.tres" id="1_sx1m3"]
+[ext_resource type="Resource" uid="uid://bgs8n36boo5jf" path="res://Resources/inventory/items/grape.tres" id="2_6q07n"]
+[ext_resource type="Script" uid="uid://6wrq51pp2ptn" path="res://Scripts/ui/inventory/Resources/Inventory.cs" id="3_xrpox"]
+
+[resource]
+script = ExtResource("3_xrpox")
+items = Array[Object]([ExtResource("2_6q07n"), ExtResource("1_sx1m3"), ExtResource("1_sx1m3"), null, ExtResource("1_sx1m3"), ExtResource("2_6q07n"), null, ExtResource("1_sx1m3"), null, null, ExtResource("2_6q07n"), null])
+metadata/_custom_type_script = "uid://6wrq51pp2ptn"

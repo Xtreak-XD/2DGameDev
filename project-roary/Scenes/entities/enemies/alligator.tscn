@@ -1,0 +1,58 @@
+[gd_scene load_steps=12 format=3 uid="uid://dodiy3h22hmr3"]
+
+[ext_resource type="Script" uid="uid://r0aeh5hhevg" path="res://Scripts/entities/enemies/alligator/Alligator.cs" id="1_rst6c"]
+[ext_resource type="Resource" uid="uid://ihh56dx23000" path="res://Resources/entities/ColorVariantData.tres" id="2_pw244"]
+[ext_resource type="Resource" uid="uid://b6fblarq8eoyi" path="res://Resources/entities/GenericData.tres" id="3_nqf2v"]
+[ext_resource type="Script" uid="uid://cmcwwbum6ngc4" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorStateMachine.cs" id="4_gfqp3"]
+[ext_resource type="Script" uid="uid://bd2j0wsuhgi72" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorRoam.cs" id="5_nqf2v"]
+[ext_resource type="Script" uid="uid://doidb6wq344on" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorChase.cs" id="6_gfqp3"]
+[ext_resource type="Texture2D" uid="uid://cm4kdv4e22k20" path="res://Sprites/entities/enemies/alligator.jpeg" id="6_pw244"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="8_ml0gg"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="9_wd8lk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
+radius = 26.019224
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
+radius = 218.02065
+
+[node name="Alligator" type="CharacterBody2D"]
+script = ExtResource("1_rst6c")
+colorVariant = ExtResource("2_pw244")
+data = ExtResource("3_nqf2v")
+
+[node name="AlligatorStateMachine" type="Node" parent="."]
+script = ExtResource("4_gfqp3")
+
+[node name="AlligatorRoam" type="Node" parent="AlligatorStateMachine"]
+script = ExtResource("5_nqf2v")
+
+[node name="AlligatorChase" type="Node" parent="AlligatorStateMachine"]
+script = ExtResource("6_gfqp3")
+
+[node name="AlligatorRoamTimer" type="Timer" parent="AlligatorStateMachine"]
+
+[node name="AlligatorSprite" type="Sprite2D" parent="."]
+position = Vector2(48, 28)
+scale = Vector2(0.13818182, 0.17486338)
+texture = ExtResource("6_pw244")
+
+[node name="AlligatorCollider" type="CollisionShape2D" parent="."]
+position = Vector2(47, 28)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_kinsv")
+
+[node name="TargetDetector" type="Area2D" parent="."]
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="TargetDetector"]
+position = Vector2(46, 25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_tdsod")
+
+[node name="HurtBox" parent="." instance=ExtResource("8_ml0gg")]
+position = Vector2(47, 27)
+scale = Vector2(0.5, 0.5)
+
+[node name="Hitbox" parent="." instance=ExtResource("9_wd8lk")]
+position = Vector2(47.000004, 27)
+scale = Vector2(1.8, 1.8)

@@ -11,24 +11,33 @@ public partial class AlligatorLunge : AlligatorState
         change = false;
     }
 
+    public override void EnterState()
+    {
+        change = false;
+    }
+
     public override AlligatorState Process(double delta)
     {
+        Vector2 direction = ActiveEnemy.target.GlobalPosition - ActiveEnemy.GlobalPosition;
+         
         if (change)
         {
+            ActiveEnemy.Velocity = -direction * 90;
+            ActiveEnemy.MoveAndSlide();
+
+             GD.Print("Lunge over. Resuming chase.");
             return AlligatorChase;
         }
-        
-        Vector2 direction = (ActiveEnemy.target.GlobalPosition - ActiveEnemy.GlobalPosition).Normalized();
-        ActiveEnemy.Velocity = direction * 50f;
+
+        ActiveEnemy.Velocity = Vector2.Zero;
+
+        ActiveEnemy.Velocity = direction;
         ActiveEnemy.MoveAndSlide();
 
-        if(ActiveEnemy.IsPlayerInChompkRange())
+        if(ActiveEnemy.IsPlayerInChompRange())
         {
             GD.Print("Alligator Lunge hit player.");
             change = true;
-
-            ActiveEnemy.Velocity = -direction * 50f;
-            ActiveEnemy.MoveAndSlide();
         }
 
         return null;

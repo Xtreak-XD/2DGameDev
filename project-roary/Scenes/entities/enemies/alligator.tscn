@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="9_wd8lk"]
 [ext_resource type="Script" uid="uid://bkfyv66pjiet8" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorDeathRoll.cs" id="9_yojey"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
-radius = 26.019224
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yojey"]
+size = Vector2(149.99997, 99.99999)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
 radius = 300.00665
@@ -55,9 +55,9 @@ scale = Vector2(0.13818182, 0.17486338)
 texture = ExtResource("6_pw244")
 
 [node name="AlligatorCollider" type="CollisionShape2D" parent="."]
-position = Vector2(47, 28)
+position = Vector2(49, 29)
 scale = Vector2(0.2, 0.2)
-shape = SubResource("CircleShape2D_kinsv")
+shape = SubResource("RectangleShape2D_yojey")
 
 [node name="TargetDetector" type="Area2D" parent="."]
 
@@ -68,8 +68,7 @@ shape = SubResource("CircleShape2D_tdsod")
 
 [node name="HurtBox" parent="." instance=ExtResource("8_ml0gg")]
 position = Vector2(47, 27)
-scale = Vector2(0.5, 0.5)
 
 [node name="Hitbox" parent="." instance=ExtResource("9_wd8lk")]
-position = Vector2(47.000004, 27)
+position = Vector2(48, 27.000002)
 scale = Vector2(1.8, 1.8)

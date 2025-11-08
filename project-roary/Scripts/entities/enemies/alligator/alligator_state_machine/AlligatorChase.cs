@@ -26,13 +26,16 @@ public partial class AlligatorChase : AlligatorState
 			return AlligatorRoam;
 		}
 
-		if(ActiveEnemy.IsPlayerInAttackRange())
+		if(ActiveEnemy.IsPlayerInDeathRollRange())
 		{
-			if (ActiveEnemy.IsPlayerInDeathRollRange())
-			{
-				return AlligatorDragPlayer;
-			}
-			else if(ActiveEnemy.IsPlayerInLungeRange())
+			if(ActiveEnemy.IsPlayerInChompRange())
+            {
+                return AlligatorDragPlayer;
+            }
+		}
+		else if(ActiveEnemy.IsPlayerInAttackRange())
+		{	
+			if(ActiveEnemy.IsPlayerInLungeRange())
 			{
 				return AlligatorLunge;
 			}

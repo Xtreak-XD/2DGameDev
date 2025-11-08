@@ -16,8 +16,8 @@ public partial class Alligator : Enemy
 
 	public const int ROAM_RANGE = 100;
 	public const int DRAG_MAX_DIST = 250;
-	public const int LUNGE_RANGE = 20;
-	public const int ATTACK_RANGE = 50;
+	public const int LUNGE_RANGE = 100;
+	public const int ATTACK_RANGE = 100;
 
 	public override void _Ready()
     {
@@ -50,14 +50,14 @@ public partial class Alligator : Enemy
 		 <= ATTACK_RANGE;
 	}
 
-	public bool IsPlayerInChompkRange()
+	public bool IsPlayerInChompRange()
 	{
 		return hurtBox.GetOverlappingBodies().Contains(target);
 	}
 
 	public bool IsPlayerInDeathRollRange()
 	{
-		return GlobalPosition.DistanceTo(target.GlobalPosition)
+		return homePosition.DistanceTo(GlobalPosition)
 		 <= DRAG_MAX_DIST;
 	}
 
@@ -76,6 +76,6 @@ public partial class Alligator : Enemy
 		float randomX = random.Next((int)-roamRange, (int)roamRange + 1);
 		float randomY = random.Next((int)-roamRange, (int)roamRange + 1);
 
-		return Position + new Vector2(randomX, randomY);
+		return GlobalPosition + new Vector2(randomX, randomY);
 	}
 }

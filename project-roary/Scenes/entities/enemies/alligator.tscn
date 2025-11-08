@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dodiy3h22hmr3"]
+[gd_scene load_steps=14 format=3 uid="uid://dodiy3h22hmr3"]
 
 [ext_resource type="Script" uid="uid://r0aeh5hhevg" path="res://Scripts/entities/enemies/alligator/Alligator.cs" id="1_rst6c"]
 [ext_resource type="Resource" uid="uid://ihh56dx23000" path="res://Resources/entities/ColorVariantData.tres" id="2_pw244"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://bd2j0wsuhgi72" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorRoam.cs" id="5_nqf2v"]
 [ext_resource type="Script" uid="uid://doidb6wq344on" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorChase.cs" id="6_gfqp3"]
 [ext_resource type="Texture2D" uid="uid://cm4kdv4e22k20" path="res://Sprites/entities/enemies/alligator.jpeg" id="6_pw244"]
+[ext_resource type="Script" uid="uid://cd7wkh52fyii8" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorDragPlayer.cs" id="7_tgotm"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="8_ml0gg"]
+[ext_resource type="Script" uid="uid://b8uc5v5u4h0gg" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorLunge.cs" id="8_yojey"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="9_wd8lk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
@@ -30,8 +32,17 @@ script = ExtResource("5_nqf2v")
 [node name="AlligatorChase" type="Node" parent="AlligatorStateMachine"]
 script = ExtResource("6_gfqp3")
 
+[node name="AlligatorDragPlayer" type="Node" parent="AlligatorStateMachine"]
+script = ExtResource("7_tgotm")
+
+[node name="AlligatorLunge" type="Node" parent="AlligatorStateMachine"]
+script = ExtResource("8_yojey")
+
 [node name="AlligatorRoamTimer" type="Timer" parent="AlligatorStateMachine"]
 wait_time = 0.75
+
+[node name="DeathRollTimer" type="Timer" parent="AlligatorStateMachine"]
+wait_time = 0.25
 
 [node name="AlligatorSprite" type="Sprite2D" parent="."]
 position = Vector2(48, 28)

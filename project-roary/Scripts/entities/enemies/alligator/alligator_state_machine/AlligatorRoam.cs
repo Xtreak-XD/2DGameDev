@@ -8,12 +8,19 @@ public partial class AlligatorRoam : AlligatorState
 	public Vector2 newPos;
 
 	public override void _Ready()
-    {
-        timer = GetParent().GetNode<Timer>("AlligatorRoamTimer");
+	{
+		timer = GetParent().GetNode<Timer>("AlligatorRoamTimer");
 		AlligatorChase = GetParent().GetNode<AlligatorChase>("AlligatorChase");
 
 		timer.Timeout += PickPosition;
-    }
+	}
+	
+	public override void EnterState()
+	{
+		timer.Start();
+
+		newPos = ActiveEnemy.Position;
+	}
 
 	public override AlligatorState Process(double delta)
     {

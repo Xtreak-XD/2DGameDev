@@ -14,7 +14,7 @@ public partial class AlligatorDragPlayer : AlligatorState
 	public override AlligatorState Process(double delta)
 	{
 		Vector2 direction = (ActiveEnemy.homePosition - ActiveEnemy.Position).Normalized();
-		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * 2;
+		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * 0.66f;
 
 		ActiveEnemy.MoveAndSlide();
 

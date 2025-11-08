@@ -99,7 +99,7 @@ radius = 24.0
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_qyygv")
-HorizontalSpeed = 50.0
+HorizontalSpeed = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.9073486e-06, 1.9073486e-06)
@@ -127,8 +127,3 @@ script = ExtResource("3_4relb")
 
 [node name="FlyingState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("4_xe1al")
-Gravity = null
-FlapStrength = null
-MaxFallSpeed = null
-HorizontalSpeed = null
-FlapInterval = null

@@ -12,7 +12,10 @@ public partial class BookEnemy : CharacterBody2D
     [Export] public float FlapStrength = -400f;
     [Export] public float FlapInterval = 0.5f;
     [Export] public float TargetPointRadius = 80f;
-    [Export] public float TargetPointReachedThreshold = 10f;
+    [Export] public float TargetPointReachThreshold = 10f;
+    [Export] public float TargetUpdateInterval = 0.3f;
+    [Export] public float DirectChaseDuration = 3.0f;
+
 
     private Node2D _player;
     private bool _isBackingOff = false;
@@ -23,6 +26,8 @@ public partial class BookEnemy : CharacterBody2D
     private AnimatedSprite2D _sprite;
     private bool _chasingPlayerDirectly = false;
     private Vector2 _currentTargetPoint;
+    private float _targetUpdateTimer = 0f;
+    private float _directChaseTimer = 0f;
 
     public override void _Ready()
     {
@@ -47,6 +52,7 @@ public partial class BookEnemy : CharacterBody2D
         {
             GD.PrintErr("❌ AnimatedSprite2D node not found!");
         }
+        AssignNewRandomTargetPoint();
     }
 
     public float MinimumChaseDistance = 50f;
@@ -57,51 +63,63 @@ public partial class BookEnemy : CharacterBody2D
         float delta = (float)deltaDouble;
         if (_player == null) return;
 
-        Vector2 velocity = Velocity;
-
-        if (_isBackingOff)
+        // Reset timer if just switched to direct chase
+        if (_chasingPlayerDirectly && _directChaseTimer <= 0f)
         {
-            _backoffTimer -= delta;
-            if (_backoffTimer <= 0f)
+            _directChaseTimer = DirectChaseDuration;
+        }
+
+        if (_chasingPlayerDirectly)
+        {
+            _directChaseTimer -= delta;
+            if (_directChaseTimer <= 0f)
             {
-                _isBackingOff = false;
-                _hasDealtDamage = false;
+                // Time to stop chasing player directly and pick a new random target
+                AssignNewRandomTargetPoint();
+                _chasingPlayerDirectly = false;
             }
-            else
+        }
+        else
+        {
+            // Periodically update the random target point while not directly chasing
+            _targetUpdateTimer -= delta;
+            if (_targetUpdateTimer <= 0f)
             {
-                Vector2 retreatDir = (GlobalPosition - _player.GlobalPosition).Normalized();
-                velocity = retreatDir * BackoffSpeed;
-
-                velocity.Y += Gravity * delta;
-                velocity.Y = Mathf.Min(velocity.Y, MaxFallSpeed);
-
-                Velocity = velocity;
-                MoveAndSlide();
-
-                PlayFlapAnimation(retreatDir);
-                return;
+                AssignNewRandomTargetPoint();
+                _targetUpdateTimer = TargetUpdateInterval;
             }
         }
 
-        float distance = GlobalPosition.DistanceTo(_player.GlobalPosition);
-        Vector2 direction = (_player.GlobalPosition - GlobalPosition).Normalized();
+        Vector2 targetPosition = _chasingPlayerDirectly ? _player.GlobalPosition : _currentTargetPoint;
+        float distanceToTarget = GlobalPosition.DistanceTo(targetPosition);
+        Vector2 direction = (targetPosition - GlobalPosition).Normalized();
 
-        if (distance > MinimumChaseDistance)
+        if (!_chasingPlayerDirectly && distanceToTarget <= TargetPointReachThreshold)
+        {
+            _chasingPlayerDirectly = true;
+            _directChaseTimer = DirectChaseDuration; 
+        }
+
+        float minDistance = _chasingPlayerDirectly ? MinimumChaseDistance : TargetPointReachThreshold;
+        float safeDistance = _chasingPlayerDirectly ? MinimumSafeDistance : TargetPointReachThreshold / 2f;
+
+        Vector2 velocity;
+
+        if (distanceToTarget > minDistance)
         {
             velocity = direction * HorizontalSpeed;
-            velocity.Y += Gravity * delta;
         }
-        else if (distance > MinimumSafeDistance)
+        else if (distanceToTarget > safeDistance)
         {
-            float speedFactor = (distance - MinimumSafeDistance) / (MinimumChaseDistance - MinimumSafeDistance);
+            float speedFactor = (distanceToTarget - safeDistance) / (minDistance - safeDistance);
             velocity = direction * HorizontalSpeed * speedFactor;
-            velocity.Y += Gravity * delta;
         }
         else
         {
             velocity = Vector2.Zero;
         }
 
+        velocity.Y += Gravity * delta;
         velocity.Y = Mathf.Min(velocity.Y, MaxFallSpeed);
 
         Velocity = velocity;
@@ -109,6 +127,8 @@ public partial class BookEnemy : CharacterBody2D
 
         PlayFlapAnimation(direction);
     }
+
+
 
 
 
@@ -172,5 +192,17 @@ public partial class BookEnemy : CharacterBody2D
             // TODO: apply damage to player here
             // ((Player)body).TakeDamage(10);
         }
+    }
+
+    private void AssignNewRandomTargetPoint()
+    {
+        if (_player == null) return;
+
+        var randomOffset = new Vector2(
+            (float)GD.RandRange(-TargetPointRadius, TargetPointRadius),
+            (float)GD.RandRange(-TargetPointRadius, TargetPointRadius));
+
+        _currentTargetPoint = _player.GlobalPosition + randomOffset;
+        _chasingPlayerDirectly = false;
     }
 }

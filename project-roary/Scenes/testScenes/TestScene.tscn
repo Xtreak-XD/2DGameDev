@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=12 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
 [ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://r6a6orujjhgt" path="res://Scenes/ui/inventory/Items.tscn" id="8_hm8wl"]
+[ext_resource type="Resource" uid="uid://b0oxnyrd3gfj8" path="res://Resources/items/apple.tres" id="9_helya"]
+[ext_resource type="Resource" uid="uid://bgs8n36boo5jf" path="res://Resources/items/grape.tres" id="10_k25gx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
 radius = 174.3
@@ -16,10 +19,9 @@ radius = 174.3
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(222, 143)
 
-[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
+[node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
-EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D"), NodePath("EnemySpawnPointContainer/Marker2D3")]
 EnemyScene = ExtResource("2_6tqdf")
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
@@ -52,5 +54,22 @@ actionName = "talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testNpc/InteractableArea"]
 shape = SubResource("CircleShape2D_106wm")
+
+[node name="AppleTest" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(268, 166.00002)
+scale = Vector2(0.06944444, 0.07222229)
+itemQuantity = 2
+itemResource = ExtResource("9_helya")
+
+[node name="GrapeTest" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(269, 144)
+scale = Vector2(0.013888888, 0.014444458)
+itemResource = ExtResource("10_k25gx")
+
+[node name="AppleTest2" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(240.00002, 168.00002)
+scale = Vector2(0.06944444, 0.07222229)
+itemQuantity = 2
+itemResource = ExtResource("9_helya")
 
 [editable path="Enemymanager"]

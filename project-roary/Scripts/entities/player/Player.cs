@@ -21,6 +21,7 @@ public partial class Player : CharacterBody2D
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
+		inventory.inventoryChanged += OnInventoryChanged; 
 
 		stateMachine.Initialize(this);
     }
@@ -36,6 +37,12 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 	
+	private void OnInventoryChanged()
+	{
+		Eventbus eventbus = GetNode<Eventbus>("/root/Eventbus");
+    	eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
+	}
+
 	public bool SetDirection()
 	{
 		Vector2 sprite = Scale;

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 /**
-This class manages the Inventory UIin the game.
+This class manages the Inventory UI in the game.
 It handles opening and closing the inventory, as well as updating
 the display of items within the inventory slots.
 */
@@ -27,6 +27,9 @@ public partial class InventoryUI : Control
 				slots.Add(s); // Adds each slot of the inventory to the slots list
 			}
 		}
+
+		Eventbus eventbus = GetNode<Eventbus>("/root/Eventbus");
+		eventbus.inventoryUpdated += updateSlots;
 
 		updateSlots();
 	}

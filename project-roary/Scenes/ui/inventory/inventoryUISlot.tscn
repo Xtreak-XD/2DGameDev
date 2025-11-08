@@ -22,7 +22,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 expand_mode = 1
 
-[node name="Label" type="Label" parent="ItemDisplay"]
+[node name="QuantityLabel" type="Label" parent="ItemDisplay"]
 custom_minimum_size = Vector2(24, 23)
 layout_mode = 0
 offset_left = 0.99999994

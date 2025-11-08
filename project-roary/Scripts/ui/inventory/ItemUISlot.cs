@@ -9,10 +9,12 @@ the visual representation of the item in that slot.
 public partial class ItemUISlot : Panel
 {
 	public TextureRect itemVisual;
+	public Label quantityLabel;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		itemVisual = GetNode<TextureRect>("ItemDisplay"); //Gets the ItemDisplay Sprite Node from InventoryUISlot
+		quantityLabel = GetNode<Label>("ItemDisplay/QuantityLabel"); //Gets the QuantityLabel Node from InventoryUISlot
 	}
 
 	/**
@@ -24,11 +26,14 @@ public partial class ItemUISlot : Panel
 		if (slot.item == null)
 		{
 			itemVisual.Visible = false;
+			quantityLabel.Visible = false;
 		}
 		else
 		{
 			itemVisual.Visible = true;
 			itemVisual.Texture = slot.item.texture; // Updates texture of the slot to the texture of the item
+			quantityLabel.Visible = true;
+			quantityLabel.Text = slot.quantity.ToString(); // Updates the quantity label to show the
 		}
 	}
 

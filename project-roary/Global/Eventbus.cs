@@ -25,4 +25,7 @@ public partial class Eventbus : Node
 
     [Signal]
     public delegate void finishedDisplayingEventHandler(); //this is emitted by text boxes when a set of text is done displaying.
+
+    [Signal]
+    public delegate void inventoryUpdatedEventHandler(); // this is emitted when the inventory is updated (item added/removed)
 }  

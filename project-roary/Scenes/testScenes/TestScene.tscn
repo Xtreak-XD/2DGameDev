@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
+[ext_resource type="PackedScene" uid="uid://btdu4qy6kky3r" path="res://Scenes/entities/enemies/CarEnemy.tscn" id="3_lfsl6"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
 [ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="5_4b6br"]
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://Sprites/world/testBackground.png" id="6_106wm"]
+[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
+[ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
+[ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
+radius = 174.3
 
 [node name="TestScene" type="Node2D"]
 
@@ -40,6 +47,17 @@ position = Vector2(290, 198)
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
-INITIAL_HOUR = null
+
+[node name="testNpc" type="Sprite2D" parent="."]
+position = Vector2(348, 109)
+scale = Vector2(0.14062509, 0.30078128)
+texture = ExtResource("5_4b6br")
+script = ExtResource("6_lfsl6")
+
+[node name="InteractableArea" parent="testNpc" instance=ExtResource("6_106wm")]
+actionName = "talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testNpc/InteractableArea"]
+shape = SubResource("CircleShape2D_106wm")
 
 [editable path="Enemymanager"]

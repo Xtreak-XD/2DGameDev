@@ -11,6 +11,6 @@ public partial class Inventory : Resource
 {
 
     [Export]
-    public Array<InventoryItem> items {get; set;}
+    public Array<InventorySlot> slots {get; set;}
 
 }

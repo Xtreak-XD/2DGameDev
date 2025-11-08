@@ -33,9 +33,9 @@ public partial class InventoryUI : Control
 
 	public void updateSlots()
 	{
-		for (int i = 0; i < Math.Min(inv.items.Count, slots.Count); i++) // Loops through each slot and updates its display based on the inventory items							
+		for (int i = 0; i < Math.Min(inv.slots.Count, slots.Count); i++) // Loops through each slot and updates its display based on the inventory items							
 		{
-			slots[i].updateDisplay(inv.items[i]); // Change the specific slot to display the corresponding item from the inventory
+			slots[i].updateDisplay(inv.slots[i]); // Change the specific slot to display the corresponding item from the inventory
 		}
 	}
 

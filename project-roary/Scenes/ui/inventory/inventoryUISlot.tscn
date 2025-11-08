@@ -21,3 +21,12 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 expand_mode = 1
+
+[node name="Label" type="Label" parent="ItemDisplay"]
+custom_minimum_size = Vector2(24, 23)
+layout_mode = 0
+offset_left = 0.99999994
+offset_right = 25.0
+offset_bottom = 23.0
+scale = Vector2(0.2, 0.2)
+text = "60"

@@ -19,16 +19,16 @@ public partial class ItemUISlot : Panel
 	This function updates the display of the item in the slot.
 	@param item The InventoryItem resource to display in this slot.
 	*/
-	public void updateDisplay(InventoryItem item)
+	public void updateDisplay(InventorySlot slot)
 	{
-		if (item == null)
+		if (slot.item == null)
 		{
 			itemVisual.Visible = false;
 		}
 		else
 		{
 			itemVisual.Visible = true;
-			itemVisual.Texture = item.texture; // Updates texture of the slot to the texture of the item
+			itemVisual.Texture = slot.item.texture; // Updates texture of the slot to the texture of the item
 		}
 	}
 

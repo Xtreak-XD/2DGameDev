@@ -31,6 +31,7 @@ script = ExtResource("5_nqf2v")
 script = ExtResource("6_gfqp3")
 
 [node name="AlligatorRoamTimer" type="Timer" parent="AlligatorStateMachine"]
+wait_time = 0.75
 
 [node name="AlligatorSprite" type="Sprite2D" parent="."]
 position = Vector2(48, 28)
@@ -39,7 +40,7 @@ texture = ExtResource("6_pw244")
 
 [node name="AlligatorCollider" type="CollisionShape2D" parent="."]
 position = Vector2(47, 28)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.2, 0.2)
 shape = SubResource("CircleShape2D_kinsv")
 
 [node name="TargetDetector" type="Area2D" parent="."]

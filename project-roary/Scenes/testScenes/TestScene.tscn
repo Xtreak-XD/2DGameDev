@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
+[ext_resource type="PackedScene" uid="uid://dodiy3h22hmr3" path="res://Scenes/entities/enemies/alligator.tscn" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
@@ -12,6 +13,9 @@
 radius = 174.3
 
 [node name="TestScene" type="Node2D"]
+
+[node name="Alligator" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_hm8wl")]
+target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(222, 143)

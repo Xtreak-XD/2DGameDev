@@ -8,13 +8,14 @@ public partial class Alligator : Enemy
 	[Export]
 	public ColorVariantData colorVariant;
 
-	[Export]
 	public Player target;
 	public Area2D aggroArea;
 	public Area2D hurtBox;
 	public Area2D hitbox;
+	public Vector2 homePosition;
 
 	public const int ROAM_RANGE = 100;
+	public const int DRAG_MAX_DIST = 750;
 
 	public override void _Ready()
     {
@@ -25,6 +26,11 @@ public partial class Alligator : Enemy
 		aggroArea = GetNode<Area2D>("TargetDetector");
 		hurtBox = GetNode<Area2D>("HurtBox");
 		hitbox = GetNode<Area2D>("Hitbox");
+		target = GetParent().GetNode<Player>("Player");
+
+		homePosition = GlobalPosition;
+
+		GD.Print($"Alligator home position: ({homePosition.X}, {homePosition.Y})");
     }
 
 	public override void _Process(double delta)
@@ -39,6 +45,12 @@ public partial class Alligator : Enemy
 	public bool IsPlayerInAttackRange()
 	{
 		return hurtBox.GetOverlappingBodies().Contains(target);
+	}
+
+	public bool IsPlayerInDeathRollRange()
+	{
+		return GlobalPosition.DistanceTo(target.GlobalPosition)
+		 <= DRAG_MAX_DIST;
 	}
 
 	public Vector2 GetRandomPositionInRoamRange()

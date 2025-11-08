@@ -4,10 +4,12 @@ using System;
 public partial class AlligatorChase : AlligatorState
 {
 	public AlligatorRoam AlligatorRoam;
+	public AlligatorDragPlayer AlligatorDragPlayer;
 
 	public override void _Ready()
 	{
 		AlligatorRoam = GetParent().GetNode<AlligatorRoam>("AlligatorRoam");
+		AlligatorDragPlayer = GetParent().GetNode<AlligatorDragPlayer>("AlligatorDragPlayer");
 	}
 	
 	public override AlligatorState Process(double delta)
@@ -25,7 +27,14 @@ public partial class AlligatorChase : AlligatorState
 
 		if(ActiveEnemy.IsPlayerInAttackRange())
 		{
-			// Switch to attack state
+			if (ActiveEnemy.IsPlayerInDeathRollRange())
+			{
+				return AlligatorDragPlayer;
+			}
+			else
+			{
+				// Go to other attack
+			}
 		}
 
 		return null;

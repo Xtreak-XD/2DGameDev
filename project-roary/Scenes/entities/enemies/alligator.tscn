@@ -19,11 +19,15 @@ size = Vector2(149.99997, 99.99999)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
 radius = 300.00665
 
-[node name="Alligator" type="CharacterBody2D"]
+[node name="Alligator" type="CharacterBody2D" node_paths=PackedStringArray("homePositionTimer")]
 script = ExtResource("1_rst6c")
 colorVariant = ExtResource("2_pw244")
+homePositionTimer = NodePath("HomesetTimer")
 data = ExtResource("3_nqf2v")
 OffScreenDespawnTime = null
+
+[node name="HomesetTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="AlligatorStateMachine" type="Node" parent="."]
 script = ExtResource("4_gfqp3")

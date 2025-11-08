@@ -14,30 +14,33 @@ public partial class Alligator : Enemy
 	public Area2D hitbox;
 	public Vector2 homePosition;
 
-	public const int ROAM_RANGE = 100;
-	public const int DRAG_MAX_DIST = 250;
-	public const int LUNGE_RANGE = 100;
-	public const int ATTACK_RANGE = 100;
+	[Export]
+	public Timer homePositionTimer;
+
+	public const int ROAM_RANGE = 150;
+	public const int DRAG_MAX_DIST = 200;
+	public const int LUNGE_RANGE = 90;
+	public const int ATTACK_RANGE = 120;
 
 	public override void _Ready()
-    {
-		AddToGroup("enemy");
-
+	{
 		stateMachine = GetNode<AlligatorStateMachine>("AlligatorStateMachine");
 		stateMachine.Initialize(this);
+
 		aggroArea = GetNode<Area2D>("TargetDetector");
 		hurtBox = GetNode<Area2D>("HurtBox");
 		hitbox = GetNode<Area2D>("Hitbox");
-		target = GetParent().GetNode<Player>("Player");
 
-		homePosition = GlobalPosition;
-
-		GD.Print($"Alligator home position: ({homePosition.X}, {homePosition.Y})");
-    }
-
-	public override void _Process(double delta)
-	{
+		homePositionTimer.Timeout += SetHomePos;
 	}
+
+	public override void _EnterTree()
+	{
+		AddToGroup("enemy");
+
+		target = GetTree().GetNodesInGroup("player")[0] as Player;
+		homePositionTimer.Autostart = true;
+    }
 
 	public bool IsPlayerInChaseRange()
 	{
@@ -78,4 +81,13 @@ public partial class Alligator : Enemy
 
 		return GlobalPosition + new Vector2(randomX, randomY);
 	}
+
+	public void SetHomePos()
+	{
+		if(homePosition == Vector2.Zero)
+        {
+            homePosition = GlobalPosition;
+			GD.Print($"Alligator home position: ({homePosition.X}, {homePosition.Y})");
+        }
+    }
 }

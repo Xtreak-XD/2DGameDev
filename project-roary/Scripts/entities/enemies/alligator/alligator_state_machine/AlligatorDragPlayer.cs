@@ -13,21 +13,32 @@ public partial class AlligatorDragPlayer : AlligatorState
 	
 	public override void EnterState()
 	{
+		// The player should probably take damage upon being grabbed
 		GD.Print("Alligator has grabbed the player.");
 	}
 
 	public override AlligatorState Process(double delta)
 	{
-		Vector2 direction = (ActiveEnemy.homePosition - ActiveEnemy.GlobalPosition).Normalized();
-		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * 0.75f;
+		Vector2 direction = (ActiveEnemy.homePosition - ActiveEnemy.GlobalPosition)
+		.Normalized();
+		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 
 		ActiveEnemy.MoveAndSlide();
 
-		ActiveEnemy.target.GlobalPosition = ActiveEnemy.GlobalPosition;
+		ActiveEnemy.target.GlobalPosition = ActiveEnemy.hitbox.GlobalPosition;
 		ActiveEnemy.target.Velocity = Vector2.Zero;
 
-		GD.Print("Distance to home: " +
-		 ActiveEnemy.GlobalPosition.DistanceTo(ActiveEnemy.homePosition));
+		GD.Print($"Distance to home at ({ActiveEnemy.homePosition.X}, " +
+		$"{ActiveEnemy.homePosition.Y}): " +
+		ActiveEnemy.GlobalPosition.DistanceTo(ActiveEnemy.homePosition));
+
+		// Insurance against glitches
+		if(!ActiveEnemy.IsPlayerInDeathRollRange())
+		{
+			ActiveEnemy.target.GlobalPosition = ActiveEnemy.hitbox.GlobalPosition
+			+ direction * 50;
+			return AlligatorChase;
+        }
 
 		if (ActiveEnemy.GlobalPosition.DistanceTo(ActiveEnemy.homePosition) <= 20)
 		{

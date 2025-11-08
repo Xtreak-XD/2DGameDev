@@ -22,10 +22,10 @@ public partial class AlligatorLunge : AlligatorState
          
         if (change)
         {
-            ActiveEnemy.Velocity = -direction * 90;
+            ActiveEnemy.Velocity = -direction * 120;
             ActiveEnemy.MoveAndSlide();
 
-             GD.Print("Lunge over. Resuming chase.");
+            //GD.Print("Lunge over. Resuming chase.");
             return AlligatorChase;
         }
 
@@ -36,7 +36,9 @@ public partial class AlligatorLunge : AlligatorState
 
         if(ActiveEnemy.IsPlayerInChompRange())
         {
-            GD.Print("Alligator Lunge hit player.");
+            //GD.Print("Alligator Lunge hit player.");
+            // Player needs to take damage
+
             change = true;
         }
 

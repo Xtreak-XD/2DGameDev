@@ -19,7 +19,7 @@ public partial class AlligatorChase : AlligatorState
 		Vector2 direction = (targetPos - ActiveEnemy.GlobalPosition).Normalized();
 
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * 1.5f;
-		ActiveEnemy.MoveAndSlide();
+		ActiveEnemy.MoveAndCollide(ActiveEnemy.Velocity * (float)delta);
 
 		if (!ActiveEnemy.IsPlayerInChaseRange())
 		{

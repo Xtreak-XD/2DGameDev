@@ -15,13 +15,14 @@ public partial class AlligatorDeathRoll : AlligatorState
 
     public override void EnterState()
     {
+        GD.Print("Alligator has entered Death Roll state.");
         deathRollTimer.Start();
     }
 
     public override void ExitState()
 	{
         deathRollTimer.Stop();
-        deathRollTimer.WaitTime = 0.25;
+        deathRollTimer.WaitTime = 0.5;
     }
 
     public override AlligatorState Process(double delta)

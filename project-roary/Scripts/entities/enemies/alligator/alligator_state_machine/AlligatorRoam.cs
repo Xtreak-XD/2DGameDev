@@ -24,7 +24,7 @@ public partial class AlligatorRoam : AlligatorState
 
 	public override AlligatorState Process(double delta)
     {
-        Vector2 direction = (newPos - ActiveEnemy.Position).Normalized();
+        Vector2 direction = (newPos - ActiveEnemy.GlobalPosition).Normalized();
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 		ActiveEnemy.MoveAndSlide();
 
@@ -38,7 +38,7 @@ public partial class AlligatorRoam : AlligatorState
 
 	public void PickPosition()
 	{
-		if (ActiveEnemy.Position.DistanceTo(newPos) <= 50)
+		if (ActiveEnemy.GlobalPosition.DistanceTo(newPos) <= 50)
 		{
 			newPos = ActiveEnemy.GetRandomPositionInRoamRange();
 		}

@@ -15,34 +15,42 @@ radius = 174.3
 [node name="TestScene" type="Node2D"]
 
 [node name="Alligator" parent="." instance=ExtResource("1_hm8wl")]
+OffScreenDespawnTime = null
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(222, 143)
 
-[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
+[node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
-EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D"), NodePath("EnemySpawnPointContainer/Marker2D3")]
 EnemyScene = ExtResource("2_6tqdf")
-MaxEnemiesAlive = 4
+
+[node name="EnemySpawnPointContainer" parent="Enemymanager" index="1"]
+visible = false
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
+visible = false
 position = Vector2(631, 194)
 
 [node name="Marker2D2" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="1"]
+visible = false
 position = Vector2(731, 362)
 
 [node name="Marker2D3" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="2"]
+visible = false
 position = Vector2(419, 368)
 
 [node name="Marker2D4" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="3"]
+visible = false
 position = Vector2(290, 198)
 
 [node name="EntityContainer" type="Node2D" parent="Enemymanager"]
+visible = false
 
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
+INITIAL_HOUR = null
 
 [node name="testNpc" type="Sprite2D" parent="."]
 position = Vector2(348, 109)

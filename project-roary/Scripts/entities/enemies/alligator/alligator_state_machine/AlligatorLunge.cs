@@ -18,8 +18,8 @@ public partial class AlligatorLunge : AlligatorState
             return AlligatorChase;
         }
         
-        Vector2 direction = (ActiveEnemy.target.Position - ActiveEnemy.Position).Normalized();
-        ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * 50f;
+        Vector2 direction = (ActiveEnemy.target.GlobalPosition - ActiveEnemy.GlobalPosition).Normalized();
+        ActiveEnemy.Velocity = direction * 50f;
         ActiveEnemy.MoveAndSlide();
 
         if(ActiveEnemy.IsPlayerInChompkRange())
@@ -27,7 +27,7 @@ public partial class AlligatorLunge : AlligatorState
             GD.Print("Alligator Lunge hit player.");
             change = true;
 
-            ActiveEnemy.Velocity = -direction * ActiveEnemy.data.Speed * 50f;
+            ActiveEnemy.Velocity = -direction * 50f;
             ActiveEnemy.MoveAndSlide();
         }
 

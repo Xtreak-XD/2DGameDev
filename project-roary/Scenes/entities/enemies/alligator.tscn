@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dodiy3h22hmr3"]
+[gd_scene load_steps=15 format=3 uid="uid://dodiy3h22hmr3"]
 
 [ext_resource type="Script" uid="uid://r0aeh5hhevg" path="res://Scripts/entities/enemies/alligator/Alligator.cs" id="1_rst6c"]
 [ext_resource type="Resource" uid="uid://ihh56dx23000" path="res://Resources/entities/ColorVariantData.tres" id="2_pw244"]
@@ -11,17 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="8_ml0gg"]
 [ext_resource type="Script" uid="uid://b8uc5v5u4h0gg" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorLunge.cs" id="8_yojey"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="9_wd8lk"]
+[ext_resource type="Script" uid="uid://bkfyv66pjiet8" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorDeathRoll.cs" id="9_yojey"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
 radius = 26.019224
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
-radius = 218.02065
+radius = 300.00665
 
 [node name="Alligator" type="CharacterBody2D"]
 script = ExtResource("1_rst6c")
 colorVariant = ExtResource("2_pw244")
 data = ExtResource("3_nqf2v")
+OffScreenDespawnTime = null
 
 [node name="AlligatorStateMachine" type="Node" parent="."]
 script = ExtResource("4_gfqp3")
@@ -38,11 +40,14 @@ script = ExtResource("7_tgotm")
 [node name="AlligatorLunge" type="Node" parent="AlligatorStateMachine"]
 script = ExtResource("8_yojey")
 
+[node name="AlligatorDeathRoll" type="Node" parent="AlligatorStateMachine"]
+script = ExtResource("9_yojey")
+
 [node name="AlligatorRoamTimer" type="Timer" parent="AlligatorStateMachine"]
 wait_time = 0.75
 
 [node name="DeathRollTimer" type="Timer" parent="AlligatorStateMachine"]
-wait_time = 0.25
+wait_time = 0.5
 
 [node name="AlligatorSprite" type="Sprite2D" parent="."]
 position = Vector2(48, 28)

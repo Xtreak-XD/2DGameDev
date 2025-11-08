@@ -15,9 +15,9 @@ public partial class Alligator : Enemy
 	public Vector2 homePosition;
 
 	public const int ROAM_RANGE = 100;
-	public const int DRAG_MAX_DIST = 750;
-	public const int LUNGE_RANGE = 75;
-	public const int ATTACK_RANGE = 200;
+	public const int DRAG_MAX_DIST = 250;
+	public const int LUNGE_RANGE = 20;
+	public const int ATTACK_RANGE = 50;
 
 	public override void _Ready()
     {

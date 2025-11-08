@@ -1,20 +1,27 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
-[ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
-[ext_resource type="PackedScene" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
+[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
 [ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="5_4b6br"]
+[ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://Sprites/world/testBackground.png" id="6_106wm"]
 
 [node name="TestScene" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_es28b")]
-position = Vector2(222, 143)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575.5, 319)
+scale = Vector2(1.9982638, 1.9814814)
+texture = ExtResource("6_106wm")
 
-[node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
+[node name="Player" parent="." instance=ExtResource("1_es28b")]
+position = Vector2(470, 276)
+
+[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
-EnemyScene = ExtResource("2_6tqdf")
+EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D"), NodePath("EnemySpawnPointContainer/Marker2D2"), NodePath("EnemySpawnPointContainer/Marker2D3")]
+EnemyScene = ExtResource("5_4b6br")
+MaxEnemiesAlive = 3
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
 position = Vector2(631, 194)
@@ -30,20 +37,9 @@ position = Vector2(290, 198)
 
 [node name="EntityContainer" type="Node2D" parent="Enemymanager"]
 
-[node name="Enemy" parent="." instance=ExtResource("2_6tqdf")]
-position = Vector2(0, 1)
-rotation = 0.00052142126
-OffScreenDespawnTime = null
-
-[node name="BookEnemy" parent="." instance=ExtResource("3_6tqdf")]
-position = Vector2(71, 206)
-
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
 INITIAL_HOUR = null
-
-[node name="BookEnemy2" parent="." instance=ExtResource("5_4b6br")]
-position = Vector2(289, 118)
 
 [editable path="Enemymanager"]

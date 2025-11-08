@@ -1,118 +1,176 @@
 using Godot;
 
-public partial class BookEnemy : Enemy
+public partial class BookEnemy : CharacterBody2D
 {
     [Export] public float Gravity = 800f;
-    [Export] public float FlapStrength = -400f;
     [Export] public float MaxFallSpeed = 400f;
-    [Export] public float HorizontalSpeed = 200f;
+    [Export] public float HorizontalSpeed = 1;
+    [Export] public float BackoffSpeed = 250f;
+    [Export] public float DetectionRange = 400f;
+    [Export] public float BackoffDuration = 1.0f;
+    [Export] public string FlapAnimationName = "flapping";
+    [Export] public float FlapStrength = -400f;
     [Export] public float FlapInterval = 0.5f;
-    [Export] public string FlapAnimationName = "flapping"; // Name of your animation
+    [Export] public float TargetPointRadius = 80f;
+    [Export] public float TargetPointReachedThreshold = 10f;
 
-    private double _flapTimer = 0;
     private Node2D _player;
-
-    // Backoff variables
     private bool _isBackingOff = false;
     private float _backoffTimer = 0f;
-    private float _backoffDuration = 0.5f;
-
     private bool _hasDealtDamage = false;
+    private float _flapTimer = 0f;
+    private Area2D _damageArea;
+    private AnimatedSprite2D _sprite;
+    private bool _chasingPlayerDirectly = false;
+    private Vector2 _currentTargetPoint;
 
     public override void _Ready()
     {
-        base._Ready(); // Calls Enemy _Ready() for state machine & groups
-
-        // Find the player
         _player = GetTree().GetFirstNodeInGroup("player") as Node2D;
         if (_player == null)
-            GD.Print("⚠️ BookEnemy couldn't find a player in the 'player' group.");
-
-        // Connect the damage area signal
-        var area = GetNode<Area2D>("Area2D");
-        area.BodyEntered += OnBodyEntered;
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        // Ensure player reference exists
-        if (_player == null)
         {
-            _player = GetTree().GetFirstNodeInGroup("player") as Node2D;
-            if (_player == null) return;
+            GD.PrintErr("⚠️ BookEnemy: player not found in 'player' group!");
         }
 
-        // Handle backoff
+        _damageArea = GetNodeOrNull<Area2D>("DamageArea");
+        if (_damageArea != null)
+        {
+            _damageArea.BodyEntered += OnBodyEntered;
+        }
+        else
+        {
+            GD.PrintErr("❌ DamageArea not found!");
+        }
+
+        _sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+        if (_sprite == null)
+        {
+            GD.PrintErr("❌ AnimatedSprite2D node not found!");
+        }
+    }
+
+    public float MinimumChaseDistance = 50f;
+    public float MinimumSafeDistance = 15f;
+
+    public override void _PhysicsProcess(double deltaDouble)
+    {
+        float delta = (float)deltaDouble;
+        if (_player == null) return;
+
+        Vector2 velocity = Velocity;
+
         if (_isBackingOff)
         {
-            _backoffTimer -= (float)delta;
-            if (_backoffTimer <= 0)
+            _backoffTimer -= delta;
+            if (_backoffTimer <= 0f)
             {
                 _isBackingOff = false;
-                _hasDealtDamage = false; // Allow next hit after backoff
+                _hasDealtDamage = false;
             }
             else
             {
-                Vector2 awayDir = (GlobalPosition - _player.GlobalPosition).Normalized();
-                Velocity = awayDir * HorizontalSpeed * 1.2f;
+                Vector2 retreatDir = (GlobalPosition - _player.GlobalPosition).Normalized();
+                velocity = retreatDir * BackoffSpeed;
 
-                PlayFlapAnimation(awayDir.X);
+                velocity.Y += Gravity * delta;
+                velocity.Y = Mathf.Min(velocity.Y, MaxFallSpeed);
+
+                Velocity = velocity;
                 MoveAndSlide();
-                return; // Skip normal chasing
+
+                PlayFlapAnimation(retreatDir);
+                return;
             }
         }
 
-        // Gravity (optional)
-        Velocity = new Vector2(Velocity.X, Mathf.Min(Velocity.Y + Gravity * (float)delta, MaxFallSpeed));
+        float distance = GlobalPosition.DistanceTo(_player.GlobalPosition);
+        Vector2 direction = (_player.GlobalPosition - GlobalPosition).Normalized();
 
-        // Flap timer (optional for vertical movement)
-        _flapTimer += delta;
-        if (_flapTimer >= FlapInterval)
+        if (distance > MinimumChaseDistance)
         {
-            Flap();
-            _flapTimer = 0;
+            velocity = direction * HorizontalSpeed;
+            velocity.Y += Gravity * delta;
+        }
+        else if (distance > MinimumSafeDistance)
+        {
+            float speedFactor = (distance - MinimumSafeDistance) / (MinimumChaseDistance - MinimumSafeDistance);
+            velocity = direction * HorizontalSpeed * speedFactor;
+            velocity.Y += Gravity * delta;
+        }
+        else
+        {
+            velocity = Vector2.Zero;
         }
 
-        // Normal chasing
-        Vector2 direction = (_player.GlobalPosition - GlobalPosition).Normalized();
-        Velocity = direction * HorizontalSpeed;
+        velocity.Y = Mathf.Min(velocity.Y, MaxFallSpeed);
 
-        PlayFlapAnimation(direction.X);
+        Velocity = velocity;
         MoveAndSlide();
+
+        PlayFlapAnimation(direction);
     }
 
-    private void Flap()
+
+
+
+    private void PlayFlapAnimation(Vector2 direction)
     {
-        Velocity = new Vector2(Velocity.X, FlapStrength);
-    }
+        if (_sprite == null) return;
 
-    private void PlayFlapAnimation(float dirX)
-    {
-        if (!HasNode("AnimatedSprite2D")) return;
-
-        var sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        sprite.FlipH = dirX < 0;
-
-        if (!sprite.IsPlaying() || sprite.Animation != FlapAnimationName)
-            sprite.Play(FlapAnimationName);
+        if (Mathf.Abs(direction.X) > Mathf.Abs(direction.Y))
+        {
+            if (direction.X > 0)
+            {
+                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_right")
+                {
+                    _sprite.Play("flapping_right");
+                }
+            }
+            else if (direction.X < 0)
+            {
+                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_left")
+                {
+                    _sprite.Play("flapping_left");
+                }
+            }
+        }
+        else if (Mathf.Abs(direction.Y) > 0)
+        {
+            if (direction.Y > 0)
+            {
+                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_down")
+                {
+                    _sprite.Play("flapping_down");
+                }
+            }
+            else if (direction.Y < 0)
+            {
+                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_up")
+                {
+                    _sprite.Play("flapping_up");
+                }
+            }
+        }
+        else
+        {
+            // Not moving, stop animation
+            if (_sprite.IsPlaying())
+                _sprite.Stop();
+        }
     }
 
     private void OnBodyEntered(Node body)
     {
         if (body.IsInGroup("player") && !_hasDealtDamage)
         {
-            if (body is Node2D playerbody)
-            {
-                _hasDealtDamage = true;
-                GD.Print("📕 BookEnemy hit the player!");
+            _hasDealtDamage = true;
+            GD.Print("📕 BookEnemy hit the player!");
 
-                // TODO: apply damage
-                // ((Player)body).TakeDamage(10);
+            _isBackingOff = true;
+            _backoffTimer = BackoffDuration;
 
-                // Start backoff
-                _isBackingOff = true;
-                _backoffTimer = _backoffDuration;
-            }
+            // TODO: apply damage to player here
+            // ((Player)body).TakeDamage(10);
         }
     }
 }

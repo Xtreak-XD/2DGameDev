@@ -20,6 +20,11 @@ public partial class DodgeState : State
         stateMachine = GetParent<PlayerStateMachine>();
         walk = GetNode<WalkState>("../walk");
         idle = GetNode<IdleState>("../idle");
+        dodgeTimer = new Timer();
+        AddChild(dodgeTimer);
+        dodgeTimer.WaitTime = dodgeDuration;
+        dodgeTimer.OneShot = true;
+        dodgeTimer.Timeout += Exit;
     }
 
 // what happens when player enters their new state
@@ -32,11 +37,6 @@ public partial class DodgeState : State
             player.data.Stamina -= staminaCost;
             eventbus.EmitSignal("updateStamina",player.data.Stamina);
             dodging = true;
-            dodgeTimer = new Timer();
-            AddChild(dodgeTimer);
-            dodgeTimer.WaitTime = dodgeDuration;
-            dodgeTimer.OneShot = true;
-            dodgeTimer.Timeout += Exit;
             dodgeTimer.Start();
         }
         else

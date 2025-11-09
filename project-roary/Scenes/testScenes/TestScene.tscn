@@ -1,6 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
+[ext_resource type="PackedScene" uid="uid://dodiy3h22hmr3" path="res://Scenes/entities/enemies/alligator.tscn" id="1_hm8wl"]
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="3_lfsl6"]
@@ -46,6 +47,7 @@ position = Vector2(290, 198)
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
+INITIAL_HOUR = null
 
 [node name="testNpc" type="Sprite2D" parent="."]
 position = Vector2(348, 109)

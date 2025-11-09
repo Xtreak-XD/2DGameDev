@@ -21,7 +21,8 @@ _data = {
 &"RESET": SubResource("Animation_cwd6f")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 4
 script = ExtResource("1_yl34j")
 data = ExtResource("2_ah8g8")
 

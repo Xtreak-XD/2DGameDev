@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://nahwbbkosusi"]
 
-[ext_resource type="Script" uid="uid://dtre8qjovrhcf" path="res://Scenes/entities/enemies/FootballPlayer.cs" id="1_xf8fa"]
+[ext_resource type="Script" uid="uid://dtre8qjovrhcf" path="res://Scripts/entities/enemies/FootballPlayer.cs" id="1_xf8fa"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_8obdt"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_x153l"]
 

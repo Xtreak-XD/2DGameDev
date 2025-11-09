@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
-[ext_resource type="Script" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
+[ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
 radius = 174.3

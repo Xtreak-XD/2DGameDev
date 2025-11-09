@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://kca6lm3hrkf8"]
+[gd_scene load_steps=6 format=3 uid="uid://btdu4qy6kky3r"]
 
-[ext_resource type="Script" path="res://Scripts/entities/enemies/CarEnemy.cs" id="1_yekdc"]
+[ext_resource type="Script" uid="uid://gevx8as36d6" path="res://Scripts/entities/enemies/CarEnemy.cs" id="1_yekdc"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_al8n0"]
+[ext_resource type="Resource" uid="uid://t8rmfwvdd7qf" path="res://Resources/entities/enemy/carEnemyData.tres" id="2_hf14f"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_hf14f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1t53"]

@@ -22,14 +22,23 @@ public partial class interactionArea : Area2D
 
     public void onBodyEntered(Node2D body)
     {
-        GD.Print("registered to manager");
-        interactionManager.registerArea(this);
+        if (body.IsInGroup("player"))
+        {
+            GD.Print("registered to manager");
+            interactionManager.registerArea(this);
+        }
+        return;
+        
     }
     
     public void onBodyExited(Node2D body)
     {
-        GD.Print("unregistered to manager");
-        interactionManager.unregisterArea(this);
+        if (body.IsInGroup("player"))
+        {
+            GD.Print("unregistered to manager");
+            interactionManager.unregisterArea(this);
+        }
+        return;
     }
 
 }

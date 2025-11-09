@@ -31,7 +31,7 @@ public partial class DodgeState : State
     public override void Enter()
     {
         //play dodge animation
-        if (player.data.Stamina >= Math.Abs(player.data.Stamina - staminaCost))
+        if (player.data.Stamina >= staminaCost)
         {
             player.usingStamina = true;
             player.data.Stamina -= staminaCost;

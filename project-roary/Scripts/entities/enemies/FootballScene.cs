@@ -37,6 +37,8 @@ public partial class FootballScene : Enemy
     [Export] private spawnLocation spawnChosen { get; set; } = spawnLocation.North;
     private Timer directionTimer;
 
+    [Export] float waitTimer;
+
     private Vector2 direction;
 
     public override void _Ready()
@@ -117,7 +119,7 @@ public partial class FootballScene : Enemy
                 break;
         }
         directionTimer = new Timer();
-        directionTimer.WaitTime = 2.0f;
+        directionTimer.WaitTime = waitTimer;
         directionTimer.OneShot = false; // repeat forever
         AddChild(directionTimer);
 

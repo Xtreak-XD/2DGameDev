@@ -1,8 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b6fblarq8eoyi"]
-
-[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="1_bl6ii"]
-
-[resource]
-script = ExtResource("1_bl6ii")
-Health = 100
-MaxHealth = 100

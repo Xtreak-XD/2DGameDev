@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxhyvguf25h57"]
+
+[ext_resource type="Script" uid="uid://dk6awuk5dyrfq" path="res://Sprites/entities/enemies/FootballScene.cs" id="1_8ek2u"]
+[ext_resource type="Resource" uid="uid://b6fblarq8eoyi" path="res://Resources/entities/enemy/FootballPlayerData.tres" id="2_6opr7"]
+
+[node name="FootballScene" type="CharacterBody2D"]
+position = Vector2(574, 327)
+script = ExtResource("1_8ek2u")
+gapChosen = 6
+spawnChosen = 2
+data = ExtResource("2_6opr7")
+OffScreenDespawnTime = null

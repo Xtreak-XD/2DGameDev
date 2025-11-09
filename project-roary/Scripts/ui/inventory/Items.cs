@@ -11,6 +11,7 @@ public partial class Items : Sprite2D
 	[Export] public int itemQuantity = 1;
 	[Export] public InventoryItem itemResource;
 	private interactionArea interactionArea;
+	private Inventory inv;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -40,15 +41,21 @@ public partial class Items : Sprite2D
 
 	public void pickUpItem()
 	{
-		Player player = GetTree().GetFirstNodeInGroup("player") as Player;
-		if (player == null)
+		inv = GetNode<Inventory>("/root/Inventory");
+		
+		if (inv == null)
 		{
-			GD.PrintErr("Player node not found!");
+			GD.PrintErr("Inventory node not found!");
 			return;
 		}
-		
-		player.inventory.addItem(itemResource, itemQuantity);
-		QueueFree(); // Remove the item from the scene after picking it up
-		
+		bool isEmpty = inv.AddItem(itemResource, itemQuantity);
+
+		if (isEmpty)
+        {
+            QueueFree(); // Remove the item from the scene after picking it up
+        } else
+		{
+			GD.Print("Could not pick up item, inventory full.");
+		}
 	}
 }

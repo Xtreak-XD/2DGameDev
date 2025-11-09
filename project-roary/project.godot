@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Eventbus="*res://Global/Eventbus.cs"
 DialogueManager="*res://Global/dialogueManager.cs"
 InteractionManager="*res://Scenes/helperScenes/interaction_manager.tscn"
+Inventory="*res://Global/Inventory.cs"
 
 [dotnet]
 

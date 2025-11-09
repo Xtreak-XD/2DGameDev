@@ -5,28 +5,29 @@
 
 [node name="InventoryUISlot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(16, 16)
-offset_right = 16.0
-offset_bottom = 16.0
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
 script = ExtResource("2_hpqa8")
 
 [node name="InventoryImage" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
 texture = ExtResource("1_ac1nk")
 
 [node name="ItemDisplay" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_right = 64.0
+offset_bottom = 64.0
 expand_mode = 1
 
 [node name="QuantityLabel" type="Label" parent="ItemDisplay"]
-custom_minimum_size = Vector2(24, 23)
 layout_mode = 0
-offset_left = 0.99999994
-offset_right = 25.0
+offset_left = 5.0
+offset_right = 24.0
 offset_bottom = 23.0
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.9, 0.9)
 text = "60"

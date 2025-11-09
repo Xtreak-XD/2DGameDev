@@ -1,19 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://q3ro5jn5xba5"]
+[gd_scene load_steps=4 format=3 uid="uid://cwohgp4x586qn"]
 
 [ext_resource type="Texture2D" uid="uid://b5ggit24m1rr3" path="res://Sprites/inventory/Inventory.png" id="1_3a56e"]
+[ext_resource type="Script" uid="uid://gcqgiehykydw" path="res://Scripts/ui/inventory/InventoryUI.cs" id="1_7u8lk"]
 [ext_resource type="PackedScene" uid="uid://8pvee488ohwq" path="res://Scenes/ui/inventory/InventoryUISlot.tscn" id="2_tyu5d"]
 
 [node name="InventoryUI" type="Control"]
 custom_minimum_size = Vector2(90, 68)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 90.0
-offset_bottom = 68.0
+offset_right = 312.0
+offset_bottom = 232.0
+script = ExtResource("1_7u8lk")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_right = 90.0
-offset_bottom = 68.0
+offset_right = 312.0
+offset_bottom = 232.0
 texture = ExtResource("1_3a56e")
 patch_margin_left = 1
 patch_margin_top = 1
@@ -27,10 +29,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -28.0
-offset_right = 38.0
-offset_bottom = 28.0
+offset_left = -134.0
+offset_top = -100.0
+offset_right = 134.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 4

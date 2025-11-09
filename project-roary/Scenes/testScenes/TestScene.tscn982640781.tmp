@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
 [ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
-[ext_resource type="PackedScene" uid="uid://bvp27tyw5u6se" path="res://Scenes/Items/Apple.tscn" id="8_k25gx"]
-[ext_resource type="PackedScene" uid="uid://8c5uvk27c2i2" path="res://Scenes/Items/Banana.tscn" id="9_3unw3"]
-[ext_resource type="PackedScene" uid="uid://dekv33yudwobc" path="res://Scenes/Items/Grape.tscn" id="10_d43vx"]
+[ext_resource type="PackedScene" uid="uid://r6a6orujjhgt" path="res://Scenes/ui/inventory/Items.tscn" id="8_hm8wl"]
+[ext_resource type="Resource" uid="uid://b0oxnyrd3gfj8" path="res://Resources/items/apple.tres" id="9_helya"]
+[ext_resource type="Resource" uid="uid://bgs8n36boo5jf" path="res://Resources/items/grape.tres" id="10_k25gx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
 radius = 174.3
@@ -55,27 +55,21 @@ actionName = "talk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testNpc/InteractableArea"]
 shape = SubResource("CircleShape2D_106wm")
 
-[node name="Items" parent="." instance=ExtResource("8_k25gx")]
-position = Vector2(302.99997, 196.99998)
-scale = Vector2(0.1, 0.1)
-itemQuantity = 5
+[node name="AppleTest" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(268, 166.00002)
+scale = Vector2(0.06944444, 0.07222229)
+itemQuantity = 2
+itemResource = ExtResource("9_helya")
 
-[node name="Items2" parent="." instance=ExtResource("9_3unw3")]
-position = Vector2(314, 169)
-scale = Vector2(0.1, 0.1)
+[node name="GrapeTest" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(269, 144)
+scale = Vector2(0.013888888, 0.014444458)
+itemResource = ExtResource("10_k25gx")
 
-[node name="Items3" parent="." instance=ExtResource("10_d43vx")]
-position = Vector2(274.99997, 168.99998)
-scale = Vector2(0.1, 0.1)
-
-[node name="Items4" parent="." instance=ExtResource("8_k25gx")]
-position = Vector2(340.00003, 184)
-scale = Vector2(0.1, 0.1)
-itemQuantity = 10
-
-[node name="Items5" parent="." instance=ExtResource("8_k25gx")]
-position = Vector2(340, 223)
-scale = Vector2(0.1, 0.1)
-itemQuantity = 10
+[node name="AppleTest2" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(240.00002, 168.00002)
+scale = Vector2(0.06944444, 0.07222229)
+itemQuantity = 2
+itemResource = ExtResource("9_helya")
 
 [editable path="Enemymanager"]

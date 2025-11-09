@@ -16,7 +16,7 @@ public partial class InventoryUI : Control
 	public override void _Ready()
 	{
 		close();
-		inv = GetParent<Player>().inventory; // Loads the player's inventory resource
+		inv = GetNode<Inventory>("/root/Inventory"); // Loads the player's inventory resource
 		slots = new List<ItemUISlot>();
 		GridContainer grid = GetNode<GridContainer>("NinePatchRect/GridContainer");
 
@@ -27,9 +27,8 @@ public partial class InventoryUI : Control
 				slots.Add(s); // Adds each slot of the inventory to the slots list
 			}
 		}
-
 		Eventbus eventbus = GetNode<Eventbus>("/root/Eventbus");
-		eventbus.inventoryUpdated += updateSlots;
+		eventbus.inventoryUpdated += updateSlots; // Subscribes to the inventoryChanged signal to update the UI when the inventory changes
 
 		updateSlots();
 	}

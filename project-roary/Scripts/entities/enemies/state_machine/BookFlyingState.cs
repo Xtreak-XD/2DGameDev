@@ -22,6 +22,7 @@ public partial class BookFlyingState : EnemyState
 
     public override EnemyState Physics(double delta)
     {
+        GD.Print("in flying state");
         if (_player == null)
         {
             _player = GetTree().GetFirstNodeInGroup("player") as Node2D;
@@ -38,11 +39,11 @@ public partial class BookFlyingState : EnemyState
             ActiveEnemy.Velocity = new Vector2(ActiveEnemy.Velocity.X, FlapStrength);
 
             // Play flap animation if available
-            if (ActiveEnemy.HasNode("AnimatedSprite2D"))
-            {
-                var sprite = ActiveEnemy.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-                sprite.Play("flapping");
-            }
+            // if (ActiveEnemy.HasNode("AnimatedSprite2D"))
+            // {
+            //     var sprite = ActiveEnemy.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+            //     sprite.Play("flapping");
+            // }
 
             _flapTimer = 0;
         }
@@ -51,9 +52,9 @@ public partial class BookFlyingState : EnemyState
         float dirX = Mathf.Sign(_player.GlobalPosition.X - ActiveEnemy.GlobalPosition.X);
         ActiveEnemy.Velocity = new Vector2(dirX * HorizontalSpeed, ActiveEnemy.Velocity.Y);
 
-        // Flip sprite
-        if (ActiveEnemy.HasNode("AnimatedSprite2D"))
-            ActiveEnemy.GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = dirX < 0;
+        // // Flip sprite
+        // if (ActiveEnemy.HasNode("AnimationPlayer"))
+        //     ActiveEnemy.GetNode<AnimationPlayer>("AnimationPlayer").FlipH = dirX < 0;
 
         ActiveEnemy.MoveAndSlide();
 

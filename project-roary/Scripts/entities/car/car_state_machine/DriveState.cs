@@ -39,7 +39,7 @@ public partial class DriveState : CarState
         if (ActiveCar.Velocity.Length() > ActiveCar.stats.TopSpeed)
         {
             ActiveCar.Velocity = ActiveCar.Velocity.Normalized()
-             * ActiveCar.stats.TopSpeed;
+             * ActiveCar.stats.TopSpeed * (float) delta;
         }
 
         return null;

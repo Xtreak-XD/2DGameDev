@@ -48,12 +48,12 @@ public partial class DecelerateState : CarState
         //GD.Print("Car Speed: " + ActiveCar.GetVelocity().Length());
 
         Vector2 currentVelocity = ActiveCar.Velocity;
-        float decelerationAmount = ActiveCar.stats.Acceleration * (float)delta;
+        float decelerationAmount = ActiveCar.stats.Acceleration;
 
         if (currentVelocity.Length() > decelerationAmount)
         {
             Vector2 decelerationVector = currentVelocity.Normalized()
-             * decelerationAmount;
+             * decelerationAmount * (float) delta;
             ActiveCar.Velocity -= decelerationVector;
         }
         else

@@ -7,4 +7,6 @@ public partial class CarStats : Resource
 	public float TopSpeed { get; set; }
 	[Export]
 	public float Acceleration { get; set; }
+	[Export]
+	public float SteeringSpeed { get; set; }
 }

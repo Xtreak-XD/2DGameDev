@@ -61,7 +61,6 @@ public partial class DecelerateState : CarState
             ActiveCar.Velocity = Vector2.Zero;
         }
 
-        ActiveCar.SetRotation();
         ActiveCar.MoveAndCollide(ActiveCar.Velocity);
         return null;
     }

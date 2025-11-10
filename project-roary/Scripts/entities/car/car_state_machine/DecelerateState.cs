@@ -43,9 +43,9 @@ public partial class DecelerateState : CarState
             return ParkState;
         }
 
-        GD.Print($"Car Velocity: ({ActiveCar.Velocity.X}," +
-        $"{ActiveCar.Velocity.Y})");
-        GD.Print("Car Speed: " + ActiveCar.GetVelocity().Length());
+        //GD.Print($"Car Velocity: ({ActiveCar.Velocity.X}," +
+        //$"{ActiveCar.Velocity.Y})");
+        //GD.Print("Car Speed: " + ActiveCar.GetVelocity().Length());
 
         Vector2 currentVelocity = ActiveCar.Velocity;
         float decelerationAmount = ActiveCar.stats.Acceleration * (float)delta;

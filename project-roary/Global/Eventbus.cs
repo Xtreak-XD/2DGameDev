@@ -26,6 +26,12 @@ public partial class Eventbus : Node
     [Signal]
     public delegate void finishedDisplayingEventHandler(); //this is emitted by text boxes when a set of text is done displaying.
 
+    [Signal]
+    public delegate void playerReachedParkingSpotEventHandler(); // Emitted when the player parks in the PG minigame.
+
+    [Signal]
+    public delegate void playerOutOfTimeEventHandler(); // Emitted when the player runs out of time for the PG minigame.
+
     //UI Signals
     [Signal] public delegate void updateStaminaEventHandler(int value);
     [Signal] public delegate void updateHealthEventHandler(int value);

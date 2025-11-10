@@ -12,33 +12,42 @@ public partial class InventoryUI : Control
 	public Boolean isOpen = false;
 	public Inventory inv; // The Inventory resource that holds the player's items
 	public List<ItemUISlot> slots; // Holds each individual slot in the inventory UI
+	private ItemUISlot draggedItemSlot; // The slot currently being dragged
 
 	public override void _Ready()
 	{
 		close();
 		inv = GetNode<Inventory>("/root/Inventory"); // Loads the player's inventory resource
-		slots = new List<ItemUISlot>();
-		GridContainer grid = GetNode<GridContainer>("NinePatchRect/GridContainer");
+		slots = new List<ItemUISlot>(); // Initializes the list to hold inventory slots
+		GridContainer inventoryGrid = GetNode<GridContainer>("NinePatchRect/InventoryGrid"); // Gets the GridContainer node that holds the inventory slots
 
-		foreach (Node slot in grid.GetChildren()) // Loops through each child node in the GridContainer
+		foreach (Node slot in inventoryGrid.GetChildren()) // Loops through each child node in the GridContainer
 		{
 			if (slot is ItemUISlot s)
 			{
 				slots.Add(s); // Adds each slot of the inventory to the slots list
 			}
 		}
+
+		GridContainer hotBarGrid = GetNode<GridContainer>("NinePatchRect/HotBarGrid"); // Gets the GridContainer node that holds the inventory slots
+
+		foreach (Node slot in hotBarGrid.GetChildren()) // Loops through each child node in the GridContainer
+		{
+			if (slot is ItemUISlot s)
+			{
+				slots.Add(s); // Adds each slot of the inventory to the slots list
+			}
+		}
+
+		for (int i = 0; i < slots.Count; i++)
+		{
+			slots[i].slotIndex = i; // Assign index to each slot
+		}
+
 		Eventbus eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.inventoryUpdated += updateSlots; // Subscribes to the inventoryChanged signal to update the UI when the inventory changes
 
 		updateSlots();
-	}
-
-	public void updateSlots()
-	{
-		for (int i = 0; i < Math.Min(inv.slots.Count, slots.Count); i++) // Loops through each slot and updates its display based on the inventory items							
-		{
-			slots[i].updateDisplay(inv.slots[i]); // Change the specific slot to display the corresponding item from the inventory
-		}
 	}
 
 	public override void _Process(double delta)
@@ -54,6 +63,43 @@ public partial class InventoryUI : Control
 				open();
 			}
 		}
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (draggedItemSlot != null && @event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed == false)
+		{
+			if (GetGlobalRect().HasPoint(GetGlobalMousePosition()))
+			{
+				draggedItemSlot = null;
+				DisplayServer.CursorSetShape(DisplayServer.CursorShape.Arrow);
+			}
+			else
+			{
+				// Dropped outside inventory UI
+				inv.RemoveItem(draggedItemSlot.slotIndex);
+				draggedItemSlot = null;
+				DisplayServer.CursorSetShape(DisplayServer.CursorShape.Arrow);
+			}
+		}
+	}
+
+	public void updateSlots()
+	{
+		for (int i = 0; i < Math.Min(inv.slots.Count, slots.Count); i++) // Loops through each slot and updates its display based on the inventory items							
+		{
+			slots[i].updateDisplay(inv.slots[i]); // Change the specific slot to display the corresponding item from the inventory
+		}
+	}
+
+	public void checkDraggedItem(ItemUISlot slot)
+	{
+		if (slot == null)
+		{
+			return;
+		}
+
+		draggedItemSlot = slot;
 	}
 
 	public void open()

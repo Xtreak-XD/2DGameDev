@@ -22,8 +22,8 @@ position = Vector2(222, 143)
 [node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
-EnemyScene = ExtResource("2_6tqdf")
 MaxEnemiesAlive = 4
+EnemyScene = ExtResource("2_6tqdf")
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
 position = Vector2(631, 194)

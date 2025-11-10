@@ -11,7 +11,7 @@ offset_bottom = 64.0
 script = ExtResource("2_hpqa8")
 
 [node name="InventoryImage" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
@@ -23,11 +23,13 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 expand_mode = 1
+stretch_mode = 5
 
 [node name="QuantityLabel" type="Label" parent="ItemDisplay"]
+z_index = 2
 layout_mode = 0
 offset_left = 5.0
 offset_right = 24.0
 offset_bottom = 23.0
 scale = Vector2(0.9, 0.9)
-text = "60"
+text = "20"

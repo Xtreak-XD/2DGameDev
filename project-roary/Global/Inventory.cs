@@ -12,18 +12,21 @@ public partial class Inventory : Node
 {
     [Export]
     public Array<InventorySlot> slots { get; set; }
-    public int size = 12; // Maximum number of slots in the inventory
+    public const int HOTBAR_SIZE = 4; // Number of slots in the hotbar
+    public const int INVENTORY_SIZE = 12; // Maximum number of slots in the inventory
+    public const int TOTAL_SIZE = HOTBAR_SIZE + INVENTORY_SIZE; // Maximum number of slots in the inventory
+
     public Eventbus eventbus;
 
     public override void _Ready()
     {
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
         slots = new Array<InventorySlot>();
         // Initialize inventory with empty slots
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < TOTAL_SIZE; i++)
         {
             slots.Add(new InventorySlot());
-        }
-        eventbus = GetNode<Eventbus>("/root/Eventbus");
+        }      
     }
 
     public bool AddItem(InventoryItem itemToAdd, int quantity = 1)
@@ -68,7 +71,53 @@ public partial class Inventory : Node
         return true;
     }
 
-    // ToDo : Implement RemoveItem
-    // ToDo : Consider saving/loading inventory state 
-    // ToDo : Implement item drag and drop between slots
+    public void SwapSlots(int indexA, int indexB)
+    {
+        if (indexA < 0 || indexA >= slots.Count || indexB < 0 || indexB >= slots.Count)
+        {
+            GD.PrintErr("Invalid slot indices for swapping.");
+            return;
+        }
+
+        InventorySlot temp = slots[indexA];
+        slots[indexA] = slots[indexB];
+        slots[indexB] = temp;
+
+        eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
+    }
+
+    /**
+    Removes a specified quantity of an item from a given slot.
+    @param slotIndex The index of the slot to remove the item from.
+    @param quantity The quantity of the item to remove. Default is 1.
+    @return The InventoryItem that was removed, or null if removal was unsuccessful.
+    */
+    public InventoryItem RemoveItem(int slotIndex, int quantity = 1)
+    {
+        if (slotIndex < 0 || slotIndex >= slots.Count)
+        {
+            GD.PrintErr("Invalid slot index for removing item.");
+            return null;
+        }
+
+        InventorySlot slot = slots[slotIndex]; // Get the slot at the specified index
+
+        if (slot.item == null || slot.quantity < quantity)
+        {
+            GD.PrintErr("Not enough items in the slot to remove.");
+            return null;
+        }
+        InventoryItem itemToReturn = slot.item; // Store the item to return
+        slot.quantity -= quantity; // Decrease the quantity in the slot
+
+        if (slot.quantity <= 0)
+        {
+            slot.item = null; // Clear the slot if quantity reaches zero
+            slot.quantity = 0;
+        }
+
+        eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
+
+        return itemToReturn;
+    }
 }

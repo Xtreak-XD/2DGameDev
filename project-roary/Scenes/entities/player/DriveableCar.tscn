@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://con1q0nhgkj8i"]
+[gd_scene load_steps=10 format=3 uid="uid://con1q0nhgkj8i"]
 
 [ext_resource type="Script" uid="uid://c3of3utw4kpaw" path="res://Scripts/entities/car/DriveableCar.cs" id="1_n2rgb"]
 [ext_resource type="Texture2D" uid="uid://b1twhsk52s8ia" path="res://Sprites/entities/player/driveable_car.jpeg" id="1_u0rys"]
 [ext_resource type="Script" uid="uid://c5suem3u3axdw" path="res://Scripts/entities/car/car_state_machine/CarStateMachine.cs" id="2_0u1t5"]
 [ext_resource type="Resource" uid="uid://y0yi8axjpmqh" path="res://Resources/entities/player/CarStats.tres" id="2_sbjmw"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="3_rrs41"]
 [ext_resource type="Script" uid="uid://y24dyjapjtlc" path="res://Scripts/entities/car/car_state_machine/ParkState.cs" id="4_hjrlu"]
 [ext_resource type="Script" uid="uid://qkt22wionkvp" path="res://Scripts/entities/car/car_state_machine/DriveState.cs" id="5_7i5lx"]
 [ext_resource type="Script" uid="uid://c60jcyd2mmvco" path="res://Scripts/entities/car/car_state_machine/DecelerateState.cs" id="6_7i5lx"]
@@ -12,14 +13,18 @@
 size = Vector2(47, 18)
 
 [node name="DriveableCar" type="CharacterBody2D"]
+rotation = 4.712389
 script = ExtResource("1_n2rgb")
 stats = ExtResource("2_sbjmw")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_rrs41")]
+scale = Vector2(0.66, 0.66)
 
 [node name="DriveableCarStateMachine" type="Node" parent="."]
 script = ExtResource("2_0u1t5")
 
 [node name="ParkTimer" type="Timer" parent="DriveableCarStateMachine"]
-wait_time = 0.15
+wait_time = 0.1
 
 [node name="Drive" type="Node" parent="DriveableCarStateMachine"]
 script = ExtResource("5_7i5lx")

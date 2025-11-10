@@ -16,20 +16,41 @@ public partial class Interface : CanvasLayer
         {6, "Sunday"}
     };
     public Eventbus eventbus;
+    public Node player;
     public Label time;
     public Label curDay;
     public Label temp;
 
+    public TextureProgressBar health;
+    public TextureProgressBar stamina;
+
     public override void _Ready()
     {
+        player = GetTree().GetFirstNodeInGroup("player");
+
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         eventbus.timeTick += setTime;
+
+        eventbus.updateHealth += updateHealth;
+        eventbus.updateStamina += updateStamina;
+        stamina = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Stamina");
+        health = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Health");
 
         time = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/time");
         curDay = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/day");
         temp = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/temp");
     }
+
+
+    public void updateStamina(int value)
+    {
+        stamina.Value = value;
+    }
     
+    public void updateHealth(int value)
+    {
+        health.Value = value;
+    }
 
     public void setTime(int day, int hour, int min)
     {

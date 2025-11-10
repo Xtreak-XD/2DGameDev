@@ -23,7 +23,7 @@ public partial class BookEnemy : CharacterBody2D
     private bool _hasDealtDamage = false;
     private float _flapTimer = 0f;
     private Area2D _damageArea;
-    private AnimatedSprite2D _sprite;
+    private AnimationPlayer _sprite;
     private bool _chasingPlayerDirectly = false;
     private Vector2 _currentTargetPoint;
     private float _targetUpdateTimer = 0f;
@@ -47,10 +47,10 @@ public partial class BookEnemy : CharacterBody2D
             GD.PrintErr("❌ DamageArea not found!");
         }
 
-        _sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+        _sprite = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
         if (_sprite == null)
         {
-            GD.PrintErr("❌ AnimatedSprite2D node not found!");
+            GD.PrintErr("❌ AnimationPlayer node not found!");
         }
         AssignNewRandomTargetPoint();
     }
@@ -141,14 +141,14 @@ public partial class BookEnemy : CharacterBody2D
         {
             if (direction.X > 0)
             {
-                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_right")
+                if (!_sprite.IsPlaying() || _sprite.CurrentAnimation != "flapping_right")
                 {
                     _sprite.Play("flapping_right");
                 }
             }
             else if (direction.X < 0)
             {
-                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_left")
+                if (!_sprite.IsPlaying() || _sprite.CurrentAnimation != "flapping_left")
                 {
                     _sprite.Play("flapping_left");
                 }
@@ -158,14 +158,14 @@ public partial class BookEnemy : CharacterBody2D
         {
             if (direction.Y > 0)
             {
-                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_down")
+                if (!_sprite.IsPlaying() || _sprite.CurrentAnimation != "flapping_down")
                 {
                     _sprite.Play("flapping_down");
                 }
             }
             else if (direction.Y < 0)
             {
-                if (!_sprite.IsPlaying() || _sprite.Animation != "flapping_up")
+                if (!_sprite.IsPlaying() || _sprite.CurrentAnimation != "flapping_up")
                 {
                     _sprite.Play("flapping_up");
                 }

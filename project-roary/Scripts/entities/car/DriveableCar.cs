@@ -13,6 +13,8 @@ public partial class DriveableCar : CharacterBody2D
 	{
 		AddToGroup("player");
 
+		//GD.Print("Car is in: " + GetGroups());
+
 		stateMachine = GetNode<CarStateMachine>("DriveableCarStateMachine");
 		stateMachine.Initialize(this);
 	}

@@ -1,6 +1,6 @@
 using Godot;
 
-// Do not make any classes directly overriding Weapon, override MeleeWeapon or RangedWeapon
+// Do not make any classes directly extending Weapon, extend MeleeWeapon or RangedWeapon
 public partial class Weapon : Node2D
 {
 	[Export]

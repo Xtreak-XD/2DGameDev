@@ -1,6 +1,7 @@
 using System;
 using Godot;
 
+// Extend this to create a projectile that is shot from a RangedWeapon
 public partial class Projectile : CharacterBody2D
 {
 	public Timer projectileTimer;
@@ -17,7 +18,7 @@ public partial class Projectile : CharacterBody2D
 	public override void _Ready()
 	{
 		projectileTimer = GetNode<Timer>("LifespanTimer");
-		
+
 		projectileTimer.WaitTime = data.lifeSpan;
 		projectileTimer.Timeout += Kill;
 
@@ -44,7 +45,7 @@ public partial class Projectile : CharacterBody2D
 	public virtual void Travel(double delta)
 	{
 		MoveAndSlide();
-    }
+	}
 
 	// DO NOT OVERRIDE
 	public void Kill()
@@ -52,5 +53,5 @@ public partial class Projectile : CharacterBody2D
 		GD.Print($"Projectile has been destroyed with " +
 		$"{Math.Round(projectileTimer.TimeLeft, 2)} seconds left.");
 		QueueFree();
-    }
+	}
 }

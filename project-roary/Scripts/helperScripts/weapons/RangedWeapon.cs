@@ -1,5 +1,6 @@
 using Godot;
 
+// Extend this to create a ranged weapon that shoots a projectile.
 public partial class RangedWeapon : Weapon
 {
 	// For this, in any child of RangedWeapon, you likely

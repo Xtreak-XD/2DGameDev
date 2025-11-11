@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://cb03afcepoioc"]
+
+[ext_resource type="Script" uid="uid://bf0rdxi8l5ofd" path="res://Scripts/entities/enemies/petitioner/petitioner.cs" id="1_uqobr"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="1_vq3ow"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_uqobr"]
+[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_hsg6v"]
+[ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/test_enemy/state_machine/EnemyStateMachine.cs" id="4_a1ped"]
+[ext_resource type="Script" uid="uid://clipfa73fyfqm" path="res://Scripts/entities/enemies/test_enemy/state_machine/movement.cs" id="5_4dy67"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nq1m"]
+
+[node name="Petitioner" type="CharacterBody2D"]
+script = ExtResource("1_uqobr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6nq1m")
+
+[node name="Hitbox" parent="." instance=ExtResource("1_vq3ow")]
+position = Vector2(0, 1)
+
+[node name="HurtBox" parent="." instance=ExtResource("2_uqobr")]
+position = Vector2(0, 3)
+
+[node name="petitionerface" type="Sprite2D" parent="."]
+scale = Vector2(0.1640625, 0.1640625)
+texture = ExtResource("3_hsg6v")
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("4_a1ped")
+
+[node name="movement" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_4dy67")

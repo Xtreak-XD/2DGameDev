@@ -58,10 +58,9 @@ public partial class Projectile : CharacterBody2D
 	// Override to add special effects when this
 	// projectile hits an entity
 	// REMEMBER TO CALL base.HitEntity() if you override this.
-	// You have to call base.HitEntity() at the end of your override.
 	public virtual void HitEntity(Node2D body)
 	{
-		if (!(body is HurtBox))
+		if (body is not HurtBox)
 		{
 			return;
 		}

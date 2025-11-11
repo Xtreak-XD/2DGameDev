@@ -11,6 +11,6 @@ data = ExtResource("2_mige8")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(259, 212.00003)
+position = Vector2(0, -1.0000002)
 scale = Vector2(0.045410153, 0.05664063)
 texture = ExtResource("2_7avlw")

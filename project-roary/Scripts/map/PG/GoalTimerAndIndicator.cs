@@ -10,19 +10,14 @@ public partial class GoalTimerAndIndicator : Node2D
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		timer = GetNode<Timer>("ParkingTimer");
 
-		eventbus.playerOutOfTime += EndMinigameWithTimeOut;
-
 		timer.Timeout += TimeOut;
 		timer.Start();
+
+		GD.Print("Timer has " + timer.TimeLeft + " seconds.");
 	}
 	
 	public void TimeOut()
 	{
-		eventbus.EmitSignal("playerOutOfTime");
-	}
-	
-	public void EndMinigameWithTimeOut()
-    {
 		GD.Print("Player has run out of time.");
-    }
+	}
 }

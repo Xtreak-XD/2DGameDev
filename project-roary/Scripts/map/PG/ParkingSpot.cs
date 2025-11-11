@@ -2,18 +2,11 @@ using Godot;
 
 public partial class ParkingSpot : Area2D
 {
-	public Node2D car;
+	public Node car;
 
 	public override void _Ready()
 	{
-		car = GetTree().GetNodesInGroup("player")[0] as Node2D;
-
-		GD.Print(car.Name);
-
-		if (car == null)
-		{
-			GD.Print("The car could not be found.");
-		}
+		car = GetTree().GetFirstNodeInGroup("player");
 
 		BodyEntered += EndMinigameWithSuccess;
 

@@ -72,17 +72,28 @@ public partial class InventoryUI : Control
 			if (GetGlobalRect().HasPoint(GetGlobalMousePosition()))
 			{
 				draggedItemSlot = null;
-				DisplayServer.CursorSetShape(DisplayServer.CursorShape.Arrow);
 			}
 			else
 			{
 				// Dropped outside inventory UI
-				inv.RemoveItem(draggedItemSlot.slotIndex);
+				InventoryItem draggedItem = inv.RemoveItem(draggedItemSlot.slotIndex);
+				if (draggedItem != null)
+				{
+					spawnItemInWorld(draggedItem, 1); // Spawns the item in the game world
+				}
 				draggedItemSlot = null;
-				DisplayServer.CursorSetShape(DisplayServer.CursorShape.Arrow);
 			}
 		}
 	}
+	
+	public void spawnItemInWorld(InventoryItem item, int quantity)
+	{
+		PackedScene itemScene = GD.Load<PackedScene>("res://Scenes/ui/inventory/Items.tscn");
+		Items itemInstance = itemScene.Instantiate() as Items;
+		itemInstance.itemResource = item;
+		itemInstance.GlobalPosition = GetTree().GetCurrentScene().GetNode<Node2D>("Player").GlobalPosition; // Spawns the item above the player
+		GetTree().GetCurrentScene().AddChild(itemInstance);
+    }
 
 	public void updateSlots()
 	{

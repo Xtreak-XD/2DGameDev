@@ -32,7 +32,6 @@ public partial class ItemUISlot : Panel
 		{
 			return default;
 		}
-
 		TextureRect dragPreview = icon.Duplicate() as TextureRect; // Create a duplicate of the icon for the drag preview
 
 		Control c = new Control();
@@ -42,7 +41,7 @@ public partial class ItemUISlot : Panel
 		c.Modulate = new Color(c.Modulate, .5f); // Make the preview slightly transparent
 
 		SetDragPreview(c); // Set the drag preview to the duplicated icon
-		DisplayServer.CursorSetShape(DisplayServer.CursorShape.Drag);
+		
 		inventoryUI.checkDraggedItem(this);
 
 		return this;
@@ -68,11 +67,10 @@ public partial class ItemUISlot : Panel
 		ItemUISlot itemSlot = data.As<ItemUISlot>(); // Cast the dropped data back to ItemUISlot
 
 		if (itemSlot == null) return;
-
+		Input.SetMouseMode(Input.MouseModeEnum.Visible);
+		DisplayServer.CursorSetShape(DisplayServer.CursorShape.Drag);
 		Inventory inv = GetNode<Inventory>("/root/Inventory");
 		inv.SwapSlots(itemSlot.slotIndex, this.slotIndex);  // Swap the items in the inventory based on the slot indices
-
-		DisplayServer.CursorSetShape(DisplayServer.CursorShape.Arrow);
 	}
 
 	/**

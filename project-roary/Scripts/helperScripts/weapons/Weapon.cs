@@ -1,5 +1,6 @@
 using Godot;
 
+// Do not make any classes directly overriding Weapon, override MeleeWeapon or RangedWeapon
 public partial class Weapon : Node2D
 {
 	[Export]
@@ -55,14 +56,14 @@ public partial class Weapon : Node2D
 		// May have to change this later.
 		Rotation = pos.Angle();
 	}
-	
+
 	// DO NOT OVERRIDE THIS
 	public void SetCanAttack()
 	{
-		if(canAttack == false)
-        {
-            GD.Print("Weapon can attack.");
+		if (canAttack == false)
+		{
+			GD.Print("Weapon can attack.");
 			canAttack = true;
-        }
-    }
+		}
+	}
 }

@@ -4,9 +4,12 @@ using Godot;
 public partial class Projectile : CharacterBody2D
 {
 	public Timer projectileTimer;
-	public int damage = 0;
+
 	public Vector2 spawn = Vector2.Zero;
 
+	// For this, in any child of Projectile, you likely
+	// need to say "new."
+	// public new ProjectileData data;
 	[Export]
 	public ProjectileData data;
 
@@ -35,8 +38,9 @@ public partial class Projectile : CharacterBody2D
 		Travel(delta);
 	}
 
-	// Controls special behavior of the projectile in flight
-	// REMEMBER TO CALL base.Travel() if you override this
+	// Controls special behavior of the projectile in flight.
+	// REMEMBER TO CALL base.Travel() if you override this.
+	// You have to call base.Travel() at the end of your override.
 	public virtual void Travel(double delta)
 	{
 		MoveAndSlide();

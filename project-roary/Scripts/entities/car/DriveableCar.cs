@@ -13,6 +13,8 @@ public partial class DriveableCar : CharacterBody2D
 	{
 		AddToGroup("player");
 
+		//GD.Print("Car is in: " + GetGroups());
+
 		stateMachine = GetNode<CarStateMachine>("DriveableCarStateMachine");
 		stateMachine.Initialize(this);
 	}
@@ -22,26 +24,29 @@ public partial class DriveableCar : CharacterBody2D
 	}
 
 	public override void _PhysicsProcess(double delta)
-    {
-		float turn = Input.GetAxis("Left", "Right");
-		float turnAngle = Mathf.DegToRad(turn * stats.SteeringSpeed);
-		Vector2 accelerationVector = Vector2.Zero;
+	{
+		if(HasThrottle() || Input.IsActionPressed("Down"))
+        {
+            float turn = Input.GetAxis("Left", "Right");
+			float turnAngle = Mathf.DegToRad(turn * stats.SteeringSpeed);
+			Vector2 accelerationVector = Vector2.Zero;
 
-		if (Input.IsActionPressed("Up"))
-		{
-			accelerationVector = Transform.X * stats.Acceleration;
-		}
+			if (Input.IsActionPressed("Up"))
+			{
+				accelerationVector = Transform.X * stats.Acceleration;
+			}
 
-		if (Input.IsActionPressed("Down"))
-		{
-			accelerationVector = Transform.X * (-stats.Acceleration * 2);
-		}
+			if (Input.IsActionPressed("Down"))
+			{
+				accelerationVector = Transform.X * (-stats.Acceleration * 2);
+			}
 
-		Velocity += accelerationVector * (float)delta;
-		Velocity = Velocity.Rotated(turnAngle);
+			Velocity += accelerationVector * (float) delta;
+			Velocity = Velocity.Rotated(turnAngle);
 
-		SetRotation();
-		MoveAndSlide();
+			SetRotation();
+			MoveAndSlide();
+        }
     }
 
 	public bool HasThrottle()

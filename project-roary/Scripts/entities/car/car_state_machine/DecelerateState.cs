@@ -43,25 +43,25 @@ public partial class DecelerateState : CarState
             return ParkState;
         }
 
-        GD.Print($"Car Velocity: ({ActiveCar.Velocity.X}," +
-        $"{ActiveCar.Velocity.Y})");
-        GD.Print("Car Speed: " + ActiveCar.GetVelocity().Length());
+        //GD.Print($"Car Velocity: ({ActiveCar.Velocity.X}," +
+        //$"{ActiveCar.Velocity.Y})");
+        //GD.Print("Car Speed: " + ActiveCar.GetVelocity().Length());
 
         Vector2 currentVelocity = ActiveCar.Velocity;
-        float decelerationAmount = ActiveCar.stats.Acceleration * (float)delta;
+        float decelerationAmount = ActiveCar.stats.Acceleration;
 
         if (currentVelocity.Length() > decelerationAmount)
         {
             Vector2 decelerationVector = currentVelocity.Normalized()
              * decelerationAmount;
-            ActiveCar.Velocity -= decelerationVector;
+            ActiveCar.Velocity -= decelerationVector * (float)delta;
         }
         else
         {
             ActiveCar.Velocity = Vector2.Zero;
         }
 
-        ActiveCar.MoveAndCollide(ActiveCar.Velocity);
+        ActiveCar.MoveAndSlide();
         return null;
     }
     

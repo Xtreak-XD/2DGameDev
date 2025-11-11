@@ -1,9 +1,13 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 
 public partial class Player : CharacterBody2D
 {
+
+	public Eventbus eventbus;
+
 	[Export]
 	public GenericData data;
 	public AnimationPlayer animationPlayer;
@@ -13,9 +17,18 @@ public partial class Player : CharacterBody2D
 	public Vector2 cardinalDirection = Vector2.Down;
 	public Vector2 direction = Vector2.Zero;
 
+	public Vector2 lastDirection = Vector2.Zero;
+
+	public bool usingStamina = false;
+	public bool recoveringStamina = false;
+
+	[Export] public float rateOfStaminaRecovery;
+	[Export] public int amountOfStaminaRecovered;
+
     public override void _Ready()
 	{
 		AddToGroup("player");
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
@@ -27,7 +40,21 @@ public partial class Player : CharacterBody2D
 	{
 		direction.X = Input.GetActionStrength("Right") - Input.GetActionStrength("Left");
 		direction.Y = Input.GetActionStrength("Down") - Input.GetActionStrength("Up");
+
+		if (!usingStamina && data.Stamina < data.MaxStamina && !recoveringStamina)
+		{
+			recoveringStamina = true;
+			RecoverStamina();
+		}
 	}
+	
+	private async void RecoverStamina()
+    {
+        await ToSignal(GetTree().CreateTimer(rateOfStaminaRecovery), Timer.SignalName.Timeout);
+		data.Stamina += amountOfStaminaRecovered;
+		eventbus.EmitSignal("updateStamina", data.Stamina);
+		recoveringStamina = false;
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -48,17 +75,18 @@ public partial class Player : CharacterBody2D
 		if (direction.Y == 0)
 		{
 			newDir = direction.X < 0 ? Vector2.Left : Vector2.Right;
+			lastDirection = newDir;
 		}
 		else if (direction.X == 0)
 		{
 			newDir = direction.Y < 0 ? Vector2.Up : Vector2.Down;
+			lastDirection = newDir;
 		}
 
 		if (newDir == cardinalDirection)
 		{
 			return false;
 		}
-
 		cardinalDirection = newDir;
 		sprite.X = cardinalDirection == Vector2.Left ? -1 : 1;
 		return true;

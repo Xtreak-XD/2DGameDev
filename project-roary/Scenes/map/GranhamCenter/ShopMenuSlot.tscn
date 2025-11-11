@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhlkfysakjm6t"]
+
+[ext_resource type="Texture2D" uid="uid://dtg3e4naqwwi3" path="res://Sprites/redNapkinRe.png" id="1_c3lh0"]
+
+[node name="TextureButton" type="TextureButton"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_c3lh0")
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+stretch_mode = 4

@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 /**
-This class represents a single slot in the inventory UI.
+Represents a single slot in the inventory UI.
 It is responsible for displaying the item icon and handling
 the visual representation of the item in that slot.
 */
@@ -48,7 +48,7 @@ public partial class ItemUISlot : Panel
 	}
 
 	/**
-	This function determines if the dropped data can be accepted by this slot.
+	Determines if the dropped data can be accepted by this slot.
 	@param position The position where the data is dropped.
 	@param data The data being dropped.
 	*/
@@ -74,7 +74,7 @@ public partial class ItemUISlot : Panel
 	}
 
 	/**
-	This function updates the display of the item in the slot.
+	Updates the display of the item in the slot.
 	@param item The InventoryItem resource to display in this slot.
 	*/
 	public void updateDisplay(InventorySlot slot)

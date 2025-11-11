@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 /**
-This class manages the Inventory UI in the game.
+Manages the Inventory UI in the game.
 It handles opening and closing the inventory, as well as updating
 the display of items within the inventory slots.
 */

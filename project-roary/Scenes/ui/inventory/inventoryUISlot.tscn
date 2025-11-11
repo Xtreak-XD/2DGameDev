@@ -18,7 +18,7 @@ offset_bottom = 64.0
 texture = ExtResource("1_ac1nk")
 
 [node name="ItemDisplay" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0

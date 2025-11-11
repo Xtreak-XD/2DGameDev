@@ -61,11 +61,13 @@ public partial class Projectile : CharacterBody2D
 	// You have to call base.HitEntity() at the end of your override.
 	public virtual void HitEntity(Node2D body)
 	{
-		if (body is HurtBox)
+		if (!(body is HurtBox))
 		{
-			GD.Print("Projectile has hit a hurtbox.");
-			QueueFree();
+			return;
 		}
+		
+		GD.Print("Projectile has hit a hurtbox.");
+		QueueFree();
     }
 
 	// DO NOT OVERRIDE

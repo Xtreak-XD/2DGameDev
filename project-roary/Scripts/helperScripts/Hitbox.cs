@@ -6,7 +6,6 @@ public partial class Hitbox : Area2D
 {
     public GenericData data;
     public Eventbus eventbus;
-    private List<Area2D> targetsInRange = new List<Area2D>();
 
     public override void _Ready()
     {
@@ -39,40 +38,24 @@ public partial class Hitbox : Area2D
         }
         else
         {
+            GD.Print(parent.GetType());
             GD.PushWarning("Hitbox parent is not a 'Character' type!");
         }
 
         AreaEntered += onAreaEntered;
-        AreaExited += OnAreaExited;
     }
 
     public void onAreaEntered(Area2D area)
     {
         if (area.IsInGroup("hurtbox") && !(area.GetParent() == GetParent()))
         {
-            targetsInRange.Add(area);
+            eventbus.EmitSignal("applyDamage", area.GetParent(), GetParent(), data.Damage);
         }
     }
-
-    public void OnAreaExited(Area2D area)
+    
+    public override void _ExitTree()
     {
-        if (area.IsInGroup("hurtbox") && targetsInRange.Contains(area))
-        {
-            targetsInRange.Remove(area);
-        }
-    }
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("attack"))
-        {
-            foreach (var area in targetsInRange)
-            {
-                if (area != null && GodotObject.IsInstanceValid(area) && area.IsInsideTree())
-                {
-                    eventbus.EmitSignal("applyDamage", area.GetParent().Name,GetParent().Name,data.Damage);
-                }
-            }
-        }
+        AreaEntered -= onAreaEntered;
     }
 
 }

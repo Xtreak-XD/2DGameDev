@@ -5,15 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="3_8mviv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8mviv"]
+radius = 9.346075
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bwhm"]
 
 [node name="WiseTurtle" type="CharacterBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.9999998, 0.99999994)
-scale = Vector2(-1.8189454, -2.3682137)
-shape = SubResource("CircleShape2D_8mviv")
+collision_layer = 64
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -22,9 +20,16 @@ scale = Vector2(0.23999941, 0.34297517)
 texture = ExtResource("1_gamnb")
 script = ExtResource("1_oxab3")
 
-[node name="InteractableArea" parent="Sprite2D" instance=ExtResource("3_8mviv")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.9999998, 0.99999994)
+scale = Vector2(-1.8189454, -2.3682137)
+shape = SubResource("CircleShape2D_8mviv")
+
+[node name="InteractableArea" parent="." instance=ExtResource("3_8mviv")]
+position = Vector2(-3, 1)
+scale = Vector2(0.23999941, 0.34297517)
 actionName = "talk to me"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/InteractableArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
 scale = Vector2(12.222848, -9.518578)
 shape = SubResource("CircleShape2D_4bwhm")

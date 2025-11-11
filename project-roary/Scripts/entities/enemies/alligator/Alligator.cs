@@ -38,7 +38,7 @@ public partial class Alligator : Enemy
 	{
 		AddToGroup("enemy");
 
-		target = GetTree().GetNodesInGroup("player")[0] as Player;
+		target = (Player)GetTree().GetFirstNodeInGroup("player");
 		homePositionTimer.Autostart = true;
     }
 

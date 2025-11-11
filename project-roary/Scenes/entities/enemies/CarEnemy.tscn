@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6i3fao4yxrbg"]
+[gd_scene load_steps=7 format=3 uid="uid://btdu4qy6kky3r"]
 
 [ext_resource type="Script" uid="uid://gevx8as36d6" path="res://Scripts/entities/enemies/CarEnemy.cs" id="1_yekdc"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_al8n0"]
@@ -8,11 +8,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1t53"]
 size = Vector2(56, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yekdc"]
+size = Vector2(59, 22)
+
 [node name="Car Enemy" type="CharacterBody2D"]
-position = Vector2(194, 111)
+collision_layer = 16
 script = ExtResource("1_yekdc")
-speed = 1000
-currentDirection = 1
+currentDirection = 2
+data = ExtResource("2_hf14f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.28807068, -0.004119873)
+shape = SubResource("RectangleShape2D_h1t53")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.28806686, -0.0041208267)
@@ -22,6 +29,7 @@ texture = ExtResource("2_al8n0")
 [node name="Hitbox" parent="." instance=ExtResource("3_hf14f")]
 position = Vector2(18.28807, -0.004119873)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.28807068, -0.004119873)
-shape = SubResource("RectangleShape2D_h1t53")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-17.78807, 0.004119873)
+shape = SubResource("RectangleShape2D_yekdc")
+debug_color = Color(0.9511978, 2.5027991e-06, 0.5672724, 0.41960785)

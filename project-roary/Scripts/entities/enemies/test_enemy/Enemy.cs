@@ -13,12 +13,6 @@ public partial class Enemy : CharacterBody2D
 	public override void _EnterTree()
 	{
 		AddToGroup("enemy");
-
-		if (data != null)
-		{
-			data = data.Duplicate() as GenericData;
-			data.Health = data.MaxHealth; // reset to full health
-		}
 	}
 
 	public override void _Ready()

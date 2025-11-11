@@ -30,7 +30,7 @@ public partial class interactionArea : Area2D
         return;
         
     }
-    
+
     public void onBodyExited(Node2D body)
     {
         if (body.IsInGroup("player"))
@@ -40,5 +40,12 @@ public partial class interactionArea : Area2D
         }
         return;
     }
+
+    public override void _ExitTree()
+    {
+        BodyEntered -= onBodyEntered;
+        BodyExited -= onBodyExited;
+    }
+
 
 }

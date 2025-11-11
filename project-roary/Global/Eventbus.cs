@@ -18,7 +18,7 @@ public partial class Eventbus : Node
     }
 
     [Signal]
-    public delegate void applyDamageEventHandler(string dmgReceiverName, string dmgDealerName, int dmg); //this is emitted by hitbox and used by hurtbox to pass dmg and information to deal dmg and apply effects.
+    public delegate void applyDamageEventHandler(Node dmgReceiverName, Node dmgDealerName, int dmg); //this is emitted by hitbox and used by hurtbox to pass dmg and information to deal dmg and apply effects.
 
     [Signal]
     public delegate void timeTickEventHandler(int day, int hour, int min); //this signal is used for ticking time, emitted by dayNightcycle script

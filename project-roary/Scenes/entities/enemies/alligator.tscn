@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dodiy3h22hmr3"]
+[gd_scene load_steps=17 format=3 uid="uid://dodiy3h22hmr3"]
 
 [ext_resource type="Script" uid="uid://r0aeh5hhevg" path="res://Scripts/entities/enemies/alligator/Alligator.cs" id="1_rst6c"]
 [ext_resource type="Resource" uid="uid://ihh56dx23000" path="res://Resources/entities/ColorVariantData.tres" id="2_pw244"]
-[ext_resource type="Resource" uid="uid://b6fblarq8eoyi" path="res://Resources/entities/GenericData.tres" id="3_nqf2v"]
+[ext_resource type="Resource" uid="uid://cggdeag3h545e" path="res://Resources/entities/enemy/AligatorData.tres" id="3_yojey"]
 [ext_resource type="Script" uid="uid://cmcwwbum6ngc4" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorStateMachine.cs" id="4_gfqp3"]
 [ext_resource type="Script" uid="uid://bd2j0wsuhgi72" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorRoam.cs" id="5_nqf2v"]
 [ext_resource type="Script" uid="uid://doidb6wq344on" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorChase.cs" id="6_gfqp3"]
@@ -19,11 +19,18 @@ size = Vector2(149.99997, 99.99999)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
 radius = 300.00665
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yojey"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d4qt"]
+radius = 8.958064
+
 [node name="Alligator" type="CharacterBody2D" node_paths=PackedStringArray("homePositionTimer")]
+collision_layer = 16
 script = ExtResource("1_rst6c")
 colorVariant = ExtResource("2_pw244")
 homePositionTimer = NodePath("HomesetTimer")
-data = ExtResource("3_nqf2v")
+data = ExtResource("3_yojey")
 OffScreenDespawnTime = null
 
 [node name="HomesetTimer" type="Timer" parent="."]
@@ -64,6 +71,8 @@ scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_yojey")
 
 [node name="TargetDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="TargetDetector"]
 position = Vector2(46, 25)
@@ -73,6 +82,14 @@ shape = SubResource("CircleShape2D_tdsod")
 [node name="HurtBox" parent="." instance=ExtResource("8_ml0gg")]
 position = Vector2(47, 27)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_yojey")
+debug_color = Color(0.9375544, 1.5786887e-05, 0.6295994, 0.41960785)
+
 [node name="Hitbox" parent="." instance=ExtResource("9_wd8lk")]
 position = Vector2(48, 27.000002)
 scale = Vector2(1.8, 1.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_0d4qt")
+debug_color = Color(5.390644e-06, 0.64878094, 0.17961699, 0.41960785)

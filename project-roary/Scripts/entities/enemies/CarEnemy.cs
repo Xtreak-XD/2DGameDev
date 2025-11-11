@@ -22,19 +22,19 @@ public partial class CarEnemy : Enemy
         switch (currentDirection)
         {
             case directionChosen.North:
-                Velocity = Vector2.Up * data.Speed * (float)delta;
+                Velocity = Vector2.Up * data.Speed * ((float)delta * (float)data.Accel);
                 RotationDegrees = 270;
                 break;
             case directionChosen.East:
-                Velocity = Vector2.Right * data.Speed * (float)delta;
+                Velocity = Vector2.Right * data.Speed * ((float)delta * (float)data.Accel);
                 RotationDegrees = 0;
                 break;
             case directionChosen.South:
-                Velocity = Vector2.Down * data.Speed * (float)delta;
+                Velocity = Vector2.Down * data.Speed * ((float)delta * (float)data.Accel);
                 RotationDegrees = 90;
                 break;
             case directionChosen.West:
-                Velocity = Vector2.Left * data.Speed * (float)delta;
+                Velocity = Vector2.Left * data.Speed * ((float)delta * (float)data.Accel);
                 RotationDegrees = 180;
                 break;
         }

@@ -53,15 +53,15 @@ public partial class DecelerateState : CarState
         if (currentVelocity.Length() > decelerationAmount)
         {
             Vector2 decelerationVector = currentVelocity.Normalized()
-             * decelerationAmount * (float) delta;
-            ActiveCar.Velocity -= decelerationVector;
+             * decelerationAmount;
+            ActiveCar.Velocity -= decelerationVector * (float) delta;
         }
         else
         {
             ActiveCar.Velocity = Vector2.Zero;
         }
 
-        ActiveCar.MoveAndCollide(ActiveCar.Velocity);
+        //ActiveCar.MoveAndCollide(ActiveCar.Velocity);
         return null;
     }
     

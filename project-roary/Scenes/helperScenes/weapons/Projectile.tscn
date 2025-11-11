@@ -16,7 +16,7 @@ process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5ny5u")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_n1wiq")]

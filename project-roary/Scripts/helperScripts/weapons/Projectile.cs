@@ -5,6 +5,8 @@ using Godot;
 public partial class Projectile : CharacterBody2D
 {
 	public Timer projectileTimer;
+	public Hitbox hitbox;
+	public RangedWeapon parent;
 
 	public Vector2 spawn = Vector2.Zero;
 
@@ -22,7 +24,13 @@ public partial class Projectile : CharacterBody2D
 		projectileTimer.WaitTime = data.lifeSpan;
 		projectileTimer.Timeout += Kill;
 
+		parent = GetParent().GetParent<RangedWeapon>();
+
+		hitbox = GetNode<Hitbox>("Hitbox");
+
 		spawn = GlobalPosition;
+
+		hitbox.BodyEntered += HitEntity;
 
 		projectileTimer.Start();
 		GD.Print($"Projectile spawned at: {spawn}");
@@ -46,6 +54,19 @@ public partial class Projectile : CharacterBody2D
 	{
 		MoveAndSlide();
 	}
+
+	// Override to add special effects when this
+	// projectile hits an entity
+	// REMEMBER TO CALL base.HitEntity() if you override this.
+	// You have to call base.HitEntity() at the end of your override.
+	public virtual void HitEntity(Node2D body)
+	{
+		if (body is HurtBox)
+		{
+			GD.Print("Projectile has hit a hurtbox.");
+			QueueFree();
+		}
+    }
 
 	// DO NOT OVERRIDE
 	public void Kill()

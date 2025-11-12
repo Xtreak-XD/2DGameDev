@@ -58,7 +58,7 @@ public partial class HurtBox : Area2D
         {
             eventbus.EmitSignal("updateHealth", data.Health);
         }
-        GD.Print($"{parent.Name} took {dmg} damage, from {dmgDealer},remaining health: {data.Health}");
+        GD.Print($"{parent.Name} took {dmg} damage, from {dmgDealer.Name},remaining health: {data.Health}");
 
         if (data.Health <= 0 && IsInstanceValid(parent))
         {

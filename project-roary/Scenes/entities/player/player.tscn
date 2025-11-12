@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://v2ybqe80tyj4"]
+[gd_scene load_steps=16 format=3 uid="uid://v2ybqe80tyj4"]
 
 [ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
-[ext_resource type="Resource" uid="uid://c8ouwji6sxyml" path="res://Resources/entities/player/playerMetaData.tres" id="2_afprn"]
 [ext_resource type="Resource" uid="uid://uyep6yujeiow" path="res://Resources/entities/player/PlayerStats.tres" id="2_ah8g8"]
 [ext_resource type="Script" uid="uid://bnaxclisdkc0b" path="res://Scripts/entities/player/StateMachines/PlayerStateMachine.cs" id="3_7yyei"]
 [ext_resource type="Script" uid="uid://caltl6nhd2gte" path="res://Scripts/entities/player/StateMachines/IdleState.cs" id="4_0etk1"]
@@ -35,7 +34,6 @@ height = 14.0
 collision_layer = 2
 collision_mask = 64
 script = ExtResource("1_yl34j")
-metaData = ExtResource("2_afprn")
 data = ExtResource("2_ah8g8")
 rateOfStaminaRecovery = 1.0
 amountOfStaminaRecovered = 10

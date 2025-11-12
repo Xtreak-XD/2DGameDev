@@ -4,15 +4,13 @@ using Godot;
 // Extend this to create a projectile that is shot from a RangedWeapon
 public partial class Projectile : CharacterBody2D
 {
+	// DO NOT OVERRIDE THIS
 	public Timer projectileTimer;
 	public Hitbox hitbox;
-	public RangedWeapon parent;
 
 	public Vector2 spawn = Vector2.Zero;
 
-	// For this, in any child of Projectile, you likely
-	// need to say "new."
-	// public new ProjectileData data;
+	// DO NOT OVERRIDE THIS
 	[Export]
 	public ProjectileData data;
 
@@ -23,8 +21,6 @@ public partial class Projectile : CharacterBody2D
 
 		projectileTimer.WaitTime = data.lifeSpan;
 		projectileTimer.Timeout += Kill;
-
-		parent = GetParent().GetParent<RangedWeapon>();
 
 		hitbox = GetNode<Hitbox>("Hitbox");
 

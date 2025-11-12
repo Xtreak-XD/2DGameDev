@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b743n0j8e80y5"]
+
+[ext_resource type="Script" uid="uid://bmpqybontvf4c" path="res://Scripts/resources/WeaponData.cs" id="1_txeod"]
+
+[resource]
+script = ExtResource("1_txeod")

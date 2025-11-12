@@ -3,6 +3,7 @@ using Godot;
 // Do not make any classes directly extending Weapon, extend MeleeWeapon or RangedWeapon
 public partial class Weapon : Node2D
 {
+	// DO NOT OVERRIDE THIS
 	[Export]
 	public WeaponData data;
 	public Eventbus eventbus;

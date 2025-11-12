@@ -3,9 +3,7 @@ using Godot;
 // Extend this to create a ranged weapon that shoots a projectile.
 public partial class RangedWeapon : Weapon
 {
-	// For this, in any child of RangedWeapon, you likely
-	// need to say "new."
-	// public new PackedScene projectile;
+	// DO NOT OVERRIDE THIS
 	[Export]
 	public PackedScene projectile;
 	public Node projectileSource;

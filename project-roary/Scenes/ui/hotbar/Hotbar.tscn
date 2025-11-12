@@ -22,8 +22,6 @@ offset_bottom = 64.0
 
 [node name="HotbarSlot" parent="HBoxContainer" instance=ExtResource("5_01elf")]
 layout_mode = 2
-button_pressed = true
-button_mask = 0
 
 [node name="HotbarSlot2" parent="HBoxContainer" instance=ExtResource("5_01elf")]
 layout_mode = 2

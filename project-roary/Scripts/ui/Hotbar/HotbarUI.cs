@@ -33,24 +33,33 @@ public partial class HotbarUI : Control
 
 	public override void _Input(InputEvent @event)
 	{
+		int selectedSlot = -1;
 		if (@event is InputEventKey keyPress && keyPress.Pressed)
 		{
 			if (Input.IsActionJustPressed("hotbar_1"))
 			{
 				hotBarSlots[0].ButtonPressed = true;
+				selectedSlot = 0;
 			}
 			else if (Input.IsActionJustPressed("hotbar_2"))
 			{
 				hotBarSlots[1].ButtonPressed = true;
+				selectedSlot = 1;
 			}
 			else if (Input.IsActionJustPressed("hotbar_3"))
 			{
 				hotBarSlots[2].ButtonPressed = true;
+				selectedSlot = 2;
 			}
 			else if (Input.IsActionJustPressed("hotbar_4"))
 			{
 				hotBarSlots[3].ButtonPressed = true;
+				selectedSlot = 3;
 			}
+			if (selectedSlot >= 0)
+            {
+                eventbus.EmitSignal(Eventbus.SignalName.itemEquipped, selectedSlot);
+            }	
 		}
 	}
 	public void UpdateHotBar()

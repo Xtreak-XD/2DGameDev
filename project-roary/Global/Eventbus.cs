@@ -31,4 +31,6 @@ public partial class Eventbus : Node
 
     [Signal]
     public delegate void itemDroppedEventHandler(InventoryItem item, int quantity);
+    [Signal]
+    public delegate void itemEquippedEventHandler(int slotIndex);
 }  

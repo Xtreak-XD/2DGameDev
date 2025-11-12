@@ -13,6 +13,8 @@ public partial class Player : CharacterBody2D
 	public Vector2 cardinalDirection = Vector2.Down;
 	public Vector2 direction = Vector2.Zero;
 	private Eventbus eventbus;
+	private int equippedSlot = 0;
+	private Inventory inv;
 
     public override void _Ready()
 	{
@@ -20,10 +22,13 @@ public partial class Player : CharacterBody2D
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
+		inv = GetNode<Inventory>("/root/Inventory");
 
 		stateMachine.Initialize(this);
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.itemDropped += spawnItemInWorld;
+		eventbus.itemEquipped += equipItem;
+		eventbus.inventoryUpdated += checkIfEquipped;
     }
 
 	public override void _Process(double delta)
@@ -66,6 +71,33 @@ public partial class Player : CharacterBody2D
 		sprite.X = cardinalDirection == Vector2.Left ? -1 : 1;
 		return true;
 	}
+
+	public void equipItem(int slotIndex)
+	{
+		if (slotIndex == equippedSlot) return;
+
+		equippedSlot = slotIndex;
+		InventorySlot equipItem = inv.slots[slotIndex];
+
+		if (equipItem.item != null && equipItem.quantity > 0)
+		{
+			GD.Print($"Equipped: {equipItem.item.itemName}");
+		}
+		else
+		{
+			GD.Print($"Slot {slotIndex + 1} selected (empty)");
+		}
+	}
+
+	public void checkIfEquipped()
+    {
+        InventorySlot currentSlot = inv.slots[equippedSlot];
+	
+		if (currentSlot.item != null && currentSlot.quantity > 0)
+		{
+			GD.Print($"Now equipped: {currentSlot.item.itemName}");
+		}
+    }
 	
 	public void spawnItemInWorld(InventoryItem item, int quantity)
 	{

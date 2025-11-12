@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=3 format=3 uid="uid://d2ytf1v7y24q7"]
+
+[ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
+[ext_resource type="PackedScene" uid="uid://con1q0nhgkj8i" path="res://Scenes/entities/player/DriveableCar.tscn" id="2_5wdrb"]
 
 [node name="ParkingGarage" type="Node2D"]
+
+[node name="GoalTimerAndIndicator" parent="." instance=ExtResource("1_aywsj")]
+
+[node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
+position = Vector2(191, 122)

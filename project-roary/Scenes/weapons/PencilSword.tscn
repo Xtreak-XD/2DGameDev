@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://demrb8vvu0ahj"]
+
+[ext_resource type="Script" uid="uid://bw0eghsjf0lng" path="res://Scripts/weapons/PencilSword.cs" id="1_5a3eh"]
+[ext_resource type="Resource" uid="uid://b743n0j8e80y5" path="res://Resources/weapons/PencilSwordData.tres" id="2_ilxvl"]
+[ext_resource type="Texture2D" uid="uid://b0l5rpijsyv3h" path="res://Sprites/misc/pencil.jpg" id="3_5a3eh"]
+
+[node name="PencilSword" type="Node2D"]
+script = ExtResource("1_5a3eh")
+data = ExtResource("2_ilxvl")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 7.275958e-12)
+scale = Vector2(0.045410153, 0.05664063)
+texture = ExtResource("3_5a3eh")

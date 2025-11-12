@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_txeod")
+damage = 2
+attackRate = 0.75

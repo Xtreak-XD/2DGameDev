@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Roary"
-run/main_scene="uid://bqf16hn68ojy0"
+run/main_scene="uid://dkq42aw23ge1k"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

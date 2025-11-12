@@ -52,8 +52,10 @@ public partial class Interface : CanvasLayer
         health.Value = value;
     }
 
-    public void setTime(int day, int hour, int min)
+    public void setTime(int day, int hour, int min, float temp)
     {
+        //set temp in c
+        this.temp.Text = ((int)temp).ToString() + "°F";
         //setting time
         if (hour >= 12 && hour <= 23)
         {

@@ -60,9 +60,27 @@ public partial class DayNightCycle : CanvasModulate
         if (pastMin != mins)
         {
             pastMin = mins;
-            eventbus.EmitSignal("timeTick", day, hour, mins);
+            eventbus.EmitSignal("timeTick", day, hour, mins, CalculateTemperature(hour, day));
         }
         
     }
+    public float CalculateTemperature(int hour, int day)
+    {
+        float baseTemp = 20f; //avr temp in Celcius
+
+        // Warmest around 14:00, coldest around 5:00
+        float dailyVariation = Mathf.Cos((float)((hour - 14) * Mathf.Pi / 12.0f)) * 10f;
+
+        float weeklyVariation = Mathf.Sin((float)(day * Mathf.Pi / 3.5f)) * 3f;
+
+        float randomNoise = (float)(GD.Randf() * 2 - 1);
+
+        float tempC = baseTemp + dailyVariation + weeklyVariation + randomNoise;
+
+        float tempF = (tempC * 9f / 5f) + 32f;
+
+        return tempF;
+    }
+
 
 }

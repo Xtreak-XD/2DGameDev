@@ -1,10 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb7hge3byayh8"]
+[gd_scene load_steps=6 format=3 uid="uid://cb7hge3byayh8"]
 
-[ext_resource type="Script" uid="uid://ck3ih8ntx1bm6" path="res://Scripts/ui/Hotbar/HotbarUI.cs" id="2_o1aig"]
+[ext_resource type="ButtonGroup" uid="uid://gpa1mlk11dl3" path="res://Resources/inventory/hotbarButtonPress.tres" id="1_paspa"]
+[ext_resource type="Texture2D" uid="uid://7sujwy1jegmd" path="res://Sprites/Hotbar/2D_Game_Dev_Inventory_Boarder.png" id="1_q1j3q"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_xa287"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_edbhm"]
-size = Vector2(48, 48)
+[ext_resource type="Script" uid="uid://cdajyfoafblku" path="res://Scripts/ui/Hotbar/HotbarUISlot.cs" id="4_paspa"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xa287"]
 diffuse_texture = ExtResource("2_xa287")
@@ -14,10 +13,12 @@ custom_minimum_size = Vector2(64, 64)
 offset_right = 48.0
 offset_bottom = 48.0
 toggle_mode = true
-texture_normal = SubResource("PlaceholderTexture2D_edbhm")
+button_group = ExtResource("1_paspa")
+texture_normal = ExtResource("1_q1j3q")
 texture_pressed = SubResource("CanvasTexture_xa287")
+ignore_texture_size = true
 stretch_mode = 4
-script = ExtResource("2_o1aig")
+script = ExtResource("4_paspa")
 
 [node name="ItemDisplay" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(48, 48)
@@ -35,10 +36,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 52.999996
-offset_top = 52.999996
-offset_right = 8.0
-offset_bottom = 12.0
+offset_left = 50.0
+offset_top = 49.0
+offset_right = 5.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)

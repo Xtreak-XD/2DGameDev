@@ -31,4 +31,7 @@ public partial class Eventbus : Node
 
     [Signal]
     public delegate void itemDroppedEventHandler(InventoryItem item, int quantity);
+    //UI Signals
+    [Signal] public delegate void updateStaminaEventHandler(int value);
+    [Signal] public delegate void updateHealthEventHandler(int value);
 }  

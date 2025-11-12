@@ -4,7 +4,11 @@
 
 [resource]
 script = ExtResource("1_pkxl8")
+_health = 100
 MaxHealth = 100
 Damage = 5
-Speed = 100
+Speed = 200
+Accel = 200.0
+_stamina = 100
+MaxStamina = 100
 metadata/_custom_type_script = "uid://dkov12aknt46v"

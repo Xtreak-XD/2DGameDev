@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_uqobr"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_hsg6v"]
 [ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/test_enemy/state_machine/EnemyStateMachine.cs" id="4_a1ped"]
-[ext_resource type="Script" uid="uid://clipfa73fyfqm" path="res://Scripts/entities/enemies/test_enemy/state_machine/movement.cs" id="5_4dy67"]
+[ext_resource type="Script" uid="uid://yt0kbudrp8lt" path="res://Scripts/entities/enemies/petitioner/petitioner_StateMachine/PetitionerChase.cs" id="6_uqobr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nq1m"]
 
@@ -29,4 +29,4 @@ texture = ExtResource("3_hsg6v")
 script = ExtResource("4_a1ped")
 
 [node name="movement" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("5_4dy67")
+script = ExtResource("6_uqobr")

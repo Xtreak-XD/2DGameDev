@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=12 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
-[ext_resource type="PackedScene" uid="uid://dodiy3h22hmr3" path="res://Scenes/entities/enemies/alligator.tscn" id="1_hm8wl"]
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="3_lfsl6"]
@@ -9,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
 [ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="9_helya"]
+[ext_resource type="Script" uid="uid://ch2pyb7e0myud" path="res://Scripts/entities/enemies/petitioner/Petitioner.cs" id="10_k25gx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
 radius = 174.3
@@ -47,7 +48,6 @@ position = Vector2(290, 198)
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
-INITIAL_HOUR = null
 
 [node name="testNpc" type="Sprite2D" parent="."]
 position = Vector2(348, 109)
@@ -60,5 +60,14 @@ actionName = "talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testNpc/InteractableArea"]
 shape = SubResource("CircleShape2D_106wm")
+
+[node name="Petitioner" parent="." instance=ExtResource("9_helya")]
+position = Vector2(502, 331)
+script = ExtResource("10_k25gx")
+PatrolSpeed = 60.0
+PatrolDistance = 200.0
+PatrolTurnPause = 0.1
+data = null
+OffScreenDespawnTime = 3.0
 
 [editable path="Enemymanager"]

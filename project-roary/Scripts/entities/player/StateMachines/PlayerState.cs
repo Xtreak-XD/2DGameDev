@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class State: Node
+public partial class PlayerState: Node
 {
     public static Player player;
 
@@ -21,17 +21,17 @@ public partial class State: Node
         
     }
 
-    public virtual State Process(double delta)
+    public virtual PlayerState Process(double delta)
     {
         return null;
     }
 
-    public virtual State Physics(double delta)
+    public virtual PlayerState Physics(double delta)
     {
         return null;
     }
 
-    public virtual State HandleInput(InputEvent @event)
+    public virtual PlayerState HandleInput(InputEvent @event)
     {
         return null;
     }

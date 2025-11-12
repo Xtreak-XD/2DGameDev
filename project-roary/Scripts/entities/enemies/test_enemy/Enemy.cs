@@ -8,8 +8,10 @@ public partial class Enemy : CharacterBody2D
 	public float OffScreenDespawnTime = 3f;
 	public EnemyStateMachine stateMachine;
 	private float offScreenTimer = 0f;
-	private bool offScreen = false; 
+	private bool offScreen = false;
 
+	private Vector2 knockBackVelocity = Vector2.Zero;
+	private const float KnockBackDecay = 750.0f;
 	public override void _EnterTree()
 	{
 		AddToGroup("enemy");
@@ -36,21 +38,37 @@ public partial class Enemy : CharacterBody2D
 		offScreenTimer = 0f;
 	}
 	private void OnScreenEnter()
-    {
+	{
 		offScreen = false;
 		offScreenTimer = 0f;
+	}
+	
+	public void ApplyKnockBack(Vector2 dir, float strength)
+    {
+		knockBackVelocity = dir * strength;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-          if (offScreen)
+		if (offScreen)
+		{
+			offScreenTimer += (float)delta;
+			if (offScreenTimer >= OffScreenDespawnTime)
+			{
+				Die(); // Automatically despawns the enemy
+			}
+		}
+	}
+
+    public override void _PhysicsProcess(double delta)
     {
-        offScreenTimer += (float)delta;
-        if (offScreenTimer >= OffScreenDespawnTime)
-        {
-            Die(); // Automatically despawns the enemy
-        }
+		if (knockBackVelocity.LengthSquared() > 0.1f)
+		{
+			Velocity += knockBackVelocity;
+			knockBackVelocity = knockBackVelocity.MoveToward(Vector2.Zero, KnockBackDecay * (float)delta);
+		}
+		MoveAndSlide();
     }
-    }
+
 }

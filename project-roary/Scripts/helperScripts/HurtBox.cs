@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class HurtBox : Area2D
 {
@@ -50,7 +51,8 @@ public partial class HurtBox : Area2D
 
         if (parent.IsInGroup("enemy") && dmgDealer.IsInGroup("enemy")) return;
 
-        //Subracting health
+        flash(); //hitflash 
+        
         data.Health -= dmg;
         if (parent.IsInGroup("player"))
         {
@@ -58,15 +60,33 @@ public partial class HurtBox : Area2D
         }
         GD.Print($"{parent.Name} took {dmg} damage, from {dmgDealer},remaining health: {data.Health}");
 
-        //Calls Die() function if health reaches 0 or below
         if (data.Health <= 0 && IsInstanceValid(parent))
         {
             if (Owner is Enemy enemy) { enemy.Die(); }
-            /*
-            else if(Owner is Player player) {player.Die();}
-            -> We can implement this later. :). Don't feel like doing this right now.
-            */
+            else if(Owner is Player player) { GD.Print("player died"); }
         }
+    }
+
+    public async Task flash()
+    {
+        float flashDuration = 0.15f;
+        AnimatedSprite2D sprite = parent.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        if (sprite.Material is ShaderMaterial shader)
+        {
+            shader.SetShaderParameter("flash", true);
+        }
+        else{ return; }
+
+        Timer flashT = new Timer();
+        flashT.OneShot = true;
+        flashT.Autostart = false;
+        AddChild(flashT);
+        flashT.Start(flashDuration);
+
+        await ToSignal(flashT, Timer.SignalName.Timeout);
+
+        shader.SetShaderParameter("flash", false);
+        flashT.QueueFree();
     }
 
     public override void _ExitTree()

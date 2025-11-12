@@ -30,6 +30,7 @@ EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D")]
 EnemyScene = ExtResource("3_lfsl6")
+MaxEnemiesAlive = 1
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
 position = Vector2(631, 194)

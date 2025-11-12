@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GenericData" load_steps=2 format=3 uid="uid://uyep6yujeiow"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://uyep6yujeiow"]
 
 [ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="1_pkxl8"]
 
@@ -11,4 +11,6 @@ Speed = 200
 Accel = 200.0
 _stamina = 100
 MaxStamina = 100
+dealKnockback = true
+knockBackAmount = 100.0
 metadata/_custom_type_script = "uid://dkov12aknt46v"

@@ -50,6 +50,13 @@ public partial class Hitbox : Area2D
         if (area.IsInGroup("hurtbox") && !(area.GetParent() == GetParent()))
         {
             eventbus.EmitSignal("applyDamage", area.GetParent(), GetParent(), data.Damage);
+            eventbus.EmitSignal("hitStop", 0.05); //set duration for hitstop
+
+            if (data.dealKnockback)
+            {
+                GD.Print("Knockback");
+                eventbus.EmitSignal("knockBack", (CharacterBody2D)area.GetParent(), data.knockBackAmount * 5, GlobalPosition);
+            }
         }
     }
     

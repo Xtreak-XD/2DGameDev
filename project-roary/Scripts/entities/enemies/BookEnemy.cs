@@ -46,8 +46,15 @@ public partial class BookEnemy : Enemy
     public float MinimumChaseDistance = 50f;
     public float MinimumSafeDistance = 15f;
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+    }
+
+
     public override void _PhysicsProcess(double deltaDouble)
     {
+        base._PhysicsProcess(deltaDouble);
         float delta = (float)deltaDouble;
         if (_player == null) return;
 
@@ -85,7 +92,7 @@ public partial class BookEnemy : Enemy
         if (!_chasingPlayerDirectly && distanceToTarget <= TargetPointReachThreshold)
         {
             _chasingPlayerDirectly = true;
-            _directChaseTimer = DirectChaseDuration; 
+            _directChaseTimer = DirectChaseDuration;
         }
 
         float minDistance = _chasingPlayerDirectly ? MinimumChaseDistance : TargetPointReachThreshold;
@@ -115,11 +122,7 @@ public partial class BookEnemy : Enemy
 
         PlayFlapAnimation(direction);
     }
-
-
-
-
-
+    
 
     private void PlayFlapAnimation(Vector2 direction)
     {

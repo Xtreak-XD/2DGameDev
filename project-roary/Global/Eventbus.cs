@@ -29,4 +29,9 @@ public partial class Eventbus : Node
     //UI Signals
     [Signal] public delegate void updateStaminaEventHandler(int value);
     [Signal] public delegate void updateHealthEventHandler(int value);
+
+    //effects
+    [Signal] public delegate void hitStopEventHandler(float duration);
+    [Signal] public delegate void screenShakeEventHandler(float intensity);
+    [Signal] public delegate void knockBackEventHandler(CharacterBody2D target, float strength, Vector2 sourcePosition);
 }  

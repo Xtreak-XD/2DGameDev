@@ -8,6 +8,7 @@ public partial class Player : CharacterBody2D
 
 	public Eventbus eventbus;
 
+	[Export] Resource metaData;
 	[Export]
 	public GenericData data;
 	public AnimationPlayer animationPlayer;
@@ -25,16 +26,18 @@ public partial class Player : CharacterBody2D
 	[Export] public float rateOfStaminaRecovery;
 	[Export] public int amountOfStaminaRecovered;
 
-    public override void _Ready()
+	private Vector2 knockBackVelocity = Vector2.Zero;
+	private const float KnockBackDecay = 750.0f;
+	public override void _Ready()
 	{
 		AddToGroup("player");
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-        anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 
 		stateMachine.Initialize(this);
-    }
+	}
 
 	public override void _Process(double delta)
 	{
@@ -47,17 +50,27 @@ public partial class Player : CharacterBody2D
 			RecoverStamina();
 		}
 	}
-	
+
 	private async void RecoverStamina()
-    {
-        await ToSignal(GetTree().CreateTimer(rateOfStaminaRecovery), Timer.SignalName.Timeout);
+	{
+		await ToSignal(GetTree().CreateTimer(rateOfStaminaRecovery), Timer.SignalName.Timeout);
 		data.Stamina += amountOfStaminaRecovered;
 		eventbus.EmitSignal("updateStamina", data.Stamina);
 		recoveringStamina = false;
+	}
+	
+	public void ApplyKnockBack(Vector2 dir, float strength)
+    {
+		knockBackVelocity = dir * strength;
     }
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (knockBackVelocity.LengthSquared() > 0.1f)
+		{
+			Velocity += knockBackVelocity;
+			knockBackVelocity = knockBackVelocity.MoveToward(Vector2.Zero, KnockBackDecay * (float)delta);
+		}
 		MoveAndSlide();
 	}
 	

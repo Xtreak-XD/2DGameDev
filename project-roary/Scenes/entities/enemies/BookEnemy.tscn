@@ -1,12 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://bf7x4f3mkvl4y"]
+[gd_scene load_steps=28 format=3 uid="uid://bf7x4f3mkvl4y"]
 
 [ext_resource type="Script" uid="uid://dru6cffoc8cvk" path="res://Scripts/entities/enemies/BookEnemy.cs" id="1_qyygv"]
 [ext_resource type="Resource" uid="uid://cq4nouwwg7f3h" path="res://Resources/entities/enemy/BookEnemy.tres" id="2_fqjiw"]
+[ext_resource type="Shader" uid="uid://bqsqekh573hwo" path="res://Scripts/shaders/HitFlash.gdshader" id="3_5wo71"]
 [ext_resource type="Texture2D" uid="uid://bkbrgdjtum1r7" path="res://Sprites/entities/enemies/Book_Bat_Sprites__1_-01-removebg-preview.png" id="3_xe1al"]
 [ext_resource type="AudioStream" uid="uid://bgm4xab4ak382" path="res://audio/enemies/flying books.wav" id="3_ycb5m"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="5_ycb5m"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="6_fqjiw"]
 [ext_resource type="Script" uid="uid://cw02nndhlg7km" path="res://Scripts/audio/SfxPitchModifier.cs" id="6_ycb5m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p48v1"]
+shader = ExtResource("3_5wo71")
+shader_parameter/flash = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oocn0"]
 atlas = ExtResource("3_xe1al")
@@ -164,6 +169,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
 
 [sub_resource type="Animation" id="Animation_ycb5m"]
 resource_name = "flapping_down"
@@ -241,6 +258,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.085, -6.515)]
+}
 
 [sub_resource type="Animation" id="Animation_4relb"]
 resource_name = "flapping_left"
@@ -317,6 +346,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9.295, -14)]
+}
 
 [sub_resource type="Animation" id="Animation_xe1al"]
 resource_name = "flapping_right"
@@ -392,6 +433,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9.735, -13)]
 }
 
 [sub_resource type="Animation" id="Animation_fqjiw"]
@@ -470,6 +523,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -21.52)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p48v1"]
 _data = {
@@ -489,23 +554,11 @@ radius = 13.038404
 [node name="BookEnemy" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_qyygv")
-Gravity = null
-MaxFallSpeed = null
-HorizontalSpeed = 100.0
-BackoffSpeed = null
-DetectionRange = null
-BackoffDuration = null
-FlapAnimationName = null
-FlapStrength = null
-FlapInterval = null
-TargetPointRadius = null
-TargetPointReachThreshold = null
-TargetUpdateInterval = null
-DirectChaseDuration = null
+HorizontalSpeed = 50.0
 data = ExtResource("2_fqjiw")
-OffScreenDespawnTime = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_p48v1")
 position = Vector2(1.9073486e-06, 1.9073486e-06)
 scale = Vector2(0.3, 0.437)
 sprite_frames = SubResource("SpriteFrames_j6pin")

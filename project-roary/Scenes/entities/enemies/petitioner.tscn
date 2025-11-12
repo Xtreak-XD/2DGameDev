@@ -1,13 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb03afcepoioc"]
+[gd_scene load_steps=10 format=3 uid="uid://cb03afcepoioc"]
 
-[ext_resource type="Script" uid="uid://bf0rdxi8l5ofd" path="res://Scripts/entities/enemies/petitioner/petitioner.cs" id="1_uqobr"]
+[ext_resource type="Script" uid="uid://ch2pyb7e0myud" path="res://Scripts/entities/enemies/petitioner/petitioner.cs" id="1_uqobr"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="1_vq3ow"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_uqobr"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_hsg6v"]
 [ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/test_enemy/state_machine/EnemyStateMachine.cs" id="4_a1ped"]
 [ext_resource type="Script" uid="uid://yt0kbudrp8lt" path="res://Scripts/entities/enemies/petitioner/petitioner_StateMachine/PetitionerChase.cs" id="6_uqobr"]
+[ext_resource type="Script" uid="uid://bnn58vkaadqm7" path="res://Scripts/entities/enemies/petitioner/petitioner_StateMachine/PetitionerApproach.cs" id="7_hsg6v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nq1m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hsg6v"]
+radius = 68.0
+height = 140.0
 
 [node name="Petitioner" type="CharacterBody2D"]
 script = ExtResource("1_uqobr")
@@ -30,3 +35,11 @@ script = ExtResource("4_a1ped")
 
 [node name="movement" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("6_uqobr")
+
+[node name="approach" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("7_hsg6v")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CapsuleShape2D_hsg6v")

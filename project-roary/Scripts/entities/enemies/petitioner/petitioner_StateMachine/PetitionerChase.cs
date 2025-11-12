@@ -8,12 +8,16 @@ public partial class PetitionerChase : EnemyState
     [Export] public float PatrolDistance = 200f;   // total width (start ± half)
     [Export] public float TurnPause = 0.08f;       // tiny pause at ends
     [Export] public bool  LockYToStart = true;     // keep to one “row”
+    [Export] public float ReturnSpeed   = 140f;  // how fast to slide back to row
+    [Export] public float ReturnEpsilon = 2f;    // snap when very close
 
     private float _leftX, _rightX;
     private float _rowY;
     private int _dir = +1;                         // +1 right, -1 left
     private float _pauseT = 0f;
     private bool _inited = false;
+    private Area2D _det;
+    private CharacterBody2D _player;
 
     public override void EnterState()
     {
@@ -23,53 +27,71 @@ public partial class PetitionerChase : EnemyState
             _rowY = ActiveEnemy.GlobalPosition.Y;
 
             float half = PatrolDistance * 0.5f;
-            _leftX  = startX - half;
+            _leftX = startX - half;
             _rightX = startX + half;
 
             _inited = true;
         }
-
+        _det    = ActiveEnemy.GetNodeOrNull<Area2D>("DetectionArea");              // adjust name/path if different
+        _player = ActiveEnemy.GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
+        
         _pauseT = 0f;
         ActiveEnemy.Velocity = Vector2.Zero;
+
+        
     }
 
     public override EnemyState Physics(double delta)
     {
-        // keep on one row (optional)
-        if (LockYToStart && !Mathf.IsEqualApprox(ActiveEnemy.GlobalPosition.Y, _rowY))
-            ActiveEnemy.GlobalPosition = new Vector2(ActiveEnemy.GlobalPosition.X, _rowY);
+        // 1) Switch to approach if player in zone
+        if (_det != null && _player != null && _det.OverlapsBody(_player))
+            return GetParent().GetNodeOrNull<EnemyState>("approach");
 
-        // tiny pause when turning
+        // 2) Turn-around pause
         if (_pauseT > 0f)
         {
-            _pauseT -= (float)delta;
-            ActiveEnemy.Velocity = Vector2.Zero;
+             _pauseT -= (float)delta;
+             ActiveEnemy.Velocity = Vector2.Zero;
             ActiveEnemy.MoveAndSlide();
             return null;
         }
 
-        // flip at bounds
-        float x = ActiveEnemy.GlobalPosition.X;
+        // 3) Flip direction at bounds
+         float x = ActiveEnemy.GlobalPosition.X;
         if (_dir > 0 && x >= _rightX) { _dir = -1; _pauseT = TurnPause; }
         else if (_dir < 0 && x <= _leftX) { _dir = +1; _pauseT = TurnPause; }
 
-        // move horizontally
-        ActiveEnemy.Velocity = new Vector2(_dir * Speed, 0f);
+        // 4) Compute desired horizontal velocity
+        float vx = _dir * Speed;
+
+        // 5) SMOOTH rejoin to the patrol row (no teleport)
+        float vy = 0f;
+        if (LockYToStart)
+        {
+            float dy = _rowY - ActiveEnemy.GlobalPosition.Y;
+            if (Mathf.Abs(dy) > ReturnEpsilon)
+            {
+            vy = Mathf.Sign(dy) * ReturnSpeed;                // glide back to row
+            }
+            else
+            {
+            // tiny snap when within epsilon to kill float drift
+            ActiveEnemy.GlobalPosition = new Vector2(ActiveEnemy.GlobalPosition.X, _rowY);
+            vy = 0f;
+            }
+        }
+
+        // 6) Apply both components
+        ActiveEnemy.Velocity = new Vector2(vx, vy);
         ActiveEnemy.MoveAndSlide();
 
-        // optional face-flip if you have a sprite called "petitionerface"
-       // Try Sprite2D first
-		var s = ActiveEnemy.GetNodeOrNull<Sprite2D>("petitionerface");
-		if (s != null) {
-    		s.FlipH = (_dir < 0);
-		} else {
-    		// Or AnimatedSprite2D if that's what you use
-    		var a = ActiveEnemy.GetNodeOrNull<AnimatedSprite2D>("petitionerface");
-    		if (a != null) a.FlipH = (_dir < 0);
-		}
+        // 7) Optional face flip
+        var s = ActiveEnemy.GetNodeOrNull<Sprite2D>("petitionerface");
+        if (s != null) s.FlipH = (_dir < 0);
 
-        return null; // stay in this state
-    }
+        return null;
+}
+
 
     public override void ExitState()
     {

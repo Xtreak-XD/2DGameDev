@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D
 
 	public Vector2 cardinalDirection = Vector2.Down;
 	public Vector2 direction = Vector2.Zero;
+	private Eventbus eventbus;
 
     public override void _Ready()
 	{
@@ -21,6 +22,8 @@ public partial class Player : CharacterBody2D
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 
 		stateMachine.Initialize(this);
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		eventbus.itemDropped += spawnItemInWorld;
     }
 
 	public override void _Process(double delta)
@@ -62,6 +65,16 @@ public partial class Player : CharacterBody2D
 		cardinalDirection = newDir;
 		sprite.X = cardinalDirection == Vector2.Left ? -1 : 1;
 		return true;
+	}
+	
+	public void spawnItemInWorld(InventoryItem item, int quantity)
+	{
+		PackedScene itemScene = GD.Load<PackedScene>("res://Scenes/ui/inventory/Items.tscn");
+		Items itemInstance = itemScene.Instantiate() as Items;
+		itemInstance.itemResource = item;
+		itemInstance.itemQuantity = quantity;
+		itemInstance.GlobalPosition = this.GlobalPosition + (cardinalDirection * 30); // Spawns the infront of player
+		GetTree().GetCurrentScene().AddChild(itemInstance);
     }
 
 	public void UpdateAnimation(String state)

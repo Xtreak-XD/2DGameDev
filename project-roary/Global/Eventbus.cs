@@ -28,4 +28,7 @@ public partial class Eventbus : Node
 
     [Signal]
     public delegate void inventoryUpdatedEventHandler(); // this is emitted when the inventory is updated (item added/removed)
+
+    [Signal]
+    public delegate void itemDroppedEventHandler(InventoryItem item, int quantity);
 }  

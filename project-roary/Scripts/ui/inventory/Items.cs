@@ -42,7 +42,7 @@ public partial class Items : Sprite2D
 	public void pickUpItem()
 	{
 		inv = GetNode<Inventory>("/root/Inventory");
-		
+
 		if (inv == null)
 		{
 			GD.PrintErr("Inventory node not found!");

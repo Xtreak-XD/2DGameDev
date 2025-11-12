@@ -1,0 +1,166 @@
+[gd_scene load_steps=6 format=3 uid="uid://uaqodhsl8ser"]
+
+[ext_resource type="Script" uid="uid://ck3ih8ntx1bm6" path="res://Scripts/ui/Hotbar/HotbarUI.cs" id="1_it62r"]
+[ext_resource type="ButtonGroup" uid="uid://gpa1mlk11dl3" path="res://Resources/inventory/hotbarButtonPress.tres" id="2_01elf"]
+[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_ogaki"]
+[ext_resource type="Script" uid="uid://cdajyfoafblku" path="res://Scripts/ui/Hotbar/HotbarUISlot.cs" id="4_1jooq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_t7af5"]
+size = Vector2(48, 48)
+
+[node name="HotBar" type="Control"]
+layout_mode = 3
+anchor_left = 0.11800001
+anchor_top = 0.049000002
+anchor_right = 0.11800001
+anchor_bottom = 0.049000002
+offset_left = -135.936
+offset_top = -31.752
+offset_right = 136.064
+offset_bottom = 32.248
+script = ExtResource("1_it62r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 268.0
+offset_bottom = 64.0
+
+[node name="hotBarSlot1" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_01elf")
+texture_normal = SubResource("PlaceholderTexture2D_t7af5")
+texture_pressed = ExtResource("3_ogaki")
+stretch_mode = 4
+script = ExtResource("4_1jooq")
+
+[node name="ItemDisplay" type="TextureRect" parent="HBoxContainer/hotBarSlot1"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="QuantityLabel" type="Label" parent="HBoxContainer/hotBarSlot1/ItemDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.999996
+offset_top = 52.999996
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+text = "10"
+
+[node name="hotBarSlot2" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_01elf")
+texture_normal = SubResource("PlaceholderTexture2D_t7af5")
+texture_pressed = ExtResource("3_ogaki")
+stretch_mode = 4
+script = ExtResource("4_1jooq")
+
+[node name="ItemDisplay" type="TextureRect" parent="HBoxContainer/hotBarSlot2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="QuantityLabel" type="Label" parent="HBoxContainer/hotBarSlot2/ItemDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.999996
+offset_top = 52.999996
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+text = "10"
+
+[node name="hotBarSlot3" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_01elf")
+texture_normal = SubResource("PlaceholderTexture2D_t7af5")
+texture_pressed = ExtResource("3_ogaki")
+stretch_mode = 4
+script = ExtResource("4_1jooq")
+
+[node name="ItemDisplay" type="TextureRect" parent="HBoxContainer/hotBarSlot3"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="QuantityLabel" type="Label" parent="HBoxContainer/hotBarSlot3/ItemDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.999996
+offset_top = 52.999996
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+text = "10"
+
+[node name="hotBarSlot4" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_01elf")
+texture_normal = SubResource("PlaceholderTexture2D_t7af5")
+texture_pressed = ExtResource("3_ogaki")
+stretch_mode = 4
+script = ExtResource("4_1jooq")
+
+[node name="ItemDisplay" type="TextureRect" parent="HBoxContainer/hotBarSlot4"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="QuantityLabel" type="Label" parent="HBoxContainer/hotBarSlot4/ItemDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.999996
+offset_top = 52.999996
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+text = "10"

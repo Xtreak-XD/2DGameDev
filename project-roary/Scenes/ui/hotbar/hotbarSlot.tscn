@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb7hge3byayh8"]
+
+[ext_resource type="Script" uid="uid://ck3ih8ntx1bm6" path="res://Scripts/ui/Hotbar/HotbarUI.cs" id="2_o1aig"]
+[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_xa287"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_edbhm"]
+size = Vector2(48, 48)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xa287"]
+diffuse_texture = ExtResource("2_xa287")
+
+[node name="HotbarSlot" type="TextureButton"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 48.0
+offset_bottom = 48.0
+toggle_mode = true
+texture_normal = SubResource("PlaceholderTexture2D_edbhm")
+texture_pressed = SubResource("CanvasTexture_xa287")
+stretch_mode = 4
+script = ExtResource("2_o1aig")
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="QuantityLabel" type="Label" parent="ItemDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.999996
+offset_top = 52.999996
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+text = "10"

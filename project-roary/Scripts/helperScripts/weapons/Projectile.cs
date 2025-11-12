@@ -34,12 +34,6 @@ public partial class Projectile : CharacterBody2D
 
 		projectileTimer.Start();
 	}
-	
-	// DO NOT OVERRIDE
-	public void SetSpawn()
-    {
-		
-    }
 
 	// DO NOT OVERRIDE
 	public override void _PhysicsProcess(double delta)

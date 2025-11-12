@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkin450v11sh5"]
+[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
 
-[ext_resource type="PackedScene" uid="uid://cacidmpeflpxf" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
+[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]

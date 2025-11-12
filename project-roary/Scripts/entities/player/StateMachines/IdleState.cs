@@ -3,12 +3,10 @@ using Godot;
 public partial class IdleState: State
 {
     public State walk;
-    public State dodge;
 
     public override void _Ready()
     {
         walk = GetNode<WalkState>("../walk");
-        dodge = GetNode<DodgeState>("../dodge");
     }
 
 // what happens when player enters their new state
@@ -42,10 +40,6 @@ public partial class IdleState: State
 
     public override State HandleInput(InputEvent @event)
     {
-        if (@event.IsActionPressed("dodge"))
-        {
-            return dodge;
-        }
         return null;
     }
 

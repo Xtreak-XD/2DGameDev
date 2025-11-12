@@ -24,3 +24,6 @@ shape = SubResource("CircleShape2D_5ny5u")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.095, 0.105)
 texture = ExtResource("4_5ny5u")
+
+[node name="SetSpawnTimer" type="Timer" parent="."]
+wait_time = 0.05

@@ -3,6 +3,15 @@ using Godot;
 // Extend this to create a melee weapon that does NOT shoot a projectile.
 public partial class MeleeWeapon : Weapon
 {
+    public Hitbox hitbox;
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        hitbox = GetNode<Hitbox>("Hitbox");
+    }
+
 
     // If you override this, remember to call base.Attack()
     // at the start.

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhpuvxagmpeaq"]
+
+[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_rglo7"]
+[ext_resource type="PackedScene" uid="uid://bxe3uowu2sita" path="res://Scenes/weapons/StapleGun.tscn" id="2_ik0oo"]
+
+[node name="PlayerWithRangedWeaponTest" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_rglo7")]
+
+[node name="StapleGun" parent="." instance=ExtResource("2_ik0oo")]

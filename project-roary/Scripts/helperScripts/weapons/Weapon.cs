@@ -9,6 +9,8 @@ public partial class Weapon : Node2D
 	public Eventbus eventbus;
 	public Timer attackTimer;
 	public bool canAttack;
+	public Sprite2D sprite;
+	public Node2D parent;
 
 	// IF YOU NEED TO OVERRIDE THIS, CALL base._Ready()
 	// DO NOT OVERRIDE THIS UNLESS YOU ARE CREATNG A NEW
@@ -17,11 +19,17 @@ public partial class Weapon : Node2D
 	{
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		attackTimer = GetNode<Timer>("AttackTimer");
+		sprite = GetNode<Sprite2D>("Sprite2D");
 
-		eventbus.triggerAttack += () => Attack(GetViewport().GetMousePosition());
+		eventbus.triggerAttack += () => Attack(GetLocalMousePosition());
 
 		attackTimer.WaitTime = data.attackRate;
 		attackTimer.Timeout += SetCanAttack;
+
+		if(GetParent() != null)
+        {
+            parent = GetParent<Node2D>();
+        }
 
 		canAttack = true;
 	}
@@ -59,8 +67,18 @@ public partial class Weapon : Node2D
 		GD.Print($"Attack damage: {data.damage}");
 		GD.Print($"Attack delay: {data.attackRate} seconds");
 
-		// May have to change this later.
-		Rotation = pos.Angle();
+		Vector2 direction = (pos - parent.Position).Normalized();
+		float angle = direction.Angle();
+
+		Vector2 offset = new Vector2(Mathf.Cos(angle),
+		 Mathf.Sin(angle)).Normalized() * 20; // THIS WILL NEED ADJUSTING BASED
+											  // ON FINAL DIMENSIONS
+											  // SINCE PLAYER'S NODES ARE 
+											  // NOT CENTERED
+
+		Position = offset;
+		sprite.Rotation = angle;
+		//LookAt(pos);
 	}
 
 	// DO NOT OVERRIDE THIS
@@ -68,6 +86,7 @@ public partial class Weapon : Node2D
 	{
 		if (canAttack == false)
 		{
+			Position = Vector2.Zero;
 			GD.Print("Weapon can attack.");
 			canAttack = true;
 		}

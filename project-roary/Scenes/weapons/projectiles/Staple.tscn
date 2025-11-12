@@ -17,9 +17,11 @@ process_thread_group_order = 0
 process_thread_messages = 0
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_5ny5u")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_vh7a8")]
+scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.095, 0.105)

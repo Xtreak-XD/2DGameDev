@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6ggo7dys0tu7"]
+
+[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_ysdm2"]
+[ext_resource type="PackedScene" uid="uid://demrb8vvu0ahj" path="res://Scenes/weapons/PencilSword.tscn" id="2_dkjhi"]
+
+[node name="PlayerWithMeleeWeaponTest" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ysdm2")]
+
+[node name="PencilSword" parent="." instance=ExtResource("2_dkjhi")]

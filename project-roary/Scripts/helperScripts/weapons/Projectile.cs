@@ -7,7 +7,9 @@ public partial class Projectile : CharacterBody2D
 	// DO NOT OVERRIDE ANY OF THIS
 	public Timer projectileTimer;
 	public Hitbox hitbox;
-	public Vector2 spawn = Vector2.Zero;
+	public Vector2 spawn;
+	public RangedWeapon parent;
+	public Timer setSpawn;
 
 	[Export]
 	public ProjectileData data;
@@ -23,14 +25,21 @@ public partial class Projectile : CharacterBody2D
 		projectileTimer.Timeout += Kill;
 
 		hitbox = GetNode<Hitbox>("Hitbox");
-
-		spawn = GlobalPosition;
+		parent = GetParent().GetParent<RangedWeapon>();
 
 		hitbox.BodyEntered += HitEntity;
 
-		projectileTimer.Start();
+		spawn = GlobalPosition;
 		GD.Print($"Projectile spawned at: {spawn}");
+
+		projectileTimer.Start();
 	}
+	
+	// DO NOT OVERRIDE
+	public void SetSpawn()
+    {
+		
+    }
 
 	// DO NOT OVERRIDE
 	public override void _PhysicsProcess(double delta)
@@ -62,6 +71,12 @@ public partial class Projectile : CharacterBody2D
 		{
 			return;
 		}
+
+		HurtBox hurtbox = (HurtBox)body;
+		if(hurtbox.GetParent().GetChildren().Contains(parent))
+        {
+			return;
+        }
 		
 		GD.Print("Projectile has hit a hurtbox.");
 		QueueFree();

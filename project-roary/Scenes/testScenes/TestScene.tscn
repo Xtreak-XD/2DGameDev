@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=9 format=3 uid="uid://bqf16hn68ojy0"]
 
-[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
+[ext_resource type="PackedScene" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
-[ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="3_lfsl6"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
@@ -21,12 +20,11 @@ texture = ExtResource("1_hm8wl")
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(470, 276)
+collision_mask = 1
 
-[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
+[node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
-EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D"), NodePath("EnemySpawnPointContainer/Marker2D2"), NodePath("EnemySpawnPointContainer/Marker2D3")]
-EnemyScene = ExtResource("3_lfsl6")
 MaxEnemiesAlive = 3
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]

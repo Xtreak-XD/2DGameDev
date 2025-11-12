@@ -4,17 +4,17 @@ using Godot;
 // Extend this to create a projectile that is shot from a RangedWeapon
 public partial class Projectile : CharacterBody2D
 {
-	// DO NOT OVERRIDE THIS
+	// DO NOT OVERRIDE ANY OF THIS
 	public Timer projectileTimer;
 	public Hitbox hitbox;
-
 	public Vector2 spawn = Vector2.Zero;
 
-	// DO NOT OVERRIDE THIS
 	[Export]
 	public ProjectileData data;
 
-	// REMEMBER TO CALL base._Ready() if you override this
+	// REMEMBER TO CALL base._Ready() at the start if
+	// you override this.
+	// Ideally, don't override this
 	public override void _Ready()
 	{
 		projectileTimer = GetNode<Timer>("LifespanTimer");
@@ -54,6 +54,8 @@ public partial class Projectile : CharacterBody2D
 	// Override to add special effects when this
 	// projectile hits an entity
 	// REMEMBER TO CALL base.HitEntity() if you override this.
+	// If you override this, call base.HitEntity() at the start
+	// of your override
 	public virtual void HitEntity(Node2D body)
 	{
 		if (body is not HurtBox)
@@ -63,6 +65,8 @@ public partial class Projectile : CharacterBody2D
 		
 		GD.Print("Projectile has hit a hurtbox.");
 		QueueFree();
+
+		// Add damage logic here
     }
 
 	// DO NOT OVERRIDE

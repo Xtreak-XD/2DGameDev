@@ -3,12 +3,14 @@ using Godot;
 // Extend this to create a ranged weapon that shoots a projectile.
 public partial class RangedWeapon : Weapon
 {
-	// DO NOT OVERRIDE THIS
+	// DO NOT OVERRIDE ANY OF THIS
 	[Export]
 	public PackedScene projectile;
 	public Node projectileSource;
 
-	// If you override this, remember to call base._Ready()
+	// If you override this, remember to call base._Ready() at
+	// the start.
+	// Ideally, don't override this
 	public override void _Ready()
 	{
 		base._Ready();
@@ -22,6 +24,7 @@ public partial class RangedWeapon : Weapon
 	}
 
 	// If you override this, remember to call base.Attack()
+	// at the start of the override.
 	public override void Attack(Vector2 pos)
 	{
 		base.Attack(pos);

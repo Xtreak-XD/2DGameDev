@@ -3,7 +3,7 @@ using Godot;
 // Do not make any classes directly extending Weapon, extend MeleeWeapon or RangedWeapon
 public partial class Weapon : Node2D
 {
-	// DO NOT OVERRIDE THIS
+	// DO NOT OVERRIDE ANY OF THIS
 	[Export]
 	public WeaponData data;
 	public Eventbus eventbus;
@@ -11,6 +11,8 @@ public partial class Weapon : Node2D
 	public bool canAttack;
 
 	// IF YOU NEED TO OVERRIDE THIS, CALL base._Ready()
+	// DO NOT OVERRIDE THIS UNLESS YOU ARE CREATNG A NEW
+	// WEAPON SUBTYPE LIKE MeleeWeapon or RangedWeapon.
 	public override void _Ready()
 	{
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
@@ -46,7 +48,10 @@ public partial class Weapon : Node2D
 	// Also for aiming the animations for weapons.
 	// A melee weapon will likely have a very basic attack, while
 	// a ranged weapon will fire a projectile.
-	// DO NOT FORGET TO CALL base.Attack() in overrides
+	// DO NOT FORGET TO CALL base.Attack() at the start 
+	// in overrides.
+	// DO NOT OVERRIDE THIS UNLESS YOU ARE CREATNG A NEW
+	// WEAPON SUBTYPE LIKE MeleeWeapon or RangedWeapon
 	public virtual void Attack(Vector2 pos)
 	{
 		GD.Print("A weapon has attacked.");

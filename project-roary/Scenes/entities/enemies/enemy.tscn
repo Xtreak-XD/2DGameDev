@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://ca11nyq5g8i65"]
+
+[ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/test_enemy/Enemy.cs" id="1_jxk5p"]
+[ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_kinsv"]
+[ext_resource type="Resource" uid="uid://bosrshswacwcl" path="res://Resources/entities/enemy/EnemyData.tres" id="2_rkctb"]
+[ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/test_enemy/state_machine/EnemyStateMachine.cs" id="3_yqnki"]
+[ext_resource type="Script" uid="uid://xkflm4opmlnh" path="res://Scripts/entities/enemies/test_enemy/state_machine/Roam.cs" id="4_rkctb"]
+[ext_resource type="Script" uid="uid://cxv4qk5u52coo" path="res://Scripts/entities/enemies/test_enemy/state_machine/Chase.cs" id="5_ww43p"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="7_ww43p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ww43p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
+radius = 42.107006
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
+radius = 0.01
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_jxk5p")
+data = ExtResource("2_rkctb")
+
+[node name="HurtBox" parent="." instance=ExtResource("7_ww43p")]
+position = Vector2(49, 31)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ww43p")
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("3_yqnki")
+
+[node name="Roam" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_rkctb")
+
+[node name="Chase" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_ww43p")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(47, 25)
+scale = Vector2(0.24000004, 0.28444445)
+texture = ExtResource("2_kinsv")
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(47, 25)
+shape = SubResource("CircleShape2D_kinsv")
+
+[node name="TargetDetector" type="Area2D" parent="."]
+
+[node name="DetectionRadius" type="CollisionShape2D" parent="TargetDetector"]
+position = Vector2(42, 32)
+shape = SubResource("CircleShape2D_tdsod")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(39, 12)
+rect = Rect2(-10, -10, 38, 43)

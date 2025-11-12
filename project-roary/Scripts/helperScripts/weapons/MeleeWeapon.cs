@@ -12,7 +12,6 @@ public partial class MeleeWeapon : Weapon
         hitbox = GetNode<Hitbox>("Hitbox");
     }
 
-
     // If you override this, remember to call base.Attack()
     // at the start.
     // at the start of the override

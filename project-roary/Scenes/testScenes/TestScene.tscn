@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
 
-[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
+[ext_resource type="PackedScene" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
@@ -20,8 +20,12 @@ texture = ExtResource("1_hm8wl")
 
 [node name="Player" parent="." instance=ExtResource("1_es28b")]
 position = Vector2(470, 276)
+collision_mask = 1
 
 [node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
+EnemySpawnTimerMin = 0.1
+EnemySpawnTimerMax = 3.0
+MaxEnemiesAlive = 3
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
 position = Vector2(631, 194)
@@ -40,6 +44,7 @@ position = Vector2(290, 198)
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
 INGAME_SPEED = 100.0
+INITIAL_HOUR = null
 INITIAL_HOUR = null
 
 [node name="testNpc" type="Sprite2D" parent="."]

@@ -11,9 +11,8 @@ size = Vector2(56, 20)
 [node name="Car Enemy" type="CharacterBody2D"]
 position = Vector2(194, 111)
 script = ExtResource("1_yekdc")
+speed = 1000
 currentDirection = 1
-data = ExtResource("2_hf14f")
-OffScreenDespawnTime = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.28806686, -0.0041208267)

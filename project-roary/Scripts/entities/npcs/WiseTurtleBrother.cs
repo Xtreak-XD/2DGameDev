@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class WiseTurtleBrother : StaticBody2D
+public partial class WiseTurtleBrother : CharacterBody2D
 {
     [Export] public string NpcName;
 

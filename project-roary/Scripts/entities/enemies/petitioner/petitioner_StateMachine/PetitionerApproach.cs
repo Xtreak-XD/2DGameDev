@@ -10,13 +10,15 @@ public partial class PetitionerApproach : EnemyState
     [Export] public float Decel = 900f;         // how fast we slow to a stop
     [Export] public float ExitDelay = 0.15f;    // anti-bounce when leaving zone
 
+    public Vector2 to;
     private CharacterBody2D _player;
     private Area2D _det;
     private EnemyStateMachine _fsm;
     private float _leaveT;
-
+    public bool inApproach = false;
     public override void EnterState()
     {
+        inApproach = true;
         _fsm  ??= GetParent<EnemyStateMachine>();
         _det  ??= ActiveEnemy.GetNodeOrNull<Area2D>("DetectionArea");
         _player ??= ActiveEnemy.GetTree().GetFirstNodeInGroup("player") as CharacterBody2D;
@@ -27,6 +29,7 @@ public partial class PetitionerApproach : EnemyState
 
     public override void ExitState()
     {
+        inApproach = false;
         ActiveEnemy.Velocity = Vector2.Zero;
     }
 
@@ -78,7 +81,7 @@ public partial class PetitionerApproach : EnemyState
         }
         else
         {
-            Vector2 to = _player.GlobalPosition - ActiveEnemy.GlobalPosition;
+            to = _player.GlobalPosition - ActiveEnemy.GlobalPosition;
             float d = to.Length();
             if (d > StopDistance)
             {

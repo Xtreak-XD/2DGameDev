@@ -34,6 +34,8 @@ public partial class IguanaRoam : IguanaState
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 		ActiveEnemy.MoveAndSlide();
 
+		ActiveEnemy.animation(direction);
+
 		if (ActiveEnemy.IsPlayerInChaseRange())
 		{
 			return IguanaChase;

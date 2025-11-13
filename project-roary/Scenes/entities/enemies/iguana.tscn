@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://drfioqbhwrfpj"]
+[gd_scene load_steps=12 format=3 uid="uid://bahyn7dgf81cx"]
 
 [ext_resource type="Script" uid="uid://bm7qi0doje7wr" path="res://Scripts/entities/enemies/iguana/Iguana.cs" id="1_jatro"]
 [ext_resource type="Resource" uid="uid://bosrshswacwcl" path="res://Resources/entities/enemy/EnemyData.tres" id="2_l4it4"]

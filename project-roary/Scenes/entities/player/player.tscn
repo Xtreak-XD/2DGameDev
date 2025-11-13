@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://v2ybqe80tyj4"]
+[gd_scene load_steps=13 format=3 uid="uid://cacidmpeflpxf"]
 
 [ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
@@ -65,7 +65,6 @@ staminaCost = 20
 position = Vector2(20, -7)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
 
 [node name="Interface" parent="Camera2D" instance=ExtResource("8_bke8f")]
 follow_viewport_enabled = false

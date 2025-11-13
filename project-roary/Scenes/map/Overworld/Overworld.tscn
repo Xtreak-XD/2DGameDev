@@ -1,3 +1,53 @@
-[gd_scene format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=10 format=3 uid="uid://bcml7nmxbu4j4"]
+
+[ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
+[ext_resource type="Texture2D" uid="uid://ccibbsncsdid5" path="res://Sprites/world/overworld_stadium.png" id="2_gknab"]
+[ext_resource type="Texture2D" uid="uid://dtook4le0doxv" path="res://Sprites/world/overworld_gc.png" id="3_depd0"]
+[ext_resource type="Texture2D" uid="uid://xvnrsto6o2h5" path="res://Sprites/world/overworld_pg.png" id="4_255qt"]
+[ext_resource type="Texture2D" uid="uid://cobka0qcnaod1" path="res://Sprites/world/overworld_gl.png" id="4_gknab"]
+[ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
+[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="7_uny04"]
+[ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
+
+[sub_resource type="Environment" id="Environment_uny04"]
+background_mode = 3
+glow_normalized = true
+adjustment_enabled = true
+adjustment_saturation = 1.25
 
 [node name="Overworld" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uny04")
+
+[node name="CanvasModulate" parent="." instance=ExtResource("8_gqpsm")]
+INGAME_SPEED = 50.0
+
+[node name="worldPlain" type="Sprite2D" parent="."]
+position = Vector2(5000, 5000)
+texture = ExtResource("1_rxqxp")
+
+[node name="stadium" type="Sprite2D" parent="worldPlain"]
+position = Vector2(-2757, -3211)
+texture = ExtResource("2_gknab")
+
+[node name="GC" type="Sprite2D" parent="worldPlain"]
+z_index = 2
+position = Vector2(3054, 2984)
+texture = ExtResource("3_depd0")
+
+[node name="GL" type="Sprite2D" parent="worldPlain"]
+z_index = 2
+position = Vector2(-3392, 3126)
+texture = ExtResource("4_gknab")
+
+[node name="PG" type="Sprite2D" parent="worldPlain"]
+position = Vector2(3904, -643)
+texture = ExtResource("4_255qt")
+
+[node name="NP" type="Sprite2D" parent="worldPlain"]
+position = Vector2(1584, -3385)
+texture = ExtResource("6_255qt")
+
+[node name="Player" parent="." instance=ExtResource("7_uny04")]
+position = Vector2(8344, 6057)

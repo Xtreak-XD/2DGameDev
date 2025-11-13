@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="9_lyuh4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3n3"]
-radius = 6.0
-height = 18.0
+radius = 127.0
+height = 332.0
 
 [sub_resource type="Animation" id="Animation_cwd6f"]
 length = 0.001
@@ -25,11 +25,11 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyuh4"]
-radius = 6.0
+radius = 141.1524
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lyuh4"]
-radius = 5.0
-height = 14.0
+radius = 161.0
+height = 378.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -44,8 +44,7 @@ amountOfStaminaRecovered = 10
 position = Vector2(1, -12)
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(5.9604645e-08, -8)
-scale = Vector2(0.08472531, 0.1048211)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_0etk1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -76,7 +75,7 @@ staminaCost = 20
 position = Vector2(9, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1, 0)
+position = Vector2(189, 8)
 shape = SubResource("CircleShape2D_lyuh4")
 debug_color = Color(0.96357936, 6.738305e-07, 0.50072265, 0.41960785)
 
@@ -88,7 +87,13 @@ shape = SubResource("CapsuleShape2D_lyuh4")
 debug_color = Color(0.12662396, 0.63510716, 0.36427537, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 0
+limit_right = 10000
+limit_bottom = 10000
+limit_smoothed = true
+position_smoothing_enabled = true
 
 [node name="Interface" parent="Camera2D" instance=ExtResource("8_bke8f")]
 follow_viewport_enabled = false

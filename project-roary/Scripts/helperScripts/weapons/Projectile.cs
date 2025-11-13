@@ -71,11 +71,12 @@ public partial class Projectile : CharacterBody2D
         {
 			return;
         }
-		
-		GD.Print("Projectile has hit a hurtbox.");
-		QueueFree();
 
+		GD.Print("Projectile has hit a hurtbox.");
+		
 		// Add damage logic here
+
+		QueueFree();		
     }
 
 	// DO NOT OVERRIDE

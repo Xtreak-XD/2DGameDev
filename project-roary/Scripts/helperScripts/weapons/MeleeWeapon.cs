@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 // Extend this to create a melee weapon that does NOT shoot a projectile.
 public partial class MeleeWeapon : Weapon
@@ -21,6 +22,20 @@ public partial class MeleeWeapon : Weapon
 
         GD.Print("Attack was from a melee weapon.");
 
-        // Add damage logic here
+        Array<Node2D> overlapping = hitbox.GetOverlappingBodies();
+
+        foreach(Node2D node in overlapping)
+        {
+            if (node is HurtBox hurtBox)
+            {
+                if (hurtBox.GetParent().GetChildren().Contains(this))
+                {
+                    continue;
+                }
+                
+                GD.Print("Hurtbox hit by melee weapon.");
+                // Add damage logic here
+            }
+        }
     }
 }

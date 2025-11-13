@@ -17,6 +17,18 @@ adjustment_saturation = 1.25
 
 [node name="Overworld" type="Node2D"]
 
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+polygon = PackedVector2Array(-9, -8, 9996, -1, 10027, 10018, -11, 10018, -1, 33, -2, -58, -53, 163, -500, 6315, -500, 11016, 6807, 11297, 11866, 10786, 11584, 7312, 11278, 950, 10895, -608, 6858, -864, 471, -353, -2, -57)
+
+[node name="lakeBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lakeBorder"]
+polygon = PackedVector2Array(2345, 6197, 2226, 6182, 2144, 6147, 2042, 6083, 1934, 5990, 1842, 5736, 1934, 5387, 2066, 5138, 2179, 4999, 2288, 4928, 2516, 4740, 2708, 4653, 2921, 4493, 3048, 4446, 3813, 4003, 4500, 3557, 4740, 3434, 4957, 3375, 5164, 3357, 5385, 3375, 5592, 3476, 5797, 3604, 5917, 3733, 6002, 3842, 6072, 3987, 6098, 4120, 6090, 4249, 6057, 4371, 6031, 4465, 5971, 4574, 5891, 4768, 5828, 4887, 5800, 4952, 5770.7974, 5032.782, 5764, 5152, 5828, 5440, 5885, 5601, 5870, 5785, 5797, 5951, 5704, 6042, 5553, 6108, 5276, 6389, 5133, 6659, 4950, 6921, 4705, 7123, 4519, 7271, 4320, 7380, 4132, 7429, 3980, 7393, 3829, 7214, 3702, 6934, 3580, 6511, 3429, 6335, 3250, 6267, 3050, 6270, 2789, 6283)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uny04")
 
@@ -28,7 +40,7 @@ position = Vector2(5000, 5000)
 texture = ExtResource("1_rxqxp")
 
 [node name="stadium" type="Sprite2D" parent="worldPlain"]
-position = Vector2(-2757, -3211)
+position = Vector2(-2769, -3212)
 texture = ExtResource("2_gknab")
 
 [node name="GC" type="Sprite2D" parent="worldPlain"]
@@ -51,3 +63,4 @@ texture = ExtResource("6_255qt")
 
 [node name="Player" parent="." instance=ExtResource("7_uny04")]
 position = Vector2(8344, 6057)
+collision_mask = 65

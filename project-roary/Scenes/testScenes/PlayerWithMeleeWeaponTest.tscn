@@ -9,5 +9,6 @@
 [node name="Iguana" parent="." instance=ExtResource("1_0ueim")]
 
 [node name="Player" parent="." instance=ExtResource("1_ysdm2")]
+position = Vector2(-41, -28)
 
-[node name="PencilSword" parent="." instance=ExtResource("2_dkjhi")]
+[node name="PencilSword" parent="Player" instance=ExtResource("2_dkjhi")]

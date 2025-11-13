@@ -10,10 +10,11 @@ script = ExtResource("1_5a3eh")
 data = ExtResource("2_ilxvl")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_k1v0k")]
-scale = Vector2(0.33, 0.33)
+scale = Vector2(0.9, 0.9)
 
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0039999997, 0.005588728)
+position = Vector2(4.7683716e-07, 2.3841858e-07)
+scale = Vector2(0.014000002, 0.012857144)
 texture = ExtResource("3_5a3eh")

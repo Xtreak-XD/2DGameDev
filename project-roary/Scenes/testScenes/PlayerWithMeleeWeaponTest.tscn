@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6ggo7dys0tu7"]
+[gd_scene load_steps=4 format=3 uid="uid://c6ggo7dys0tu7"]
 
-[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_ysdm2"]
+[ext_resource type="PackedScene" uid="uid://bahyn7dgf81cx" path="res://Scenes/entities/enemies/iguana.tscn" id="1_0ueim"]
+[ext_resource type="PackedScene" uid="uid://cacidmpeflpxf" path="res://Scenes/entities/player/player.tscn" id="1_ysdm2"]
 [ext_resource type="PackedScene" uid="uid://demrb8vvu0ahj" path="res://Scenes/weapons/PencilSword.tscn" id="2_dkjhi"]
 
 [node name="PlayerWithMeleeWeaponTest" type="Node2D"]
+
+[node name="Iguana" parent="." instance=ExtResource("1_0ueim")]
 
 [node name="Player" parent="." instance=ExtResource("1_ysdm2")]
 

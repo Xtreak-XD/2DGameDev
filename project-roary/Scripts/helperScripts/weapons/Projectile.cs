@@ -61,12 +61,13 @@ public partial class Projectile : CharacterBody2D
 	// of your override
 	public virtual void HitEntity(Node2D body)
 	{
-		if (body is not HurtBox)
+		if (!body.GetGroups().Contains("enemy"))
 		{
+			//GD.Print("Projectile hit something that was not a HurtBox.");
 			return;
 		}
 
-		HurtBox hurtbox = (HurtBox)body;
+		HurtBox hurtbox = body.GetNode<HurtBox>("HurtBox");
 		if(hurtbox.GetParent().GetChildren().Contains(parent))
         {
 			return;
@@ -76,7 +77,7 @@ public partial class Projectile : CharacterBody2D
 		
 		// Add damage logic here
 
-		QueueFree();		
+		QueueFree();
     }
 
 	// DO NOT OVERRIDE

@@ -26,9 +26,11 @@ public partial class MeleeWeapon : Weapon
 
         foreach(Node2D node in overlapping)
         {
-            if (node is HurtBox hurtBox)
+            if (node.GetGroups().Contains("enemy"))
             {
-                if (hurtBox.GetParent().GetChildren().Contains(this))
+                HurtBox hurtbox = node.GetNode<HurtBox>("HurtBox");
+
+                if (hurtbox.GetParent().GetChildren().Contains(this))
                 {
                     continue;
                 }

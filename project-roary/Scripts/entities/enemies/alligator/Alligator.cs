@@ -17,6 +17,8 @@ public partial class Alligator : Enemy
 	[Export]
 	public Timer homePositionTimer;
 
+	public AnimationPlayer anim;
+
 	public const int ROAM_RANGE = 150;
 	public const int DRAG_MAX_DIST = 200;
 	public const int LUNGE_RANGE = 90;
@@ -26,6 +28,8 @@ public partial class Alligator : Enemy
 	{
 		stateMachine = GetNode<AlligatorStateMachine>("AlligatorStateMachine");
 		stateMachine.Initialize(this);
+
+		anim = GetNode<AnimationPlayer>("AnimationPlayer");
 
 		aggroArea = GetNode<Area2D>("TargetDetector");
 		hurtBox = GetNode<Area2D>("HurtBox");
@@ -38,7 +42,7 @@ public partial class Alligator : Enemy
 	{
 		AddToGroup("enemy");
 
-		target = GetTree().GetNodesInGroup("player")[0] as Player;
+		target = (Player)GetTree().GetFirstNodeInGroup("player");
 		homePositionTimer.Autostart = true;
     }
 
@@ -88,6 +92,50 @@ public partial class Alligator : Enemy
         {
             homePosition = GlobalPosition;
 			GD.Print($"Alligator home position: ({homePosition.X}, {homePosition.Y})");
+        }
+    }
+
+	public void animation(Vector2 direction)
+    {
+        if (Mathf.Abs(direction.X) > Mathf.Abs(direction.Y))
+        {
+            if (direction.X > 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_right")
+                {
+                    anim.Play("walk_right");
+                }
+            }
+            else if (direction.X < 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_left")
+                {
+                    anim.Play("walk_left");
+                }
+            }
+        }
+        else if (Mathf.Abs(direction.Y) > 0)
+        {
+            if (direction.Y > 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_down")
+                {
+                    anim.Play("walk_down");
+                }
+            }
+            else if (direction.Y < 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_up")
+                {
+                    anim.Play("walk_up");
+                }
+            }
+        }
+        else
+        {
+            // Not moving, stop animation
+            if (anim.IsPlaying())
+                anim.Stop();
         }
     }
 }

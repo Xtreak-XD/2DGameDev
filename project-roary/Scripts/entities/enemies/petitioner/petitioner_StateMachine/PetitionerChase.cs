@@ -13,14 +13,19 @@ public partial class PetitionerChase : EnemyState
 
     private float _leftX, _rightX;
     private float _rowY;
-    private int _dir = +1;                         // +1 right, -1 left
+    public int _dir = +1;                         // +1 right, -1 left
     private float _pauseT = 0f;
     private bool _inited = false;
     private Area2D _det;
     private CharacterBody2D _player;
 
+    public bool inChase = false;
+
+    private petitioner petitioner;
+
     public override void EnterState()
     {
+        inChase = true;
         if (!_inited)
         {
             float startX = ActiveEnemy.GlobalPosition.X;
@@ -80,14 +85,9 @@ public partial class PetitionerChase : EnemyState
             vy = 0f;
             }
         }
-
         // 6) Apply both components
         ActiveEnemy.Velocity = new Vector2(vx, vy);
         ActiveEnemy.MoveAndSlide();
-
-        // 7) Optional face flip
-        var s = ActiveEnemy.GetNodeOrNull<Sprite2D>("petitionerface");
-        if (s != null) s.FlipH = (_dir < 0);
 
         return null;
 }
@@ -96,5 +96,6 @@ public partial class PetitionerChase : EnemyState
     public override void ExitState()
     {
         ActiveEnemy.Velocity = Vector2.Zero;
+        inChase = false;
     }
 }

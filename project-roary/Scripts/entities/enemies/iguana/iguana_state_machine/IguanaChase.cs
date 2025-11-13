@@ -27,6 +27,8 @@ public partial class IguanaChase : IguanaState
 		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
 		Vector2 direction = (targetPos - ActiveEnemy.GlobalPosition).Normalized();
 
+		ActiveEnemy.animation(direction);
+
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 		ActiveEnemy.MoveAndSlide();
 

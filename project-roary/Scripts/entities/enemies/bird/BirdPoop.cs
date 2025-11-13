@@ -6,6 +6,8 @@ public partial class BirdPoop : CharacterBody2D
     [Export] public float FallSpeed = 200f;
     [Export] public float GroundTime = 7.5f;
 
+    [Export] public GenericData data;
+
     private AnimatedSprite2D _sprite;
     private bool _exploded = false;
 

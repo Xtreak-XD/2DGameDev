@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class BookEnemy : CharacterBody2D
+public partial class BookEnemy : Enemy
 {
     [Export] public float Gravity = 800f;
     [Export] public float MaxFallSpeed = 400f;
@@ -16,13 +16,11 @@ public partial class BookEnemy : CharacterBody2D
     [Export] public float TargetUpdateInterval = 0.3f;
     [Export] public float DirectChaseDuration = 3.0f;
 
-
     private Node2D _player;
     private bool _isBackingOff = false;
     private float _backoffTimer = 0f;
     private bool _hasDealtDamage = false;
     private float _flapTimer = 0f;
-    private Area2D _damageArea;
     private AnimationPlayer _sprite;
     private bool _chasingPlayerDirectly = false;
     private Vector2 _currentTargetPoint;
@@ -37,16 +35,6 @@ public partial class BookEnemy : CharacterBody2D
             GD.PrintErr("⚠️ BookEnemy: player not found in 'player' group!");
         }
 
-        _damageArea = GetNodeOrNull<Area2D>("DamageArea");
-        if (_damageArea != null)
-        {
-            _damageArea.BodyEntered += OnBodyEntered;
-        }
-        else
-        {
-            GD.PrintErr("❌ DamageArea not found!");
-        }
-
         _sprite = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
         if (_sprite == null)
         {
@@ -58,8 +46,15 @@ public partial class BookEnemy : CharacterBody2D
     public float MinimumChaseDistance = 50f;
     public float MinimumSafeDistance = 15f;
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+    }
+
+
     public override void _PhysicsProcess(double deltaDouble)
     {
+        base._PhysicsProcess(deltaDouble);
         float delta = (float)deltaDouble;
         if (_player == null) return;
 
@@ -97,7 +92,7 @@ public partial class BookEnemy : CharacterBody2D
         if (!_chasingPlayerDirectly && distanceToTarget <= TargetPointReachThreshold)
         {
             _chasingPlayerDirectly = true;
-            _directChaseTimer = DirectChaseDuration; 
+            _directChaseTimer = DirectChaseDuration;
         }
 
         float minDistance = _chasingPlayerDirectly ? MinimumChaseDistance : TargetPointReachThreshold;
@@ -127,11 +122,7 @@ public partial class BookEnemy : CharacterBody2D
 
         PlayFlapAnimation(direction);
     }
-
-
-
-
-
+    
 
     private void PlayFlapAnimation(Vector2 direction)
     {
@@ -176,21 +167,6 @@ public partial class BookEnemy : CharacterBody2D
             // Not moving, stop animation
             if (_sprite.IsPlaying())
                 _sprite.Stop();
-        }
-    }
-
-    private void OnBodyEntered(Node body)
-    {
-        if (body.IsInGroup("player") && !_hasDealtDamage)
-        {
-            _hasDealtDamage = true;
-            GD.Print("📕 BookEnemy hit the player!");
-
-            _isBackingOff = true;
-            _backoffTimer = BackoffDuration;
-
-            // TODO: apply damage to player here
-            // ((Player)body).TakeDamage(10);
         }
     }
 

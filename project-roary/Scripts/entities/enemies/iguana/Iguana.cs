@@ -11,11 +11,15 @@ public partial class Iguana : Enemy
 	public Area2D hurtBox;
 	public Area2D hitbox;
 
+	public AnimationPlayer anim;
+
 	public const int ROAM_RANGE = 150;
 
 	public override void _Ready()
 	{
 		AddToGroup("enemy");
+		target = (Player)GetTree().GetFirstNodeInGroup("player");
+		anim = GetNode<AnimationPlayer>("AnimationPlayer");
 		stateMachine = GetNode<IguanaStateMachine>("IguanaStateMachine");
 		stateMachine.Initialize(this);
 		aggroArea = GetNode<Area2D>("TargetDetector");
@@ -57,5 +61,49 @@ public partial class Iguana : Enemy
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
+    }
+
+	public void animation(Vector2 direction)
+    {
+        if (Mathf.Abs(direction.X) > Mathf.Abs(direction.Y))
+        {
+            if (direction.X > 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_right")
+                {
+                    anim.Play("walk_right");
+                }
+            }
+            else if (direction.X < 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_left")
+                {
+                    anim.Play("walk_left");
+                }
+            }
+        }
+        else if (Mathf.Abs(direction.Y) > 0)
+        {
+            if (direction.Y > 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_down")
+                {
+                    anim.Play("walk_down");
+                }
+            }
+            else if (direction.Y < 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_up")
+                {
+                    anim.Play("walk_up");
+                }
+            }
+        }
+        else
+        {
+            // Not moving, stop animation
+            if (anim.IsPlaying())
+                anim.Stop();
+        }
     }
 }

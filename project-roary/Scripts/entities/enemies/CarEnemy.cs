@@ -13,8 +13,11 @@ public partial class CarEnemy : Enemy
 
     [Export] private directionChosen currentDirection { get; set; } = directionChosen.North;
 
+    public AnimationPlayer anim;
+
     public override void _Ready()
     {
+        anim = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     public override void _Process(double delta)
@@ -23,19 +26,19 @@ public partial class CarEnemy : Enemy
         {
             case directionChosen.North:
                 Velocity = Vector2.Up * data.Speed * ((float)delta * (float)data.Accel);
-                RotationDegrees = 270;
+                anim.Play("north");
                 break;
             case directionChosen.East:
                 Velocity = Vector2.Right * data.Speed * ((float)delta * (float)data.Accel);
-                RotationDegrees = 0;
+                anim.Play("east");
                 break;
             case directionChosen.South:
                 Velocity = Vector2.Down * data.Speed * ((float)delta * (float)data.Accel);
-                RotationDegrees = 90;
+                anim.Play("south");
                 break;
             case directionChosen.West:
                 Velocity = Vector2.Left * data.Speed * ((float)delta * (float)data.Accel);
-                RotationDegrees = 180;
+                anim.Play("west");
                 break;
         }
     }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://i2b15baq3s71" path="res://Scripts/entities/npcs/WiseTurtleBrother.cs" id="1_xjdo7"]
 [ext_resource type="Texture2D" uid="uid://dssedarvpsrdd" path="res://Sprites/entities/enemies/Turtle.png" id="2_6iqj6"]
-[ext_resource type="Script" uid="uid://lljes4ot31en" path="res://Scripts/helperScripts/interactionArea.cs" id="3_6iqj6"]
+[ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="3_6iqj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6iqj6"]
 atlas = ExtResource("2_6iqj6")
@@ -74,13 +74,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ad51d"]
-radius = 24.0
+radius = 13.152946
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4uly"]
-radius = 56.0
+radius = 34.0147
 
-[node name="WiseTurtleBrother" type="StaticBody2D"]
-disable_mode = 1
+[node name="WiseTurtleBrother" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("1_xjdo7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -91,8 +92,9 @@ frame_progress = 0.43175063
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ad51d")
 
-[node name="InteractableArea" type="Area2D" parent="."]
-script = ExtResource("3_6iqj6")
+[node name="InteractableArea" parent="." instance=ExtResource("3_6iqj6")]
+position = Vector2(0, -1)
+actionName = "talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
 shape = SubResource("CircleShape2D_g4uly")

@@ -26,6 +26,7 @@ public partial class Player : CharacterBody2D
 	[Export] public float rateOfStaminaRecovery;
 	[Export] public int amountOfStaminaRecovered;
 
+	public Vector2 mousePosition;
 	private Vector2 knockBackVelocity = Vector2.Zero;
 	private const float KnockBackDecay = 750.0f;
 	public override void _Ready()
@@ -43,6 +44,8 @@ public partial class Player : CharacterBody2D
 	{
 		direction.X = Input.GetActionStrength("Right") - Input.GetActionStrength("Left");
 		direction.Y = Input.GetActionStrength("Down") - Input.GetActionStrength("Up");
+
+		mousePosition = GetLocalMousePosition().Normalized();
 
 		if (!usingStamina && data.Stamina < data.MaxStamina && !recoveringStamina)
 		{

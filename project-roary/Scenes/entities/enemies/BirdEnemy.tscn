@@ -77,6 +77,8 @@ animations = [{
 radius = 24.0
 
 [node name="Bird" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_nipbw")
 BirdProperties = ExtResource("2_dh5t2")
 

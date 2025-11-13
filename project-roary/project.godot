@@ -22,6 +22,11 @@ DialogueManager="*res://Global/dialogueManager.cs"
 InteractionManager="*res://Scenes/helperScenes/interaction_manager.tscn"
 Effects="*res://Global/effects.tscn"
 
+[display]
+
+window/size/viewport_width=10000
+window/size/viewport_height=10000
+
 [dotnet]
 
 project/assembly_name="Project Roary"

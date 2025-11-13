@@ -69,7 +69,7 @@ public partial class DodgeState : State
         {
             float time = Mathf.Clamp((float)dodgeTimer.TimeLeft / (float)dodgeTimer.WaitTime, 0.0f, 1.0f);
             float speed = Mathf.Lerp(dodgeSpeed, player.data.Speed, time);
-            player.Velocity = player.lastDirection.Normalized() * speed * (float)(player.data.Accel * delta);
+            player.Velocity = player.mousePosition * speed * (float)(player.data.Accel * delta);
         }
         return null;
     }

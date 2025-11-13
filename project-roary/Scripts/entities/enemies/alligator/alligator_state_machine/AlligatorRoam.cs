@@ -25,6 +25,7 @@ public partial class AlligatorRoam : AlligatorState
 	public override AlligatorState Process(double delta)
     {
         Vector2 direction = (newPos - ActiveEnemy.GlobalPosition).Normalized();
+		ActiveEnemy.animation(direction);
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * ((float)delta * (float)ActiveEnemy.data.Accel);
 		ActiveEnemy.MoveAndSlide();
 

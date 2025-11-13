@@ -29,17 +29,19 @@ public partial class RangedWeapon : Weapon
 	{
 		base.Attack(pos);
 
-		GD.Print("A ranged weapon has shot");
+		//GD.Print("A ranged weapon has shot");
 
 		Projectile proj = (Projectile)projectile.Instantiate();
 		projectileSource.AddChild(proj);
+		
+		proj.GlobalPosition = GlobalPosition;
+		proj.sprite.LookAt(pos);
+		proj.Velocity = (pos - proj.GlobalPosition).Normalized() * proj.data.speed;
 
-		proj.GlobalPosition = projectileSource.GlobalPosition;
-		proj.LookAt(pos);
-		proj.Velocity = (pos - Position).Normalized() * proj.data.speed;
+		//GD.Print($"Projectile launch velocity: {proj.Velocity}");
 
-		GD.Print($"Projectile launch velocity: {proj.Velocity}");
-
+		proj.parentWeapon = this;
 		proj.data.damage = data.damage;
+		proj.data.knockback = data.knockback;
 	}
 }

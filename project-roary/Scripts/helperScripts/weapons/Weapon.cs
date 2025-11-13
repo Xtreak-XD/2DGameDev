@@ -11,6 +11,7 @@ public partial class Weapon : Node2D
 	public bool canAttack;
 	public Sprite2D sprite;
 	public Node2D parent;
+	public Vector2 mousePosition;
 
 	// IF YOU NEED TO OVERRIDE THIS, CALL base._Ready()
 	// DO NOT OVERRIDE THIS UNLESS YOU ARE CREATNG A NEW
@@ -21,7 +22,7 @@ public partial class Weapon : Node2D
 		attackTimer = GetNode<Timer>("AttackTimer");
 		sprite = GetNode<Sprite2D>("Sprite2D");
 
-		eventbus.triggerAttack += () => Attack(GetLocalMousePosition());
+		eventbus.triggerAttack += () => Attack(mousePosition);
 
 		attackTimer.WaitTime = data.attackRate;
 		attackTimer.Timeout += SetCanAttack;
@@ -52,6 +53,14 @@ public partial class Weapon : Node2D
 		}
 	}
 
+	// DO NOT OVERRIDE THIS
+    public override void _Process(double delta)
+    {
+		mousePosition = GetGlobalMousePosition();
+
+		LookAt(mousePosition);
+    }
+
 	// Note: We want position for the purposes of aiming projectiles.
 	// Also for aiming the animations for weapons.
 	// A melee weapon will likely have a very basic attack, while
@@ -71,14 +80,12 @@ public partial class Weapon : Node2D
 		float angle = direction.Angle();
 
 		Vector2 offset = new Vector2(Mathf.Cos(angle),
-		 Mathf.Sin(angle)).Normalized() * 20; // THIS WILL NEED ADJUSTING BASED
-											  // ON FINAL DIMENSIONS
-											  // SINCE PLAYER'S NODES ARE 
-											  // NOT CENTERED
+		 Mathf.Sin(angle)).Normalized() * 200; // THIS WILL NEED ADJUSTING BASED
+											   // ON FINAL DIMENSIONS
+											   // SINCE PLAYER'S NODES ARE 
+											   // NOT CENTERED
 
 		Position = offset;
-		sprite.Rotation = angle;
-		//LookAt(pos);
 	}
 
 	// DO NOT OVERRIDE THIS

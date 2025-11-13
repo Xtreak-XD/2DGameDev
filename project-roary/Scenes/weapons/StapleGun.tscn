@@ -13,8 +13,8 @@ data = ExtResource("3_1bd1l")
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 4.7683716e-07)
-scale = Vector2(0.045410153, 0.05664063)
+position = Vector2(-5.9604645e-08, -1.1920929e-07)
+scale = Vector2(0.74145514, 0.7068918)
 texture = ExtResource("4_1bd1l")
 
 [node name="ProjectileSource" type="Node2D" parent="."]

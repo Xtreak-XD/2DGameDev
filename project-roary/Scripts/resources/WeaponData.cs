@@ -8,4 +8,6 @@ public partial class WeaponData : Resource
 	// Delay between attacks (in seconds)
 	[Export]
 	public float attackRate;
+	[Export]
+	public float knockback;
 }

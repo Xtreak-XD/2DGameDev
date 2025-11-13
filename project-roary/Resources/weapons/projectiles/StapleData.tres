@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_c2j0w")
-maxDistance = 300.0
+maxDistance = 3000.0
 speed = 500.0
-lifeSpan = 1.0
+lifeSpan = 2.0

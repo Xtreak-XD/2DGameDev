@@ -8,8 +8,9 @@ public partial class Projectile : CharacterBody2D
 	public Timer projectileTimer;
 	public Hitbox hitbox;
 	public Vector2 spawn;
-	public RangedWeapon parent;
+	public RangedWeapon parentWeapon;
 	public Timer setSpawn;
+	public Sprite2D sprite;
 
 	[Export]
 	public ProjectileData data;
@@ -20,23 +21,24 @@ public partial class Projectile : CharacterBody2D
 	public override void _Ready()
 	{
 		projectileTimer = GetNode<Timer>("LifespanTimer");
+		sprite = GetNode<Sprite2D>("Sprite2D");
 
 		projectileTimer.WaitTime = data.lifeSpan;
 		projectileTimer.Timeout += Kill;
 
 		hitbox = GetNode<Hitbox>("Hitbox");
-		parent = GetParent().GetParent<RangedWeapon>();
+		//parent = GetParent().GetParent<RangedWeapon>();
 
 		hitbox.BodyEntered += HitEntity;
 
 		spawn = GlobalPosition;
-		GD.Print($"Projectile spawned at: {spawn}");
+		//GD.Print($"Projectile spawned at: {spawn}");
 
 		projectileTimer.Start();
 	}
 
 	// DO NOT OVERRIDE
-	public override void _PhysicsProcess(double delta)
+	public override void _Process(double delta)
 	{
 		if (GlobalPosition.DistanceTo(spawn) >= data.maxDistance)
 		{
@@ -68,7 +70,7 @@ public partial class Projectile : CharacterBody2D
 		}
 
 		HurtBox hurtbox = body.GetNode<HurtBox>("HurtBox");
-		if(hurtbox.GetParent().GetChildren().Contains(parent))
+		if(hurtbox.GetParent().GetChildren().Contains(parentWeapon))
         {
 			return;
         }
@@ -80,8 +82,10 @@ public partial class Projectile : CharacterBody2D
 		QueueFree();
     }
 
-	// DO NOT OVERRIDE
-	public void Kill()
+	// If you override this, remember to
+	// call base.Kill() at the end of your
+	// override.
+	public virtual void Kill()
 	{
 		GD.Print($"Projectile has been destroyed with " +
 		$"{Math.Round(projectileTimer.TimeLeft, 2)} seconds left.");

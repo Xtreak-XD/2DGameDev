@@ -7,9 +7,9 @@
 [node name="PlayerWithRangedWeaponTest" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_rglo7")]
+position = Vector2(2258, 993)
 
 [node name="StapleGun" parent="Player" instance=ExtResource("2_ik0oo")]
 
 [node name="Alligator" parent="." instance=ExtResource("3_1m6rw")]
-position = Vector2(46, 0)
-OffScreenDespawnTime = 3.0
+position = Vector2(820, 964)

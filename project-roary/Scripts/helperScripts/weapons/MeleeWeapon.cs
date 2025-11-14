@@ -6,6 +6,7 @@ public partial class MeleeWeapon : Weapon
 {
     public Hitbox hitbox;
 
+    // Ideally, don't override this.
     public override void _Ready()
     {
         base._Ready();
@@ -14,7 +15,6 @@ public partial class MeleeWeapon : Weapon
     }
 
     // If you override this, remember to call base.Attack()
-    // at the start.
     // at the start of the override
     public override void Attack(Vector2 pos)
     {

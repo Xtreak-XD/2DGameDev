@@ -9,8 +9,7 @@ public partial class RangedWeapon : Weapon
 	public Marker2D projectileSource;
 
 	// If you override this, remember to call base._Ready() at
-	// the start.
-	// Ideally, don't override this
+	// the start. Ideally, don't override this.
 	public override void _Ready()
 	{
 		base._Ready();

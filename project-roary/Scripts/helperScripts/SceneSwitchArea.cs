@@ -6,13 +6,15 @@ public partial class SceneSwitchArea : Area2D
 
     public SceneManager sceneManager;
 
-    [Export] public PackedScene path_to_scene {get; set;}
+    [Export] public string path = "";
 
-
+    public override void _EnterTree()
+    {
+        BodyEntered += _onEntered;
+    }
     public override void _Ready()
     {
         sceneManager = GetNode<SceneManager>("/root/SceneManager");
-        BodyEntered += _onEntered;
     }
 
     
@@ -20,7 +22,7 @@ public partial class SceneSwitchArea : Area2D
     {
         if (body is Player)
         {
-            sceneManager.goToScene(GetParent(),path_to_scene.ResourcePath);
+            sceneManager.goToScene(GetParent(),path);
         }
     }
 

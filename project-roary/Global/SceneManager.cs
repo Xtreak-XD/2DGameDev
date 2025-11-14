@@ -9,10 +9,22 @@ public partial class SceneManager : Node
     string comingFromName;
     Marker2D spawnPosition;
 
+    PackedScene newPlayerInstance;
+
     public override void _Ready()
     {
+        newPlayerInstance = GD.Load<PackedScene>("res://Scenes/entities/player/player.tscn");
+        Player newInstance = (Player)newPlayerInstance.Instantiate();
         var root = GetTree().Root;
         currentScene = root.GetChild(root.GetChildCount() - 1);
+
+        if (currentScene.GetNodeOrNull<Player>("Player") == null)
+        {
+            currentScene.AddChild(newInstance);
+            newInstance.CallDeferred("setSpawnPosition",extractCorrectSpawnpoint(currentScene,"Nothing"));
+
+            player = newInstance;
+        }
     }
 
     public void goToScene(Node from, string scene)
@@ -34,27 +46,37 @@ public partial class SceneManager : Node
         GetTree().CurrentScene = newScene;
 
         Vector2 spawn = extractCorrectSpawnpoint(newScene, comingFromName);
-
-        player.Position = spawn;
-
+        
+        
         newScene.AddChild(player);
+        player.CallDeferred(nameof(Player.setSpawnPosition), spawn);
+
         currentScene = newScene;
 
     }
 
     public Vector2 extractCorrectSpawnpoint(Node sceneToSpawnIn, string comingFromName)
     {
-        string spawnPointName = "from" + comingFromName;
+        string spawnPointName = "";
+        if (string.IsNullOrEmpty(comingFromName))
+        {
+            spawnPointName = "fromNothing";
+        }
+        else
+        {
+            spawnPointName = "from" + comingFromName;
+        }
+
         PlayerSpawn Spawns = sceneToSpawnIn.GetNode<PlayerSpawn>("PlayerSpawnPoints");
 
         foreach(Marker2D i in Spawns.spawnsAvailable)
         {
             if (i.Name.Equals(spawnPointName))
             {
-                return i.Position;
+                return i.GlobalPosition;
             }
         }
-        return new Vector2(0,0);
+        return Vector2.Zero;
     }
 
 }

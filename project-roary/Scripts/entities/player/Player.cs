@@ -115,6 +115,11 @@ public partial class Player : CharacterBody2D
 			animationPlayer.Play(state);
 		}
 	}
+
+	public void setSpawnPosition(Vector2 pos)
+    {
+        GlobalPosition = pos;
+    }
 	
 	public string AnimDirection()
     {

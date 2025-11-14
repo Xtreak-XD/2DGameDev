@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://v2ybqe80tyj4"]
+[gd_scene load_steps=17 format=3 uid="uid://cacidmpeflpxf"]
 
 [ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_0etk1"]
@@ -87,6 +87,7 @@ shape = SubResource("CapsuleShape2D_lyuh4")
 debug_color = Color(0.12662396, 0.63510716, 0.36427537, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(0.5, 0.5)
 limit_left = 0
 limit_top = 0

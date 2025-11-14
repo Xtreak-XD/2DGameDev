@@ -36,7 +36,6 @@ public partial class Player : CharacterBody2D
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
-
 		stateMachine.Initialize(this);
 	}
 
@@ -116,6 +115,11 @@ public partial class Player : CharacterBody2D
 			animationPlayer.Play(state);
 		}
 	}
+
+	public void setSpawnPosition(Vector2 pos)
+    {
+        GlobalPosition = pos;
+    }
 	
 	public string AnimDirection()
     {

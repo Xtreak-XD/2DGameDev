@@ -29,4 +29,5 @@ public partial class Eventbus : Node
     //UI Signals
     [Signal] public delegate void updateStaminaEventHandler(int value);
     [Signal] public delegate void updateHealthEventHandler(int value);
+    [Signal] public delegate void openShopMenuEventHandler(bool isOpen);
 }  

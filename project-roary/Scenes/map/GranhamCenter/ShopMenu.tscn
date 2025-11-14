@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://1sd01tooxbt1"]
+[gd_scene load_steps=8 format=3 uid="uid://1sd01tooxbt1"]
 
 [ext_resource type="PackedScene" uid="uid://bhlkfysakjm6t" path="res://Scenes/map/GranhamCenter/ShopMenuSlot.tscn" id="1_jiogy"]
 [ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/TableTopDown2.png" id="1_jqod7"]
+[ext_resource type="Script" uid="uid://c8vsyptmaavtn" path="res://Scripts/ui/PowerUpShops/ShopMenu.cs" id="1_tgvhk"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_tgvhk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fppcr"]
@@ -17,8 +18,9 @@ texture = ExtResource("1_jqod7")
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 454.0
+offset_right = 467.0
 offset_bottom = 206.0
+script = ExtResource("1_tgvhk")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0

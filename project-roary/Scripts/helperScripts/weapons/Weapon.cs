@@ -61,14 +61,21 @@ public partial class Weapon : Node2D
     {
 		mousePosition = GetGlobalMousePosition();
 
-		if(canAttack)
-        {
-            LookAt(mousePosition);
-        }
+        LookAt(mousePosition);
+
+		Vector2 direction = (mousePosition - parent.Position).Normalized();
+		float angle = direction.Angle();
+
+		Vector2 offset = new Vector2(Mathf.Cos(angle),
+		 Mathf.Sin(angle)).Normalized() * 200; // THIS WILL NEED ADJUSTING BASED
+											   // ON FINAL DIMENSIONS
+											   // SINCE PLAYER'S NODES ARE 
+											   // NOT CENTERED
+
+		Position = offset;
     }
 
 	// Note: We want position for the purposes of aiming projectiles.
-	// Also for aiming the animations for weapons.
 	// A melee weapon will likely have a very basic attack, while
 	// a ranged weapon will fire a projectile.
 	// DO NOT FORGET TO CALL base.Attack() at the start 
@@ -81,17 +88,6 @@ public partial class Weapon : Node2D
 		//GD.Print($"Attack position: {pos}");
 		//GD.Print($"Attack damage: {data.damage}");
 		//GD.Print($"Attack delay: {data.attackRate} seconds");
-
-		Vector2 direction = (pos - parent.Position).Normalized();
-		float angle = direction.Angle();
-
-		Vector2 offset = new Vector2(Mathf.Cos(angle),
-		 Mathf.Sin(angle)).Normalized() * 200; // THIS WILL NEED ADJUSTING BASED
-											   // ON FINAL DIMENSIONS
-											   // SINCE PLAYER'S NODES ARE 
-											   // NOT CENTERED
-
-		Position = offset;
 	}
 
 	// DO NOT OVERRIDE THIS
@@ -99,7 +95,7 @@ public partial class Weapon : Node2D
 	{
 		if (canAttack == false)
 		{
-			Position = Vector2.Zero;
+			//Position = Vector2.Zero;
 			//GD.Print("Weapon can attack.");
 			canAttack = true;
 		}

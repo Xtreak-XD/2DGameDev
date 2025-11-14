@@ -20,7 +20,7 @@ public partial class MeleeWeapon : Weapon
     {
         base.Attack(pos);
 
-        GD.Print("Attack was from a melee weapon.");
+        //GD.Print("Attack was from a melee weapon.");
 
         Array<Node2D> overlapping = hitbox.GetOverlappingBodies();
 

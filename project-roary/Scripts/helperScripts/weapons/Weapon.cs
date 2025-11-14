@@ -29,7 +29,10 @@ public partial class Weapon : Node2D
 
 		if(GetParent() != null)
         {
-            parent = GetParent<Node2D>();
+			if(GetParent() is Node2D)
+            {
+                parent = GetParent<Node2D>();
+            }
         }
 
 		canAttack = true;
@@ -58,7 +61,10 @@ public partial class Weapon : Node2D
     {
 		mousePosition = GetGlobalMousePosition();
 
-		LookAt(mousePosition);
+		if(canAttack)
+        {
+            LookAt(mousePosition);
+        }
     }
 
 	// Note: We want position for the purposes of aiming projectiles.
@@ -71,10 +77,10 @@ public partial class Weapon : Node2D
 	// WEAPON SUBTYPE LIKE MeleeWeapon or RangedWeapon
 	public virtual void Attack(Vector2 pos)
 	{
-		GD.Print("A weapon has attacked.");
-		GD.Print($"Attack position: {pos}");
-		GD.Print($"Attack damage: {data.damage}");
-		GD.Print($"Attack delay: {data.attackRate} seconds");
+		//GD.Print("A weapon has attacked.");
+		//GD.Print($"Attack position: {pos}");
+		//GD.Print($"Attack damage: {data.damage}");
+		//GD.Print($"Attack delay: {data.attackRate} seconds");
 
 		Vector2 direction = (pos - parent.Position).Normalized();
 		float angle = direction.Angle();
@@ -94,7 +100,7 @@ public partial class Weapon : Node2D
 		if (canAttack == false)
 		{
 			Position = Vector2.Zero;
-			GD.Print("Weapon can attack.");
+			//GD.Print("Weapon can attack.");
 			canAttack = true;
 		}
 	}

@@ -38,7 +38,7 @@ public partial class Projectile : CharacterBody2D
 	}
 
 	// DO NOT OVERRIDE
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (GlobalPosition.DistanceTo(spawn) >= data.maxDistance)
 		{
@@ -63,7 +63,7 @@ public partial class Projectile : CharacterBody2D
 	// of your override
 	public virtual void HitEntity(Node2D body)
 	{
-		if (!body.GetGroups().Contains("enemy"))
+		if(!body.GetGroups().Contains("enemy"))
 		{
 			//GD.Print("Projectile hit something that was not a HurtBox.");
 			return;
@@ -87,8 +87,8 @@ public partial class Projectile : CharacterBody2D
 	// override.
 	public virtual void Kill()
 	{
-		GD.Print($"Projectile has been destroyed with " +
-		$"{Math.Round(projectileTimer.TimeLeft, 2)} seconds left.");
+		//GD.Print($"Projectile has been destroyed with " +
+		//$"{Math.Round(projectileTimer.TimeLeft, 2)} seconds left.");
 		QueueFree();
 	}
 }

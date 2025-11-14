@@ -6,7 +6,7 @@ public partial class RangedWeapon : Weapon
 	// DO NOT OVERRIDE ANY OF THIS
 	[Export]
 	public PackedScene projectile;
-	public Node2D projectileSource;
+	public Marker2D projectileSource;
 
 	// If you override this, remember to call base._Ready() at
 	// the start.
@@ -15,12 +15,17 @@ public partial class RangedWeapon : Weapon
 	{
 		base._Ready();
 
-		projectileSource = GetNode<Node2D>("ProjectileSource");
+		projectileSource = GetNode<Marker2D>("ProjectileSource");
 
 		if (projectile == null)
 		{
 			GD.PrintErr("No projectile set.");
 		}
+
+		if(projectileSource == null)
+        {
+            GD.PrintErr("No projectile source found.");
+        }
 	}
 
 	// If you override this, remember to call base.Attack()
@@ -32,11 +37,12 @@ public partial class RangedWeapon : Weapon
 		//GD.Print("A ranged weapon has shot");
 
 		Projectile proj = (Projectile)projectile.Instantiate();
-		projectileSource.AddChild(proj);
+		Owner.AddChild(proj);
 		
-		proj.GlobalPosition = GlobalPosition;
+		proj.GlobalPosition = projectileSource.GlobalPosition;
 		proj.sprite.LookAt(pos);
-		proj.Velocity = (pos - proj.GlobalPosition).Normalized() * proj.data.speed;
+		proj.Velocity = (pos - proj.GlobalPosition).Normalized() 
+		* proj.data.speed;
 
 		//GD.Print($"Projectile launch velocity: {proj.Velocity}");
 

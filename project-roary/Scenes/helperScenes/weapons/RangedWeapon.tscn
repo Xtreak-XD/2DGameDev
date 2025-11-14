@@ -17,4 +17,4 @@ position = Vector2(0, 4.7683716e-07)
 scale = Vector2(0.045410153, 0.05664063)
 texture = ExtResource("3_o4n8e")
 
-[node name="ProjectileSource" type="Node2D" parent="."]
+[node name="ProjectileSource" type="Marker2D" parent="."]

@@ -1,11 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=11 format=3 uid="uid://dkq42aw23ge1k"]
 
-[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
-[ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="3_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="3_106wm"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
 [ext_resource type="PackedScene" uid="uid://dbc0ewvo0k63x" path="res://Scenes/entities/npcs/wise_turtle_brother.tscn" id="6_106wm"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="6_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="7_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://bcml7nmxbu4j4" path="res://Scenes/map/Overworld/Overworld.tscn" id="8_hm8wl"]
+[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="9_helya"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hm8wl"]
+radius = 136.01471
 
 [node name="TestScene" type="Node2D"]
 
@@ -14,14 +20,11 @@ position = Vector2(575.5, 319)
 scale = Vector2(1.9982638, 1.9814814)
 texture = ExtResource("1_hm8wl")
 
-[node name="Player" parent="." instance=ExtResource("1_es28b")]
-position = Vector2(470, 276)
-
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D")]
-EnemyScene = ExtResource("3_lfsl6")
+EnemyScene = ExtResource("3_106wm")
 MaxEnemiesAlive = 1
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
@@ -44,5 +47,21 @@ INGAME_SPEED = 100.0
 
 [node name="WiseTurtleBrother" parent="." instance=ExtResource("6_106wm")]
 position = Vector2(647, 339)
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("6_lfsl6")]
+spawnsAvailable = [NodePath("fromOverworld")]
+
+[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(599, 413)
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("7_lfsl6")]
+position = Vector2(1038, 662)
+path_to_scene = ExtResource("8_hm8wl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+shape = SubResource("CircleShape2D_hm8wl")
+
+[node name="Player" parent="." instance=ExtResource("9_helya")]
+position = Vector2(252, 588)
 
 [editable path="Enemymanager"]

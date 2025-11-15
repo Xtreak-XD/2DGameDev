@@ -20,10 +20,25 @@ public partial class Interface : CanvasLayer
     public Label curDay;
     public Label temp;
 
-    public override void _Ready()
+    public TextureProgressBar health;
+    public TextureProgressBar stamina;
+
+    public Node player;
+
+    public override void _EnterTree()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         eventbus.timeTick += setTime;
+
+        eventbus.updateHealth += updateHealth;
+        eventbus.updateStamina += updateStamina;
+    }
+
+    public override void _Ready()
+    {
+        player = GetTree().GetFirstNodeInGroup("player");
+        stamina = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Stamina");
+        health = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Health");
 
         time = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/time");
         curDay = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/day");
@@ -31,8 +46,20 @@ public partial class Interface : CanvasLayer
     }
     
 
-    public void setTime(int day, int hour, int min)
+    public void updateStamina(int value)
     {
+        stamina.Value = value;
+    }
+    
+    public void updateHealth(int value)
+    {
+        health.Value = value;
+    }
+
+    public void setTime(int day, int hour, int min, float temp)
+    {
+        //set temp in c
+        this.temp.Text = ((int)temp).ToString() + "°F";
         //setting time
         if (hour >= 12 && hour <= 23)
         {
@@ -68,6 +95,14 @@ public partial class Interface : CanvasLayer
                 curDay.Text = days[6];
                 break;
         }
+    }
+
+    public override void _ExitTree()
+    {
+        eventbus.timeTick -= setTime;
+
+        eventbus.updateHealth -= updateHealth;
+        eventbus.updateStamina -= updateStamina;
     }
 
     //use this to receive events for player input related to pause/and ui

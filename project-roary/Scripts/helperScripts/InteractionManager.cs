@@ -2,8 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
 public partial class InteractionManager : Node2D
 {
     public Player player;
@@ -55,6 +53,7 @@ public partial class InteractionManager : Node2D
         if (index != -1)
         {
             activeAreas.RemoveAt(index);
+            canInteract = true;
         }
     }
 
@@ -69,7 +68,7 @@ public partial class InteractionManager : Node2D
 
                 activeAreas[0].interact.Call();
 
-                canInteract = true;
+                //canInteract = true;
             }
         }
     }

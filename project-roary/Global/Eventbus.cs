@@ -18,10 +18,10 @@ public partial class Eventbus : Node
     }
 
     [Signal]
-    public delegate void applyDamageEventHandler(string dmgReceiverName, string dmgDealerName, int dmg); //this is emitted by hitbox and used by hurtbox to pass dmg and information to deal dmg and apply effects.
+    public delegate void applyDamageEventHandler(Node dmgReceiverName, Node dmgDealerName, int dmg); //this is emitted by hitbox and used by hurtbox to pass dmg and information to deal dmg and apply effects.
 
     [Signal]
-    public delegate void timeTickEventHandler(int day, int hour, int min); //this signal is used for ticking time, emitted by dayNightcycle script
+    public delegate void timeTickEventHandler(int day, int hour, int min, float temp); //this signal is used for ticking time, emitted by dayNightcycle script
 
     [Signal]
     public delegate void finishedDisplayingEventHandler(); //this is emitted by text boxes when a set of text is done displaying.
@@ -33,4 +33,12 @@ public partial class Eventbus : Node
     public delegate void itemDroppedEventHandler(InventoryItem item, int quantity);
     [Signal]
     public delegate void itemEquippedEventHandler(int slotIndex);
+
+    [Signal] public delegate void updateStaminaEventHandler(int value);
+    [Signal] public delegate void updateHealthEventHandler(int value);
+
+    //effects
+    [Signal] public delegate void hitStopEventHandler(float duration);
+    [Signal] public delegate void screenShakeEventHandler(float intensity);
+    [Signal] public delegate void knockBackEventHandler(CharacterBody2D target, float strength, Vector2 sourcePosition);
 }  

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c67q3xn3rrumy"]
+
+[ext_resource type="Script" uid="uid://1dsjqn6wuiuy" path="res://Scripts/helperScripts/PlayerSpawn.cs" id="1_47sa7"]
+
+[node name="PlayerSpawnPoints" type="Node" node_paths=PackedStringArray("spawnsAvailable")]
+script = ExtResource("1_47sa7")
+spawnsAvailable = []

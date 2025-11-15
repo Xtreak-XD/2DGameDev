@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class dialogueManager : Node
 {
@@ -21,7 +22,7 @@ public partial class dialogueManager : Node
         textBoxScene = GD.Load<PackedScene>("res://Scenes/Dialogue/text_box.tscn");
     }
 
-    public void startDialog(Vector2 position, string[] lines)
+    public async Task startDialog(Vector2 position, string[] lines)
     {
         if (isDialogActive)
         {
@@ -30,18 +31,18 @@ public partial class dialogueManager : Node
 
         dialogLines = lines;
         textBoxPosition = position;
-        showTextBox();
+        await showTextBox();
 
         isDialogActive = true;
     }
 
-    public void showTextBox()
+    public async Task showTextBox()
     {
         textBox = (TextBox)textBoxScene.Instantiate();
         eventbus.finishedDisplaying += onTextBoxFinishedDisplaying;
         GetTree().Root.AddChild(textBox);
         textBox.GlobalPosition = textBoxPosition;
-        textBox.displayText(dialogLines[currentLineIndex]);
+        await textBox.displayText(dialogLines[currentLineIndex]);
         canAdvanceLine = false;
     }
 
@@ -58,17 +59,29 @@ public partial class dialogueManager : Node
             canAdvanceLine
             )
         {
-            textBox.QueueFree();
-
-            currentLineIndex++;
-            if (currentLineIndex >= dialogLines.Length)
-            {
-                isDialogActive = false;
-                currentLineIndex = 0;
-                eventbus.EmitSignal("finishedDisplaying");
-                return;
-            }
-            showTextBox();
+            HandleDialogAdvance();
         }
     }
+
+    private async Task HandleDialogAdvance()
+    {
+        textBox.QueueFree();
+        currentLineIndex++;
+
+        if (currentLineIndex >= dialogLines.Length)
+        {
+            isDialogActive = false;
+            currentLineIndex = 0;
+            eventbus.EmitSignal("finishedDisplaying");
+            return;
+        }
+
+        await showTextBox();
+    }
+
+    public override void _ExitTree()
+    {
+        eventbus.finishedDisplaying -= onTextBoxFinishedDisplaying;
+    }
+
 }

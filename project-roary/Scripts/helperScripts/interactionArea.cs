@@ -25,11 +25,18 @@ public partial class interactionArea : Area2D
         GD.Print("registered to manager");
         interactionManager.registerArea(this);
     }
-    
+
     public void onBodyExited(Node2D body)
     {
         GD.Print("unregistered to manager");
         interactionManager.unregisterArea(this);
     }
+
+    public override void _ExitTree()
+    {
+        BodyEntered -= onBodyEntered;
+        BodyExited -= onBodyExited;
+    }
+
 
 }

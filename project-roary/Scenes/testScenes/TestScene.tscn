@@ -1,9 +1,12 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
 [gd_scene load_steps=12 format=3 uid="uid://dkq42aw23ge1k"]
 
-[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_es28b"]
 [ext_resource type="PackedScene" uid="uid://ca11nyq5g8i65" path="res://Scenes/entities/enemies/enemy.tscn" id="2_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
+[ext_resource type="PackedScene" uid="uid://dbc0ewvo0k63x" path="res://Scenes/entities/npcs/wise_turtle_brother.tscn" id="6_106wm"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="6_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="7_lfsl6"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="5_4b6br"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="6_106wm"]
 [ext_resource type="Script" uid="uid://d33j8exaeh7wi" path="res://Scenes/testScenes/TestNpc.cs" id="6_lfsl6"]
@@ -11,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://8c5uvk27c2i2" path="res://Scenes/Items/Banana.tscn" id="9_3unw3"]
 [ext_resource type="PackedScene" uid="uid://dekv33yudwobc" path="res://Scenes/Items/Grape.tscn" id="10_d43vx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_106wm"]
-radius = 174.3
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfsl6"]
+radius = 32.06244
 
 [node name="TestScene" type="Node2D"]
 
@@ -20,8 +23,12 @@ radius = 174.3
 position = Vector2(222, 143)
 
 [node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
+[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
+EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D")]
+EnemyScene = ExtResource("3_106wm")
+MaxEnemiesAlive = 4
 EnemyScene = ExtResource("2_6tqdf")
 
 [node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer" index="0"]
@@ -40,20 +47,16 @@ position = Vector2(290, 198)
 
 [node name="dayNightController" parent="." instance=ExtResource("4_bobsk")]
 position = Vector2(329, 360)
-INGAME_SPEED = 100.0
-INITIAL_HOUR = null
+INGAME_SPEED = 50.0
 
-[node name="testNpc" type="Sprite2D" parent="."]
-position = Vector2(348, 109)
-scale = Vector2(0.14062509, 0.30078128)
-texture = ExtResource("5_4b6br")
-script = ExtResource("6_lfsl6")
+[node name="WiseTurtleBrother" parent="." instance=ExtResource("6_106wm")]
+position = Vector2(647, 339)
 
-[node name="InteractableArea" parent="testNpc" instance=ExtResource("6_106wm")]
-actionName = "talk"
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("6_lfsl6")]
+spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="testNpc/InteractableArea"]
-shape = SubResource("CircleShape2D_106wm")
+[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(1142, 634)
 
 [node name="Items" parent="." instance=ExtResource("8_k25gx")]
 position = Vector2(302.99997, 196.99998)
@@ -82,5 +85,14 @@ position = Vector2(340, 223)
 scale = Vector2(0.1, 0.1)
 itemID = null
 itemQuantity = 10
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(581, 873)
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("7_lfsl6")]
+position = Vector2(48, 574)
+path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+shape = SubResource("CircleShape2D_lfsl6")
 
 [editable path="Enemymanager"]

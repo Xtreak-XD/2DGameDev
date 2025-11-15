@@ -1,3 +1,4 @@
+using State = PlayerState;
 using Godot;
 
 public partial class WalkState: State

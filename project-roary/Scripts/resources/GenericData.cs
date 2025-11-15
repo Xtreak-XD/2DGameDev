@@ -11,4 +11,9 @@ public partial class GenericData : Resource
 	public int Damage { get; set; }
 	[Export]
 	public int Speed { get; set; }
+
+	[Export] public bool dealKnockback;
+	[Export(PropertyHint.Range, "0.0, 100.0, 15.0")] public float knockBackAmount;
+	
+
 }

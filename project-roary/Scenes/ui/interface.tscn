@@ -58,7 +58,7 @@ text = "Ammo: 5/50"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/playerinfo/HBoxContainer/VBoxContainer"]
+[node name="Stamina" type="TextureProgressBar" parent="HUD/playerinfo/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 value = 100.0
 nine_patch_stretch = true
@@ -67,7 +67,7 @@ stretch_margin_bottom = 16
 texture_progress = ExtResource("2_dhmg6")
 tint_progress = Color(0, 0, 1, 1)
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="HUD/playerinfo/HBoxContainer/VBoxContainer"]
+[node name="Health" type="TextureProgressBar" parent="HUD/playerinfo/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 value = 100.0
 nine_patch_stretch = true

@@ -22,6 +22,7 @@ DialogueManager="*res://Global/dialogueManager.cs"
 InteractionManager="*res://Scenes/helperScenes/interaction_manager.tscn"
 Effects="*res://Global/effects.tscn"
 SceneManager="*res://Global/SceneManager.cs"
+Inventory="*res://Global/Inventory.cs"
 
 [display]
 

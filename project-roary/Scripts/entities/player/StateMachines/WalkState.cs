@@ -4,12 +4,10 @@ using Godot;
 public partial class WalkState: State
 {
     public State idle;
-    public State dodge;
 
     public override void _Ready()
     {
         idle = GetNode<IdleState>("../idle");
-        dodge = GetNode<DodgeState>("../dodge");
     }
 
     public override void Enter()
@@ -31,7 +29,7 @@ public partial class WalkState: State
             return idle;
         }
 
-        player.Velocity = player.direction.Normalized() * player.data.Speed * (float)(player.data.Accel * delta);
+        player.Velocity = player.direction.Normalized() * player.data.Speed;
 
         if (player.SetDirection())
         {
@@ -48,10 +46,6 @@ public partial class WalkState: State
 
     public override State HandleInput(InputEvent @event)
     {
-        if (@event.IsActionPressed("dodge"))
-        {
-            return dodge;
-        }
         return null;
     }
 

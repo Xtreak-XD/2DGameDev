@@ -1,3 +1,23 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# C# project backups
+.csproj.old.*
+*.csproj.old
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.vs/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
+nul

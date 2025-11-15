@@ -1,13 +1,9 @@
 using Godot;
 using System;
-using System.Threading.Tasks;
 
 
 public partial class Player : CharacterBody2D
 {
-
-	public Eventbus eventbus;
-
 	[Export] Resource metaData;
 	[Export]
 	public GenericData data;
@@ -17,6 +13,10 @@ public partial class Player : CharacterBody2D
 
 	public Vector2 cardinalDirection = Vector2.Down;
 	public Vector2 direction = Vector2.Zero;
+
+	private Eventbus eventbus;
+	private int equippedSlot = 0;
+	private Inventory inv;
 
 	public Vector2 lastDirection = Vector2.Zero;
 
@@ -32,11 +32,15 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		AddToGroup("player");
-		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
+		inv = GetNode<Inventory>("/root/Inventory");
 		stateMachine.Initialize(this);
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		eventbus.itemDropped += spawnItemInWorld;
+		eventbus.itemEquipped += equipItem;
+		eventbus.inventoryUpdated += checkIfEquipped;
 	}
 
 	public override void _Process(double delta)
@@ -75,7 +79,7 @@ public partial class Player : CharacterBody2D
 		}
 		MoveAndSlide();
 	}
-	
+
 	public bool SetDirection()
 	{
 		Vector2 sprite = Scale;
@@ -90,21 +94,57 @@ public partial class Player : CharacterBody2D
 		if (direction.Y == 0)
 		{
 			newDir = direction.X < 0 ? Vector2.Left : Vector2.Right;
-			lastDirection = newDir;
 		}
 		else if (direction.X == 0)
 		{
 			newDir = direction.Y < 0 ? Vector2.Up : Vector2.Down;
-			lastDirection = newDir;
 		}
 
 		if (newDir == cardinalDirection)
 		{
 			return false;
 		}
+
 		cardinalDirection = newDir;
 		sprite.X = cardinalDirection == Vector2.Left ? -1 : 1;
 		return true;
+	}
+
+	public void equipItem(int slotIndex)
+	{
+		if (slotIndex == equippedSlot) return;
+
+		equippedSlot = slotIndex;
+		InventorySlot equipItem = inv.slots[slotIndex];
+
+		if (equipItem.item != null && equipItem.quantity > 0)
+		{
+			GD.Print($"Equipped: {equipItem.item.itemName}");
+		}
+		else
+		{
+			GD.Print($"Slot {slotIndex + 1} selected (empty)");
+		}
+	}
+
+	public void checkIfEquipped()
+    {
+        InventorySlot currentSlot = inv.slots[equippedSlot];
+	
+		if (currentSlot.item != null && currentSlot.quantity > 0)
+		{
+			GD.Print($"Now equipped: {currentSlot.item.itemName}");
+		}
+    }
+	
+	public void spawnItemInWorld(InventoryItem item, int quantity)
+	{
+		PackedScene itemScene = GD.Load<PackedScene>("res://Scenes/ui/inventory/Items.tscn");
+		Items itemInstance = itemScene.Instantiate() as Items;
+		itemInstance.itemResource = item;
+		itemInstance.itemQuantity = quantity;
+		itemInstance.GlobalPosition = this.GlobalPosition + (cardinalDirection * 30); // Spawns the infront of player
+		GetTree().GetCurrentScene().AddChild(itemInstance);
     }
 
 	public void UpdateAnimation(String state)

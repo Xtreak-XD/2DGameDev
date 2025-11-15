@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://8pvee488ohwq"]
+
+[ext_resource type="Texture2D" uid="uid://b8uisa8dlosas" path="res://Sprites/inventory/InventorySlot2.png" id="1_ac1nk"]
+[ext_resource type="Script" uid="uid://dc06h3p4faqfq" path="res://Scripts/ui/inventory/ItemUISlot.cs" id="2_hpqa8"]
+
+[node name="InventoryUISlot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("2_hpqa8")
+
+[node name="InventoryImage" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_ac1nk")
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuantityLabel" type="Label" parent="ItemDisplay"]
+z_index = 2
+layout_mode = 0
+offset_left = 5.0
+offset_right = 24.0
+offset_bottom = 23.0
+scale = Vector2(0.9, 0.9)
+text = "20"

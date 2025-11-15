@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ch37lgatp4muf"]
 
-[ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/test_enemy/Enemy.cs" id="1_jxk5p"]
+[ext_resource type="Script" path="res://Scripts/entities/enemies/Enemy.cs" id="1_jxk5p"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_kinsv"]
 [ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/test_enemy/state_machine/EnemyStateMachine.cs" id="3_yqnki"]
 [ext_resource type="Script" uid="uid://xkflm4opmlnh" path="res://Scripts/entities/enemies/test_enemy/state_machine/Roam.cs" id="4_rkctb"]
@@ -46,7 +46,7 @@ shape = SubResource("CircleShape2D_kinsv")
 [node name="TargetDetector" type="Area2D" parent="."]
 
 [node name="DetectionRadius" type="CollisionShape2D" parent="TargetDetector"]
-position = Vector2(42, 32)
+position = Vector2(46, 25)
 shape = SubResource("CircleShape2D_tdsod")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

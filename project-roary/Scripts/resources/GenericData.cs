@@ -40,6 +40,6 @@ public partial class GenericData : Resource
 
 	[Export] public bool dealKnockback;
 	[Export(PropertyHint.Range, "0.0, 100.0, 15.0")] public float knockBackAmount;
-	
+
 
 }

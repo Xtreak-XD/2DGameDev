@@ -16,13 +16,14 @@ public partial class Interface : CanvasLayer
         {6, "Sunday"}
     };
     public Eventbus eventbus;
-    public Node player;
     public Label time;
     public Label curDay;
     public Label temp;
 
     public TextureProgressBar health;
     public TextureProgressBar stamina;
+
+    public Node player;
 
     public override void _EnterTree()
     {
@@ -43,7 +44,7 @@ public partial class Interface : CanvasLayer
         curDay = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/day");
         temp = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/temp");
     }
-
+    
 
     public void updateStamina(int value)
     {

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://r6a6orujjhgt"]
+
+[ext_resource type="Script" uid="uid://ci5ipbs7mxuf5" path="res://Scripts/ui/inventory/Items.cs" id="1_lg3yg"]
+[ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="3_r5xbp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yb0kb"]
+radius = 148.21606
+
+[node name="Items" type="Sprite2D"]
+position = Vector2(3.8146973e-06, 3.8146973e-06)
+script = ExtResource("1_lg3yg")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_r5xbp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-1.9073485e-05, -1.9073485e-05)
+shape = SubResource("CircleShape2D_yb0kb")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://beylivn64y0pn"]
+
+[ext_resource type="Script" uid="uid://bmpqybontvf4c" path="res://Scripts/resources/WeaponData.cs" id="1_n1g02"]
+
+[resource]
+script = ExtResource("1_n1g02")
+damage = 10
+attackRate = 0.2
+knockback = 100.0

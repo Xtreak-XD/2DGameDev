@@ -1,14 +1,11 @@
 using Godot;
-using System;
 
 
 public partial class Player : CharacterBody2D
 {
 	[Export] Resource metaData;
-	[Export]
-	public GenericData data;
+	[Export] public GenericData data;
 	public AnimationPlayer animationPlayer;
-	public AnimatedSprite2D anim;
 	public PlayerStateMachine stateMachine;
 
 	public Vector2 cardinalDirection = Vector2.Down;
@@ -19,6 +16,7 @@ public partial class Player : CharacterBody2D
 	private Inventory inv;
 
 	public Vector2 lastDirection = Vector2.Zero;
+	public Vector2[] DIRECTIONS = {Vector2.Right, Vector2.Left, Vector2.Up, Vector2.Down};
 
 	public bool usingStamina = false;
 	public bool recoveringStamina = false;
@@ -31,11 +29,14 @@ public partial class Player : CharacterBody2D
 	private const float KnockBackDecay = 750.0f;
 	public override void _Ready()
 	{
+		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 		AddToGroup("player");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
+    
 		inv = GetNode<Inventory>("/root/Inventory");
+    
 		stateMachine.Initialize(this);
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.itemDropped += spawnItemInWorld;
@@ -82,32 +83,35 @@ public partial class Player : CharacterBody2D
 
 	public bool SetDirection()
 	{
-		Vector2 sprite = Scale;
+		if (direction == Vector2.Zero){ return false;}
+		Vector2 new_dir;
 
-		Vector2 newDir = cardinalDirection;
-
-		if (direction == Vector2.Zero)
+		if (Mathf.Abs(direction.X) > Mathf.Abs(direction.Y))
 		{
-			return false;
+			new_dir = direction.X > 0 ? Vector2.Right : Vector2.Left;
+		}
+		else
+		{
+			new_dir = direction.Y > 0 ? Vector2.Down : Vector2.Up;
 		}
 
-		if (direction.Y == 0)
-		{
-			newDir = direction.X < 0 ? Vector2.Left : Vector2.Right;
-		}
-		else if (direction.X == 0)
-		{
-			newDir = direction.Y < 0 ? Vector2.Up : Vector2.Down;
-		}
+		if (new_dir == cardinalDirection){ return false; }
 
-		if (newDir == cardinalDirection)
-		{
-			return false;
-		}
+		cardinalDirection = new_dir;
 
-		cardinalDirection = newDir;
-		sprite.X = cardinalDirection == Vector2.Left ? -1 : 1;
 		return true;
+    }
+
+	public string SetAnimDir()
+    {
+		if (Mathf.Abs(cardinalDirection.X) > Mathf.Abs(cardinalDirection.Y))
+		{
+			return cardinalDirection.X > 0 ? "right" : "left";
+		}
+		else
+		{
+			return cardinalDirection.Y > 0 ? "down" : "up";
+		}
 	}
 
 	public void equipItem(int slotIndex)
@@ -146,26 +150,21 @@ public partial class Player : CharacterBody2D
 		itemInstance.GlobalPosition = this.GlobalPosition + (cardinalDirection * 30); // Spawns the infront of player
 		GetTree().GetCurrentScene().AddChild(itemInstance);
     }
-
-	public void UpdateAnimation(String state)
+	public void UpdateAnimation(string state)
 	{
-		if (animationPlayer.HasAnimation(state) &&
-			(animationPlayer.CurrentAnimation != state || !animationPlayer.IsPlaying()))
+		if( state != "idle")
 		{
-			animationPlayer.Play(state);
+			animationPlayer.Play(state + "_" + SetAnimDir());
 		}
+        else
+        {
+            animationPlayer.Play(state + "_" + SetAnimDir());
+        }
 	}
 
 	public void setSpawnPosition(Vector2 pos)
     {
         GlobalPosition = pos;
-    }
-	
-	public string AnimDirection()
-    {
-		if (cardinalDirection == Vector2.Down) return "down";
-		else if (cardinalDirection == Vector2.Up) return "up";
-		else return "side";
     }
 
 }

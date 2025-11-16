@@ -41,4 +41,5 @@ public partial class Eventbus : Node
     [Signal] public delegate void hitStopEventHandler(float duration);
     [Signal] public delegate void screenShakeEventHandler(float intensity);
     [Signal] public delegate void knockBackEventHandler(CharacterBody2D target, float strength, Vector2 sourcePosition);
+    [Signal] public delegate void triggerAttackEventHandler();
 }  

@@ -29,7 +29,7 @@ public partial class Projectile : CharacterBody2D
 		hitbox = GetNode<Hitbox>("Hitbox");
 		//parent = GetParent().GetParent<RangedWeapon>();
 
-		hitbox.BodyEntered += HitEntity;
+		hitbox.AreaEntered += HitEntity;
 
 		spawn = GlobalPosition;
 		//GD.Print($"Projectile spawned at: {spawn}");
@@ -61,25 +61,13 @@ public partial class Projectile : CharacterBody2D
 	// REMEMBER TO CALL base.HitEntity() if you override this.
 	// If you override this, call base.HitEntity() at the start
 	// of your override
-	public virtual void HitEntity(Node2D body)
+	public virtual void HitEntity(Area2D area)
 	{
-		if(!body.GetGroups().Contains("enemy"))
-		{
-			//GD.Print("Projectile hit something that was not a HurtBox.");
-			return;
-		}
-
-		HurtBox hurtbox = body.GetNode<HurtBox>("HurtBox");
-		if(hurtbox.GetParent().GetChildren().Contains(parentWeapon))
+		if (area.GetParent().IsInGroup("enemy"))
         {
-			return;
+            QueueFree();
         }
-
-		GD.Print("Projectile has hit a hurtbox.");
 		
-		// Add damage logic here
-
-		QueueFree();
     }
 
 	// If you override this, remember to

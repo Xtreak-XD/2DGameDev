@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ru0aqml0mlrd"]
+[gd_scene load_steps=7 format=3 uid="uid://ru0aqml0mlrd"]
 
 [ext_resource type="Script" uid="uid://ci4ly7wioromd" path="res://Scripts/weapons/projectiles/Staple.cs" id="1_ngjvi"]
 [ext_resource type="Resource" uid="uid://bjfhcchw7anup" path="res://Resources/weapons/projectiles/StapleData.tres" id="2_b4fku"]
@@ -6,8 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://dge86i3rud80y" path="res://Sprites/misc/staples.jpg" id="4_b4fku"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
+radius = 34.058773
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b4fku"]
+radius = 50.01
 
 [node name="Staple" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_ngjvi")
 data = ExtResource("2_b4fku")
 
@@ -21,7 +27,9 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_5ny5u")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_vh7a8")]
-scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_b4fku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.095, 0.105)

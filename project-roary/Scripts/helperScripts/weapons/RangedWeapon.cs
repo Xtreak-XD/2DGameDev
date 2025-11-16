@@ -46,7 +46,7 @@ public partial class RangedWeapon : Weapon
 		//GD.Print($"Projectile launch velocity: {proj.Velocity}");
 
 		proj.parentWeapon = this;
-		proj.data.damage = data.damage;
+		proj.data.Damage = data.damage;
 		proj.data.knockback = data.knockback;
 	}
 }

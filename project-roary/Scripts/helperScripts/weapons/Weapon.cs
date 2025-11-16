@@ -67,7 +67,7 @@ public partial class Weapon : Node2D
 		float angle = direction.Angle();
 
 		Vector2 offset = new Vector2(Mathf.Cos(angle),
-		 Mathf.Sin(angle)).Normalized() * 200; // THIS WILL NEED ADJUSTING BASED
+		 Mathf.Sin(angle)).Normalized() * 300; // THIS WILL NEED ADJUSTING BASED
 											   // ON FINAL DIMENSIONS
 											   // SINCE PLAYER'S NODES ARE 
 											   // NOT CENTERED

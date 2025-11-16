@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhpuvxagmpeaq"]
 
-[ext_resource type="PackedScene" uid="uid://cacidmpeflpxf" path="res://Scenes/entities/player/player.tscn" id="1_rglo7"]
+[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="1_rglo7"]
 [ext_resource type="PackedScene" uid="uid://bxe3uowu2sita" path="res://Scenes/weapons/StapleGun.tscn" id="2_ik0oo"]
 [ext_resource type="PackedScene" uid="uid://dodiy3h22hmr3" path="res://Scenes/entities/enemies/alligator.tscn" id="3_1m6rw"]
 

@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://demrb8vvu0ahj"]
+[gd_scene load_steps=6 format=3 uid="uid://demrb8vvu0ahj"]
 
 [ext_resource type="Script" uid="uid://bw0eghsjf0lng" path="res://Scripts/weapons/PencilSword.cs" id="1_5a3eh"]
 [ext_resource type="Resource" uid="uid://b743n0j8e80y5" path="res://Resources/weapons/PencilSwordData.tres" id="2_ilxvl"]
 [ext_resource type="Texture2D" uid="uid://b0l5rpijsyv3h" path="res://Sprites/misc/pencil.jpg" id="3_5a3eh"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_k1v0k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ilxvl"]
+radius = 105.57895
 
 [node name="PencilSword" type="Node2D"]
 script = ExtResource("1_5a3eh")
@@ -11,6 +14,9 @@ data = ExtResource("2_ilxvl")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_k1v0k")]
 scale = Vector2(0.9, 0.9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ilxvl")
 
 [node name="AttackTimer" type="Timer" parent="."]
 

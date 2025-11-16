@@ -21,11 +21,13 @@ Eventbus="*res://Global/Eventbus.cs"
 DialogueManager="*res://Global/dialogueManager.cs"
 InteractionManager="*res://Scenes/helperScenes/interaction_manager.tscn"
 Effects="*res://Global/effects.tscn"
+SceneManager="*res://Global/SceneManager.cs"
 
 [display]
 
-window/size/viewport_width=10000
-window/size/viewport_height=10000
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=12 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
 [ext_resource type="Texture2D" uid="uid://ccibbsncsdid5" path="res://Sprites/world/overworld_stadium.png" id="2_gknab"]
@@ -6,14 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://xvnrsto6o2h5" path="res://Sprites/world/overworld_pg.png" id="4_255qt"]
 [ext_resource type="Texture2D" uid="uid://cobka0qcnaod1" path="res://Sprites/world/overworld_gl.png" id="4_gknab"]
 [ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
-[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="7_uny04"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 
 [sub_resource type="Environment" id="Environment_uny04"]
 background_mode = 3
 glow_normalized = true
 adjustment_enabled = true
 adjustment_saturation = 1.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_up40q"]
+radius = 177.0
 
 [node name="Overworld" type="Node2D"]
 
@@ -35,32 +39,82 @@ environment = SubResource("Environment_uny04")
 [node name="CanvasModulate" parent="." instance=ExtResource("8_gqpsm")]
 INGAME_SPEED = 50.0
 
-[node name="worldPlain" type="Sprite2D" parent="."]
-position = Vector2(5000, 5000)
-texture = ExtResource("1_rxqxp")
+[node name="Map" type="Node2D" parent="."]
 
-[node name="stadium" type="Sprite2D" parent="worldPlain"]
-position = Vector2(-2769, -3212)
+[node name="ChunkTL" type="Sprite2D" parent="Map"]
+texture = ExtResource("1_rxqxp")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 5000)
+
+[node name="stadium" type="Sprite2D" parent="Map/ChunkTL"]
+z_index = 2
+position = Vector2(2231, 1788)
 texture = ExtResource("2_gknab")
 
-[node name="GC" type="Sprite2D" parent="worldPlain"]
+[node name="NP" type="Sprite2D" parent="Map/ChunkTL"]
 z_index = 2
-position = Vector2(3054, 2984)
-texture = ExtResource("3_depd0")
-
-[node name="GL" type="Sprite2D" parent="worldPlain"]
-z_index = 2
-position = Vector2(-3392, 3126)
-texture = ExtResource("4_gknab")
-
-[node name="PG" type="Sprite2D" parent="worldPlain"]
-position = Vector2(3904, -643)
-texture = ExtResource("4_255qt")
-
-[node name="NP" type="Sprite2D" parent="worldPlain"]
-position = Vector2(1584, -3385)
+position = Vector2(6584, 1615)
 texture = ExtResource("6_255qt")
 
-[node name="Player" parent="." instance=ExtResource("7_uny04")]
-position = Vector2(8344, 6057)
-collision_mask = 65
+[node name="ChunkTR" type="Sprite2D" parent="Map"]
+texture = ExtResource("1_rxqxp")
+centered = false
+offset = Vector2(5000, 0)
+region_enabled = true
+region_rect = Rect2(5000, 0, 5000, 5000)
+
+[node name="NP" type="Sprite2D" parent="Map/ChunkTR"]
+z_index = 2
+position = Vector2(6584, 1615)
+texture = ExtResource("6_255qt")
+
+[node name="PG" type="Sprite2D" parent="Map/ChunkTR"]
+z_index = 2
+position = Vector2(8904, 4357)
+texture = ExtResource("4_255qt")
+
+[node name="ChunkBL" type="Sprite2D" parent="Map"]
+texture = ExtResource("1_rxqxp")
+centered = false
+offset = Vector2(0, 5000)
+region_enabled = true
+region_rect = Rect2(0, 5000, 5000, 5000)
+
+[node name="GL" type="Sprite2D" parent="Map/ChunkBL"]
+z_index = 2
+position = Vector2(1608, 8126)
+texture = ExtResource("4_gknab")
+
+[node name="ChunkBR" type="Sprite2D" parent="Map"]
+texture = ExtResource("1_rxqxp")
+centered = false
+offset = Vector2(5000, 5000)
+region_enabled = true
+region_rect = Rect2(5000, 5000, 5000, 5000)
+
+[node name="PG" type="Sprite2D" parent="Map/ChunkBR"]
+z_index = 2
+position = Vector2(8904, 4357)
+texture = ExtResource("4_255qt")
+
+[node name="GC" type="Sprite2D" parent="Map/ChunkBR"]
+z_index = 2
+position = Vector2(8054, 7984)
+texture = ExtResource("3_depd0")
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(5740, 6787)
+path = "res://Scenes/testScenes/TestScene.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+shape = SubResource("CircleShape2D_up40q")
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
+spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing")]
+
+[node name="fromTestScene" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(4729, 8931)
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2892, 3860)

@@ -7,11 +7,16 @@ public partial class HurtBox : Area2D
     public Eventbus eventbus;
     public GenericData data;
     public Node parent;
+
+    public override void _EnterTree()
+    {
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
+        eventbus.applyDamage += onApplyDmg;
+    }
+
     public override void _Ready()
     {
         AddToGroup("hurtbox");
-        eventbus = GetNode<Eventbus>("/root/Eventbus");
-        eventbus.applyDamage += onApplyDmg;
 
         parent = GetParent();
 

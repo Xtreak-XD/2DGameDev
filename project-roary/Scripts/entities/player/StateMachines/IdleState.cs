@@ -15,7 +15,7 @@ public partial class IdleState: State
 // what happens when player enters their new state
     public override void Enter()
     {
-        // idle animation goes here
+        player.UpdateAnimation("idle");
     }
 
 // what happens when player exits their current state
@@ -32,6 +32,8 @@ public partial class IdleState: State
         }
 
         player.Velocity = Vector2.Zero;
+
+        if (player.SetDirection()){ player.UpdateAnimation("idle");}
 
         return null;
     }

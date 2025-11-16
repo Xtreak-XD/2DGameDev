@@ -1,3 +1,93 @@
-[gd_scene format=3 uid="uid://c40jqbolu6ucs"]
+[gd_scene load_steps=18 format=3 uid="uid://c40jqbolu6ucs"]
+
+[ext_resource type="Script" uid="uid://dk5af3uxg5xrn" path="res://Scripts/entities/enemies/roary/Roary.cs" id="1_0ba8j"]
+[ext_resource type="Texture2D" uid="uid://5nbbip78ckyi" path="res://Sprites/entities/enemies/roary.png" id="1_eprkh"]
+[ext_resource type="PackedScene" uid="uid://bxhyvguf25h57" path="res://Scenes/entities/enemies/football_scene.tscn" id="2_a3kdu"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="2_nhspe"]
+[ext_resource type="Resource" uid="uid://lnk1lqfl06g4" path="res://Resources/entities/enemy/RoaryData.tres" id="2_nucaq"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="3_6vt06"]
+[ext_resource type="Script" uid="uid://c7pqgkfyodsil" path="res://Scripts/entities/enemies/roary/roary_state_machine/RoaryStateMachine.cs" id="3_b1m3o"]
+[ext_resource type="Script" uid="uid://do0gaj36c07ww" path="res://Scripts/entities/enemies/roary/roary_state_machine/RoaryRoam.cs" id="4_nucaq"]
+[ext_resource type="Script" uid="uid://dube74ccmvjn5" path="res://Scripts/entities/enemies/roary/roary_state_machine/GoToArenaCenter.cs" id="5_b1m3o"]
+[ext_resource type="Script" uid="uid://4sywid8lbhxl" path="res://Scripts/entities/enemies/roary/roary_state_machine/SummonFootballStampede.cs" id="7_bc46s"]
+[ext_resource type="Script" uid="uid://bifo376cjhvnn" path="res://Scripts/entities/enemies/roary/roary_state_machine/RoaryDash.cs" id="8_bc46s"]
+[ext_resource type="Script" uid="uid://fq56vercv5gf" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThrowFootball.cs" id="9_l4c6a"]
+[ext_resource type="PackedScene" uid="uid://c8xcn3kiucg7m" path="res://Scenes/weapons/projectiles/RoaryFootball.tscn" id="10_xe754"]
+[ext_resource type="Script" uid="uid://duafqumdouuiu" path="res://Scripts/entities/enemies/roary/roary_state_machine/MoveTowardPlayer.cs" id="11_u5mku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ba8j"]
+size = Vector2(263.5, 533)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nucaq"]
+size = Vector2(293, 590)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1m3o"]
+size = Vector2(198, 265)
 
 [node name="Roary" type="CharacterBody2D"]
+script = ExtResource("1_0ba8j")
+footballCharge = ExtResource("2_a3kdu")
+football = ExtResource("10_xe754")
+data = ExtResource("2_nucaq")
+OffScreenDespawnTime = 99999.0
+
+[node name="RoaryStateMachine" type="Node" parent="."]
+script = ExtResource("3_b1m3o")
+
+[node name="RoaryRoam" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("4_nucaq")
+
+[node name="GoToArenaCenter" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("5_b1m3o")
+
+[node name="FootballPlayerStampede" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("7_bc46s")
+
+[node name="RoaryDash" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("8_bc46s")
+
+[node name="ThrowFootball" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("9_l4c6a")
+
+[node name="MoveTowardPlayer" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("11_u5mku")
+
+[node name="RoaryRoamTimer" type="Timer" parent="RoaryStateMachine"]
+wait_time = 0.1
+
+[node name="RoaryAttackTimer" type="Timer" parent="RoaryStateMachine"]
+wait_time = 6.0
+
+[node name="FootballChargeDuration" type="Timer" parent="RoaryStateMachine"]
+wait_time = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.3841858e-07, 0)
+scale = Vector2(0.3, 0.319)
+texture = ExtResource("1_eprkh")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_nhspe")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, -1)
+scale = Vector2(0.4, 0.4)
+shape = SubResource("RectangleShape2D_0ba8j")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_6vt06")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, 0)
+scale = Vector2(0.35, 0.35)
+shape = SubResource("RectangleShape2D_nucaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.4, 0.4)
+shape = SubResource("RectangleShape2D_b1m3o")
+
+[node name="ProjectileSource" type="Marker2D" parent="."]
+gizmo_extents = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="InitializePlayerTargetting" type="Timer" parent="."]
+wait_time = 0.3

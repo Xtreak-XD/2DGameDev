@@ -1,13 +1,13 @@
 using Godot;
 
-// Extend this to create a projectile that is shot from a RangedWeapon
-public partial class Projectile : CharacterBody2D
+// Extend this to create a projectile that is shot from an Enemy
+public partial class EnemyProjectile : CharacterBody2D
 {
 	// DO NOT OVERRIDE ANY OF THIS
 	public Timer projectileTimer;
 	public Hitbox hitbox;
 	public Vector2 spawn;
-	public RangedWeapon parentWeapon;
+	public Enemy parent;
 	public Timer setSpawn;
 	public Sprite2D sprite;
 
@@ -31,7 +31,7 @@ public partial class Projectile : CharacterBody2D
 		hitbox.AreaEntered += HitEntity;
 
 		spawn = GlobalPosition;
-		//GD.Print($"Projectile spawned at: {spawn}");
+		//GD.Print($"Enemy Projectile spawned at: {spawn}");
 
 		projectileTimer.Start();
 	}
@@ -57,8 +57,9 @@ public partial class Projectile : CharacterBody2D
 	// of your override
 	public virtual void HitEntity(Area2D area)
 	{
-		if (area.GetParent().IsInGroup("enemy"))
+		if (area.GetParent().IsInGroup("player"))
         {
+            GD.Print("Player has been hit by an enemy projectile");
             QueueFree();
         }
     }

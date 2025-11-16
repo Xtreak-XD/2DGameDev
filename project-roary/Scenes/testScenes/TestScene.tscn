@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=17 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://nlw0o6c6hk6n" path="res://Resources/items/Banana.tres" id="12_g1aob"]
 [ext_resource type="Texture2D" uid="uid://h55s6eqn1uxc" path="res://Sprites/item/grape.png" id="13_by4bf"]
 [ext_resource type="Resource" uid="uid://cbbxrwvl1caij" path="res://Resources/items/grape.tres" id="14_toqgo"]
+[ext_resource type="PackedScene" uid="uid://v2ybqe80tyj4" path="res://Scenes/entities/player/player.tscn" id="15_g1aob"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfsl6"]
 radius = 32.06244
@@ -25,10 +26,9 @@ position = Vector2(575.5, 319)
 scale = Vector2(1.9982638, 1.9814814)
 texture = ExtResource("1_hm8wl")
 
-[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("3_6tqdf")]
+[node name="Enemymanager" parent="." instance=ExtResource("3_6tqdf")]
 EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 3.0
-EnemySpawnPoints = [NodePath("EnemySpawnPointContainer/Marker2D")]
 EnemyScene = ExtResource("3_106wm")
 MaxEnemiesAlive = 4
 
@@ -53,8 +53,7 @@ INGAME_SPEED = 50.0
 [node name="WiseTurtleBrother" parent="." instance=ExtResource("6_106wm")]
 position = Vector2(647, 339)
 
-[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("6_lfsl6")]
-spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing")]
+[node name="PlayerSpawnPoints" parent="." instance=ExtResource("6_lfsl6")]
 
 [node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(1142, 634)
@@ -94,5 +93,7 @@ scale = Vector2(0.57222223, 0.5555556)
 texture = ExtResource("13_by4bf")
 itemQuantity = 10
 itemResource = ExtResource("14_toqgo")
+
+[node name="Player" parent="." instance=ExtResource("15_g1aob")]
 
 [editable path="Enemymanager"]

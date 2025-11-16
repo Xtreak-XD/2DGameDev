@@ -32,7 +32,6 @@ public partial class Player : CharacterBody2D
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 		AddToGroup("player");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-		anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
     
 		inv = GetNode<Inventory>("/root/Inventory");

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://caltl6nhd2gte" path="res://Scripts/entities/player/StateMachines/IdleState.cs" id="4_0etk1"]
 [ext_resource type="Texture2D" uid="uid://cocmrp5txt4o8" path="res://Sprites/entities/player/Complete_Spritesheet_of_Protagonists_Walknig_Cycle.png" id="4_afprn"]
 [ext_resource type="Script" uid="uid://bykciy4t76ir2" path="res://Scripts/entities/player/StateMachines/WalkState.cs" id="5_0etk1"]
+[ext_resource type="Script" path="res://Scripts/entities/player/StateMachines/DodgeState.cs" id="7_akm2x"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="7_qn3n3"]
 [ext_resource type="PackedScene" uid="uid://ca3g24pmtocst" path="res://Scenes/ui/interface.tscn" id="8_bke8f"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="9_lyuh4"]

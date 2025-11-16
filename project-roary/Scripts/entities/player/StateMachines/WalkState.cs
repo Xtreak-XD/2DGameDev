@@ -14,7 +14,7 @@ public partial class WalkState: State
 
     public override void Enter()
     {
-        // Walk animation goes here
+        player.UpdateAnimation("walk");
     }
 
 // what happens when player exits their current state
@@ -31,7 +31,7 @@ public partial class WalkState: State
             return idle;
         }
 
-        player.Velocity = player.direction.Normalized() * player.data.Speed * (float)(player.data.Accel * delta);
+        player.lastDirection = player.direction;
 
         if (player.SetDirection())
         {
@@ -43,6 +43,10 @@ public partial class WalkState: State
 
     public override State Physics(double delta)
     {
+        Vector2 peakVelocity = player.direction.Normalized() * player.data.Speed;
+
+        player.Velocity = peakVelocity * (float)(player.data.Accel * delta);
+
         return null;
     }
 

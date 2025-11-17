@@ -20,6 +20,8 @@ public partial class InteractionManager : Node2D
 
     public override void _Process(double delta)
     {
+        activeAreas.RemoveAll(area => !IsInstanceValid(area));
+
         if (activeAreas.Count() > 0 && canInteract)
         {
             activeAreas.Sort(SortByDistanceToPlayer);
@@ -67,7 +69,7 @@ public partial class InteractionManager : Node2D
         {
             if (activeAreas.Count() > 0)
             {
-                canInteract = false;
+                canInteract = true;
                 label.Hide();
 
                 activeAreas[0].interact.Call();

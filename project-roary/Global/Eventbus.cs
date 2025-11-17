@@ -30,9 +30,14 @@ public partial class Eventbus : Node
     [Signal] public delegate void updateStaminaEventHandler(int value);
     [Signal] public delegate void updateHealthEventHandler(int value);
 
+    //Inventory Signals
+    [Signal] public delegate void inventoryUpdatedEventHandler(); //emitted when inventory changes
+    [Signal] public delegate void itemDroppedEventHandler(InventoryItem item, int quantity); //emitted when player drops an item
+    [Signal] public delegate void itemEquippedEventHandler(int slotIndex); //emitted when player equips an item from hotbar
+
     //effects
     [Signal] public delegate void hitStopEventHandler(float duration);
     [Signal] public delegate void screenShakeEventHandler(float intensity);
     [Signal] public delegate void knockBackEventHandler(CharacterBody2D target, float strength, Vector2 sourcePosition);
     [Signal] public delegate void triggerAttackEventHandler();
-}  
+}

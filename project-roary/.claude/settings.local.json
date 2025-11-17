@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"./Resources/items/apple.tres\")",
+      "Bash(\"./Resources/items/Banana.tres\")",
+      "Bash(\"./Resources/items/grape.tres\")",
+      "Bash(\"./Resources/inventory/hotbarButtonPress.tres\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

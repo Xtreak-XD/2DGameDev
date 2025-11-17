@@ -29,9 +29,10 @@ public partial class ThrowFootball : RoaryState
 
 		footballProjectile.GlobalPosition = currentPos;
 		footballProjectile.sprite.LookAt(targetPos);
-		footballProjectile.parent = GetParent().GetParent<Roary>();
+		footballProjectile.parent = ActiveEnemy;
 
-		footballProjectile.data.Damage = ActiveEnemy.data.Damage;
+		footballProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
+		 * ActiveEnemy.StatMultipler());
 		footballProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
 
 		float finalSpeed = footballProjectile.data.speed *

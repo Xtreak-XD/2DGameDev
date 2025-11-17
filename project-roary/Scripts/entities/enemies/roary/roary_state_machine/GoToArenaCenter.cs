@@ -9,10 +9,9 @@ public partial class GoToArenaCenter : RoaryState
 
 	public SummonFootballStampede SummonFootballStampede;
 
-	//public RoaryRoam Roam;
-	public ThrowFootball ThrowFootball;
 	public RoaryDash Dash;
 	public ShadowPaw ShadowPaw;
+	public ThunderousRoar Roar;
 
 	public List<RoaryState> Attacks;
 	
@@ -23,14 +22,14 @@ public partial class GoToArenaCenter : RoaryState
 		SummonFootballStampede = GetParent().
 		GetNode<SummonFootballStampede>("FootballPlayerStampede");
 
-		//Roam = GetParent().GetNode<RoaryRoam>("RoaryRoam");
 		Dash = GetParent().GetNode<RoaryDash>("RoaryDash");
-		ThrowFootball = GetParent().GetNode<ThrowFootball>("ThrowFootball");
 		ShadowPaw = GetParent().GetNode<ShadowPaw>("ShadowPaw");
+		Roar = GetParent().GetNode<ThunderousRoar>("ThunderousRoar");
 
 		// Add a couple good attacks here
 		Attacks.Add(Dash);
 		Attacks.Add(ShadowPaw);
+		Attacks.Add(Roar);
     }
 	
 	public override void EnterState()

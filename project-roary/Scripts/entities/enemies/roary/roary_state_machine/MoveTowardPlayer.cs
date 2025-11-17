@@ -10,7 +10,6 @@ public partial class MoveTowardPlayer : RoaryState
 	public RoaryDash Dash;
 	public ThrowFootball ThrowFootball;
     public RoaryRoam Roam;
-    public ShadowPaw ShadowPaw;
 
     public List<RoaryState> Attacks;
 
@@ -21,7 +20,6 @@ public partial class MoveTowardPlayer : RoaryState
         Roam = GetParent().GetNode<RoaryRoam>("RoaryRoam");
         Dash = GetParent().GetNode<RoaryDash>("RoaryDash");
 		ThrowFootball = GetParent().GetNode<ThrowFootball>("ThrowFootball");
-        ShadowPaw = GetParent().GetNode<ShadowPaw>("ShadowPaw");
 
 		Attacks = [];
 

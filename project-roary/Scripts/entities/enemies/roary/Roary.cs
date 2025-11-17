@@ -28,6 +28,9 @@ public partial class Roary : Enemy
     [Export]
 	public PackedScene shadowPaw;
 
+    [Export]
+    public PackedScene roarIndication;
+
 	public const int ROAM_RANGE = 650;
 
 	public override void _Ready()
@@ -79,7 +82,7 @@ public partial class Roary : Enemy
 
     public float StatMultipler()
     {
-        return 1 + ((1 - GetHealthPercentage()) / 2);
+        return 1 + ((1 - GetHealthPercentage()) * 0.66f);
     }
 
     public int TrueSpeed()
@@ -90,11 +93,6 @@ public partial class Roary : Enemy
     public int TrueAcceleration()
     {
         return (int)(data.Accel * StatMultipler());
-    }
-
-    public int TrueDamage()
-    {
-        return (int)(data.Damage * StatMultipler());
     }
 
     public RoaryState PreviousState()

@@ -30,9 +30,10 @@ public partial class ShadowPaw : RoaryState
 
 		shadowPawProjectile.GlobalPosition = startPosition;
 		shadowPawProjectile.sprite.LookAt(targetPos);
-		shadowPawProjectile.parent = GetParent().GetParent<Roary>();
+		shadowPawProjectile.parent = ActiveEnemy;
 
-		shadowPawProjectile.data.Damage = ActiveEnemy.data.Damage;
+		shadowPawProjectile.data.Damage = (int) (ActiveEnemy.data.Damage 
+		 * ActiveEnemy.StatMultipler());
 		shadowPawProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
 
 		float finalSpeed = shadowPawProjectile.data.speed *

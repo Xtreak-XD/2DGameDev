@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="3_106wm"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
 [ext_resource type="PackedScene" uid="uid://dbc0ewvo0k63x" path="res://Scenes/entities/npcs/wise_turtle_brother.tscn" id="6_106wm"]
-[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="6_lfsl6"]
-[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="7_lfsl6"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/playerSpawn.tscn" id="6_lfsl6"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="7_lfsl6"]
+[ext_resource type="PackedScene" path="res://Scenes/entities/enemies/starfish.tscn" id="8_hm8wl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfsl6"]
 radius = 32.06244
@@ -46,8 +47,7 @@ INGAME_SPEED = 50.0
 [node name="WiseTurtleBrother" parent="." instance=ExtResource("6_106wm")]
 position = Vector2(647, 339)
 
-[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("6_lfsl6")]
-spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing")]
+[node name="PlayerSpawnPoints" parent="." instance=ExtResource("6_lfsl6")]
 
 [node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(1142, 634)
@@ -61,5 +61,8 @@ path = "res://Scenes/map/Overworld/Overworld.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
 shape = SubResource("CircleShape2D_lfsl6")
+
+[node name="Starfish" parent="." instance=ExtResource("8_hm8wl")]
+position = Vector2(1277, 400)
 
 [editable path="Enemymanager"]

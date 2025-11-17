@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://5l7viqfcpmud"]
+
+[ext_resource type="Texture2D" uid="uid://l6siighran38" path="res://Sprites/entities/enemies/bubble.jpg" id="1_mkoxo"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="2_iv640"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxb5e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81foc"]
+
+[node name="Bubble" type="CharacterBody2D"]
+scale = Vector2(1.4757104, 1.5505724)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6143752, 2.087888)
+shape = SubResource("CircleShape2D_xxb5e")
+debug_color = Color(0.8728001, 0.00046840846, 0.8441369, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.016840592, 0.025049724)
+texture = ExtResource("1_mkoxo")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_iv640")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(1.6531847, 2.0525749)
+shape = SubResource("CircleShape2D_81foc")
+debug_color = Color(0.90166366, 0.00016171932, 0.7604378, 0.41960785)

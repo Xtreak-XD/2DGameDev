@@ -2,20 +2,30 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+// Should be a pivotal in-between for attacks in the first and second phase
 public partial class MoveTowardPlayer : RoaryState
 {
-	public List<RoaryState> Attacks;
+    public GoToArenaCenter GoToCenter;
 
 	public RoaryDash Dash;
 	public ThrowFootball ThrowFootball;
+    public RoaryRoam Roam;
+    public ShadowPaw ShadowPaw;
+
+    public List<RoaryState> Attacks;
 
 	public override void _Ready()
     {
+        GoToCenter = GetParent().GetNode<GoToArenaCenter>("GoToArenaCenter");
+        
+        Roam = GetParent().GetNode<RoaryRoam>("RoaryRoam");
         Dash = GetParent().GetNode<RoaryDash>("RoaryDash");
 		ThrowFootball = GetParent().GetNode<ThrowFootball>("ThrowFootball");
+        ShadowPaw = GetParent().GetNode<ShadowPaw>("ShadowPaw");
 
 		Attacks = [];
 
+        Attacks.Add(Roam);
 		Attacks.Add(Dash);
 		Attacks.Add(ThrowFootball);
     }
@@ -36,6 +46,21 @@ public partial class MoveTowardPlayer : RoaryState
 		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 
 		((float)delta * ActiveEnemy.TrueAcceleration());
 		ActiveEnemy.MoveAndSlide();
+
+        if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.65)
+        {
+            return GoToCenter;
+        }
+
+        if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.35)
+        {
+            return GoToCenter;
+        }
+
+        if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1)
+        {
+            return GoToCenter;
+        }
 
 		if(currentPos.DistanceTo(playerPos) <= 1000)
         {

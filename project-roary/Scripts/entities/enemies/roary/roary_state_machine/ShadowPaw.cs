@@ -1,7 +1,7 @@
-using System;
 using Godot;
+using System;
 
-public partial class ThrowFootball : RoaryState
+public partial class ShadowPaw : RoaryState
 {
 	public Marker2D projectileSource;
 	public GoToArenaCenter GoToCenter;
@@ -17,27 +17,30 @@ public partial class ThrowFootball : RoaryState
 
 	public override void EnterState()
     {
-		GD.Print("Roary is throwing a football at the player");
+		GD.Print("Roary summoned his shadow paw at the player");
 
-		Vector2 currentPos = projectileSource.GlobalPosition;
 		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
+        
+		RoaryShadowPaw shadowPawProjectile = (RoaryShadowPaw)ActiveEnemy.shadowPaw.Instantiate();
+		ActiveEnemy.Owner.AddChild(shadowPawProjectile);
 
-		Vector2 direction = (targetPos - currentPos).Normalized();
+		float angle = (float)new RandomNumberGenerator().RandfRange(0, (float)(2 * Math.PI));
+		Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).Normalized() * 600;
+		Vector2 startPosition = targetPos + offset;
 
-		RoaryFootball footballProjectile = (RoaryFootball)ActiveEnemy.football.Instantiate();
-		ActiveEnemy.Owner.AddChild(footballProjectile);
+		shadowPawProjectile.GlobalPosition = startPosition;
+		shadowPawProjectile.sprite.LookAt(targetPos);
+		shadowPawProjectile.parent = GetParent().GetParent<Roary>();
 
-		footballProjectile.GlobalPosition = currentPos;
-		footballProjectile.sprite.LookAt(targetPos);
-		footballProjectile.parent = GetParent().GetParent<Roary>();
+		shadowPawProjectile.data.Damage = ActiveEnemy.data.Damage;
+		shadowPawProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
 
-		footballProjectile.data.Damage = ActiveEnemy.data.Damage;
-		footballProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
-
-		float finalSpeed = footballProjectile.data.speed *
+		float finalSpeed = shadowPawProjectile.data.speed *
 		 ActiveEnemy.StatMultipler();
 
-		footballProjectile.Velocity = direction * finalSpeed;
+		Vector2 direction = (targetPos - shadowPawProjectile.GlobalPosition).Normalized();
+
+		shadowPawProjectile.Velocity = direction * finalSpeed;
 	}
 	
 	public override RoaryState Process(double delta)

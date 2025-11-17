@@ -33,6 +33,8 @@ public partial class SummonFootballStampede : RoaryState
     {
 		if(Change)
         {
+			ActiveEnemy.AdvancePhase();
+			
             return Roam;
         }
 

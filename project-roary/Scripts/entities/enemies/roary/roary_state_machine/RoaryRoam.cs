@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Godot;
 
 public partial class RoaryRoam : RoaryState
@@ -7,29 +6,22 @@ public partial class RoaryRoam : RoaryState
 	public Timer roamTimer;
 	public Vector2 newPos;
 	public Timer attackTimer;
-	public bool ShouldPickAttack = false;
-
-	public List<RoaryState> Moves;
+	public bool ShouldAdvance = false;
 	
 	public GoToArenaCenter GoToCenter;
 	public MoveTowardPlayer MoveTowardPlayer;
 
 	public override void _Ready()
 	{
+		GoToCenter = GetParent().GetNode<GoToArenaCenter>("GoToArenaCenter");
+		MoveTowardPlayer = GetParent().GetNode<MoveTowardPlayer>("MoveTowardPlayer");
+
 		roamTimer = GetParent().GetNode<Timer>("RoaryRoamTimer");
 		roamTimer.Timeout += PickPosition;
-
-		Moves = [];
 
 		attackTimer = GetParent().GetNode<Timer>("RoaryAttackTimer");
 		attackTimer.Timeout += SetShouldPickAttack;
 		attackTimer.Start();
-
-		GoToCenter = GetParent().GetNode<GoToArenaCenter>("GoToArenaCenter");
-		MoveTowardPlayer = GetParent().GetNode<MoveTowardPlayer>("MoveTowardPlayer");
-		
-		Moves.Add(GoToCenter);
-		Moves.Add(MoveTowardPlayer);
 	}
 	
 	public override void EnterState()
@@ -37,7 +29,7 @@ public partial class RoaryRoam : RoaryState
 		roamTimer.Start();
 		attackTimer.Start();
 		
-		ShouldPickAttack = false;
+		ShouldAdvance = false;
 		newPos = ActiveEnemy.Position;
 
 		GD.Print("Roary is now roaming");
@@ -46,14 +38,14 @@ public partial class RoaryRoam : RoaryState
     public override void ExitState()
     {
 		attackTimer.Stop();
-		ShouldPickAttack = false;
+		ShouldAdvance = false;
     }
 
 	public override RoaryState Process(double delta)
     {
-		if(ShouldPickAttack)
+		if(ShouldAdvance)
         {
-            return PickAttack();
+            return InBetweenAttack();
         }
 
         Vector2 direction = (newPos - ActiveEnemy.GlobalPosition).Normalized();
@@ -75,13 +67,28 @@ public partial class RoaryRoam : RoaryState
 		roamTimer.Start();
     }
 
-	public RoaryState PickAttack()
-    {
-        return Moves[new Random().Next(0, Moves.Count)];
-    }
-
 	public void SetShouldPickAttack()
     {
-        ShouldPickAttack = true;
+        ShouldAdvance = true;
+    }
+
+	public RoaryState InBetweenAttack()
+    {
+        if(ActiveEnemy.Phase == RoaryPhase.FIRST)
+        {
+            return MoveTowardPlayer;
+        }
+
+		if(ActiveEnemy.Phase == RoaryPhase.SECOND)
+        {
+			if(new Random().Next(2) == 1)
+            {
+                return GoToCenter;
+            }
+			
+            return MoveTowardPlayer;
+        }
+
+        return GoToCenter;
     }
 }

@@ -1,21 +1,37 @@
 using Godot;
+using System;
 
 public partial class RoaryDash : RoaryState
 {
-	public GoToArenaCenter GoToCenter;
 	public ThrowFootball ThrowFootball;
-	public Vector2 dashStartPos;
+	public Timer dashTimer;
+
+	bool EndChargeEarly = false;
+
+	public GoToArenaCenter GoToCenter;
+	public MoveTowardPlayer MoveTowardPlayer;
 
 	public override void _Ready()
     {
         GoToCenter = GetParent().GetNode<GoToArenaCenter>("GoToArenaCenter");
+		MoveTowardPlayer = GetParent().GetNode<MoveTowardPlayer>("MoveTowardPlayer");
 		ThrowFootball = GetParent().GetNode<ThrowFootball>("ThrowFootball");
+		
+		dashTimer = GetParent().GetNode<Timer>("DashTimer");
     }
 
 	public override void EnterState()
     {
         GD.Print("Roary is now dashing at the player");
-		dashStartPos = ActiveEnemy.GlobalPosition;
+
+		EndChargeEarly = false;
+
+		dashTimer.Start();
+    }
+
+    public override void ExitState()
+    {
+        dashTimer.Stop();
     }
 
 	public override RoaryState Process(double delta)
@@ -32,7 +48,7 @@ public partial class RoaryDash : RoaryState
 		
 		ActiveEnemy.MoveAndSlide();
 
-		if(currentPos.DistanceTo(dashStartPos) >= 1500)
+		if(EndChargeEarly)
         {
 			GD.Print("The player evaded Roary's dash");
             return ThrowFootball;
@@ -40,9 +56,34 @@ public partial class RoaryDash : RoaryState
 
 		if(targetPos.DistanceTo(currentPos) <= 90) // Change for attack radius.
         {										  
-            return GoToCenter;
+            return InBetweenAttack();
         }
 
 		return null;
 	}
+
+	public void SetEndChargeEarly()
+    {
+        EndChargeEarly = true;
+    }
+
+	public RoaryState InBetweenAttack()
+    {
+        if(ActiveEnemy.Phase == RoaryPhase.FIRST)
+        {
+            return MoveTowardPlayer;
+        }
+
+		if(ActiveEnemy.Phase == RoaryPhase.SECOND)
+        {
+			if(new Random().Next(2) == 1)
+            {
+                return GoToCenter;
+            }
+			
+            return MoveTowardPlayer;
+        }
+
+        return GoToCenter;
+    }
 }

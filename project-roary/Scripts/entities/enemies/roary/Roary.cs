@@ -1,6 +1,12 @@
 using Godot;
 using System;
 
+public enum RoaryPhase {
+    FIRST,
+    SECOND,
+    THIRD
+}
+
 public partial class Roary : Enemy
 {
 	public new RoaryStateMachine stateMachine;
@@ -11,11 +17,16 @@ public partial class Roary : Enemy
 	public AnimationPlayer anim;
     public Timer targetTimer;
 
+    public RoaryPhase Phase { get; set; } = RoaryPhase.FIRST;
+
     [Export]
     public PackedScene footballCharge;
     
     [Export]
 	public PackedScene football;
+
+    [Export]
+	public PackedScene shadowPaw;
 
 	public const int ROAM_RANGE = 650;
 
@@ -89,6 +100,25 @@ public partial class Roary : Enemy
     public RoaryState PreviousState()
     {
         return stateMachine.previousState;
+    }
+
+    public void AdvancePhase()
+    {
+        if(Phase == RoaryPhase.THIRD)
+        {
+            return;
+        }
+        
+        if(Phase == RoaryPhase.FIRST)
+        {
+            Phase = RoaryPhase.SECOND;
+        }
+        else if(Phase == RoaryPhase.SECOND)
+        {
+            Phase = RoaryPhase.THIRD;
+        }
+
+        GD.Print("Roary has advanced phases");
     }
 
 	public void animation(Vector2 direction)

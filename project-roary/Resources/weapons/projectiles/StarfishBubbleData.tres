@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_g6cut")
-speed = 200.0
-lifeSpan = 10.0
+speed = 300.0
+lifeSpan = 8.0

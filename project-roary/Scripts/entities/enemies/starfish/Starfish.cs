@@ -49,6 +49,7 @@ public partial class Starfish : CharacterBody2D
 		AddChild(bubble);
 
 		bubble.GlobalPosition = currentPos;
+		bubble.target = target;
 
 		Vector2 direction = (targetPos - currentPos).Normalized();
 		bubble.Velocity = direction * bubble.data.speed;

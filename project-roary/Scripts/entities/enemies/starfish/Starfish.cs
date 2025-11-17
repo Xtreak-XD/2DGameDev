@@ -1,26 +1,56 @@
 using Godot;
-using System;
 
-public partial class Starfish : Node
+public partial class Starfish : CharacterBody2D
 {
+	[Export] 
+	public GenericData data;
+	public Player target;
+	public Area2D hurtBox;
+	public Area2D hitbox;
+	public Marker2D projectileSource;
+	public Timer setTargetTimer;
 
-	{Export} public StarfishData 
-	public float bubble
+	[Export]
 
-	// Detect player
+	public PackedScene bubbleProjectile;
+
+	[Export]
+	public Timer projectileTimer;
+
 	public override void _Ready()
     {
-		
+		hurtBox = GetNode<Area2D>("HurtBox");
+		hitbox = GetNode<Area2D>("Hitbox");
+		projectileSource = GetNode<Marker2D>("ProjectileSource");
+		setTargetTimer = GetNode<Timer>("SetTargetTimer");
+
+		projectileTimer.Timeout += ShootBubble;
+		setTargetTimer.Timeout += SetTarget;
+		setTargetTimer.Start();
     }
 
+    public override void _EnterTree()
+    {
+        AddToGroup("enemy");
+    }
 
-	public override void _Process(double delta)
-	{
-	}
+	public void SetTarget()
+    {
+        target = (Player)GetTree().GetFirstNodeInGroup("player");
+    }
 
 	// Aim projectile
-	private void Bubble()
+	private void ShootBubble()
     {
-        GetTree().Root.GetChild(0).AddChild(bubble);
+		Vector2 currentPos = projectileSource.GlobalPosition;
+		Vector2 targetPos = target.GlobalPosition;
+
+		StarfishBubble bubble = (StarfishBubble)bubbleProjectile.Instantiate();
+		AddChild(bubble);
+
+		bubble.GlobalPosition = currentPos;
+
+		Vector2 direction = (targetPos - currentPos).Normalized();
+		bubble.Velocity = direction * bubble.data.speed;
     }
 }

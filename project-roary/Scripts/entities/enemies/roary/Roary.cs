@@ -31,6 +31,13 @@ public partial class Roary : Enemy
     [Export]
     public PackedScene roarIndication;
 
+    [Export]
+    public PackedScene firework;
+
+    public bool CanAttack {get; set; } = true;
+
+    public Timer GlobalAttackTimer;
+
 	public const int ROAM_RANGE = 650;
 
 	public override void _Ready()
@@ -43,6 +50,9 @@ public partial class Roary : Enemy
 		projectileSource = GetNode<Marker2D>("ProjectileSource");
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");
         targetTimer = GetNode<Timer>("InitializePlayerTargetting");
+        GlobalAttackTimer = GetNode<Timer>("RoaryGlobalAttackTimer");
+
+        GlobalAttackTimer.Timeout += EnableAttack;
 
         targetTimer.Timeout += SetTarget;
         targetTimer.Start();
@@ -98,6 +108,11 @@ public partial class Roary : Enemy
     public RoaryState PreviousState()
     {
         return stateMachine.previousState;
+    }
+
+    public void EnableAttack()
+    {
+        CanAttack = true;
     }
 
     public void AdvancePhase()

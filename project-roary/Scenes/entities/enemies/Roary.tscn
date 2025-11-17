@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c40jqbolu6ucs"]
+[gd_scene load_steps=24 format=3 uid="uid://c40jqbolu6ucs"]
 
 [ext_resource type="Script" uid="uid://dk5af3uxg5xrn" path="res://Scripts/entities/enemies/roary/Roary.cs" id="1_0ba8j"]
 [ext_resource type="Texture2D" uid="uid://5nbbip78ckyi" path="res://Sprites/entities/enemies/roary.png" id="1_eprkh"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://do0gaj36c07ww" path="res://Scripts/entities/enemies/roary/roary_state_machine/RoaryRoam.cs" id="4_nucaq"]
 [ext_resource type="Script" uid="uid://dube74ccmvjn5" path="res://Scripts/entities/enemies/roary/roary_state_machine/GoToArenaCenter.cs" id="5_b1m3o"]
 [ext_resource type="PackedScene" uid="uid://ddld8omkwwrvw" path="res://Scenes/weapons/projectiles/RoaryRoarIndicator.tscn" id="5_utexq"]
+[ext_resource type="PackedScene" uid="uid://dihrarpptbfsb" path="res://Scenes/weapons/projectiles/RoaryFirework.tscn" id="6_o77be"]
 [ext_resource type="Script" uid="uid://4sywid8lbhxl" path="res://Scripts/entities/enemies/roary/roary_state_machine/SummonFootballStampede.cs" id="7_bc46s"]
 [ext_resource type="Script" uid="uid://bifo376cjhvnn" path="res://Scripts/entities/enemies/roary/roary_state_machine/RoaryDash.cs" id="8_bc46s"]
 [ext_resource type="Script" uid="uid://fq56vercv5gf" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThrowFootball.cs" id="9_l4c6a"]
@@ -18,6 +19,7 @@
 [ext_resource type="Script" uid="uid://duafqumdouuiu" path="res://Scripts/entities/enemies/roary/roary_state_machine/MoveTowardPlayer.cs" id="11_u5mku"]
 [ext_resource type="Script" uid="uid://vrkrw4m4miby" path="res://Scripts/entities/enemies/roary/roary_state_machine/ShadowPaw.cs" id="12_idlu6"]
 [ext_resource type="Script" uid="uid://c8s2wx5546qdu" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThunderousRoar.cs" id="14_e6pws"]
+[ext_resource type="Script" uid="uid://dhprrbb6d8wbd" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThrowFirework.cs" id="17_n6nrf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ba8j"]
 size = Vector2(263.5, 533)
@@ -34,6 +36,7 @@ footballCharge = ExtResource("2_a3kdu")
 football = ExtResource("10_xe754")
 shadowPaw = ExtResource("4_22nrv")
 roarIndication = ExtResource("5_utexq")
+firework = ExtResource("6_o77be")
 data = ExtResource("2_nucaq")
 OffScreenDespawnTime = 99999.0
 
@@ -63,6 +66,9 @@ script = ExtResource("12_idlu6")
 
 [node name="ThunderousRoar" type="Node" parent="RoaryStateMachine"]
 script = ExtResource("14_e6pws")
+
+[node name="ThrowFirework" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("17_n6nrf")
 
 [node name="RoaryRoamTimer" type="Timer" parent="RoaryStateMachine"]
 wait_time = 0.1
@@ -109,3 +115,6 @@ gizmo_extents = 20.0
 
 [node name="InitializePlayerTargetting" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="RoaryGlobalAttackTimer" type="Timer" parent="."]
+wait_time = 2.5

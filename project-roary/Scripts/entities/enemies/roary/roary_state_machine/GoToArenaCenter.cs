@@ -12,6 +12,7 @@ public partial class GoToArenaCenter : RoaryState
 	public RoaryDash Dash;
 	public ShadowPaw ShadowPaw;
 	public ThunderousRoar Roar;
+	public ThrowFirework ThrowFirework;
 
 	public List<RoaryState> Attacks;
 	
@@ -25,11 +26,13 @@ public partial class GoToArenaCenter : RoaryState
 		Dash = GetParent().GetNode<RoaryDash>("RoaryDash");
 		ShadowPaw = GetParent().GetNode<ShadowPaw>("ShadowPaw");
 		Roar = GetParent().GetNode<ThunderousRoar>("ThunderousRoar");
+		ThrowFirework = GetParent().GetNode<ThrowFirework>("ThrowFirework");
 
-		// Add a couple good attacks here
+		// Add one more good attacks here
 		Attacks.Add(Dash);
 		Attacks.Add(ShadowPaw);
 		Attacks.Add(Roar);
+		Attacks.Add(ThrowFirework);
     }
 	
 	public override void EnterState()
@@ -39,6 +42,11 @@ public partial class GoToArenaCenter : RoaryState
 
 	public override RoaryState Process(double delta)
     {
+		if(!ActiveEnemy.CanAttack)
+        {
+            return null;
+        }
+        
 		if(ActiveEnemy.GlobalPosition.DistanceTo(CENTER_POSITION) <= 20)
         {
             ActiveEnemy.Velocity = Vector2.Zero;
@@ -72,6 +80,9 @@ public partial class GoToArenaCenter : RoaryState
 
 	public RoaryState PickAttack()
     {
+		ActiveEnemy.CanAttack = false;
+		ActiveEnemy.GlobalAttackTimer.Start();
+		
         return Attacks[new Random().Next(0, Attacks.Count)];
     }
 }

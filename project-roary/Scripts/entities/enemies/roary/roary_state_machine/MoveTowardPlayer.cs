@@ -10,6 +10,7 @@ public partial class MoveTowardPlayer : RoaryState
 	public RoaryDash Dash;
 	public ThrowFootball ThrowFootball;
     public RoaryRoam Roam;
+    public ThrowFirework ThrowFirework;
 
     public List<RoaryState> Attacks;
 
@@ -20,12 +21,14 @@ public partial class MoveTowardPlayer : RoaryState
         Roam = GetParent().GetNode<RoaryRoam>("RoaryRoam");
         Dash = GetParent().GetNode<RoaryDash>("RoaryDash");
 		ThrowFootball = GetParent().GetNode<ThrowFootball>("ThrowFootball");
+        ThrowFirework = GetParent().GetNode<ThrowFirework>("ThrowFirework");
 
 		Attacks = [];
 
-        Attacks.Add(Roam);
-		Attacks.Add(Dash);
-		Attacks.Add(ThrowFootball);
+        //Attacks.Add(Roam);
+		//Attacks.Add(Dash);
+		//Attacks.Add(ThrowFootball);
+        Attacks.Add(ThrowFirework);
     }
 
     public override void EnterState()
@@ -35,6 +38,11 @@ public partial class MoveTowardPlayer : RoaryState
 
     public override RoaryState Process(double delta)
     {
+        if(!ActiveEnemy.CanAttack)
+        {
+            return null;
+        }
+
 		Vector2 currentPos = ActiveEnemy.GlobalPosition;
 		Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
 
@@ -70,6 +78,9 @@ public partial class MoveTowardPlayer : RoaryState
 
 	public RoaryState PickAttack()
     {
+        ActiveEnemy.CanAttack = false;
+        ActiveEnemy.GlobalAttackTimer.Start();
+
         return Attacks[new Random().Next(0, Attacks.Count)];
     }
 }

@@ -1,10 +1,17 @@
+using Godot;
+
 public partial class RoaryRoarIndicator : EnemyProjectile
 {
     public override void Travel(double delta)
     {   
-        sprite.Scale *= 1.05f;
-        hitbox.Scale *= 1.05f;
+        Scale += new Vector2(25f * (float) delta, 25f * (float) delta);
+    }
 
-        base.Travel(delta);
+    public override void HitEntity(Area2D area)
+    {
+        if (area.GetParent().IsInGroup("player"))
+        {
+            GD.Print("Player has been hit by Roary's roar");
+        }
     }
 }

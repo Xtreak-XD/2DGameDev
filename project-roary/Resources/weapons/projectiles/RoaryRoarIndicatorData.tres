@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_psevg")
+speed = 10.0
 lifeSpan = 1.5

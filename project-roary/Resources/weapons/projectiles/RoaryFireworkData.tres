@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_dw0kv")
-speed = 500.0
-lifeSpan = 6.0
+speed = 900.0
+lifeSpan = 3.0

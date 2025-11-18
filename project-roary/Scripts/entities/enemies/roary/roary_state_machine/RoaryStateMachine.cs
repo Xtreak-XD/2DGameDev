@@ -26,7 +26,6 @@ public partial class RoaryStateMachine : Node
     {
         states = new List<RoaryState>();
 
-        GD.Print(GetChildCount());
         foreach (Node node in GetChildren())
         {
             if (node is RoaryState state)

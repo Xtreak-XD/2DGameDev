@@ -68,7 +68,7 @@ public partial class MoveTowardPlayer : RoaryState
             return GoToCenter;
         }
 
-		if(currentPos.DistanceTo(playerPos) <= 1000)
+		if(currentPos.DistanceTo(playerPos) <= 1500)
         {
             return PickAttack();
         }

@@ -1,17 +1,13 @@
-using System;
 using Godot;
 
 public partial class RoaryFirework : EnemyProjectile
 {
 	public Player target;
-	public const float HOMING_RANGE = 750f;
+    public const float PROPORTIONAL = 3;
+    public const float ACCEL = 3;
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        projectileTimer.Timeout += CreateExplosion;
-    }
+    public Vector2 previousTargetPos;
+    public Vector2 previousLocation;
 
     public override void Travel(double delta)
     {
@@ -24,13 +20,43 @@ public partial class RoaryFirework : EnemyProjectile
 
 			sprite.LookAt(targetPos);
 
-			if(currentPos.DistanceTo(targetPos) <= HOMING_RANGE)
-            {
-				float angle = currentPos.AngleTo(targetPos);
-                Vector2 velocity = Velocity + new Vector2(Mathf.Cos(angle), MathF.Sin(angle) * data.speed);
+			Vector2 currentPosDelta = targetPos - currentPos;
+            Vector2 prevPosDelta = previousTargetPos - previousLocation;
 
-				Velocity = velocity;
+            Vector2 losDelta = Vector2.Zero;
+            float losRate = 0;
+
+            currentPosDelta.Normalized();
+            prevPosDelta.Normalized();
+
+            if(prevPosDelta.Length() != 0)
+            {
+                losDelta = currentPosDelta - prevPosDelta;
+                losRate = losDelta.Length();
             }
+
+            float closeRate = -losRate;
+
+            Vector2 intermediate1 = currentPosDelta * (PROPORTIONAL * closeRate * losRate);
+            Vector2 intermediate2 = intermediate1 + (losDelta * PROPORTIONAL * 9.8f * 0.5f);
+            
+            Vector2 adjustedVel = Velocity.Normalized() * ACCEL * (float)delta;
+
+            Vector2 finalAccel = intermediate2 + adjustedVel;
+
+            Velocity += finalAccel;
+
+            Velocity *= -1;
+            
+            if(Velocity.Length() > data.speed)
+            {
+                Velocity = Velocity.Normalized() * data.speed;
+            }
+
+            GD.Print($"Velocity: {Velocity}");
+
+            previousLocation = GlobalPosition;
+            previousTargetPos = targetPos;
         }
 
 		base.Travel(delta);
@@ -43,8 +69,10 @@ public partial class RoaryFirework : EnemyProjectile
         base.HitEntity(area);
     }
 
-    public void CreateExplosion()
+    public override void Kill()
     {
-        // Create the explosion effect here
+        // Add explosion here
+
+        base.Kill();
     }
 }

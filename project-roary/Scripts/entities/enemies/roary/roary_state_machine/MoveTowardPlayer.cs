@@ -38,15 +38,21 @@ public partial class MoveTowardPlayer : RoaryState
 
     public override RoaryState Process(double delta)
     {
-        if(!ActiveEnemy.CanAttack)
-        {
-            return null;
-        }
-
-		Vector2 currentPos = ActiveEnemy.GlobalPosition;
+        Vector2 currentPos = ActiveEnemy.GlobalPosition;
 		Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
 
-		Vector2 direction = (playerPos - currentPos).Normalized();
+        Vector2 direction = (playerPos - currentPos).Normalized();
+
+        if(!ActiveEnemy.CanAttack)
+        {
+            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+		    ActiveEnemy.Velocity = -direction * ActiveEnemy.TrueSpeed() * 1.2f *
+		     ((float)delta * ActiveEnemy.TrueAcceleration());
+
+		    ActiveEnemy.MoveAndSlide();
+
+            return null;
+        }
 
 		//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
 		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 

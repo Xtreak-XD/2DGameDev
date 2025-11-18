@@ -13,6 +13,7 @@ public partial class GoToArenaCenter : RoaryState
 	public ShadowPaw ShadowPaw;
 	public ThunderousRoar Roar;
 	public ThrowFirework ThrowFirework;
+	public LateralDash LateralDash;
 
 	public List<RoaryState> Attacks;
 	
@@ -27,12 +28,14 @@ public partial class GoToArenaCenter : RoaryState
 		ShadowPaw = GetParent().GetNode<ShadowPaw>("ShadowPaw");
 		Roar = GetParent().GetNode<ThunderousRoar>("ThunderousRoar");
 		ThrowFirework = GetParent().GetNode<ThrowFirework>("ThrowFirework");
+		LateralDash = GetParent().GetNode<LateralDash>("LateralDash");
 
-		// Add one more good attacks here
+		// Add one more good attack here
 		Attacks.Add(Dash);
 		Attacks.Add(ShadowPaw);
 		Attacks.Add(Roar);
 		Attacks.Add(ThrowFirework);
+		Attacks.Add(LateralDash);
     }
 	
 	public override void EnterState()

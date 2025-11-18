@@ -6,9 +6,16 @@ public partial class RoaryFirework : EnemyProjectile
 	public Player target;
 	public const float HOMING_RANGE = 750f;
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        projectileTimer.Timeout += CreateExplosion;
+    }
+
     public override void Travel(double delta)
     {
-		// Add a trail as well
+		// Add a trail
 
 		if(target != null)
         {
@@ -34,5 +41,10 @@ public partial class RoaryFirework : EnemyProjectile
 		// Add explosion here
 
         base.HitEntity(area);
+    }
+
+    public void CreateExplosion()
+    {
+        // Create the explosion effect here
     }
 }

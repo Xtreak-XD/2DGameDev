@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c40jqbolu6ucs"]
+[gd_scene load_steps=25 format=3 uid="uid://c40jqbolu6ucs"]
 
 [ext_resource type="Script" uid="uid://dk5af3uxg5xrn" path="res://Scripts/entities/enemies/roary/Roary.cs" id="1_0ba8j"]
 [ext_resource type="Texture2D" uid="uid://5nbbip78ckyi" path="res://Sprites/entities/enemies/roary.png" id="1_eprkh"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://vrkrw4m4miby" path="res://Scripts/entities/enemies/roary/roary_state_machine/ShadowPaw.cs" id="12_idlu6"]
 [ext_resource type="Script" uid="uid://c8s2wx5546qdu" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThunderousRoar.cs" id="14_e6pws"]
 [ext_resource type="Script" uid="uid://dhprrbb6d8wbd" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThrowFirework.cs" id="17_n6nrf"]
+[ext_resource type="Script" uid="uid://bvk0xcrwnnbnb" path="res://Scripts/entities/enemies/roary/roary_state_machine/LateralDash.cs" id="18_s2svx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ba8j"]
 size = Vector2(263.5, 533)
@@ -70,20 +71,30 @@ script = ExtResource("14_e6pws")
 [node name="ThrowFirework" type="Node" parent="RoaryStateMachine"]
 script = ExtResource("17_n6nrf")
 
+[node name="LateralDash" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("18_s2svx")
+
 [node name="RoaryRoamTimer" type="Timer" parent="RoaryStateMachine"]
 wait_time = 0.1
 
 [node name="RoaryAttackTimer" type="Timer" parent="RoaryStateMachine"]
 wait_time = 6.0
+one_shot = true
 
 [node name="FootballChargeDuration" type="Timer" parent="RoaryStateMachine"]
 wait_time = 5.0
+one_shot = true
 
 [node name="DashTimer" type="Timer" parent="RoaryStateMachine"]
 wait_time = 5.0
+one_shot = true
 
 [node name="RoarActivationTimer" type="Timer" parent="RoaryStateMachine"]
 wait_time = 2.0
+one_shot = true
+
+[node name="LateralDashTimer" type="Timer" parent="RoaryStateMachine"]
+one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.3841858e-07, 0)
@@ -115,6 +126,7 @@ gizmo_extents = 20.0
 
 [node name="InitializePlayerTargetting" type="Timer" parent="."]
 wait_time = 0.3
+one_shot = true
 
 [node name="RoaryGlobalAttackTimer" type="Timer" parent="."]
 wait_time = 2.5

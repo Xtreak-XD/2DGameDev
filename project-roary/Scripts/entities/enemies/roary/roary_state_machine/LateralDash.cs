@@ -66,13 +66,7 @@ public partial class LateralDash : RoaryState
     {
         if(ChargeOver)
         {
-            if(new Random().Next(2) == 1)
-            {
-                return InBetweenAttack();
-            }
-            
-            // Make sure this doesn't break something somehow
-            return this;
+            return InBetweenAttack();
         }
 
         //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS

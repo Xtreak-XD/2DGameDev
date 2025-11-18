@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7hfl3picvwq7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nu1e5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nu1e5"]
+bg_color = Color(inf, inf, inf, 0.47058824)
+
+[node name="Menu Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Transparent" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.078431375)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.37254903)
+polygon = PackedVector2Array(347.6495, -35.24753, 766, 1145, 350, 1145, -11, -35)
+uv = PackedVector2Array(189, -2, 766, 1145, 350, 1145, -3, 2)
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 420.0
+offset_right = 509.0
+offset_bottom = 510.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nu1e5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
+text = "Continue"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 550.0
+offset_right = 555.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nu1e5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 680.0
+offset_right = 599.0
+offset_bottom = 770.0
+mouse_default_cursor_shape = 3
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nu1e5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
+text = "Quit"

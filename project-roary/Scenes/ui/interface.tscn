@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca3g24pmtocst"]
+[gd_scene load_steps=6 format=3 uid="uid://ca3g24pmtocst"]
 
 [ext_resource type="Script" uid="uid://yabi6bb7a31b" path="res://Scripts/ui/Interface.cs" id="1_efdi4"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_dhmg6"]
 [ext_resource type="Texture2D" uid="uid://b8js3ay45xsa7" path="res://placeholderTestAssets/vector-illustration-day-night-concept-600nw-410616652-removebg-preview.png" id="3_awssp"]
+[ext_resource type="PackedScene" uid="uid://b7hfl3picvwq7" path="res://Scenes/ui/MenuScreen.tscn" id="4_6gqd4"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dhmg6"]
 size = Vector2(42, 42)
@@ -227,3 +228,5 @@ offset_right = 124.26573
 offset_bottom = 86.81119
 text = "98°"
 horizontal_alignment = 1
+
+[node name="Menu Screen" parent="." instance=ExtResource("4_6gqd4")]

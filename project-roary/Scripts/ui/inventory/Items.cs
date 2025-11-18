@@ -12,12 +12,15 @@ public partial class Items : Sprite2D
 	[Export] public InventoryItem itemResource;
 	private interactionArea interactionArea;
 	private Inventory inv;
+	private Eventbus eventbus;
 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		interactionArea = GetNode<interactionArea>("InteractionArea");
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		inv = GetNode<Inventory>("/root/Inventory");
 
 		if (interactionArea == null)
 		{
@@ -41,21 +44,21 @@ public partial class Items : Sprite2D
 
 	public void pickUpItem()
 	{
-		inv = GetNode<Inventory>("/root/Inventory");
-
 		if (inv == null)
 		{
 			GD.PrintErr("Inventory node not found!");
 			return;
 		}
-		bool isEmpty = inv.AddItem(itemResource, itemQuantity);
+		bool wasAdded = inv.AddItem(itemResource, itemQuantity);
 
-		if (isEmpty)
+		if (wasAdded)
         {
+			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
             QueueFree(); // Remove the item from the scene after picking it up
         } else
 		{
 			GD.Print("Could not pick up item, inventory full.");
+			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
 		}
 	}
 }

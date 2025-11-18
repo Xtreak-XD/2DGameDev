@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca3g24pmtocst"]
+[gd_scene load_steps=6 format=3 uid="uid://ca3g24pmtocst"]
 
 [ext_resource type="Script" uid="uid://yabi6bb7a31b" path="res://Scripts/ui/Interface.cs" id="1_efdi4"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_dhmg6"]
 [ext_resource type="Texture2D" uid="uid://b8js3ay45xsa7" path="res://placeholderTestAssets/vector-illustration-day-night-concept-600nw-410616652-removebg-preview.png" id="3_awssp"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dhmg6"]
-size = Vector2(42, 42)
+[ext_resource type="PackedScene" uid="uid://uaqodhsl8ser" path="res://Scenes/ui/hotbar/Hotbar.tscn" id="4_0xk38"]
+[ext_resource type="PackedScene" uid="uid://cwohgp4x586qn" path="res://Scenes/ui/inventory/inventoryUI.tscn" id="4_6gqd4"]
 
 [node name="Interface" type="CanvasLayer"]
 follow_viewport_enabled = true
@@ -102,75 +101,6 @@ text = "Money: $0"
 horizontal_alignment = 3
 vertical_alignment = 1
 
-[node name="hotbar" type="MarginContainer" parent="HUD"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -146.0
-offset_top = -134.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.775, 0.775)
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 15
-
-[node name="GridContainer" type="GridContainer" parent="HUD/hotbar"]
-layout_mode = 2
-theme_override_constants/h_separation = 10
-columns = 3
-
-[node name="TextureRect" type="TextureRect" parent="HUD/hotbar/GridContainer"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-texture = ExtResource("2_dhmg6")
-expand_mode = 2
-
-[node name="TextureButton" type="TextureButton" parent="HUD/hotbar/GridContainer"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_dhmg6")
-
-[node name="TextureRect2" type="TextureRect" parent="HUD/hotbar/GridContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-texture = ExtResource("2_dhmg6")
-expand_mode = 2
-
-[node name="TextureButton2" type="TextureButton" parent="HUD/hotbar/GridContainer"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_dhmg6")
-
-[node name="TextureRect3" type="TextureRect" parent="HUD/hotbar/GridContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-texture = ExtResource("2_dhmg6")
-expand_mode = 2
-
-[node name="TextureButton3" type="TextureButton" parent="HUD/hotbar/GridContainer"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_dhmg6")
-
-[node name="TextureRect4" type="TextureRect" parent="HUD/hotbar/GridContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-texture = ExtResource("2_dhmg6")
-expand_mode = 2
-
-[node name="TextureButton4" type="TextureButton" parent="HUD/hotbar/GridContainer"]
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_dhmg6")
-
-[node name="TextureRect5" type="TextureRect" parent="HUD/hotbar/GridContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-texture = ExtResource("2_dhmg6")
-expand_mode = 2
-
 [node name="day cycle" type="MarginContainer" parent="HUD"]
 layout_mode = 1
 offset_left = -1.0
@@ -227,3 +157,22 @@ offset_right = 124.26573
 offset_bottom = 86.81119
 text = "98°"
 horizontal_alignment = 1
+
+[node name="HotBar" parent="HUD" instance=ExtResource("4_0xk38")]
+layout_mode = 1
+offset_top = -85.0
+offset_right = 132.0
+offset_bottom = -21.0
+
+[node name="InventoryUI" parent="." instance=ExtResource("4_6gqd4")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -117.0
+offset_right = 119.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2

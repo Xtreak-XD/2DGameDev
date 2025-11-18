@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c40jqbolu6ucs"]
+[gd_scene load_steps=27 format=3 uid="uid://c40jqbolu6ucs"]
 
 [ext_resource type="Script" uid="uid://dk5af3uxg5xrn" path="res://Scripts/entities/enemies/roary/Roary.cs" id="1_0ba8j"]
 [ext_resource type="Texture2D" uid="uid://5nbbip78ckyi" path="res://Sprites/entities/enemies/roary.png" id="1_eprkh"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ddld8omkwwrvw" path="res://Scenes/weapons/projectiles/RoaryRoarIndicator.tscn" id="5_utexq"]
 [ext_resource type="PackedScene" uid="uid://dihrarpptbfsb" path="res://Scenes/weapons/projectiles/RoaryFirework.tscn" id="6_o77be"]
 [ext_resource type="Script" uid="uid://4sywid8lbhxl" path="res://Scripts/entities/enemies/roary/roary_state_machine/SummonFootballStampede.cs" id="7_bc46s"]
+[ext_resource type="PackedScene" uid="uid://chs7gt8okxl58" path="res://Scenes/weapons/projectiles/RoaryOrbitalHead.tscn" id="7_jn8tg"]
 [ext_resource type="Script" uid="uid://bifo376cjhvnn" path="res://Scripts/entities/enemies/roary/roary_state_machine/RoaryDash.cs" id="8_bc46s"]
 [ext_resource type="Script" uid="uid://fq56vercv5gf" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThrowFootball.cs" id="9_l4c6a"]
 [ext_resource type="PackedScene" uid="uid://c8xcn3kiucg7m" path="res://Scenes/weapons/projectiles/RoaryFootball.tscn" id="10_xe754"]
@@ -21,6 +22,7 @@
 [ext_resource type="Script" uid="uid://c8s2wx5546qdu" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThunderousRoar.cs" id="14_e6pws"]
 [ext_resource type="Script" uid="uid://dhprrbb6d8wbd" path="res://Scripts/entities/enemies/roary/roary_state_machine/ThrowFirework.cs" id="17_n6nrf"]
 [ext_resource type="Script" uid="uid://bvk0xcrwnnbnb" path="res://Scripts/entities/enemies/roary/roary_state_machine/LateralDash.cs" id="18_s2svx"]
+[ext_resource type="Script" uid="uid://i0nh0kcl728p" path="res://Scripts/entities/enemies/roary/roary_state_machine/SummonOrbitalHeads.cs" id="20_qbq2n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ba8j"]
 size = Vector2(263.5, 533)
@@ -38,6 +40,7 @@ football = ExtResource("10_xe754")
 shadowPaw = ExtResource("4_22nrv")
 roarIndication = ExtResource("5_utexq")
 firework = ExtResource("6_o77be")
+orbitalHead = ExtResource("7_jn8tg")
 data = ExtResource("2_nucaq")
 OffScreenDespawnTime = 99999.0
 
@@ -74,6 +77,9 @@ script = ExtResource("17_n6nrf")
 [node name="LateralDash" type="Node" parent="RoaryStateMachine"]
 script = ExtResource("18_s2svx")
 
+[node name="SummonOrbitalHeads" type="Node" parent="RoaryStateMachine"]
+script = ExtResource("20_qbq2n")
+
 [node name="RoaryRoamTimer" type="Timer" parent="RoaryStateMachine"]
 wait_time = 0.1
 
@@ -95,6 +101,9 @@ one_shot = true
 
 [node name="LateralDashTimer" type="Timer" parent="RoaryStateMachine"]
 one_shot = true
+
+[node name="OrbitalHeadTimer" type="Timer" parent="RoaryStateMachine"]
+wait_time = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.3841858e-07, 0)

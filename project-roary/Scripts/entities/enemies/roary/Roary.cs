@@ -34,6 +34,9 @@ public partial class Roary : Enemy
     [Export]
     public PackedScene firework;
 
+    [Export]
+    public PackedScene orbitalHead;
+
     public bool CanAttack {get; set; } = true;
 
     public Timer GlobalAttackTimer;

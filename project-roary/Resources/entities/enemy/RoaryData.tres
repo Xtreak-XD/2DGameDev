@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_s0i08")
-_health = 500
-MaxHealth = 500
-Damage = 10
-Speed = 200
-Accel = 90.0
+_health = 650
+MaxHealth = 650
+Damage = 15
+Speed = 240
+Accel = 110.0
 dealKnockback = true
 knockBackAmount = 5.0

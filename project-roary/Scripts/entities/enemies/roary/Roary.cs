@@ -69,6 +69,9 @@ public partial class Roary : Enemy
     public override void _ExitTree()
     {
         base._ExitTree();
+
+        GlobalAttackTimer.Timeout -= EnableAttack;
+        targetTimer.Timeout -= SetTarget;
     }
 
     public void SetTarget()

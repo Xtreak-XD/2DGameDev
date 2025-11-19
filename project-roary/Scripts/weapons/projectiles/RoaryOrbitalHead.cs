@@ -17,19 +17,17 @@ public partial class RoaryOrbitalHead : EnemyProjectile
     {   
         if(!homing)
         {
-            angle++;
+            angle += 5;
 
             if(angle >= 360)
             {
                 angle = 0;
             }
             
-            if(angle % 2 == 0)
-            {
-                Vector2 posOffset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle))
-                 .Normalized() * 300;
-                GlobalPosition = parent.GlobalPosition + posOffset;
-            }
+
+            Vector2 posOffset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle))
+             .Normalized() * 300;
+            GlobalPosition = parent.GlobalPosition + posOffset;
 
             sprite.LookAt(parent.GlobalPosition);
         }

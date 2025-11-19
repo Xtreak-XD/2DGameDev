@@ -66,6 +66,11 @@ public partial class Roary : Enemy
         AddToGroup("enemy");
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+    }
+
     public void SetTarget()
     {
         target = (Player)GetTree().GetFirstNodeInGroup("player");

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // Should be a pivotal in-between for attacks in the second and last phase
 public partial class GoToArenaCenter : RoaryState
 {
-	public Vector2 CENTER_POSITION = Vector2.Zero; // SET TO ACTUAL CENTER OF STADIUM
+	public Vector2 CENTER_POSITION;
 
 	public SummonFootballStampede SummonFootballStampede;
 
@@ -20,6 +20,8 @@ public partial class GoToArenaCenter : RoaryState
 	public override void _Ready()
     {
 		Attacks = [];
+
+		CENTER_POSITION = GetViewport().GetVisibleRect().GetCenter();
 
 		SummonFootballStampede = GetParent().
 		GetNode<SummonFootballStampede>("FootballPlayerStampede");

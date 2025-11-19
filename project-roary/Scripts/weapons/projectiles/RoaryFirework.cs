@@ -20,7 +20,7 @@ public partial class RoaryFirework : EnemyProjectile
 
 			sprite.LookAt(targetPos);
 
-			Vector2 currentPosDelta = targetPos - currentPos;
+			Vector2 currentPosDelta = currentPos - targetPos;
             Vector2 prevPosDelta = previousTargetPos - previousLocation;
 
             Vector2 losDelta = Vector2.Zero;
@@ -45,8 +45,6 @@ public partial class RoaryFirework : EnemyProjectile
             Vector2 finalAccel = intermediate2 + adjustedVel;
 
             Velocity += finalAccel;
-
-            Velocity *= -1;
             
             if(Velocity.Length() > data.speed)
             {

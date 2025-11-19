@@ -30,7 +30,7 @@ public partial class RoaryRoam : RoaryState
 		attackTimer.Start();
 		
 		ShouldAdvance = false;
-		newPos = ActiveEnemy.Position;
+		newPos = ActiveEnemy.GlobalPosition;
 
 		GD.Print("Roary is now roaming");
 	}

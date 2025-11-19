@@ -25,9 +25,9 @@ public partial class MoveTowardPlayer : RoaryState
 
 		Attacks = [];
 
-        Attacks.Add(Roam);
-		Attacks.Add(Dash);
-		Attacks.Add(ThrowFootball);
+        //Attacks.Add(Roam);
+		//Attacks.Add(Dash);
+		//Attacks.Add(ThrowFootball);
         Attacks.Add(ThrowFirework);
     }
 

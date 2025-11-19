@@ -56,6 +56,7 @@ public partial class RoaryDash : RoaryState
 
 		if(targetPos.DistanceTo(currentPos) <= 90) // Change for attack radius.
         {										  
+            dashTimer.Stop();
             return InBetweenAttack();
         }
 

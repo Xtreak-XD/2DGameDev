@@ -1,14 +1,21 @@
+using System;
 using Godot;
 
-public partial class Starfish : CharacterBody2D
+public partial class Starfish : Enemy
 {
 	[Export] 
-	public GenericData data;
+	public Resource GenericData;
 	public Player target;
 	public Area2D hurtBox;
 	public Area2D hitbox;
 	public Marker2D projectileSource;
 	public Timer setTargetTimer;
+
+	[Export] public PackedScene EnemyScene; // Assign your enemy scene in the Inspector
+    [Export] public Vector2 AreaSize = new Vector2(500, 300); // Width & height of spawn area
+    [Export] public Vector2 AreaCenter = Vector2.Zero; // Center of spawn area
+
+
 
 	[Export]
 
@@ -28,11 +35,20 @@ public partial class Starfish : CharacterBody2D
 		setTargetTimer.Timeout += SetTarget;
 		setTargetTimer.Start();
     }
+    
 
     public override void _EnterTree()
     {
         AddToGroup("enemy");
     }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+    }
+
+
+        
 
 	public void SetTarget()
     {

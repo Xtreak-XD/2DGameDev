@@ -23,10 +23,13 @@ public partial class RoaryOrbitalHead : EnemyProjectile
             {
                 angle = 0;
             }
-
-            Vector2 posOffset = new Vector2(Mathf.Cos(angle) * (float) delta, Mathf.Sin(angle) * (float) delta)
-             .Normalized() * 500;
-            GlobalPosition = parent.GlobalPosition + posOffset;
+            
+            if(angle % 2 == 0)
+            {
+                Vector2 posOffset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle))
+                 .Normalized() * 300;
+                GlobalPosition = parent.GlobalPosition + posOffset;
+            }
 
             sprite.LookAt(parent.GlobalPosition);
         }
@@ -34,7 +37,7 @@ public partial class RoaryOrbitalHead : EnemyProjectile
 		Vector2 currentPos = GlobalPosition;
 		Vector2 targetPos = target.GlobalPosition;
 
-		if(currentPos.DistanceTo(targetPos) <= 900 && !homing)
+		if(currentPos.DistanceTo(targetPos) <= 500 && !homing)
         {
             homing = true;
         }

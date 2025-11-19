@@ -33,13 +33,13 @@ public partial class SummonOrbitalHeads : RoaryState
 			ActiveEnemy.Owner.AddChild(orbitalHeadProjectile);
 
 			orbitalHeadProjectile.GlobalPosition = projectileSource.GlobalPosition;
+			orbitalHeadProjectile.angle = i;
 
 			orbitalHeadProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
 			* ActiveEnemy.StatMultipler());
 			orbitalHeadProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
 			orbitalHeadProjectile.target = ActiveEnemy.target;
 			orbitalHeadProjectile.parent = ActiveEnemy;
-			orbitalHeadProjectile.angle = i;
         }
     }
 

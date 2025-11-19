@@ -34,9 +34,12 @@ public partial class FootballScene : Enemy
 
     private GapLocation gapChosen { get; set; } = GapLocation.SmallMiddle;
     private SpawnLocation spawnChosen { get; set; } = SpawnLocation.North;
-    private Timer directionTimer;
 
-    [Export] float waitTimer;
+    [Export]
+    public float waitTimer;
+
+    public Timer durationTimer;
+    private Timer directionTimer;
 
     private Vector2 direction;
 
@@ -45,6 +48,9 @@ public partial class FootballScene : Enemy
         PackedScene footballPlayer = GD.Load<PackedScene>("Scenes/entities/enemies/FootballPlayer.tscn");
         FootballPlayer footballPlayerInstance = (FootballPlayer)footballPlayer.Instantiate();
         Sprite2D footballPlayerSprite = footballPlayerInstance.GetNode<Sprite2D>("Sprite2D");
+
+        durationTimer = GetNode<Timer>("StampedeTimer");
+
         float footballPlayerWidth = footballPlayerSprite.Texture.GetWidth() + 50;
         float footballPlayerHeight = footballPlayerSprite.Texture.GetHeight() + 50;
 
@@ -134,7 +140,7 @@ public partial class FootballScene : Enemy
             case SpawnLocation.East:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(viewportWidth, footballPlayerHeight * i);
+                    spawnPosition = new Vector2(viewportWidth, 0 + (footballPlayerHeight * (i + 1)));
                     FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
                     footballPlayerDup.GlobalPosition = spawnPosition;
@@ -158,7 +164,7 @@ public partial class FootballScene : Enemy
             case SpawnLocation.West:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(0, footballPlayerHeight * i);
+                    spawnPosition = new Vector2(0, 0 + (footballPlayerHeight * (i + 1)));
                     FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
                     footballPlayerDup.GlobalPosition = spawnPosition;
@@ -175,6 +181,18 @@ public partial class FootballScene : Enemy
 
         directionTimer.Timeout += OnDirectionTimerTimeout;
         directionTimer.Start();
+
+        if(spawnChosen == SpawnLocation.North || spawnChosen == SpawnLocation.South)
+        {
+            durationTimer.WaitTime = 4.3;
+        } 
+        else
+        {
+            durationTimer.WaitTime = 7;
+        }
+
+        durationTimer.Timeout += QueueFree;
+        durationTimer.Start();
     }
 
     public override void _Process(double delta)

@@ -88,7 +88,7 @@ wait_time = 6.0
 one_shot = true
 
 [node name="FootballChargeDuration" type="Timer" parent="RoaryStateMachine"]
-wait_time = 5.0
+wait_time = 8.0
 one_shot = true
 
 [node name="DashTimer" type="Timer" parent="RoaryStateMachine"]

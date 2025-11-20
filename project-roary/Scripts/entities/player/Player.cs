@@ -1,10 +1,13 @@
+using System;
 using Godot;
 
 
 public partial class Player : CharacterBody2D
 {
 
-	[Export] Resource metaData;
+	public string save_file_path = "user://save/";
+	public string save_file_name = "PlayerSave.tres";
+	public MetaData metaData = new MetaData();
 	[Export] public GenericData data;
 	public AnimationPlayer animationPlayer;
 	public PlayerStateMachine stateMachine;
@@ -177,6 +180,7 @@ public partial class Player : CharacterBody2D
 
 	public void checkIfEquipped()
 	{
+		metaData.updateInventory(inv.slots);
 		if (equippedSlot < 0) return;
 
 		if (equippedSlot >= inv.slots.Count)

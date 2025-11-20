@@ -1,0 +1,84 @@
+[gd_scene load_steps=16 format=3 uid="uid://blca23bgqgc6k"]
+
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="1_0covu"]
+[ext_resource type="Script" uid="uid://by8t7yjhudqwv" path="res://Scripts/entities/enemies/mermaid_phase_two/Mermaid.cs" id="1_5ihpc"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_it84c"]
+[ext_resource type="PackedScene" uid="uid://dmp7e6q6dgfsr" path="res://Scenes/weapons/projectiles/MermaidTrident.tscn" id="2_jucnh"]
+[ext_resource type="Resource" uid="uid://d3ftte5ah6b4v" path="res://Resources/entities/enemy/MermaidPhase2Data.tres" id="2_l2rso"]
+[ext_resource type="PackedScene" uid="uid://cypd22lxlnmde" path="res://Scenes/weapons/projectiles/MermaidShield.tscn" id="3_3g5tb"]
+[ext_resource type="Script" uid="uid://bv86ahmsvfs33" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidStateMachine.cs" id="3_7x2xg"]
+[ext_resource type="Texture2D" uid="uid://ontkq30xvo12" path="res://Sprites/entities/enemies/mermaid_phase_2.jpg" id="3_it84c"]
+[ext_resource type="Script" uid="uid://xivkf0mvfrc7" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidChase.cs" id="4_k6jvo"]
+[ext_resource type="Script" uid="uid://umdgs4slww35" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidThrow.cs" id="7_3g5tb"]
+[ext_resource type="Script" uid="uid://dluel38gmk1v2" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidSummon.cs" id="8_ve0fr"]
+[ext_resource type="Script" uid="uid://k5fodk4iwwde" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidDash.cs" id="9_krb7f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ihpc"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2rso"]
+size = Vector2(4, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x2xg"]
+size = Vector2(5, 5)
+
+[node name="MermaidPhase2" type="CharacterBody2D" node_paths=PackedStringArray("starfishSpawns")]
+script = ExtResource("1_5ihpc")
+starfishSpawns = []
+trident = ExtResource("2_jucnh")
+shield = ExtResource("3_3g5tb")
+data = ExtResource("2_l2rso")
+OffScreenDespawnTime = 999999.0
+
+[node name="MermaidStateMachine" type="Node" parent="."]
+script = ExtResource("3_7x2xg")
+
+[node name="MermaidChase" type="Node" parent="MermaidStateMachine"]
+script = ExtResource("4_k6jvo")
+
+[node name="MermaidThrow" type="Node" parent="MermaidStateMachine"]
+script = ExtResource("7_3g5tb")
+
+[node name="MermaidSummon" type="Node" parent="MermaidStateMachine"]
+script = ExtResource("8_ve0fr")
+
+[node name="MermaidDash" type="Node" parent="MermaidStateMachine"]
+script = ExtResource("9_krb7f")
+
+[node name="ChaseTimer" type="Timer" parent="MermaidStateMachine"]
+wait_time = 6.0
+
+[node name="DashTimer" type="Timer" parent="MermaidStateMachine"]
+wait_time = 3.0
+
+[node name="Hitbox" parent="." instance=ExtResource("1_0covu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_5ihpc")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_it84c")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_l2rso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7x2xg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("3_it84c")
+
+[node name="ProjectileSource" type="Marker2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="InitializePlayerTargetting" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="RecoverTridentTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="RecoverShieldTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true

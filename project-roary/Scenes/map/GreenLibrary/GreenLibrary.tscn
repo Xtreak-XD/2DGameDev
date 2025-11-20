@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://b7j1lsbdli03x"]
+[gd_scene load_steps=3 format=3 uid="uid://b7j1lsbdli03x"]
+
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_ict7c"]
+[ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="2_pynll"]
 
 [node name="GreenLibrary" type="Node2D"]
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_ict7c")]
+spawnsAvailable = [NodePath("fromMaze")]
+
+[node name="fromMaze" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(1672, 531)
+
+[node name="MermaidPhase2" parent="." instance=ExtResource("2_pynll")]
+position = Vector2(262, 482)

@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 // Extend this to create a projectile that is shot from a RangedWeapon
@@ -40,11 +39,6 @@ public partial class Projectile : CharacterBody2D
 	// DO NOT OVERRIDE
 	public override void _PhysicsProcess(double delta)
 	{
-		if (GlobalPosition.DistanceTo(spawn) >= data.maxDistance)
-		{
-			Kill();
-		}
-
 		Travel(delta);
 	}
 
@@ -67,7 +61,6 @@ public partial class Projectile : CharacterBody2D
         {
             QueueFree();
         }
-		
     }
 
 	// If you override this, remember to

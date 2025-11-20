@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dihrarpptbfsb"]
+
+[ext_resource type="Script" uid="uid://tfqvnqcste34" path="res://Scripts/weapons/projectiles/RoaryFirework.cs" id="1_h1sx3"]
+[ext_resource type="Resource" uid="uid://cvnf1pi64prl3" path="res://Resources/weapons/projectiles/RoaryFireworkData.tres" id="2_46bee"]
+[ext_resource type="Texture2D" uid="uid://dmede855fvmky" path="res://Sprites/misc/firework_rocket.png" id="2_76u6d"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_aqage"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxgqv"]
+size = Vector2(8, 66.66667)
+
+[node name="RoaryFirework" type="CharacterBody2D"]
+script = ExtResource("1_h1sx3")
+data = ExtResource("2_46bee")
+
+[node name="LifespanTimer" type="Timer" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ny5u")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_aqage")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_nxgqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.095, 0.105)
+texture = ExtResource("2_76u6d")
+
+[node name="SetSpawnTimer" type="Timer" parent="."]
+wait_time = 0.05

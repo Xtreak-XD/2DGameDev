@@ -56,6 +56,17 @@ public partial class Hitbox : Area2D
                 GD.PushWarning("Parent's 'data' property is null");
             }
         }
+        else if (parent is EnemyProjectile enemyProjectileParent)
+        {
+            if (enemyProjectileParent.data != null)
+            {
+                projectileData = enemyProjectileParent.data;
+            }
+            else
+            {
+                GD.PushWarning("Parent's 'data' property is null");
+            }
+        }
          else if (parent is MeleeWeapon MelleeParent)
         {
             if (MelleeParent.data != null)

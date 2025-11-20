@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public partial class MenuScreen : Control
 {
-	private bool isPaused = false;
+	private bool _isPaused = false;
+	private Dictionary<Button, float> _originalPositions = new Dictionary<Button, float>();
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
      	Hide();
@@ -21,30 +21,30 @@ public partial class MenuScreen : Control
 
 		foreach (var button in buttons)
         {
-			var position = button.Position.X;
+			var currentButton = button;
+			var originalX = currentButton.Position.X;
+			
+			_originalPositions[currentButton] = originalX;
 
-			button.MouseEntered += () => SlideButton(button, position, true);
-			button.MouseExited += () => SlideButton(button, position, false);
-			button.Pressed += () => OnButtonPressed(button.Name);
+			currentButton.MouseEntered += () => SlideButton(currentButton, originalX, true);;
+			currentButton.MouseExited += () => SlideButton(currentButton, originalX, false);
+			currentButton.Pressed += () => OnButtonPressed(currentButton.Name);
         }
-	
     }
 
-	private void SlideButton(Button button, float pos, bool isHovering)
-    {    
+	private void SlideButton(Button button, float originalX, bool isHovering)
+    {		
 		var tween = CreateTween();
 		tween.SetEase(Tween.EaseType.Out);
 		tween.SetTrans(Tween.TransitionType.Cubic);
 		
 		if (isHovering)
 		{
-			// Slide Right
-			tween.TweenProperty(button, "position:x", pos + 50, 0.6);
+			tween.TweenProperty(button, "position:x", originalX + 50, 0.6);
 		}
 		else
 		{
-			// Return to original position
-			tween.TweenProperty(button, "position:x", pos, 0.6);
+			tween.TweenProperty(button, "position:x", originalX, 0.6);
 		}
     }
 
@@ -56,7 +56,7 @@ public partial class MenuScreen : Control
         }
     }
 
-	private void OnButtonPressed(String name)
+	private void OnButtonPressed(string name)
     {
         switch (name)
         {
@@ -74,10 +74,11 @@ public partial class MenuScreen : Control
 
 	private void TogglePause()
     {
-        isPaused = !isPaused;
-		Visible = isPaused;
-		GetTree().Paused = isPaused;
+        _isPaused = !_isPaused;
+		Visible = _isPaused;
+		GetTree().Paused = _isPaused;
     }
+
 	private void OnContinuePress()
     {
         TogglePause();
@@ -90,6 +91,7 @@ public partial class MenuScreen : Control
 
 	private void OnQuitPress()
     {
+		GetTree().Paused = false;
         GetTree().Quit();
     }
 }

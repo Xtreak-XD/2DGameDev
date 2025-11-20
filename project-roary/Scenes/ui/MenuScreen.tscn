@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7hfl3picvwq7"]
+[gd_scene load_steps=8 format=3 uid="uid://b7hfl3picvwq7"]
 
 [ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="1_jg7d2"]
 [ext_resource type="Script" uid="uid://c6tys0w83aomw" path="res://Scenes/ui/MenuScreen.cs" id="1_n2gc5"]
 [ext_resource type="Theme" uid="uid://yw4cddpssmmj" path="res://Resources/misc/MenuButton.tres" id="2_mvmok"]
 [ext_resource type="Texture2D" uid="uid://dj4318gbfs0r" path="res://Sprites/Roary-Wave-Full-Body.png" id="2_n2gc5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nu1e5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_24a1s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p338f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nu1e5"]
 bg_color = Color(0.03137255, 0.11764706, 0.24705882, 0.4)
@@ -46,7 +48,8 @@ theme = ExtResource("2_mvmok")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_jg7d2")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nu1e5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
 text = "Continue"
 alignment = 0
@@ -61,7 +64,8 @@ theme = ExtResource("2_mvmok")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_jg7d2")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nu1e5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
 text = "Settings"
 alignment = 0
@@ -76,7 +80,8 @@ theme = ExtResource("2_mvmok")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_jg7d2")
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nu1e5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
 text = "Quit"
 alignment = 0

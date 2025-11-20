@@ -15,10 +15,7 @@ public partial class Starfish : Enemy
     [Export] public Vector2 AreaSize = new Vector2(500, 300); // Width & height of spawn area
     [Export] public Vector2 AreaCenter = Vector2.Zero; // Center of spawn area
 
-
-
 	[Export]
-
 	public PackedScene bubbleProjectile;
 
 	[Export]
@@ -44,11 +41,9 @@ public partial class Starfish : Enemy
 
     public override void _ExitTree()
     {
-        base._ExitTree();
+        projectileTimer.Timeout -= ShootBubble;
+		setTargetTimer.Timeout -= SetTarget;
     }
-
-
-        
 
 	public void SetTarget()
     {
@@ -62,7 +57,7 @@ public partial class Starfish : Enemy
 		Vector2 targetPos = target.GlobalPosition;
 
 		StarfishBubble bubble = (StarfishBubble)bubbleProjectile.Instantiate();
-		AddChild(bubble);
+		Owner.AddChild(bubble);
 
 		bubble.GlobalPosition = currentPos;
 		bubble.target = target;

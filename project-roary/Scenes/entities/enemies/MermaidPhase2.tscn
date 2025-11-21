@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://blca23bgqgc6k"]
+[gd_scene load_steps=18 format=3 uid="uid://blca23bgqgc6k"]
 
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="1_0covu"]
 [ext_resource type="Script" uid="uid://by8t7yjhudqwv" path="res://Scripts/entities/enemies/mermaid_phase_two/Mermaid.cs" id="1_5ihpc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cypd22lxlnmde" path="res://Scenes/weapons/projectiles/MermaidShield.tscn" id="3_3g5tb"]
 [ext_resource type="Script" uid="uid://bv86ahmsvfs33" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidStateMachine.cs" id="3_7x2xg"]
 [ext_resource type="Texture2D" uid="uid://ontkq30xvo12" path="res://Sprites/entities/enemies/mermaid_phase_2.jpg" id="3_it84c"]
+[ext_resource type="PackedScene" path="res://Scenes/entities/enemies/starfish.tscn" id="4_5ejdx"]
 [ext_resource type="Script" uid="uid://xivkf0mvfrc7" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidChase.cs" id="4_k6jvo"]
 [ext_resource type="Script" uid="uid://umdgs4slww35" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidThrow.cs" id="7_3g5tb"]
 [ext_resource type="Script" uid="uid://dluel38gmk1v2" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidSummon.cs" id="8_ve0fr"]
@@ -28,6 +29,7 @@ script = ExtResource("1_5ihpc")
 starfishSpawns = []
 trident = ExtResource("2_jucnh")
 shield = ExtResource("3_3g5tb")
+starfishEnemy = ExtResource("4_5ejdx")
 data = ExtResource("2_l2rso")
 OffScreenDespawnTime = 999999.0
 

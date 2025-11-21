@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class MermaidThrow : MermaidState
@@ -15,7 +16,7 @@ public partial class MermaidThrow : MermaidState
 
     public override void EnterState()
     {
-		GD.Print("The mermaid is attemping to throw a projectile");
+		GD.Print("The mermaid is considering throwing a projectile");
 
 		Vector2 currentPos = ActiveEnemy.projectileSource.GlobalPosition;
 		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
@@ -24,16 +25,19 @@ public partial class MermaidThrow : MermaidState
 
         if(ActiveEnemy.HasTrident)
         {
-			GD.Print("The mermaid is throwing its trident");
+			if(new Random().Next(2) == 1)
+            {
+                GD.Print("The mermaid is throwing its trident");
 
-            MermaidTrident tridentProjectile = (MermaidTrident)ActiveEnemy.trident.Instantiate();
-			ActiveEnemy.Owner.AddChild(tridentProjectile);
+				MermaidTrident tridentProjectile = (MermaidTrident)ActiveEnemy.trident.Instantiate();
+				ActiveEnemy.Owner.AddChild(tridentProjectile);
 
-			tridentProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
-			tridentProjectile.sprite.LookAt(targetPos);
-			tridentProjectile.parent = ActiveEnemy;
+				tridentProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
+				tridentProjectile.sprite.LookAt(targetPos);
+				tridentProjectile.parent = ActiveEnemy;
 
-			tridentProjectile.Velocity = direction * tridentProjectile.data.speed;
+				tridentProjectile.Velocity = direction * tridentProjectile.data.speed;
+            }
         } 
 		else if(ActiveEnemy.Shielded)
         {

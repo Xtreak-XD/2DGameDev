@@ -25,6 +25,9 @@ public partial class Mermaid : Enemy
 	[Export]
 	public PackedScene shield;
 
+    [Export]
+    public PackedScene starfishEnemy;
+
 	public override void _Ready()
 	{
 		stateMachine = GetNode<MermaidStateMachine>("MermaidStateMachine");
@@ -80,12 +83,11 @@ public partial class Mermaid : Enemy
         HasTrident = true;
     }
 
-	/* UNCOMMENT WHEN THE STARFISH PULL REQUEST IS MERGED
 	public Marker2D GetRandomStarfishSpawn()
     {
 		Marker2D spawn = null;
 
-        if(AllSpawnsOccuiped())
+        if(AllSpawnsOccupied())
         {
             return null;
         }
@@ -133,5 +135,4 @@ public partial class Mermaid : Enemy
 
         return true;
     }
-    */
 }

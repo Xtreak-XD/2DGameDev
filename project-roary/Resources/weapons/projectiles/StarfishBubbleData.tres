@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b4v02mag4l3ia"]
+
+[ext_resource type="Script" uid="uid://cg5sgeglps0vr" path="res://Scripts/resources/ProjectileData.cs" id="1_g6cut"]
+
+[resource]
+script = ExtResource("1_g6cut")
+speed = 300.0
+lifeSpan = 8.0

@@ -4,10 +4,10 @@ using Godot;
 public partial class Starfish : Enemy
 {
 	[Export] 
-	public Resource GenericData;
+
+	//SceneTree Variables
 	public Player target;
 	public Area2D hurtBox;
-	public Area2D hitbox;
 	public Marker2D projectileSource;
 	public Timer setTargetTimer;
 
@@ -24,7 +24,6 @@ public partial class Starfish : Enemy
 	public override void _Ready()
     {
 		hurtBox = GetNode<Area2D>("HurtBox");
-		hitbox = GetNode<Area2D>("Hitbox");
 		projectileSource = GetNode<Marker2D>("ProjectileSource");
 		setTargetTimer = GetNode<Timer>("SetTargetTimer");
 
@@ -57,7 +56,7 @@ public partial class Starfish : Enemy
 		Vector2 targetPos = target.GlobalPosition;
 
 		StarfishBubble bubble = (StarfishBubble)bubbleProjectile.Instantiate();
-		Owner.AddChild(bubble);
+		GetNode("ProjectileContainer").AddChild(bubble);
 
 		bubble.GlobalPosition = currentPos;
 		bubble.target = target;

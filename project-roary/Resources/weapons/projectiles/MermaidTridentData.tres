@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_vbx8m")
 speed = 600.0
-lifeSpan = 9.0
+lifeSpan = 5.0

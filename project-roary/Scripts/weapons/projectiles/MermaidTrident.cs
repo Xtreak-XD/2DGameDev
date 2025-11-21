@@ -10,7 +10,7 @@ public partial class MermaidTrident : EnemyProjectile
         	{
 				mermaid.HasTrident = false;
 
-				if(projectileTimer.TimeLeft <= projectileTimer.WaitTime / 2)
+				if(projectileTimer.TimeLeft <= (projectileTimer.WaitTime / 2) + 1)
 				{
 					Vector2 currentPos = GlobalPosition;
 					Vector2 parentPos = parent.GlobalPosition;

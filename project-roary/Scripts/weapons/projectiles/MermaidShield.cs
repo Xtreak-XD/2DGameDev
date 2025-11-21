@@ -10,7 +10,7 @@ public partial class MermaidShield : EnemyProjectile
 			{
 				mermaid.Shielded = false;
 			
-				if(projectileTimer.TimeLeft <= projectileTimer.WaitTime / 2)
+				if(projectileTimer.TimeLeft <= (projectileTimer.WaitTime / 2) + 1)
 				{
 					Vector2 currentPos = GlobalPosition;
 					Vector2 parentPos = parent.GlobalPosition;

@@ -109,11 +109,11 @@ public partial class Mermaid : Enemy
         {
             if(child is Starfish)
             {
-                return false;
+                return true;
             }
         }
 
-		return true;
+		return false;
     }
 	*/
 }

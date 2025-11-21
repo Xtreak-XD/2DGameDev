@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_7t4ct")
 speed = 350.0
-lifeSpan = 10.0
+lifeSpan = 8.0

@@ -4,8 +4,6 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 
-	public Eventbus eventbus;
-
 	[Export] Resource metaData;
 	[Export] public GenericData data;
 	public AnimationPlayer animationPlayer;
@@ -15,6 +13,10 @@ public partial class Player : CharacterBody2D
 	public Vector2 direction = Vector2.Zero;
 	public Vector2 lastDirection = Vector2.Zero;
 	public Vector2[] DIRECTIONS = {Vector2.Right, Vector2.Left, Vector2.Up, Vector2.Down};
+
+	private Eventbus eventbus;
+	private int equippedSlot = -1;
+	private Inventory inv;
 
 	public bool usingStamina = false;
 	public bool recoveringStamina = false;
@@ -32,6 +34,12 @@ public partial class Player : CharacterBody2D
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		stateMachine.Initialize(this);
+
+		inv = GetNode<Inventory>("/root/Inventory");
+
+		eventbus.itemDropped += spawnItemInWorld;
+		eventbus.itemEquipped += equipItem;
+		eventbus.inventoryUpdated += checkIfEquipped;
 	}
 
 	public override void _Process(double delta)
@@ -47,6 +55,14 @@ public partial class Player : CharacterBody2D
 			RecoverStamina();
 		}
 	}
+
+    public override void _ExitTree()
+    {
+        eventbus.itemDropped -= spawnItemInWorld;
+		eventbus.itemEquipped -= equipItem;
+		eventbus.inventoryUpdated -= checkIfEquipped;
+    }
+
 
 	private async void RecoverStamina()
 	{
@@ -119,5 +135,61 @@ public partial class Player : CharacterBody2D
     {
         GlobalPosition = pos;
     }
+
+	public void spawnItemInWorld(InventoryItem item, int quantity)
+	{
+		PackedScene itemScene = GD.Load<PackedScene>("res://Scenes/ui/inventory/Items.tscn");
+		Items itemInstance = itemScene.Instantiate() as Items;
+		itemInstance.itemResource = item;
+		itemInstance.itemQuantity = quantity;
+		itemInstance.GlobalPosition = this.GlobalPosition + (cardinalDirection * 30); // Spawns in front of player
+		GetTree().GetCurrentScene().AddChild(itemInstance);
+	}
+
+	public void equipItem(int slotIndex)
+	{
+		if (slotIndex < -1 || slotIndex >= inv.slots.Count)
+		{
+			GD.PrintErr($"Invalid slot index: {slotIndex}");
+			return;
+		}
+
+		if (slotIndex == equippedSlot) return;	
+
+		equippedSlot = slotIndex;
+		if (slotIndex < 0)
+		{
+			GD.Print("Unequipped hotbar slot");
+			return;
+		}
+
+		InventorySlot equipItem = inv.slots[slotIndex];
+
+		if (equipItem.item != null && equipItem.quantity > 0)
+		{
+			GD.Print($"Equipped: {equipItem.item.itemName}");
+		}
+		else
+		{
+			GD.Print("Empty slot equipped");
+		}
+	}
+
+	public void checkIfEquipped()
+	{
+		if (equippedSlot < 0) return;
+
+		if (equippedSlot >= inv.slots.Count)
+		{
+			GD.PrintErr("Invalid equipped slot index");
+			return;
+		}
+
+		InventorySlot equipItem = inv.slots[equippedSlot];
+		if (equipItem.item == null || equipItem.quantity == 0)
+		{
+			GD.Print("Equipped slot is now empty");
+		}
+	}
 
 }

@@ -11,22 +11,33 @@ public partial class InteractionManager : Node2D
 
     public List<interactionArea> activeAreas = new List<interactionArea>(); //this will how  overlapping areas in case there are multiple interacts in 1 place.
     public bool canInteract = true;
+    private Eventbus eventbus;
 
     public override void _Ready()
     {
         player = (Player)GetTree().GetFirstNodeInGroup("player");
         label = GetNode<Label>("Label");
+        
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
+        eventbus.interactionComplete += () => { canInteract = true; };
     }
 
     public override void _Process(double delta)
     {
+        if (player == null || !IsInstanceValid(player))
+        {
+            player = (Player)GetTree().GetFirstNodeInGroup("player");
+            if (player == null) return; 
+        }
+
+        activeAreas.RemoveAll(area => !IsInstanceValid(area)); // Clean up invalid areas
+
         if (activeAreas.Count() > 0 && canInteract)
         {
             activeAreas.Sort(SortByDistanceToPlayer);
+            
             label.Text = labelText + activeAreas[0].actionName;
-            label.GlobalPosition = activeAreas[0].GlobalPosition;
-            label.GlobalPosition = new Vector2(label.GlobalPosition.X, label.GlobalPosition.Y - 36);
-            label.GlobalPosition = new Vector2(label.GlobalPosition.X - (label.Size.X / 2), label.GlobalPosition.Y);
+            label.GlobalPosition = activeAreas[0].GlobalPosition + new Vector2(-(label.Size.X / 2), -36);
             label.Show();
         }
         else
@@ -37,10 +48,6 @@ public partial class InteractionManager : Node2D
 
     private int SortByDistanceToPlayer(interactionArea area1, interactionArea area2)
     {
-        if (area1 == null || area2 == null)
-        {
-            return 0;
-        }
         double d1 = player.GlobalPosition.DistanceTo(area1.GlobalPosition);
         double d2 = player.GlobalPosition.DistanceTo(area2.GlobalPosition);
         return d1.CompareTo(d2);
@@ -53,12 +60,13 @@ public partial class InteractionManager : Node2D
 
     public void unregisterArea(interactionArea area)
     {
-        int index = activeAreas.IndexOf(area);
-        if (index != -1)
-        {
-            activeAreas.RemoveAt(index);
-            canInteract = true;
-        }
+        activeAreas.Remove(area);
+        // int index = activeAreas.IndexOf(area);
+        // if (index != -1)
+        // {
+        //     activeAreas.RemoveAt(index);
+        //     canInteract = true;
+        // }
     }
 
     public override void _Input(InputEvent @event)
@@ -71,8 +79,6 @@ public partial class InteractionManager : Node2D
                 label.Hide();
 
                 activeAreas[0].interact.Call();
-
-                //canInteract = true;
             }
         }
     }

@@ -1,8 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization.Formatters;
 
 public partial class FootballScene : Enemy
 {
@@ -13,7 +11,7 @@ public partial class FootballScene : Enemy
     float numberToSpawn;
 
     private Vector2 spawnPosition;
-    private enum gapLocation
+    private enum GapLocation
     {
         SmallLeft,
         SmallRight,
@@ -23,7 +21,8 @@ public partial class FootballScene : Enemy
         WideMiddle,
         ZigZagMove,
     }
-    private enum spawnLocation
+
+    private enum SpawnLocation
     {
         North,
         East,
@@ -33,21 +32,73 @@ public partial class FootballScene : Enemy
 
     private List<Node2D> footballPlayers = new List<Node2D>();
 
-    [Export] private gapLocation gapChosen { get; set; } = gapLocation.SmallMiddle;
-    [Export] private spawnLocation spawnChosen { get; set; } = spawnLocation.North;
-    private Timer directionTimer;
+    private GapLocation gapChosen { get; set; } = GapLocation.SmallMiddle;
+    private SpawnLocation spawnChosen { get; set; } = SpawnLocation.North;
 
-    [Export] float waitTimer;
+    [Export]
+    public float waitTimer;
+
+    public Timer durationTimer;
+    private Timer directionTimer;
 
     private Vector2 direction;
 
     public override void _Ready()
     {
         PackedScene footballPlayer = GD.Load<PackedScene>("Scenes/entities/enemies/FootballPlayer.tscn");
-        Node2D footballPlayerInstance = (Node2D)footballPlayer.Instantiate();
+        FootballPlayer footballPlayerInstance = (FootballPlayer)footballPlayer.Instantiate();
         Sprite2D footballPlayerSprite = footballPlayerInstance.GetNode<Sprite2D>("Sprite2D");
-        float footballPlayerWidth = footballPlayerSprite.Texture.GetWidth();
-        float footballPlayerHeight = footballPlayerSprite.Texture.GetHeight();
+
+        durationTimer = GetNode<Timer>("StampedeTimer");
+
+        float footballPlayerWidth = footballPlayerSprite.Texture.GetWidth() + 50;
+        float footballPlayerHeight = footballPlayerSprite.Texture.GetHeight() + 50;
+
+        Random spawnRandomizer = new();
+
+        int spawnLoc = spawnRandomizer.Next(0, 4);
+        int gapLoc = spawnRandomizer.Next(0, 7);
+
+        switch(spawnLoc)
+        {
+            case 0:
+                spawnChosen = SpawnLocation.North;
+                break;
+            case 1:
+                spawnChosen = SpawnLocation.South;
+                break;
+            case 2:
+                spawnChosen = SpawnLocation.East;
+                break;
+            case 3:
+                spawnChosen = SpawnLocation.West;
+                break;
+        }
+
+        switch(gapLoc)
+        {
+            case 0:
+                gapChosen = GapLocation.SmallLeft;
+                break;
+            case 1:
+                gapChosen = GapLocation.SmallRight;
+                break;
+            case 2:
+                gapChosen = GapLocation.SmallMiddle;
+                break;
+            case 3:
+                gapChosen = GapLocation.WideLeft;
+                break;
+            case 4:
+                gapChosen = GapLocation.WideRight;
+                break;
+            case 5:
+                gapChosen = GapLocation.WideMiddle;
+                break;
+            case 6:
+                gapChosen = GapLocation.ZigZagMove;
+                break;
+        }
 
         viewport = GetViewport();
         Rect2 visibleRect = viewport.GetVisibleRect();
@@ -57,7 +108,7 @@ public partial class FootballScene : Enemy
         footballPlayerWidth /= 2;
         footballPlayerHeight /= 2;
 
-        if (spawnChosen == spawnLocation.North || spawnChosen == spawnLocation.South)
+        if (spawnChosen == SpawnLocation.North || spawnChosen == SpawnLocation.South)
         {
             numberToSpawn = viewportWidth / footballPlayerWidth;
         }
@@ -68,56 +119,61 @@ public partial class FootballScene : Enemy
 
         numberToSpawn = (int)numberToSpawn;
 
+        GD.Print($"Football players to spawn: {numberToSpawn}");
+        GD.Print($"Spawn Direction: {spawnChosen}");
+        GD.Print($"Gap Position: {gapChosen}");
+
         switch (spawnChosen)
         {
-            case spawnLocation.North:
+            case SpawnLocation.North:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(0 + (footballPlayerWidth * i), 0);
-                    Node2D footballPlayerDup = (Node2D)footballPlayerInstance.Duplicate(7);
+                    spawnPosition = new Vector2(footballPlayerWidth * i, 0);
+                    FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.Position = spawnPosition;
+                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;
 
-            case spawnLocation.East:
+            case SpawnLocation.East:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(0 + (footballPlayerWidth * i), 0);
-                    Node2D footballPlayerDup = (Node2D)footballPlayerInstance.Duplicate(7);
+                    spawnPosition = new Vector2(viewportWidth, 0 + (footballPlayerHeight * (i + 1)));
+                    FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.Position = spawnPosition;
+                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;
 
-            case spawnLocation.South:
+            case SpawnLocation.South:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(0 + (footballPlayerWidth * i), 0);
-                    Node2D footballPlayerDup = (Node2D)footballPlayerInstance.Duplicate(7);
+                    spawnPosition = new Vector2(footballPlayerWidth * i, viewportHeight);
+                    FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.Position = spawnPosition;
+                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;
 
-            case spawnLocation.West:
+            case SpawnLocation.West:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(0 + (footballPlayerWidth * i), 0);
-                    Node2D footballPlayerDup = (Node2D)footballPlayerInstance.Duplicate(7);
+                    spawnPosition = new Vector2(0, 0 + (footballPlayerHeight * (i + 1)));
+                    FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.Position = spawnPosition;
+                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;
         }
+        
         directionTimer = new Timer();
         directionTimer.WaitTime = waitTimer;
         directionTimer.OneShot = false; // repeat forever
@@ -125,58 +181,68 @@ public partial class FootballScene : Enemy
 
         directionTimer.Timeout += OnDirectionTimerTimeout;
         directionTimer.Start();
-    
 
+        if(spawnChosen == SpawnLocation.North || spawnChosen == SpawnLocation.South)
+        {
+            durationTimer.WaitTime = 4.3;
+        } 
+        else
+        {
+            durationTimer.WaitTime = 7;
+        }
+
+        durationTimer.Timeout += QueueFree;
+        durationTimer.Start();
     }
 
     public override void _Process(double delta)
     {
         switch (spawnChosen)
         {
-            case spawnLocation.North:
-                Velocity = Vector2.Down * data.Speed * (float)delta;
+            case SpawnLocation.North:
+                Velocity = Vector2.Down * data.Speed;
                 break;
-            case spawnLocation.South:
-                Velocity = Vector2.Up * data.Speed * (float)delta;
+            case SpawnLocation.South:
+                Velocity = Vector2.Up * data.Speed;
                 break;
-            case spawnLocation.East:
-                RotationDegrees = 90;
-                Velocity = Vector2.Left * data.Speed * (float)delta;
+            case SpawnLocation.East:
+                Velocity = Vector2.Left * data.Speed;
                 break;
-            case spawnLocation.West:
-                RotationDegrees = 270;
-                Velocity = Vector2.Right * data.Speed * (float)delta;
+            case SpawnLocation.West:
+                Velocity = Vector2.Right * data.Speed;
                 break;
         }
+        
         switch (gapChosen)
         {
-            case gapLocation.SmallLeft:
+            case GapLocation.SmallLeft:
                 footballPlayers[0].Hide();
                 break;
-            case gapLocation.SmallRight:
+            case GapLocation.SmallRight:
                 footballPlayers[footballPlayers.Count - 1].Hide();
                 break;
-            case gapLocation.SmallMiddle:
+            case GapLocation.SmallMiddle:
                 int count = footballPlayers.Count;
                 int mid = count / 2;
                 if(footballPlayers.Count % 2 == 1)
                 {
                     footballPlayers[mid].Hide();
-                } else
+                } 
+                else
                 {
                     footballPlayers[mid - 1]?.Hide();
                     footballPlayers[mid]?.Hide();
                 }
                 break;
-            case gapLocation.WideLeft:
+            case GapLocation.WideLeft:
                 footballPlayers[0].Hide();
                 footballPlayers[1].Hide();
                 break;
-            case gapLocation.WideRight:
+            case GapLocation.WideRight:
                 footballPlayers[footballPlayers.Count - 1].Hide();
                 footballPlayers[footballPlayers.Count - 2].Hide();
                 break;
-            case gapLocation.WideMiddle:
+            case GapLocation.WideMiddle:
                 int count2 = footballPlayers.Count;
                 int mid2 = count2 / 2;
                 if(count2 % 2 == 1)
@@ -191,7 +257,7 @@ public partial class FootballScene : Enemy
                     footballPlayers[mid2 + 1].Hide();
                 }
                 break;
-            case gapLocation.ZigZagMove:
+            case GapLocation.ZigZagMove:
                 for (int i = 0; i < footballPlayers.Count; i++)
                 {
                     if (i % 2 == 0)
@@ -199,30 +265,33 @@ public partial class FootballScene : Enemy
                         footballPlayers[i].Hide();
                     }
                 }
-                if (spawnChosen == spawnLocation.North)
+                if (spawnChosen == SpawnLocation.North)
                 {
                     Vector2 velocity = Velocity;
-                    velocity = direction * data.Speed * 2 * (float)delta;
-                    velocity.Y = data.Speed * (float)delta; 
-                    Velocity = velocity; 
-                } else if(spawnChosen == spawnLocation.South)
+                    velocity = direction * data.Speed * 2;
+                    velocity.Y = data.Speed;
+                    Velocity = velocity;
+                } 
+                else if(spawnChosen == SpawnLocation.South)
                 {
                     Vector2 velocity = Velocity;
-                    velocity = direction * data.Speed * 2 * (float)delta;
-                    velocity.Y = -(data.Speed * (float)delta); 
-                    Velocity = velocity; 
-                } else if(spawnChosen == spawnLocation.East)
+                    velocity = direction * data.Speed;
+                    velocity.Y = -data.Speed;; 
+                    Velocity = velocity;
+                } 
+                else if(spawnChosen == SpawnLocation.East)
                 {
                     Vector2 velocity = Velocity;
-                    velocity = direction * data.Speed * 2 * (float)delta;
-                    velocity.X = -(data.Speed * (float)delta); 
-                    Velocity = velocity; 
-                } else
+                    velocity = direction * data.Speed * 2;
+                    velocity.X = -data.Speed;
+                    Velocity = velocity;
+                }
+                else
                 {
                     Vector2 velocity = Velocity;
-                    velocity = direction * data.Speed * 2 * (float)delta;
-                    velocity.X = data.Speed * (float)delta; 
-                    Velocity = velocity; 
+                    velocity = direction * data.Speed * 2;
+                    velocity.X = data.Speed;
+                    Velocity = velocity;
                 }
                 break;
         }
@@ -230,7 +299,7 @@ public partial class FootballScene : Enemy
     
     private void OnDirectionTimerTimeout()
     {
-            if(spawnChosen == spawnLocation.North || spawnChosen == spawnLocation.South)
+        if(spawnChosen == SpawnLocation.North || spawnChosen == SpawnLocation.South)
         {
             if (direction == Vector2.Left)
             {
@@ -240,7 +309,6 @@ public partial class FootballScene : Enemy
             {
                 direction = Vector2.Left;
             }
-                  
         }
         else
         {
@@ -253,9 +321,7 @@ public partial class FootballScene : Enemy
                 direction = Vector2.Up;
             }
         }
-       
     }
-
 
     public override void _PhysicsProcess(double delta)
     {

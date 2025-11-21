@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://b1p5cxryw0kgj"]
+[gd_scene load_steps=3 format=3 uid="uid://b1p5cxryw0kgj"]
+
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_f5tiu"]
+[ext_resource type="PackedScene" uid="uid://c40jqbolu6ucs" path="res://Scenes/entities/enemies/Roary.tscn" id="2_f5tiu"]
 
 [node name="Stadium" type="Node2D"]
+
+[node name="Roary" parent="." instance=ExtResource("2_f5tiu")]
+position = Vector2(310, 492)
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_f5tiu")]
+spawnsAvailable = [NodePath("fromOverWorld")]
+
+[node name="fromOverWorld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(1834, 1004)

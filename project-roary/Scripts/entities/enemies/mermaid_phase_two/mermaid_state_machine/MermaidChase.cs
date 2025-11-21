@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class MermaidChase : MermaidState
@@ -6,10 +7,12 @@ public partial class MermaidChase : MermaidState
     bool EndChase = false;
 
     public MermaidThrow MermaidThrow;
+    public MermaidFullThrow MermaidFullThrow;
 
     public override void _Ready()
     {
         MermaidThrow = GetParent().GetNode<MermaidThrow>("MermaidThrow");
+        MermaidFullThrow = GetParent().GetNode<MermaidFullThrow>("MermaidFulLThrow");
 
         chaseTimer = GetParent().GetNode<Timer>("ChaseTimer");
         chaseTimer.Timeout += SetChaseOver;
@@ -32,6 +35,14 @@ public partial class MermaidChase : MermaidState
     {
         if(EndChase)
         {
+            if(ActiveEnemy.HasTrident && ActiveEnemy.Shielded)
+            {
+                if(new Random().Next(3) == 2)
+                {
+                    return MermaidFullThrow;
+                }
+            }
+
             return MermaidThrow;
         }
 
@@ -46,7 +57,7 @@ public partial class MermaidChase : MermaidState
 			
 		if(!ActiveEnemy.Shielded)
         {
-            ActiveEnemy.Velocity *= 1.25f;
+            ActiveEnemy.Velocity *= 2f;
         }
 
 		ActiveEnemy.MoveAndSlide();

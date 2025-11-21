@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://blca23bgqgc6k"]
+[gd_scene load_steps=17 format=3 uid="uid://blca23bgqgc6k"]
 
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="1_0covu"]
 [ext_resource type="Script" uid="uid://by8t7yjhudqwv" path="res://Scripts/entities/enemies/mermaid_phase_two/Mermaid.cs" id="1_5ihpc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://umdgs4slww35" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidThrow.cs" id="7_3g5tb"]
 [ext_resource type="Script" uid="uid://dluel38gmk1v2" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidSummon.cs" id="8_ve0fr"]
 [ext_resource type="Script" uid="uid://k5fodk4iwwde" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidDash.cs" id="9_krb7f"]
+[ext_resource type="Script" uid="uid://bsug8q2r6k57l" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidFullThrow.cs" id="10_shvun"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ihpc"]
 radius = 3.0
@@ -45,8 +46,11 @@ script = ExtResource("8_ve0fr")
 [node name="MermaidDash" type="Node" parent="MermaidStateMachine"]
 script = ExtResource("9_krb7f")
 
+[node name="MermaidFullThrow" type="Node" parent="MermaidStateMachine"]
+script = ExtResource("10_shvun")
+
 [node name="ChaseTimer" type="Timer" parent="MermaidStateMachine"]
-wait_time = 6.0
+wait_time = 8.0
 
 [node name="DashTimer" type="Timer" parent="MermaidStateMachine"]
 wait_time = 3.0

@@ -85,6 +85,11 @@ public partial class Mermaid : Enemy
     {
 		Marker2D spawn = null;
 
+        if(AllSpawnsOccuiped())
+        {
+            return null;
+        }
+
 		while(spawnOccupied(spawn))
         {
             spawn = starfishSpawns[new Random().Next(starfishSpawns.Length)];
@@ -115,5 +120,18 @@ public partial class Mermaid : Enemy
 
 		return false;
     }
-	*/
+	
+    private bool AllSpawnsOccupied()
+    {
+        foreach(Marker2D spawn in starfishSpawns) 
+        {
+            if(spawnOccupied(spawn))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    */
 }

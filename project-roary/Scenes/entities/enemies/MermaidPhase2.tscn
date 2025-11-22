@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cypd22lxlnmde" path="res://Scenes/weapons/projectiles/MermaidShield.tscn" id="3_3g5tb"]
 [ext_resource type="Script" uid="uid://bv86ahmsvfs33" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidStateMachine.cs" id="3_7x2xg"]
 [ext_resource type="Texture2D" uid="uid://ontkq30xvo12" path="res://Sprites/entities/enemies/mermaid_phase_2.jpg" id="3_it84c"]
-[ext_resource type="PackedScene" path="res://Scenes/entities/enemies/starfish.tscn" id="4_5ejdx"]
+[ext_resource type="PackedScene" uid="uid://bvws016o4cklc" path="res://Scenes/entities/enemies/starfish.tscn" id="4_5ejdx"]
 [ext_resource type="Script" uid="uid://xivkf0mvfrc7" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidChase.cs" id="4_k6jvo"]
 [ext_resource type="Script" uid="uid://umdgs4slww35" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidThrow.cs" id="7_3g5tb"]
 [ext_resource type="Script" uid="uid://dluel38gmk1v2" path="res://Scripts/entities/enemies/mermaid_phase_two/mermaid_state_machine/MermaidSummon.cs" id="8_ve0fr"]
@@ -82,9 +82,9 @@ texture = ExtResource("3_it84c")
 wait_time = 0.05
 
 [node name="RecoverTridentTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 10.0
 one_shot = true
 
 [node name="RecoverShieldTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 8.0
 one_shot = true

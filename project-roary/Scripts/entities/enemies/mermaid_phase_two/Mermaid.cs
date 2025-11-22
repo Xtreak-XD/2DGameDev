@@ -92,7 +92,7 @@ public partial class Mermaid : Enemy
             return null;
         }
 
-		while(spawnOccupied(spawn))
+		while(SpawnOccupied(spawn))
         {
             spawn = starfishSpawns[new Random().Next(starfishSpawns.Length)];
         }
@@ -105,10 +105,10 @@ public partial class Mermaid : Enemy
         return spawn;
     }
 
-	public bool spawnOccupied(Marker2D spawn)
+	public bool SpawnOccupied(Marker2D spawn)
     {
-		if(spawn == null)
-        {
+		if(spawn == null) // This should prevent infinite loops or issues
+        {                 // when we get random spawn positions
             return true;
         }
 
@@ -127,7 +127,7 @@ public partial class Mermaid : Enemy
     {
         foreach(Marker2D spawn in starfishSpawns) 
         {
-            if(spawnOccupied(spawn))
+            if(!SpawnOccupied(spawn))
             {
                 return false;
             }

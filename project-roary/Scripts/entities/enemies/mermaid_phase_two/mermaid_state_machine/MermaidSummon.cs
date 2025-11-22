@@ -11,7 +11,7 @@ public partial class MermaidSummon : MermaidState
 
     public override void EnterState()
     {
-        GD.Print("The mermaid is summoning three starfish");
+        GD.Print("The mermaid is attempting to summon three starfish");
 
         for(int i = 0; i < 3; i++)
         {

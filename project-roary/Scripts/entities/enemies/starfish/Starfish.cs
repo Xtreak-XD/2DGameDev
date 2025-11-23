@@ -3,15 +3,12 @@ using Godot;
 
 public partial class Starfish : Enemy
 {
-	[Export] 
-
 	//SceneTree Variables
 	public Player target;
 	public Area2D hurtBox;
 	public Marker2D projectileSource;
 	public Timer setTargetTimer;
 
-	[Export] public PackedScene EnemyScene; // Assign your enemy scene in the Inspector
     [Export] public Vector2 AreaSize = new Vector2(500, 300); // Width & height of spawn area
     [Export] public Vector2 AreaCenter = Vector2.Zero; // Center of spawn area
 

@@ -1,0 +1,71 @@
+[gd_scene load_steps=15 format=3 uid="uid://bed4fyrobgykm"]
+
+[ext_resource type="Texture2D" uid="uid://bq3pb7db1an04" path="res://Sprites/entities/enemies/coin.jpeg" id="1_5f7fq"]
+[ext_resource type="Script" uid="uid://ipdydiemqngx" path="res://Scripts/entities/enemies/Logo/Logo.cs" id="1_o8biw"]
+[ext_resource type="Resource" uid="uid://caiqo8ponws5c" path="res://Scripts/entities/enemies/Logo/LogoData.tres" id="2_40s8x"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_o8biw"]
+[ext_resource type="PackedScene" uid="uid://5cxp70bjjaps" path="res://Scenes/entities/enemies/SpiralBubble.tscn" id="3_fa4y8"]
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="3_qdifj"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_yhc4g"]
+[ext_resource type="PackedScene" uid="uid://dmv2gjetynro5" path="res://Scenes/entities/enemies/CoffeeShot.tscn" id="4_fa4y8"]
+[ext_resource type="Script" uid="uid://drqeas6dkwycy" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/LogoIdleState.cs" id="5_yxpio"]
+[ext_resource type="Script" uid="uid://54d1w6gohr58" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/RollState.cs" id="6_yxpio"]
+
+[sub_resource type="Resource" id="Resource_p146o"]
+script = ExtResource("3_qdifj")
+metadata/_custom_type_script = "uid://dkov12aknt46v"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrxrl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdifj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p146o"]
+
+[node name="Logo" type="CharacterBody2D"]
+scale = Vector2(5.3203, 5.3203)
+disable_mode = 2
+collision_layer = 16
+collision_mask = 2
+motion_mode = 1
+up_direction = Vector2(0.7071068, 0.7071068)
+script = ExtResource("1_o8biw")
+Data = ExtResource("2_40s8x")
+SBAttack = ExtResource("3_fa4y8")
+CoffeeShot = ExtResource("4_fa4y8")
+data = SubResource("Resource_p146o")
+
+[node name="LogoStateMachine" type="Node" parent="."]
+
+[node name="LogoIdleState" type="Node" parent="LogoStateMachine"]
+script = ExtResource("5_yxpio")
+
+[node name="RollState" type="Node" parent="LogoStateMachine"]
+script = ExtResource("6_yxpio")
+
+[node name="Timer" type="Timer" parent="LogoStateMachine"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.046080746, 0.049341306)
+texture = ExtResource("1_5f7fq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.5689068, 4)
+shape = SubResource("CircleShape2D_xrxrl")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_o8biw")]
+scale = Vector2(0.7692792, 1.0556647)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(3.1481678, 2.192932)
+shape = SubResource("CircleShape2D_qdifj")
+debug_color = Color(0.9776438, 0, 0.40619904, 0.41960785)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_yhc4g")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(2.8986206, 2.943963)
+shape = SubResource("CircleShape2D_p146o")
+debug_color = Color(0.5532109, 0.56299573, 9.62615e-07, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(3.705194, 3.9260502)

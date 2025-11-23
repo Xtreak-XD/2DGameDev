@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmv2gjetynro5"]
+
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="2_ha57a"]
+[ext_resource type="Texture2D" uid="uid://3f04tfuujlmw" path="res://Sprites/entities/enemies/Tidal wave.jpg" id="3_bdi15"]
+[ext_resource type="Script" uid="uid://c0ant70th7g3v" path="res://Scripts/entities/enemies/Logo/CoffeeShot.cs" id="4_w18br"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoeec"]
+
+[node name="CoffeeShot" type="Node2D"]
+scale = Vector2(0.45254055, 0.19620863)
+script = ExtResource("4_w18br")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_ha57a")]
+collision_layer = 16
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
+scale = Vector2(0.108718894, 0.07611132)
+texture = ExtResource("3_bdi15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(17.679955, 6.8869348)
+shape = SubResource("RectangleShape2D_eoeec")

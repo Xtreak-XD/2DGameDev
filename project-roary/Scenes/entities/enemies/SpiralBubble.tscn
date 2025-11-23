@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://5cxp70bjjaps"]
+
+[ext_resource type="Script" uid="uid://bmy0pj8kjevqp" path="res://Scripts/entities/enemies/Logo/SpiralBubble.cs" id="1_5e0x5"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="1_jn5h7"]
+[ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_5e0x5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ndse"]
+
+[node name="SpiralBubble" type="Node2D"]
+scale = Vector2(0.70594925, 0.70594925)
+script = ExtResource("1_5e0x5")
+Speed = 1000.0
+
+[node name="Hitbox" parent="." instance=ExtResource("1_jn5h7")]
+collision_layer = 16
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
+position = Vector2(2, -4)
+texture = ExtResource("2_5e0x5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(8.673077, 8.673077)
+shape = SubResource("CircleShape2D_1ndse")
+debug_color = Color(0.97509795, 0, 0.42542008, 0.41960785)

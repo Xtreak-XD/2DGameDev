@@ -1,7 +1,5 @@
 using Godot;
 
-
-
 public abstract partial class LogoState : Node, ILogoState
 {
     protected Logo logo;

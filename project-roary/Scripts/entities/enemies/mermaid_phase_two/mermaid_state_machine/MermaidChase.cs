@@ -12,7 +12,7 @@ public partial class MermaidChase : MermaidState
     public override void _Ready()
     {
         MermaidThrow = GetParent().GetNode<MermaidThrow>("MermaidThrow");
-        MermaidFullThrow = GetParent().GetNode<MermaidFullThrow>("MermaidFulLThrow");
+        MermaidFullThrow = GetParent().GetNode<MermaidFullThrow>("MermaidFullThrow");
 
         chaseTimer = GetParent().GetNode<Timer>("ChaseTimer");
         chaseTimer.Timeout += SetChaseOver;

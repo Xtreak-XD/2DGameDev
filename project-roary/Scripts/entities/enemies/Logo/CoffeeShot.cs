@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class CoffeeShot : Node2D
 {
@@ -27,7 +26,6 @@ public partial class CoffeeShot : Node2D
     {
         _velocity = dir.Normalized() * Speed;
     }
-
 
     public static readonly Vector2[] CardinalDirections = 
     {

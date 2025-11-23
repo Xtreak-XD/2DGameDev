@@ -10,12 +10,10 @@ public partial class Starfish : Enemy
 	public Timer setTargetTimer;
 
     [Export] public Vector2 AreaSize = new Vector2(500, 300); // Width & height of spawn area
-    [Export] public Vector2 AreaCenter = Vector2.Zero; // Center of spawn area
 
 	[Export]
 	public PackedScene bubbleProjectile;
 
-	[Export]
 	public Timer projectileTimer;
 
 	public override void _Ready()
@@ -23,6 +21,7 @@ public partial class Starfish : Enemy
 		hurtBox = GetNode<Area2D>("HurtBox");
 		projectileSource = GetNode<Marker2D>("ProjectileSource");
 		setTargetTimer = GetNode<Timer>("SetTargetTimer");
+		projectileTimer = GetNode<Timer>("ProjectileTimer");
 
 		projectileTimer.Timeout += ShootBubble;
 		setTargetTimer.Timeout += SetTarget;

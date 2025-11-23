@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cq4nouwwg7f3h"]
+
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="1_rv4it"]
+
+[resource]
+script = ExtResource("1_rv4it")
+_health = 50
+MaxHealth = 50
+Damage = 15
+metadata/_custom_type_script = "uid://dkov12aknt46v"

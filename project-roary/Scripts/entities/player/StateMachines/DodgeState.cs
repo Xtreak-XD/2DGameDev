@@ -1,3 +1,4 @@
+using State = PlayerState;
 using Godot;
 using System;
 
@@ -67,8 +68,8 @@ public partial class DodgeState : State
         if (dodging)
         {
             float time = Mathf.Clamp((float)dodgeTimer.TimeLeft / (float)dodgeTimer.WaitTime, 0.0f, 1.0f);
-            float speed = Mathf.Lerp(dodgeSpeed, player.data.Speed, time);
-            player.Velocity = player.lastDirection.Normalized() * speed * (float)(player.data.Accel * delta);
+            float speed = Mathf.Lerp(dodgeSpeed, player.data.Speed * 2, time);
+            player.Velocity = player.mousePosition * speed * 2 * (float)(player.data.Accel * delta);
         }
         return null;
     }

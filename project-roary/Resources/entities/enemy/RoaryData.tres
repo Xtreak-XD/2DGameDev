@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://lnk1lqfl06g4"]
+
+[ext_resource type="Script" uid="uid://bpgg1kukrfgu5" path="res://Scripts/resources/RoaryData.cs" id="1_s0i08"]
+
+[resource]
+script = ExtResource("1_s0i08")
+_health = 650
+MaxHealth = 650
+Damage = 15
+Speed = 240
+Accel = 110.0
+dealKnockback = true
+knockBackAmount = 5.0

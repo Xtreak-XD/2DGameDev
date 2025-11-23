@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Roary", "Project Roary.csproj", "{B5EA6666-1476-4F64-A5B8-B5EA5888D550}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Roary", "Project Roary.csproj", "{C40024EB-2C89-4F9E-B227-3E01D8C05289}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B5EA6666-1476-4F64-A5B8-B5EA5888D550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5EA6666-1476-4F64-A5B8-B5EA5888D550}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5EA6666-1476-4F64-A5B8-B5EA5888D550}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{B5EA6666-1476-4F64-A5B8-B5EA5888D550}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{B5EA6666-1476-4F64-A5B8-B5EA5888D550}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{B5EA6666-1476-4F64-A5B8-B5EA5888D550}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{C40024EB-2C89-4F9E-B227-3E01D8C05289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C40024EB-2C89-4F9E-B227-3E01D8C05289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C40024EB-2C89-4F9E-B227-3E01D8C05289}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{C40024EB-2C89-4F9E-B227-3E01D8C05289}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{C40024EB-2C89-4F9E-B227-3E01D8C05289}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{C40024EB-2C89-4F9E-B227-3E01D8C05289}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class TestNpc : Sprite2D
+public partial class TestNpc : CharacterBody2D
 {
     public interactionArea interactionArea;
     public dialogueManager dialogueManager;
@@ -19,13 +19,15 @@ public partial class TestNpc : Sprite2D
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         dialogueManager = GetNode<dialogueManager>("/root/DialogueManager");
         interactionArea = GetNode<interactionArea>("InteractableArea");
-        interactionArea.interact = Callable.From(onInteract);
+        interactionArea.interact = Callable.From(() =>
+        {
+            onInteract();
+        });
     }
 
     public async Task onInteract()
     {
-        GD.Print("onInteractTest");
-        dialogueManager.startDialog(GlobalPosition, thisLine);
+        await dialogueManager.startDialog(GlobalPosition, thisLine);
         await ToSignal(eventbus, "finishedDisplaying");
     }
 

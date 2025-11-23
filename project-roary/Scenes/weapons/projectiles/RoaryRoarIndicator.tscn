@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddld8omkwwrvw"]
+
+[ext_resource type="Script" uid="uid://cow72xaku3rgj" path="res://Scripts/weapons/projectiles/RoaryRoarIndicator.cs" id="1_54xya"]
+[ext_resource type="Resource" uid="uid://cvkvj2ctkray8" path="res://Resources/weapons/projectiles/RoaryRoarIndicatorData.tres" id="2_v0q6n"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_61vxj"]
+[ext_resource type="Texture2D" uid="uid://psy6a0uipm40" path="res://Sprites/misc/roar_indicator.png" id="4_61vxj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgdvw"]
+radius = 42.666668
+
+[node name="RoaryRoarIndicator" type="CharacterBody2D"]
+script = ExtResource("1_54xya")
+data = ExtResource("2_v0q6n")
+
+[node name="LifespanTimer" type="Timer" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ny5u")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_61vxj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CircleShape2D_qgdvw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.095, 0.105)
+texture = ExtResource("4_61vxj")
+
+[node name="SetSpawnTimer" type="Timer" parent="."]
+wait_time = 0.05

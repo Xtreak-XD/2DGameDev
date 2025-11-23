@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ca11nyq5g8i65"]
+[gd_scene load_steps=10 format=3 uid="uid://ch37lgatp4muf"]
 
 [ext_resource type="Script" uid="uid://cn62qt8utrlto" path="res://Scripts/entities/enemies/test_enemy/Enemy.cs" id="1_jxk5p"]
 [ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_kinsv"]
-[ext_resource type="Resource" uid="uid://bosrshswacwcl" path="res://Resources/entities/enemy/EnemyData.tres" id="2_rkctb"]
 [ext_resource type="Script" uid="uid://b3nnfxgiaeqo8" path="res://Scripts/entities/enemies/test_enemy/state_machine/EnemyStateMachine.cs" id="3_yqnki"]
 [ext_resource type="Script" uid="uid://xkflm4opmlnh" path="res://Scripts/entities/enemies/test_enemy/state_machine/Roam.cs" id="4_rkctb"]
 [ext_resource type="Script" uid="uid://cxv4qk5u52coo" path="res://Scripts/entities/enemies/test_enemy/state_machine/Chase.cs" id="5_ww43p"]
@@ -18,7 +17,6 @@ radius = 0.01
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_jxk5p")
-data = ExtResource("2_rkctb")
 
 [node name="HurtBox" parent="." instance=ExtResource("7_ww43p")]
 position = Vector2(49, 31)

@@ -7,9 +7,9 @@ using Godot.Collections;
 public partial class MetaData : Resource
 {
     //player main metaData
-    [Export] public int Money;
-    public Vector2 savePos = Vector2.Zero;
-    public static Array<InventorySlot> savedInventory { get; set; }
+    [Export] public int Money { get; set; }
+    [Export] public Vector2 savePos { get; set; }
+    [Export] public Array<InventorySlot> savedInventory { get; set; }
     public void SetSavePos(Vector2 pos)
     {
         savePos = pos;
@@ -20,9 +20,14 @@ public partial class MetaData : Resource
         savedInventory = x;
     }
 
+    public void updateMoney(int amount)
+    {
+        Money += amount;
+    }
+
     //dialogue flags pls make these booleans (pls add as needed)
-    public bool TalkedToWiseTurtleAboutBrother = false;
-    public bool SavedYoungerTurtleBrother = false;
-    public bool DefeatedMermaid = false;
-    public bool CanEnterStadium = false;
+    [Export] public bool TalkedToWiseTurtleAboutBrother { get; set; } = false;
+    [Export] public bool SavedYoungerTurtleBrother { get; set; } = false;
+    [Export] public bool DefeatedMermaid { get; set; } = false;
+    [Export] public bool CanEnterStadium { get; set; } = false;
 }

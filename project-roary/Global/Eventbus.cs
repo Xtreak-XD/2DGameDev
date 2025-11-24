@@ -29,6 +29,7 @@ public partial class Eventbus : Node
     //UI Signals
     [Signal] public delegate void updateStaminaEventHandler(int value);
     [Signal] public delegate void updateHealthEventHandler(int value);
+    [Signal] public delegate void updateMoneyEventHandler(int value);
 
     //Inventory Signals
     [Signal] public delegate void inventoryUpdatedEventHandler(); //emitted when inventory changes
@@ -47,5 +48,7 @@ public partial class Eventbus : Node
     // Shop Signals
     [Signal] public delegate void openShopMenuEventHandler(bool isOpen, ShopResource config);
     [Signal] public delegate void shopItemSelectedEventHandler(IndividualItem item);
-    [Signal] public delegate void updateMoneyDisplayEventHandler();
+    //save and load
+    [Signal] public delegate void saveEventHandler();
+    [Signal] public delegate void loadEventHandler();
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=13 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
 [ext_resource type="Texture2D" uid="uid://ccibbsncsdid5" path="res://Sprites/world/overworld_stadium.png" id="2_gknab"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
+[ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 
 [sub_resource type="Environment" id="Environment_uny04"]
@@ -117,4 +118,7 @@ spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing")]
 position = Vector2(4729, 8931)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(2892, 3860)
+position = Vector2(6102, 3345)
+
+[node name="Save" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(7151, 3776)

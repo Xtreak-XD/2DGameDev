@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MetaData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/resources/MetaData.cs" id="1_qg7jr"]
+
+[resource]
+script = ExtResource("1_qg7jr")
+Money = 900
+savePos = Vector2(6895.2207, 3902.1262)
+savedInventory = null

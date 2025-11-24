@@ -5,9 +5,9 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 
-	public string save_file_path = "user://save/";
-	public string save_file_name = "PlayerSave.tres";
-	public MetaData metaData = new MetaData();
+	public string save_file_path = "res://LocalSave/";
+	public string save_file_name = "playerMetaData.tres";
+	public MetaData metaData = new();
 	[Export] public GenericData data;
 	public AnimationPlayer animationPlayer;
 	public PlayerStateMachine stateMachine;
@@ -32,6 +32,7 @@ public partial class Player : CharacterBody2D
 	private const float KnockBackDecay = 750.0f;
 	public override void _Ready()
 	{
+		VerifySaveDirectory(save_file_path);
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 		AddToGroup("player");
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
@@ -43,7 +44,38 @@ public partial class Player : CharacterBody2D
 		eventbus.itemDropped += spawnItemInWorld;
 		eventbus.itemEquipped += equipItem;
 		eventbus.inventoryUpdated += checkIfEquipped;
+		eventbus.save += save;
+		eventbus.load += loadSave;
 	}
+
+	void loadSave()
+    {
+        if (ResourceLoader.Exists(save_file_path + save_file_name))
+        {
+            GD.Print("save exists");
+			metaData = ResourceLoader.Load<MetaData>(save_file_path + save_file_name);
+			GD.Print(metaData.savePos);
+        }
+		onStartLoad();
+    }
+
+	void onStartLoad()
+    {
+        Position = metaData.savePos;
+    }
+
+	void save()
+    {
+		metaData.SetSavePos(Position);
+		metaData.updateMoney(900);
+        ResourceSaver.Save(metaData, save_file_path+save_file_name);
+		GD.Print("saved at " + save_file_path + save_file_name);
+    }
+
+	void VerifySaveDirectory(string saveFilePath)
+    {
+        DirAccess.MakeDirAbsolute(saveFilePath);
+    }
 
 	public override void _Process(double delta)
 	{
@@ -64,6 +96,8 @@ public partial class Player : CharacterBody2D
         eventbus.itemDropped -= spawnItemInWorld;
 		eventbus.itemEquipped -= equipItem;
 		eventbus.inventoryUpdated -= checkIfEquipped;
+		eventbus.save -= save;
+		eventbus.load -= loadSave;
     }
 
 
@@ -195,5 +229,13 @@ public partial class Player : CharacterBody2D
 			GD.Print("Equipped slot is now empty");
 		}
 	}
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("load"))
+        {
+            loadSave();
+        }
+    }
 
 }

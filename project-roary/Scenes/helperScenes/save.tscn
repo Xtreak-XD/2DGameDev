@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://duifow0ycc63q"]
+
+[ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="1_sepvu"]
+[ext_resource type="Script" uid="uid://dbtpphho2ue0c" path="res://Scripts/helperScripts/Save.cs" id="1_vu6fj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sepvu"]
+radius = 248.0
+
+[node name="Save" type="Sprite2D"]
+script = ExtResource("1_vu6fj")
+
+[node name="InteractableArea" parent="." instance=ExtResource("1_sepvu")]
+actionName = "Save"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+shape = SubResource("CircleShape2D_sepvu")

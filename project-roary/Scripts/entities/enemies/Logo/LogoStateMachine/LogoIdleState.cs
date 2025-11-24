@@ -6,42 +6,37 @@ public partial class LogoIdleState : LogoState
 
     private float timer = 0f;
 
-    public override void Enter(Logo logo)
+    public override void EnterState()
     {
-        base.Enter(logo);
+        base.EnterState();
         timer = 0f;
 
-
-
-    float roll = GD.Randf();
-
-    if (roll < 0.5f)
-    {
-        logo.SBAttackInstance.Fire(logo);
-    }
-    else
-    {
-        logo.CoffeeWaveAttackInstance.Fire(logo);
-    }
-
-
         
-        logo.Velocity = Vector2.Zero;
+        float roll = GD.Randf();
+
+        if (roll < 0.5f)
+        {
+            Logo.SBAttackInstance.Fire(Logo);
+        }
+        else
+        {
+            Logo.CoffeeWaveAttackInstance.Fire(Logo);
+        }
+
+        Logo.Velocity = Vector2.Zero;
     }
 
-    public override void Update(double delta)
+    public override LogoState Process(double delta)
     {
         timer += (float)delta;
 
-        
-
         if (timer >= IdleDuration)
         {
-            logo.ChangeState(logo.RollState);
             timer = 0f;
+            return Logo.RollState;  
         }
+
+        return null; 
     }
 }
-
-
 

@@ -1,17 +1,38 @@
 using Godot;
 
-
-
-public abstract partial class LogoState : Node, ILogoState
+public abstract partial class LogoState : Node
 {
-    protected Logo logo;
+    public Logo Logo {get; private set;}
 
-    public virtual void Enter(Logo logo)
+    public void Initialize(Logo logo)
     {
-        this.logo = logo;
+        Logo = logo;
+    }
+    public override void _Ready()
+    {
+        
     }
 
-    public virtual void Update(double delta) { }
+    public virtual void EnterState()
+    {
+        
+    }
 
-    public virtual void Exit() { }
+    public virtual void ExitState()
+    {
+        
+    }
+
+    
+    public virtual LogoState Process(double delta)
+    {
+        return null;
+    }
+
+    
+    public virtual LogoState Physics(double delta)
+    {
+        return null;
+    }
+
 }

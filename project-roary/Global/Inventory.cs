@@ -16,7 +16,7 @@ public partial class Inventory : Node
     public const int INVENTORY_SIZE = 12; // Maximum number of slots in the inventory
     public const int TOTAL_SIZE = HOTBAR_SIZE + INVENTORY_SIZE; // Maximum number of slots in the inventory
 
-    public Eventbus eventbus; // Reference to the Eventbus for emitting signals
+    private Eventbus eventbus; // Reference to the Eventbus for emitting signals
 
     public override void _Ready()
     {
@@ -37,8 +37,7 @@ public partial class Inventory : Node
     @return True if the item was added successfully, false otherwise.
     */
     public bool AddItem(IndividualItem itemToAdd, int quantity = 1) // Adds an item to the inventory
-    {
- 
+    { 
         int remaining = quantity; // Track how many items are left to add
 
         // Fill existing stacks that aren't full

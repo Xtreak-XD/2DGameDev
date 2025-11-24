@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=5 format=3 uid="uid://dvkbfxeeae2tp"]
+
+[ext_resource type="Resource" uid="uid://jbi04iutyxhr" path="res://Resources/items/Pen.tres" id="1_ick76"]
+[ext_resource type="Resource" uid="uid://djoxeckgl45k2" path="res://Resources/items/Pencil.tres" id="2_t3eta"]
+[ext_resource type="Resource" uid="uid://bth1ayk2kw5fx" path="res://Resources/items/Thumbstack.tres" id="3_fa6sk"]
+[ext_resource type="Script" uid="uid://cio6dcxoigeeo" path="res://Scripts/resources/ShopResource.cs" id="4_0fc2c"]
+
+[resource]
+script = ExtResource("4_0fc2c")
+ShopName = "Weapons"
+Items = Array[Object]([ExtResource("1_ick76"), ExtResource("2_t3eta"), null, ExtResource("3_fa6sk")])
+GreetingMessage = "Welcome!"
+metadata/_custom_type_script = "uid://cio6dcxoigeeo"

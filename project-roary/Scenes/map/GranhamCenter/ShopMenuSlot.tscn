@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhlkfysakjm6t"]
+[gd_scene load_steps=4 format=3 uid="uid://bhlkfysakjm6t"]
 
 [ext_resource type="Texture2D" uid="uid://dtg3e4naqwwi3" path="res://Sprites/redNapkinRe.png" id="1_c3lh0"]
 [ext_resource type="Script" uid="uid://c5wqq1mrhdk5p" path="res://Scripts/ui/PowerUpShops/ShopMenuSlot.cs" id="2_3bu7i"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_prtxo"]
 
 [node name="TextureButton" type="TextureButton"]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 40.0
 offset_bottom = 40.0
+toggle_mode = true
 texture_normal = ExtResource("1_c3lh0")
+texture_hover = SubResource("PlaceholderTexture2D_prtxo")
 stretch_mode = 4
 script = ExtResource("2_3bu7i")
 
@@ -19,12 +23,8 @@ offset_bottom = 40.0
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Name" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="Price" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 23.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)

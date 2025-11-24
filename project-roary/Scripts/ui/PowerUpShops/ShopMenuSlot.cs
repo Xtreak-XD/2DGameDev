@@ -4,24 +4,23 @@ using System;
 public partial class ShopMenuSlot : TextureButton
 {
 	private TextureRect itemIcon;
-	private Label name;
 	private Label price;
 	private IndividualItem item;
-	private bool isSelected = false;
+	private Eventbus eventbus;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		itemIcon = GetNode<TextureRect>("ItemIcon");
-		name = GetNode<Label>("Name");
 		price = GetNode<Label>("Price");
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
 
-		this.Pressed += onSlotPressed;
+		Pressed += OnSlotPressed;
 	}
 
 	public override void _ExitTree()
     {
-       this.Pressed -= onSlotPressed;
+       Pressed -= OnSlotPressed;
     }
 
 	public void SetItem(IndividualItem newItem)
@@ -29,19 +28,17 @@ public partial class ShopMenuSlot : TextureButton
 		item = newItem;
         if (item == null)
         {
-            Hide();
 			return;
         }
 
 		Show();
 		itemIcon.Texture = item.texture;
-		name.Text = item.itemName;
 		price.Text = "$" + item.shopPrice;
     }
 
-	private void onSlotPressed()
+	private void OnSlotPressed()
     {
-		GD.Print("Slot Pressed");
-        
+		if (item == null) return;
+		eventbus.EmitSignal(Eventbus.SignalName.shopItemSelected, item);        
     }
 }

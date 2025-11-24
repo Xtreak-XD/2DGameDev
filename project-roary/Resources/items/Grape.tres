@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="IndividualItem" load_steps=3 format=3 uid="uid://cbbxrwvl1caij"]
+
+[ext_resource type="Script" uid="uid://h7rsrpy6mpd2" path="res://Scripts/ui/inventory/Resources/IndividualItem.cs" id="1_0j0ce"]
+[ext_resource type="Texture2D" uid="uid://h55s6eqn1uxc" path="res://Sprites/item/grape.png" id="2_vfjrj"]
+
+[resource]
+script = ExtResource("1_0j0ce")
+itemName = "Grape"
+texture = ExtResource("2_vfjrj")
+isStackable = true
+shopPrice = 4
+isSellableInShop = true
+metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

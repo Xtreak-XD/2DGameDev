@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://1sd01tooxbt1"]
+[gd_scene load_steps=10 format=3 uid="uid://1sd01tooxbt1"]
 
 [ext_resource type="PackedScene" uid="uid://bhlkfysakjm6t" path="res://Scenes/map/GranhamCenter/ShopMenuSlot.tscn" id="1_jiogy"]
 [ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/TableTopDown2.png" id="1_jqod7"]
 [ext_resource type="Script" uid="uid://c8vsyptmaavtn" path="res://Scripts/ui/PowerUpShops/ShopMenu.cs" id="1_tgvhk"]
+[ext_resource type="Resource" uid="uid://dvkbfxeeae2tp" path="res://Resources/Shop/WeaponShop.tres" id="2_msshn"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_tgvhk"]
+[ext_resource type="FontFile" uid="uid://cbkp2sq5jjvfa" path="res://Sprites/Fonts/SpaceMono-Regular.ttf" id="8_0cfuo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fppcr"]
 
@@ -18,88 +20,90 @@ texture = ExtResource("1_jqod7")
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 467.0
-offset_bottom = 206.0
+offset_right = 1400.0
+offset_bottom = 672.0
 script = ExtResource("1_tgvhk")
+shopConfig = ExtResource("2_msshn")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="ShopMenuPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 472.0
 offset_bottom = 207.0
+scale = Vector2(3, 3)
 theme_override_styles/panel = SubResource("StyleBoxTexture_fppcr")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+[node name="ShopMenuContainer" type="HBoxContainer" parent="ShopMenuPanel"]
 layout_mode = 2
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
+[node name="TableMarginContainer" type="MarginContainer" parent="ShopMenuPanel/ShopMenuContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/MarginContainer"]
+[node name="TableContainer" type="PanelContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_msshn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="TopContainer" type="HBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TextureButton1" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_jiogy")]
+[node name="ItemSlot" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("1_jiogy")]
 layout_mode = 2
 
-[node name="TextureButton2" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_jiogy")]
+[node name="TextureButton2" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("1_jiogy")]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="TextureButton3" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_jiogy")]
+[node name="ItemSlot2" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("1_jiogy")]
 layout_mode = 2
 
-[node name="TextureButton4" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_jiogy")]
+[node name="TextureButton4" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("1_jiogy")]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="BotContainer" type="HBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TextureButton5" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_jiogy")]
+[node name="TextureButton5" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("1_jiogy")]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="TextureButton6" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_jiogy")]
+[node name="ItemSlot" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("1_jiogy")]
 layout_mode = 2
 
-[node name="TextureButton7" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_jiogy")]
+[node name="TextureButton7" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("1_jiogy")]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="TextureButton8" parent="PanelContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_jiogy")]
+[node name="ItemSlot2" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("1_jiogy")]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
+[node name="ReceiptMarginContainer" type="MarginContainer" parent="ShopMenuPanel/ShopMenuContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="CoinsContainer" type="PanelContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_vx4ud")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/CoinsContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="CoinIcon" type="TextureRect" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/CoinsContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
@@ -107,30 +111,35 @@ texture = ExtResource("3_tgvhk")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="Coins" type="Label" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/CoinsContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_0cfuo")
 text = "5"
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="ReceiptContainer" type="VBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(127, 126)
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer"]
+[node name="Receipt" type="Label" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/ReceiptContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "XXX              $10
-XXX              $10
-XXX              $10"
+theme_override_fonts/font = ExtResource("8_0cfuo")
+theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer"]
+[node name="Total" type="Label" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Total: $30"
+theme_override_fonts/font = ExtResource("8_0cfuo")
+text = "Total: $0"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="BuyButton" type="Button" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "BUY"

@@ -3,7 +3,7 @@ using System;
 
 public partial class ShopInteractable : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
+	[Export] public ShopResource shopConfig;
 	private interactionArea interactable;
 	private Callable interact;
 	private Eventbus eventbus;
@@ -13,7 +13,7 @@ public partial class ShopInteractable : Node2D
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
         interactable = GetNode<interactionArea>("InteractableArea");
 
-		interactable.actionName = "Open Shop";
+		interactable.actionName = "Shop at " + shopConfig.ShopName;
 		interactable.interact = new Callable(this, "openShop");
 		ProcessMode = ProcessModeEnum.Always;
 
@@ -21,6 +21,6 @@ public partial class ShopInteractable : Node2D
 
 	public void openShop()
     {
-		eventbus.EmitSignal("openShopMenu", true);
+		eventbus.EmitSignal("openShopMenu", true, shopConfig);
     }
 }

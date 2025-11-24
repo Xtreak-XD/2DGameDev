@@ -75,7 +75,7 @@ public partial class ItemUISlot : Panel
 
 	/**
 	Updates the display of the item in the slot.
-	@param item The InventoryItem resource to display in this slot.
+	@param item The IndividualItem resource to display in this slot.
 	*/
 	public void updateDisplay(InventorySlot slot)
 	{

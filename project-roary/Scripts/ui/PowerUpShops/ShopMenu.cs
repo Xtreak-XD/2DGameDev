@@ -13,6 +13,12 @@ public partial class ShopMenu : Control
         eventbus.openShopMenu += openShop;
     }
 
+    public override void _ExitTree()
+    {
+		eventbus.openShopMenu -= openShop;
+    }
+
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
@@ -37,6 +43,7 @@ public partial class ShopMenu : Control
 		else if (!shouldOpen && Visible) {
 			Hide();
 			GetTree().Paused = false;
+			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
 		}
     }
 }

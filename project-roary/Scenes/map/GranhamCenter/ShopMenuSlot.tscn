@@ -11,10 +11,20 @@ texture_normal = ExtResource("1_c3lh0")
 stretch_mode = 4
 script = ExtResource("2_3bu7i")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ItemIcon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 expand_mode = 1
 stretch_mode = 4
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Price" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -32,25 +32,27 @@ public partial class Inventory : Node
 
     /**
     Adds an item to the inventory, stacking it if possible.
-    @param itemToAdd The InventoryItem to add.
+    @param itemToAdd The IndividualItem to add.
     @param quantity The quantity of the item to add. Default is 1.
     @return True if the item was added successfully, false otherwise.
     */
-    public bool AddItem(InventoryItem itemToAdd, int quantity = 1) // Adds an item to the inventory
+    public bool AddItem(IndividualItem itemToAdd, int quantity = 1) // Adds an item to the inventory
     {
  
         int remaining = quantity; // Track how many items are left to add
 
         // Fill existing stacks that aren't full
-        foreach (var slot in slots.Where(s => s.item == itemToAdd && s.quantity < itemToAdd.maxStackSize)) // Only consider slots with the same item that aren't full
-        {
+        if (itemToAdd.isStackable){
+            foreach (var slot in slots.Where(s => s.item == itemToAdd && s.quantity < itemToAdd.maxStackSize)) // Only consider slots with the same item that aren't full
+            {
 
-            int spaceInSlot = itemToAdd.maxStackSize - slot.quantity; // Calculate how much space is left in this slot
-            int amountToAdd = Math.Min(remaining, spaceInSlot); // Determine how much we can add to this slot
-            slot.quantity += amountToAdd; // Add the items to the slot
-            remaining -= amountToAdd; // Decrease the remaining count
+                int spaceInSlot = itemToAdd.maxStackSize - slot.quantity; // Calculate how much space is left in this slot
+                int amountToAdd = Math.Min(remaining, spaceInSlot); // Determine how much we can add to this slot
+                slot.quantity += amountToAdd; // Add the items to the slot
+                remaining -= amountToAdd; // Decrease the remaining count
 
-            if (remaining == 0) break; // Stop if we've added all items
+                if (remaining == 0) break; // Stop if we've added all items
+            }
         }
 
         //Create new stacks in empty slots
@@ -103,9 +105,9 @@ public partial class Inventory : Node
     Removes a specified quantity of an item from a given slot.
     @param slotIndex The index of the slot to remove the item from.
     @param quantity The quantity of the item to remove. Default is 1.
-    @return The InventoryItem that was removed, or null if removal was unsuccessful.
+    @return The IndividualItem that was removed, or null if removal was unsuccessful.
     */
-    public InventoryItem RemoveItem(int slotIndex, int quantity = 1) // Removes a specified quantity of an item from a given slot
+    public IndividualItem RemoveItem(int slotIndex, int quantity = 1) // Removes a specified quantity of an item from a given slot
     {
         if (slotIndex < 0 || slotIndex >= slots.Count) // Validate index
         {
@@ -120,7 +122,7 @@ public partial class Inventory : Node
             GD.PrintErr("Not enough items in the slot to remove."); // Log error for insufficient items
             return null;
         }
-        InventoryItem itemToReturn = slot.item; // Store the item to return
+        IndividualItem itemToReturn = slot.item; // Store the item to return
         slot.quantity -= quantity; // Decrease the quantity in the slot
 
         if (slot.quantity <= 0) // If the quantity reaches zero

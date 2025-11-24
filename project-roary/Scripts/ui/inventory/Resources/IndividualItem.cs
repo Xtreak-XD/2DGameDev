@@ -6,7 +6,7 @@ This resource represents a single item that can be stored in the inventory.
 It includes properties such as the item's name, texture, and description.
 */
 [GlobalClass]
-public partial class InventoryItem : Resource
+public partial class IndividualItem : Resource
 {
 	[Export]
 	public string itemName { get; set; } = "";
@@ -19,7 +19,7 @@ public partial class InventoryItem : Resource
 	[Export]
 	public int maxStackSize { get; set; } = 20;
 
-// Shop Specific Resources
+	// Shop Specific Resources
 	[Export] public int shopPrice { get; set; } = -1;
 	[Export] public bool isSellableInShop { get; set; } = false;
 }

@@ -12,6 +12,8 @@ public partial class ShopInteractable : Node2D
     {
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
         interactable = GetNode<interactionArea>("InteractableArea");
+
+		interactable.actionName = "Open Shop";
 		interactable.interact = new Callable(this, "openShop");
 		ProcessMode = ProcessModeEnum.Always;
 

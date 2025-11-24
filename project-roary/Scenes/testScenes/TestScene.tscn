@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=11 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="3_106wm"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dbc0ewvo0k63x" path="res://Scenes/entities/npcs/wise_turtle_brother.tscn" id="6_106wm"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="6_lfsl6"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="7_lfsl6"]
+[ext_resource type="PackedScene" uid="uid://u57fr3yk2s5c" path="res://Scenes/Items/Pen.tscn" id="8_k25gx"]
+[ext_resource type="PackedScene" uid="uid://bb82tbqia4lde" path="res://Scenes/Items/Thumbstack.tscn" id="9_3unw3"]
 [ext_resource type="PackedScene" uid="uid://baued8ndrkyqh" path="res://Scenes/map/GranhamCenter/ShopKeeper.tscn" id="10_3unw3"]
+[ext_resource type="PackedScene" uid="uid://dy8gl83jijma" path="res://Scenes/Items/Pencil.tscn" id="10_d43vx"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -56,5 +59,17 @@ path = "res://Scenes/map/Overworld/Overworld.tscn"
 
 [node name="ShopKeeper" parent="." instance=ExtResource("10_3unw3")]
 position = Vector2(1255, 243)
+
+[node name="Pen" parent="." instance=ExtResource("8_k25gx")]
+position = Vector2(1654, 1458)
+
+[node name="Thumbstack" parent="." instance=ExtResource("9_3unw3")]
+position = Vector2(2373, 996)
+
+[node name="Pencil" parent="." instance=ExtResource("10_d43vx")]
+position = Vector2(2202, 368)
+
+[node name="Pencil2" parent="." instance=ExtResource("10_d43vx")]
+position = Vector2(2503, 1600)
 
 [editable path="Enemymanager"]

@@ -9,7 +9,7 @@ public partial class Items : Sprite2D
 {
 	[Export] public int itemID = 0;
 	[Export] public int itemQuantity = 1;
-	[Export] public InventoryItem itemResource;
+	[Export] public IndividualItem itemResource;
 	private interactionArea interactionArea;
 	private Inventory inv;
 	private Eventbus eventbus;
@@ -29,7 +29,7 @@ public partial class Items : Sprite2D
 		}
 		if (itemResource == null)
 		{
-			GD.PrintErr("Item resource not assigned!");
+			GD.PrintErr("IndividualItem resource not assigned!");
 			return;
 		}
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://5cxp70bjjaps"]
+[gd_scene load_steps=5 format=3 uid="uid://p560nc8n6cw7"]
 
 [ext_resource type="Script" uid="uid://bmy0pj8kjevqp" path="res://Scripts/entities/enemies/Logo/SpiralBubble.cs" id="1_5e0x5"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="1_jn5h7"]

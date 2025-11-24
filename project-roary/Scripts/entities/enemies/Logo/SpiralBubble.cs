@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class SpiralBubble : Node2D
 {
@@ -13,6 +12,7 @@ public partial class SpiralBubble : Node2D
     public override void _PhysicsProcess(double delta)
     {
         _lifeTimer += (float)delta;
+        
         if (_lifeTimer >= Lifetime)
         {
             QueueFree();

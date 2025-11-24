@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmv2gjetynro5"]
+[gd_scene load_steps=5 format=3 uid="uid://cnapb6pj5x0gq"]
 
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="2_ha57a"]
 [ext_resource type="Texture2D" uid="uid://3f04tfuujlmw" path="res://Sprites/entities/enemies/Tidal wave.jpg" id="3_bdi15"]

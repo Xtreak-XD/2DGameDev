@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class CoffeeWaveAttack : Node
 {
@@ -13,13 +12,12 @@ public partial class CoffeeWaveAttack : Node
             return;
         }
 
-        Vector2[] dirs =
-        {
+        Vector2[] dirs = [
             Vector2.Right,
             Vector2.Left,
             Vector2.Up,
             Vector2.Down
-        };
+        ];
 
         foreach (var dir in dirs)
         {

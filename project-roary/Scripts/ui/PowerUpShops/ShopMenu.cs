@@ -7,16 +7,20 @@ using System.Linq;
 public partial class ShopMenu : Control
 {
 	public ShopResource shopConfig; // The shop configuration resource
+
 	private Eventbus eventbus;
+
 	private Label receiptLabel;
 	private Label coinLabel;
 	private Label totalLabel;
 	private MetaData playerMetaData;
 	private Inventory playerInv;
 	private Button buyButton;
+	private Player player;
+
 	private List<ShopMenuSlot> shopItems; // Holds the UI containers
 	private System.Collections.Generic.Dictionary<IndividualItem, int> cart; // Tracks item → quantity
-	private Player player;
+
 	private int totalCost = 0;
 
 	public override void _Ready()
@@ -32,7 +36,7 @@ public partial class ShopMenu : Control
 		playerInv = GetNode<Inventory>("/root/Inventory");
 		buyButton = GetNode<Button>("%BuyButton");
 		player = (Player)GetTree().GetFirstNodeInGroup("player");
-
+		
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
         eventbus.openShopMenu += OpenShop;
 		eventbus.shopItemSelected += AddItemToShoppingCart;

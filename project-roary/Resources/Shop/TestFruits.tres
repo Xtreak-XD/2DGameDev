@@ -8,5 +8,5 @@
 [resource]
 script = ExtResource("1_r1wek")
 ShopName = "Fruits"
-Items = Array[Object]([ExtResource("1_gj4ia"), ExtResource("2_kbg2u"), ExtResource("3_q4k4y"), ExtResource("1_gj4ia")])
+Items = Array[Object]([ExtResource("1_gj4ia"), ExtResource("2_kbg2u"), ExtResource("3_q4k4y"), null])
 metadata/_custom_type_script = "uid://cio6dcxoigeeo"

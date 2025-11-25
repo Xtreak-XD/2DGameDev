@@ -22,4 +22,5 @@ public partial class IndividualItem : Resource
 	// Shop Specific Resources
 	[Export] public int shopPrice { get; set; } = -1;
 	[Export] public bool isSellableInShop { get; set; } = false;
+	[Export] public int shopQuantity { get; set; } = 1;
 }

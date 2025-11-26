@@ -11,13 +11,16 @@ public partial class Logo : Enemy
     public Hitbox hitbox;
     public HurtBox hurtBox;
 
-    
+    public Sprite2D sprite;
+
     [Export] public PackedScene SBAttack;
     public SBAttack SBAttackInstance;
 
     [Export] public PackedScene CoffeeShot;
     public CoffeeWaveAttack CoffeeWaveAttackInstance;
 
+    [Export]
+    public PackedScene starfish;
     
     [Export] public LogoData Data { get; set; }
 
@@ -35,6 +38,8 @@ public partial class Logo : Enemy
     {
         hurtBox = GetNode<HurtBox>("HurtBox");
         hitbox  = GetNode<Hitbox>("Hitbox");
+
+        sprite = GetNode<Sprite2D>("Sprite2D");
 
 		CoffeeWaveAttackInstance = new CoffeeWaveAttack();
         CoffeeWaveAttackInstance.CoffeeShotScene = CoffeeShot;

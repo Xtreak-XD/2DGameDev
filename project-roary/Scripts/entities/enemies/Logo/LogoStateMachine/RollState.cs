@@ -9,17 +9,13 @@ public partial class RollState : LogoState
 
     public override void EnterState()
     {
-        
         timer = 0f;
 
-        
         RollDuration = (float)GD.RandRange(1.0, 2.5);
 
-        
         Array values = Enum.GetValues(typeof(Logo.RollDirection));
         Logo.Direction = 
             (Logo.RollDirection) values.GetValue(GD.Randi() % values.Length);
-
         
         Vector2 dir = Logo.Direction switch
         {
@@ -29,7 +25,6 @@ public partial class RollState : LogoState
             Logo.RollDirection.BottomLeft  => new Vector2( 1, -1),
             _ => Vector2.Zero
         };
-
         
         Logo.Velocity = dir * Logo.Data.Speed;
     }
@@ -42,6 +37,21 @@ public partial class RollState : LogoState
     public override LogoState Process(double delta)
     {
         timer += (float)delta;
+
+        if(timer >= 1.49 && timer <= 1.5)
+        {
+            Vector2 direction = Logo.Velocity.Rotated(Logo.sprite.Rotation).Normalized();
+
+            Starfish starfish = (Starfish)Logo.starfish.Instantiate();
+            Logo.Owner.AddChild(starfish);
+            starfish.GlobalPosition = Logo.GlobalPosition;
+            
+            starfish.Velocity = direction * (Logo.Data.SpinSpeed * 50);
+
+            GD.Print("The logo has flung out a starfish");
+        }
+
+        Logo.sprite.RotationDegrees += Logo.Data.SpinSpeed;
 
         if (timer >= RollDuration)
             return Logo.IdleState;

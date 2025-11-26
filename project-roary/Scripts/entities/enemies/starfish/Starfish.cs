@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 public partial class Starfish : Enemy
@@ -28,7 +27,6 @@ public partial class Starfish : Enemy
 		setTargetTimer.Start();
     }
     
-
     public override void _EnterTree()
     {
         AddToGroup("enemy");
@@ -45,19 +43,35 @@ public partial class Starfish : Enemy
         target = (Player)GetTree().GetFirstNodeInGroup("player");
     }
 
+    public override void _Process(double delta)
+    {
+		if(Velocity.Length() > 0)
+        {
+            Velocity *= 0.9f * (float)delta;
+        }
+
+		if(Velocity.Length() <= 0.08)
+        {
+            Velocity = Vector2.Zero;
+        }
+    }
+
 	// Aim projectile
 	private void ShootBubble()
     {
-		Vector2 currentPos = projectileSource.GlobalPosition;
-		Vector2 targetPos = target.GlobalPosition;
+		if(target != null)
+        {
+            Vector2 currentPos = projectileSource.GlobalPosition;
+			Vector2 targetPos = target.GlobalPosition;
 
-		StarfishBubble bubble = (StarfishBubble)bubbleProjectile.Instantiate();
-		GetNode("ProjectileContainer").AddChild(bubble);
+			StarfishBubble bubble = (StarfishBubble)bubbleProjectile.Instantiate();
+			GetNode("ProjectileContainer").AddChild(bubble);
 
-		bubble.GlobalPosition = currentPos;
-		bubble.target = target;
+			bubble.GlobalPosition = currentPos;
+			bubble.target = target;
 
-		Vector2 direction = (targetPos - currentPos).Normalized();
-		bubble.Velocity = direction * bubble.data.speed;
+			Vector2 direction = (targetPos - currentPos).Normalized();
+			bubble.Velocity = direction * bubble.data.speed;
+        }
     }
 }

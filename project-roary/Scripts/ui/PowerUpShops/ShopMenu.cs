@@ -148,10 +148,6 @@ public partial class ShopMenu : Control
 
 	private void removeItemFromShop()
     {
-        foreach (var cartItem in cart.Values)
-        {
-            shopConfig.Items.Remove(cartItem.Item);
-        }
 		PopulateShop();
 	}
 
@@ -161,6 +157,7 @@ public partial class ShopMenu : Control
 		{
 			coinLabel.Text = playerMetaData.Money.ToString();
 		}
+		eventbus.EmitSignal(Eventbus.SignalName.updateMoneyDisplay);
 	}
 
 	private void PopulateShop()
@@ -232,6 +229,7 @@ public partial class ShopMenu : Control
 		foreach (var slot in shopItems) {
 			slot.ButtonPressed = false;
 		}
+
 		UpdateReceipt();
 		UpdateCoinDisplay();
     }

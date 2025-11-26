@@ -47,4 +47,5 @@ public partial class Eventbus : Node
     // Shop Signals
     [Signal] public delegate void openShopMenuEventHandler(bool isOpen, ShopResource config);
     [Signal] public delegate void shopItemSelectedEventHandler(IndividualItem item);
+    [Signal] public delegate void updateMoneyDisplayEventHandler();
 }

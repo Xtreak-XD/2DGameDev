@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://yw4cddpssmmj"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://yw4cddpssmmj"]
 
 [ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="1_kcumw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcumw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcumw"]
 bg_color = Color(1, 1, 1, 1)
@@ -14,5 +16,7 @@ expand_margin_right = 1920.0
 [resource]
 default_font = ExtResource("1_kcumw")
 default_font_size = 50
+/fonts/Font = ExtResource("1_kcumw")
+/styles/Clicked = SubResource("StyleBoxEmpty_kcumw")
 /styles/fontColor = SubResource("StyleBoxFlat_kcumw")
 /styles/hover = SubResource("StyleBoxFlat_nu1e5")

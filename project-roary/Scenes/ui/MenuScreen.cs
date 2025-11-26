@@ -5,46 +5,85 @@ using System.Collections.Generic;
 
 public partial class MenuScreen : Control
 {
-	private bool _isPaused = false;
-	private Dictionary<Button, float> _originalPositions = new Dictionary<Button, float>();
+	private const float HOVER_OFFSET = 50f;
+	private const float ANIMATION_DURATION = 0.6f;
+
+	private readonly Dictionary<Button, float> _originalPositions = new();
+	private readonly Dictionary<Button, Tween> _buttonTweens = new();
 
 	public override void _Ready()
     {
      	Hide();
-		ProcessMode = ProcessModeEnum.Always; 
+		ProcessMode = ProcessModeEnum.Always;
 
 		var buttons = new[] {
-			GetNode<Button>("Continue"),
-			GetNode<Button>("Settings"),
-			GetNode<Button>("Quit")
+			GetNode<Button>("%Continue"),
+			GetNode<Button>("%Settings"),
+			GetNode<Button>("%Quit")
 		};
 
 		foreach (var button in buttons)
         {
-			var currentButton = button;
-			var originalX = currentButton.Position.X;
-			
-			_originalPositions[currentButton] = originalX;
+			if (button == null)
+			{
+				GD.PushWarning("MenuScreen: Button node not found");
+				continue;
+			}
 
-			currentButton.MouseEntered += () => SlideButton(currentButton, originalX, true);;
-			currentButton.MouseExited += () => SlideButton(currentButton, originalX, false);
-			currentButton.Pressed += () => OnButtonPressed(currentButton.Name);
+			var originalX = button.Position.X;
+			_originalPositions[button] = originalX;
+
+			button.MouseEntered += () => SlideButton(button, originalX, true);
+			button.MouseExited += () => SlideButton(button, originalX, false);
+			button.Pressed += () => OnButtonPressed(button.Name);
         }
     }
 
+	public override void _ExitTree()
+	{
+		var buttons = new[] {
+			GetNode<Button>("%Continue"),
+			GetNode<Button>("%Settings"),
+			GetNode<Button>("%Quit")
+		};
+
+		foreach (var button in buttons)
+		{
+			if (button == null) continue;
+
+			button.MouseEntered -= () => SlideButton(button, _originalPositions[button], true);
+			button.MouseExited -= () => SlideButton(button, _originalPositions[button], false);
+			button.Pressed -= () => OnButtonPressed(button.Name);
+
+			// Clean up any running tweens
+			if (_buttonTweens.TryGetValue(button, out var tween) && tween != null)
+			{
+				tween.Kill();
+			}
+		}
+	}
+
 	private void SlideButton(Button button, float originalX, bool isHovering)
-    {		
+    {
+		// Kill any existing tween for this button to prevent overlapping animations
+		if (_buttonTweens.TryGetValue(button, out var existingTween) && existingTween != null)
+		{
+			existingTween.Kill();
+		}
+
 		var tween = CreateTween();
 		tween.SetEase(Tween.EaseType.Out);
 		tween.SetTrans(Tween.TransitionType.Cubic);
-		
+
+		_buttonTweens[button] = tween;
+
 		if (isHovering)
 		{
-			tween.TweenProperty(button, "position:x", originalX + 50, 0.6);
+			tween.TweenProperty(button, "position:x", originalX + HOVER_OFFSET, ANIMATION_DURATION);
 		}
 		else
 		{
-			tween.TweenProperty(button, "position:x", originalX, 0.6);
+			tween.TweenProperty(button, "position:x", originalX, ANIMATION_DURATION);
 		}
     }
 
@@ -74,9 +113,9 @@ public partial class MenuScreen : Control
 
 	private void TogglePause()
     {
-        _isPaused = !_isPaused;
-		Visible = _isPaused;
-		GetTree().Paused = _isPaused;
+		var isPaused = !GetTree().Paused;
+		Visible = isPaused;
+		GetTree().Paused = isPaused;
     }
 
 	private void OnContinuePress()

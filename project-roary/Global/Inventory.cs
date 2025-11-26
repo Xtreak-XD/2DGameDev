@@ -34,9 +34,9 @@ public partial class Inventory : Node
     Adds an item to the inventory, stacking it if possible.
     @param itemToAdd The IndividualItem to add.
     @param quantity The quantity of the item to add. Default is 1.
-    @return True if the item was added successfully, false otherwise.
+    @return The number of items that could not be added (0 if all were added).
     */
-    public bool AddItem(IndividualItem itemToAdd, int quantity = 1) // Adds an item to the inventory
+    public int AddItem(IndividualItem itemToAdd, int quantity = 1) // Adds an item to the inventory
     { 
         int remaining = quantity; // Track how many items are left to add
 
@@ -74,10 +74,9 @@ public partial class Inventory : Node
         if (remaining > 0) // If there are still items left to add
         {
             GD.PrintErr($"Could only add {quantity - remaining}/{quantity} of {itemToAdd.itemName}"); // Log if not all items could be added
-            return false; // Not all items were added
         }
 
-        return true; //    All items were added successfully
+        return remaining; //    All items were added successfully
     }
 
     /**

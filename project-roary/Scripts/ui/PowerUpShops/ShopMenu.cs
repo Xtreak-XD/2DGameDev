@@ -20,6 +20,7 @@ public partial class ShopMenu : Control
 
 	private List<ShopMenuSlot> shopItems; // Holds the UI containers
 	private System.Collections.Generic.Dictionary<IndividualItem, CartItem> cart; // Tracks item → quantity
+	private static System.Collections.Generic.Dictionary<string, HashSet<string>> soldItemsByShop = new System.Collections.Generic.Dictionary<string, HashSet<string>>(); // Tracks sold items per shop
 
 	private int totalCost = 0;
 
@@ -49,6 +50,8 @@ public partial class ShopMenu : Control
     public override void _ExitTree()
     {
 		eventbus.openShopMenu -= OpenShop;
+		eventbus.shopItemSelected -= AddItemToShoppingCart;
+		buyButton.Pressed -= OnBuyPress;
     }
 
     public override void _Input(InputEvent @event)
@@ -115,15 +118,15 @@ public partial class ShopMenu : Control
 
 		buyButton.Disabled = (totalCost > playerMetaData.Money || cart.Count == 0);
 
-		// Maybe
-		// if (totalCost > playerMetaData.Money)
-		// {
-		// totalLabel.AddThemeColorOverride("font_color", new Color(1, 0, 0)); // Red
-		// }
-		// else
-		// {
-		// 	totalLabel.AddThemeColorOverride("font_color", new Color(1, 1, 1)); // White (or your default color)
-		// }
+		// Change total label color
+		if (totalCost > playerMetaData.Money)
+		{
+		totalLabel.AddThemeColorOverride("font_color", new Color(1, 0, 0)); // Red
+		}
+		else
+		{
+			totalLabel.AddThemeColorOverride("font_color", new Color(1, 1, 1)); // White (or your default color)
+		}
 	}
 
 	private void OnBuyPress()
@@ -133,22 +136,29 @@ public partial class ShopMenu : Control
 		playerMetaData.Money -= totalCost;
 		bool allItemsAdded = PurchaseItems();
 		
-		if (allItemsAdded)
-		{
-			GD.Print("Purchase successful!");
-		}
-		else
-		{
-			GD.Print("Purchase partially completed - some items couldn't fit in inventory!");
-		}
-		
 		removeItemFromShop();
 		ClearCart();
 	}
 
 	private void removeItemFromShop()
     {
-		PopulateShop();
+		if (!soldItemsByShop.ContainsKey(shopConfig.ShopName))
+		{
+			soldItemsByShop[shopConfig.ShopName] = new HashSet<string>();
+		}
+
+		foreach (var cartItem in cart.Values)
+		{
+			soldItemsByShop[shopConfig.ShopName].Add(cartItem.Item.itemName);
+			
+			foreach (var slot in shopItems)
+			{
+				if (slot.GetItem() == cartItem.Item)
+				{
+					slot.markAsSold();
+				}
+			}
+		}
 	}
 
 	private void UpdateCoinDisplay()
@@ -167,6 +177,12 @@ public partial class ShopMenu : Control
 			if (i < shopConfig.Items.Count)
             {
 				shopItems[i].SetItem(shopConfig.Items[i]);
+
+				if (soldItemsByShop.ContainsKey(shopConfig.ShopName) && 
+					soldItemsByShop[shopConfig.ShopName].Contains(shopConfig.Items[i]?.itemName))
+				{
+					shopItems[i].markAsSold();
+				}
             }
             else
             {
@@ -194,12 +210,12 @@ public partial class ShopMenu : Control
 		
 		foreach (var cartItem in cart.Values)
 		{
-			bool added = playerInv.AddItem(cartItem.Item, cartItem.Quantity);
+			int remainingAmt = playerInv.AddItem(cartItem.Item, cartItem.Quantity); // Try to add items to inventory and return amount that couldn't be added
 			
-			if (!added)
+			if (remainingAmt > 0)
 			{
 				allSucceeded = false;
-				failedItems.Add((cartItem.Item,cartItem.Quantity));
+				failedItems.Add((cartItem.Item, remainingAmt));
 			}
 		}
 		
@@ -208,14 +224,13 @@ public partial class ShopMenu : Control
 		{
 			if (player == null)
 			{
-				GD.Print("Error: Player node not found. Cannot drop items on ground.");
+				GD.PrintErr("Error: Player node not found. Cannot drop items on ground.");
 				return allSucceeded;
 			}
 
 			GD.Print("Inventory full! The following items were dropped on the ground:");
 			foreach (var item in failedItems)
 			{
-				GD.Print($"  - {item.Item1.itemName} x{item.Item2}");
 				player.spawnItemInWorld(item.Item1, item.Item2);
 			}
 		}

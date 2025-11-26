@@ -26,7 +26,6 @@ public partial class EnemyManager : Node
     {
         if (EnemyCount >= MaxEnemiesAlive || EnemyScene == null || EnemySpawnPoints.Length == 0) return;
 
-        GD.Print("Spawning an enemy!");
         Node2D newEnemy = (Node2D)EnemyScene.Instantiate();
 
         Node2D entityContainer = GetNodeOrNull<Node2D>("EntityContainer");

@@ -32,7 +32,6 @@ public partial class Guide : Sprite2D
 
     public async Task onInteract()
     {
-        GD.Print("onInteractTest");
         dialogueManager.startDialog(GlobalPosition, thisLine);
         await ToSignal(eventbus, "finishedDisplaying");
     }

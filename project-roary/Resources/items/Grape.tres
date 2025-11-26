@@ -10,5 +10,5 @@ texture = ExtResource("2_vfjrj")
 isStackable = true
 shopPrice = 4
 isSellableInShop = true
-shopQuantity = 3
+shopQuantity = 130
 metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

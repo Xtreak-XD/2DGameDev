@@ -49,15 +49,20 @@ public partial class Items : Sprite2D
 			GD.PrintErr("Inventory node not found!");
 			return;
 		}
-		bool wasAdded = inv.AddItem(itemResource, itemQuantity);
 
-		if (wasAdded)
+		int remainingAmt = inv.AddItem(itemResource, itemQuantity);
+
+		if (remainingAmt == 0)
         {
 			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
             QueueFree(); // Remove the item from the scene after picking it up
-        } else
+        } else if(remainingAmt < itemQuantity)
+        {
+         	itemQuantity = remainingAmt;
+			interactionArea.actionName = $"pick up {itemResource.itemName} x{itemQuantity}";
+			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);   
+        }else
 		{
-			GD.Print("Could not pick up item, inventory full.");
 			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
 		}
 	}

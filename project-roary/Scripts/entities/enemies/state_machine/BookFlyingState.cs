@@ -22,7 +22,6 @@ public partial class BookFlyingState : EnemyState
 
     public override EnemyState Physics(double delta)
     {
-        GD.Print("in flying state");
         if (_player == null)
         {
             _player = GetTree().GetFirstNodeInGroup("player") as Node2D;

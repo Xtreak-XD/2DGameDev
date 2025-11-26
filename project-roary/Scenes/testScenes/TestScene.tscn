@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="6_lfsl6"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="7_lfsl6"]
 [ext_resource type="Resource" uid="uid://ba25mnd1fvhw0" path="res://Resources/Shop/TestFruits.tres" id="8_d43vx"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Pen.tscn" id="8_k25gx"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Thumbstack.tscn" id="9_3unw3"]
+[ext_resource type="PackedScene" uid="uid://u57fr3yk2s5c" path="res://Scenes/Items/Pen.tscn" id="8_k25gx"]
+[ext_resource type="PackedScene" uid="uid://bb82tbqia4lde" path="res://Scenes/Items/Thumbstack.tscn" id="9_3unw3"]
 [ext_resource type="Resource" uid="uid://dvkbfxeeae2tp" path="res://Resources/Shop/WeaponShop.tres" id="9_fkpmq"]
 [ext_resource type="PackedScene" uid="uid://jmurwe14w1nw" path="res://Scenes/map/GranhamCenter/ShopKeeper.tscn" id="10_3unw3"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Pencil.tscn" id="10_d43vx"]
+[ext_resource type="PackedScene" uid="uid://dy8gl83jijma" path="res://Scenes/Items/Pencil.tscn" id="10_d43vx"]
 
 [node name="TestScene" type="Node2D"]
 

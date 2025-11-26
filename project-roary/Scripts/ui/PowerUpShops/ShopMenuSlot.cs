@@ -7,6 +7,7 @@ public partial class ShopMenuSlot : TextureButton
 	private Label price;
 	private Label quantityLabel;
 	private IndividualItem item;
+	private bool isSold = false;
 	private Eventbus eventbus;
 
 	// Called when the node enters the scene tree for the first time.
@@ -27,8 +28,14 @@ public partial class ShopMenuSlot : TextureButton
 
 	public void SetItem(IndividualItem newItem)
     {
+		if (item != newItem)
+		{
+			isSold = false;
+		}
+
 		item = newItem;
-        if (item == null)
+
+        if (item == null || isSold)
         {
 			itemIcon.Visible = false;
 			price.Visible = false;
@@ -36,21 +43,27 @@ public partial class ShopMenuSlot : TextureButton
 			return;
         }
 
+		itemIcon.Visible = true;
+		price.Visible = true;
+		quantityLabel.Visible = true;
+
 		Show();
 		itemIcon.Texture = item.texture;
 		price.Text = "$" + item.shopPrice;
 		quantityLabel.Text = "x" + item.shopQuantity;
     }
 
-	public void ClearItem()
+	public void markAsSold()
 	{
-		item = null;
+		isSold = true;
+		SetItem(item);
 	}
+
+	public IndividualItem GetItem() => item;
 
 	private void OnSlotPressed()
     {
-		GD.Print(item);
-		if (item == null) return;
+		if (item == null || isSold) return;
 		eventbus.EmitSignal(Eventbus.SignalName.shopItemSelected, item);        
     }
 }

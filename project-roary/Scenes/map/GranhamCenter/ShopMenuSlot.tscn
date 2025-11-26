@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhlkfysakjm6t"]
+[gd_scene load_steps=5 format=3 uid="uid://bhlkfysakjm6t"]
 
 [ext_resource type="Texture2D" uid="uid://dtg3e4naqwwi3" path="res://Sprites/redNapkinRe.png" id="1_c3lh0"]
 [ext_resource type="Script" uid="uid://c5wqq1mrhdk5p" path="res://Scripts/ui/PowerUpShops/ShopMenuSlot.cs" id="2_3bu7i"]
+[ext_resource type="LabelSettings" uid="uid://k5ga4fhiiq1j" path="res://Resources/Shop/ShopMenLabels.tres" id="3_prtxo"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_prtxo"]
 
@@ -23,8 +24,20 @@ offset_bottom = 40.0
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Price" type="Label" parent="."]
+[node name="ShopPrice" type="Label" parent="."]
 layout_mode = 0
-offset_right = 23.0
-offset_bottom = 23.0
+offset_left = 1.0
+offset_top = -4.0
+offset_right = 21.0
+offset_bottom = 20.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+label_settings = ExtResource("3_prtxo")
+
+[node name="ShopQuantity" type="Label" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 40.0
+offset_right = 63.0
+offset_bottom = 64.0
+label_settings = ExtResource("3_prtxo")
+horizontal_alignment = 2

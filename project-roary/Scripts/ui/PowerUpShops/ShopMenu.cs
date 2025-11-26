@@ -19,7 +19,7 @@ public partial class ShopMenu : Control
 	private Player player;
 
 	private List<ShopMenuSlot> shopItems; // Holds the UI containers
-	private System.Collections.Generic.Dictionary<IndividualItem, int> cart; // Tracks item → quantity
+	private System.Collections.Generic.Dictionary<IndividualItem, CartItem> cart; // Tracks item → quantity
 
 	private int totalCost = 0;
 
@@ -28,7 +28,7 @@ public partial class ShopMenu : Control
 		Hide();
 		ProcessMode = ProcessModeEnum.Always;
 
-		cart = new System.Collections.Generic.Dictionary<IndividualItem, int>();
+		cart = new System.Collections.Generic.Dictionary<IndividualItem, CartItem>();
 		receiptLabel = GetNode<Label>("%Receipt");
 		coinLabel = GetNode<Label>("%Coins");
 		totalLabel = GetNode<Label>("%Total");
@@ -86,7 +86,7 @@ public partial class ShopMenu : Control
 		}
 		else
 		{
-			cart[item] = 1;
+			cart[item] = new CartItem(item, item.shopQuantity, item.shopQuantity); 
 		}
 		UpdateReceipt();
 	}
@@ -102,12 +102,12 @@ public partial class ShopMenu : Control
 
 		String receipt = "";
 		totalCost = 0;
-        foreach (KeyValuePair<IndividualItem, int> entry in cart)
+        foreach (var entry in cart.Values)
         {
-			string itemLine = $"{entry.Key.itemName} x{entry.Value}".PadRight(15);
-			string priceLine = $"${entry.Key.shopPrice}".PadLeft(5);
+			string itemLine = $"{entry.Item.itemName} x{entry.Quantity}".PadRight(15);
+			string priceLine = $"${entry.TotalPrice}".PadLeft(5);
 			receipt += itemLine + priceLine + "\n"; 
-			totalCost += entry.Key.shopPrice * entry.Value;
+			totalCost += entry.TotalPrice;
         }
 
 		receiptLabel.Text = receipt;
@@ -128,6 +128,8 @@ public partial class ShopMenu : Control
 
 	private void OnBuyPress()
 	{
+		if (cart.Count == 0) return;
+
 		playerMetaData.Money -= totalCost;
 		bool allItemsAdded = PurchaseItems();
 		
@@ -140,7 +142,17 @@ public partial class ShopMenu : Control
 			GD.Print("Purchase partially completed - some items couldn't fit in inventory!");
 		}
 		
+		removeItemFromShop();
 		ClearCart();
+	}
+
+	private void removeItemFromShop()
+    {
+        foreach (var cartItem in cart.Values)
+        {
+            shopConfig.Items.Remove(cartItem.Item);
+        }
+		PopulateShop();
 	}
 
 	private void UpdateCoinDisplay()
@@ -183,14 +195,14 @@ public partial class ShopMenu : Control
 		bool allSucceeded = true;
 		List<(IndividualItem, int)> failedItems = new List<(IndividualItem, int)>();
 		
-		foreach (KeyValuePair<IndividualItem, int> entry in cart)
+		foreach (var cartItem in cart.Values)
 		{
-			bool added = playerInv.AddItem(entry.Key, entry.Value);
+			bool added = playerInv.AddItem(cartItem.Item, cartItem.Quantity);
 			
 			if (!added)
 			{
 				allSucceeded = false;
-				failedItems.Add((entry.Key,entry.Value));
+				failedItems.Add((cartItem.Item,cartItem.Quantity));
 			}
 		}
 		

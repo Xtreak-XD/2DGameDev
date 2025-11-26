@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://1sd01tooxbt1"]
+[gd_scene load_steps=9 format=3 uid="uid://1sd01tooxbt1"]
 
 [ext_resource type="PackedScene" uid="uid://bhlkfysakjm6t" path="res://Scenes/map/GranhamCenter/ShopMenuSlot.tscn" id="1_jiogy"]
 [ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/TableTopDown2.png" id="1_jqod7"]
 [ext_resource type="Script" uid="uid://c8vsyptmaavtn" path="res://Scripts/ui/PowerUpShops/ShopMenu.cs" id="1_tgvhk"]
-[ext_resource type="Resource" uid="uid://dvkbfxeeae2tp" path="res://Resources/Shop/WeaponShop.tres" id="2_msshn"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_tgvhk"]
 [ext_resource type="FontFile" uid="uid://cbkp2sq5jjvfa" path="res://Sprites/Fonts/SpaceMono-Regular.ttf" id="8_0cfuo"]
 
@@ -23,7 +22,6 @@ anchors_preset = 0
 offset_right = 1400.0
 offset_bottom = 672.0
 script = ExtResource("1_tgvhk")
-shopConfig = ExtResource("2_msshn")
 
 [node name="ShopMenuPanel" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -130,6 +128,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_0cfuo")
 theme_override_font_sizes/font_size = 10
+text = "No items selected"
 horizontal_alignment = 1
 
 [node name="Total" type="Label" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]

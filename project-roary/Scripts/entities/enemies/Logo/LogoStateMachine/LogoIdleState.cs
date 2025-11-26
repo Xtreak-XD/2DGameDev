@@ -10,7 +10,6 @@ public partial class LogoIdleState : LogoState
     {
         base.EnterState();
         timer = 0f;
-
         
         float roll = GD.Randf();
 

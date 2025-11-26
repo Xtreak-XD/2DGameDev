@@ -9,7 +9,7 @@ public partial class SBAttack : Node
 
     private float currentAngle = 0f;
 
-    public void Fire(Node2D owner)
+    public void Fire(CharacterBody2D owner)
     {
         if (SpiralBubble == null)
         {
@@ -21,13 +21,12 @@ public partial class SBAttack : Node
             float angle = currentAngle + (i * AngleStep);
             Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-            var bubble = SpiralBubble.Instantiate<Node2D>();
+            SpiralBubble bubble = (SpiralBubble)SpiralBubble.Instantiate();
+
             bubble.Name = "Bubble";
             owner.GetParent().AddChild(bubble);
             bubble.GlobalPosition = owner.GlobalPosition;
-
-            if (bubble.HasMethod("SetVelocity"))
-                bubble.Call("SetVelocity", dir * Speed);
+            bubble.Velocity = dir.Normalized() * bubble.data.speed;
         }
 
         currentAngle += 1; 

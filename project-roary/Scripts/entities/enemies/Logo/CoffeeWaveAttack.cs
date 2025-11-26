@@ -4,9 +4,9 @@ public partial class CoffeeWaveAttack : Node
 {
     [Export] public PackedScene CoffeeShotScene;
 
-    public void Fire(Node2D owner)
+    public void Fire(CharacterBody2D owner)
     {
-        if (CoffeeShotScene == null)
+        if(CoffeeShotScene == null)
         {
             GD.PrintErr("CoffeeShotScene is NULL!");
             return;
@@ -19,15 +19,14 @@ public partial class CoffeeWaveAttack : Node
             Vector2.Down
         ];
 
-        foreach (var dir in dirs)
+        foreach(Vector2 dir in dirs)
         {
-            var shot = CoffeeShotScene.Instantiate<Node2D>();
+            CoffeeShot shot = (CoffeeShot)CoffeeShotScene.Instantiate();
             owner.GetParent().AddChild(shot);
 
             shot.GlobalPosition = owner.GlobalPosition;
 
-            if (shot.HasMethod("SetDirection"))
-                shot.Call("SetDirection", dir);
+            shot.Velocity = dir * shot.data.speed;
         }
     }
 }

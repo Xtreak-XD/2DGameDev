@@ -18,41 +18,44 @@ public partial class MermaidThrow : MermaidState
     {
 		GD.Print("The mermaid is considering throwing a projectile");
 
-		Vector2 currentPos = ActiveEnemy.projectileSource.GlobalPosition;
-		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
-
-		Vector2 direction = (targetPos - currentPos).Normalized();
-
-        if(ActiveEnemy.HasTrident)
+		if(ActiveEnemy.target != null)
         {
-			if(new Random().Next(2) == 1)
-            {
-                GD.Print("The mermaid is throwing its trident");
+            Vector2 currentPos = ActiveEnemy.projectileSource.GlobalPosition;
+			Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
 
-				MermaidTrident tridentProjectile = (MermaidTrident)ActiveEnemy.trident.Instantiate();
-				ActiveEnemy.Owner.AddChild(tridentProjectile);
+			Vector2 direction = (targetPos - currentPos).Normalized();
 
-				tridentProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
-				tridentProjectile.sprite.LookAt(targetPos);
-				tridentProjectile.parent = ActiveEnemy;
+			if(ActiveEnemy.HasTrident)
+			{
+				if(new Random().Next(2) == 1)
+				{
+					GD.Print("The mermaid is throwing its trident");
 
-				tridentProjectile.Velocity = direction * tridentProjectile.data.speed;
-            }
-        } 
-		else if(ActiveEnemy.Shielded)
-        {
-			GD.Print("The mermaid is throwing its shield");
+					MermaidTrident tridentProjectile = (MermaidTrident)ActiveEnemy.trident.Instantiate();
+					ActiveEnemy.Owner.AddChild(tridentProjectile);
 
-            MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
-			ActiveEnemy.Owner.AddChild(shieldProjectile);
+					tridentProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
+					tridentProjectile.sprite.LookAt(targetPos);
+					tridentProjectile.parent = ActiveEnemy;
 
-			shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
-			shieldProjectile.sprite.LookAt(targetPos);
-			shieldProjectile.parent = ActiveEnemy;
+					tridentProjectile.Velocity = direction * tridentProjectile.data.speed;
+				}
+				else if(ActiveEnemy.Shielded)
+				{
+					GD.Print("The mermaid is throwing its shield");
 
-			shieldProjectile.Velocity = direction * shieldProjectile.data.speed;
-        }
-    }
+					MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
+					ActiveEnemy.Owner.AddChild(shieldProjectile);
+
+					shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
+					shieldProjectile.sprite.LookAt(targetPos);
+					shieldProjectile.parent = ActiveEnemy;
+
+					shieldProjectile.Velocity = direction * shieldProjectile.data.speed;
+				}
+			}
+    	}
+	}
 
     public override MermaidState Process(double delta)
     {

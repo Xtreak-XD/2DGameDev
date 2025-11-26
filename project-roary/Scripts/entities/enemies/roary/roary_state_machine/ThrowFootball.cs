@@ -19,26 +19,29 @@ public partial class ThrowFootball : RoaryState
     {
 		GD.Print("Roary is throwing a football at the player");
 
-		Vector2 currentPos = projectileSource.GlobalPosition;
-		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
+		if(ActiveEnemy.target != null)
+        {
+            Vector2 currentPos = projectileSource.GlobalPosition;
+			Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
 
-		Vector2 direction = (targetPos - currentPos).Normalized();
+			Vector2 direction = (targetPos - currentPos).Normalized();
 
-		RoaryFootball footballProjectile = (RoaryFootball)ActiveEnemy.football.Instantiate();
-		ActiveEnemy.Owner.AddChild(footballProjectile);
+			RoaryFootball footballProjectile = (RoaryFootball)ActiveEnemy.football.Instantiate();
+			ActiveEnemy.Owner.AddChild(footballProjectile);
 
-		footballProjectile.GlobalPosition = currentPos;
-		footballProjectile.sprite.LookAt(targetPos);
-		footballProjectile.parent = ActiveEnemy;
+			footballProjectile.GlobalPosition = currentPos;
+			footballProjectile.sprite.LookAt(targetPos);
+			footballProjectile.parent = ActiveEnemy;
 
-		footballProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
-		 * ActiveEnemy.StatMultipler());
-		footballProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
+			footballProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
+			* ActiveEnemy.StatMultipler());
+			footballProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
 
-		float finalSpeed = footballProjectile.data.speed *
-		 ActiveEnemy.StatMultipler();
+			float finalSpeed = footballProjectile.data.speed *
+			ActiveEnemy.StatMultipler();
 
-		footballProjectile.Velocity = direction * finalSpeed;
+			footballProjectile.Velocity = direction * finalSpeed;
+        }
 	}
 	
 	public override RoaryState Process(double delta)

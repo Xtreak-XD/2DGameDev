@@ -123,7 +123,7 @@ public partial class Mermaid : Enemy
 		return false;
     }
 	
-    private bool AllSpawnsOccupied()
+    public bool AllSpawnsOccupied()
     {
         foreach(Marker2D spawn in starfishSpawns) 
         {

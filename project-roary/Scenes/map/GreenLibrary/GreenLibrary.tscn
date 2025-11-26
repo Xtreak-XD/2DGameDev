@@ -15,5 +15,21 @@ spawnsAvailable = [NodePath("fromMaze")]
 [node name="fromMaze" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(1672, 531)
 
-[node name="MermaidPhase2" parent="." instance=ExtResource("2_pynll")]
+[node name="MermaidPhase2" parent="." node_paths=PackedStringArray("starfishSpawns") instance=ExtResource("2_pynll")]
 position = Vector2(507, 159)
+starfishSpawns = [NodePath("../StarfishSpawn1"), NodePath("../StarfishSpawn2"), NodePath("../StarfishSpawn3"), NodePath("../StarfishSpawn4"), NodePath("../StarfishSpawn5")]
+
+[node name="StarfishSpawn1" type="Marker2D" parent="."]
+position = Vector2(1598, 169)
+
+[node name="StarfishSpawn2" type="Marker2D" parent="."]
+position = Vector2(283, 918)
+
+[node name="StarfishSpawn3" type="Marker2D" parent="."]
+position = Vector2(1136, 777)
+
+[node name="StarfishSpawn4" type="Marker2D" parent="."]
+position = Vector2(211, 352)
+
+[node name="StarfishSpawn5" type="Marker2D" parent="."]
+position = Vector2(1005, 269)

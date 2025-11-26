@@ -23,6 +23,7 @@ public partial class MermaidSummon : MermaidState
                 spawnPoint.AddChild(starfish);
 
                 starfish.GlobalPosition = spawnPoint.GlobalPosition;
+                GD.Print("The mermaid has summoned a starfish");
             }
         }
     }

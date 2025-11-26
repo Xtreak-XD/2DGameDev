@@ -55,7 +55,7 @@ script = ExtResource("10_shvun")
 wait_time = 8.0
 
 [node name="DashTimer" type="Timer" parent="MermaidStateMachine"]
-wait_time = 3.0
+wait_time = 2.5
 
 [node name="Hitbox" parent="." instance=ExtResource("1_0covu")]
 

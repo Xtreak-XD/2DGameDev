@@ -33,34 +33,38 @@ public partial class MermaidChase : MermaidState
 
     public override MermaidState Process(double delta)
     {
-        if(EndChase)
+        if(ActiveEnemy.target != null)
         {
-            if(ActiveEnemy.HasTrident && ActiveEnemy.Shielded)
+            if(EndChase)
             {
-                if(new Random().Next(3) == 2)
+                if(ActiveEnemy.HasTrident && ActiveEnemy.Shielded)
                 {
-                    return MermaidFullThrow;
+                    if(new Random().Next(3) == 2)
+                    {
+                        return MermaidFullThrow;
+                    }
                 }
+
+                return MermaidThrow;
             }
 
-            return MermaidThrow;
+            Vector2 currentPos = ActiveEnemy.GlobalPosition;
+            Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
+
+            Vector2 direction = (playerPos - currentPos).Normalized();
+
+            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+            ActiveEnemy.Velocity = direction * (float)(ActiveEnemy.data.Speed *
+            delta * ActiveEnemy.data.Accel);
+                
+            if(!ActiveEnemy.Shielded)
+            {
+                ActiveEnemy.Velocity *= 2f;
+            }
+
+            ActiveEnemy.MoveAndSlide();
         }
-
-        Vector2 currentPos = ActiveEnemy.GlobalPosition;
-		Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
-
-		Vector2 direction = (playerPos - currentPos).Normalized();
-
-		//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
-		ActiveEnemy.Velocity = direction * (float)(ActiveEnemy.data.Speed *
-         delta * ActiveEnemy.data.Accel);
-			
-		if(!ActiveEnemy.Shielded)
-        {
-            ActiveEnemy.Velocity *= 2f;
-        }
-
-		ActiveEnemy.MoveAndSlide();
+        
         return null;
     }
 

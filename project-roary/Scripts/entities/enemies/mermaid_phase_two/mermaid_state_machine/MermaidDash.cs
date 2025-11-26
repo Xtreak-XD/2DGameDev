@@ -27,27 +27,34 @@ public partial class MermaidDash : MermaidState
 
     public override void ExitState()
     {
-		ActiveEnemy.SetHasShield();
         dashTimer.Stop();
     }
 
     public override MermaidState Process(double delta)
     {
-        if(EndDash)
+        if(ActiveEnemy.target != null)
         {
-            return MermaidChase;
+            if(EndDash)
+            {
+                return MermaidChase;
+            }
+
+            Vector2 currentPos = ActiveEnemy.GlobalPosition;
+            Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
+
+            if(currentPos.DistanceTo(playerPos) <= 70)
+            {
+                SetDashOver();
+            }
+
+            Vector2 direction = (playerPos - currentPos).Normalized();
+
+            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+            ActiveEnemy.Velocity = direction * (float)(ActiveEnemy.data.Speed * 2.5);
+
+            ActiveEnemy.MoveAndSlide();
         }
-
-        Vector2 currentPos = ActiveEnemy.GlobalPosition;
-		Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
-
-		Vector2 direction = (playerPos - currentPos).Normalized();
-
-		//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
-		ActiveEnemy.Velocity = direction * (float)(ActiveEnemy.data.Speed * 3.8 *
-         delta * ActiveEnemy.data.Accel);
-
-		ActiveEnemy.MoveAndSlide();
+        
         return null;
     }
 

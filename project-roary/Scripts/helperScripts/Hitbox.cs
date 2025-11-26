@@ -111,6 +111,13 @@ public partial class Hitbox : Area2D
 
             eventbus.EmitSignal("knockBack", (CharacterBody2D)area.GetParent(), meleeData.knockback * 5, GlobalPosition);
         }
+         else if (area.IsInGroup("hurtbox") && area.GetParent().IsInGroup("player") && !(area.GetParent() == GetParent()) && (GetParent() is EnemyProjectile))
+        {
+            eventbus.EmitSignal("applyDamage", area.GetParent(), GetParent(), projectileData.Damage);
+            eventbus.EmitSignal("hitStop", 0.05);
+
+            eventbus.EmitSignal("knockBack", (CharacterBody2D)area.GetParent(), projectileData.knockback * 5, GlobalPosition);
+        }
     }
     
     public override void _ExitTree()

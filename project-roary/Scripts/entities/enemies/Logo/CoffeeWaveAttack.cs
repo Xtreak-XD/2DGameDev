@@ -4,7 +4,7 @@ public partial class CoffeeWaveAttack : Node
 {
     [Export] public PackedScene CoffeeShotScene;
 
-    public void Fire(CharacterBody2D owner)
+    public void Fire(Logo owner)
     {
         if(CoffeeShotScene == null)
         {
@@ -23,6 +23,7 @@ public partial class CoffeeWaveAttack : Node
         {
             CoffeeShot shot = (CoffeeShot)CoffeeShotScene.Instantiate();
             owner.GetParent().CallDeferred("add_child", shot);
+            shot.data.Damage = owner.data.Damage;
 
             shot.GlobalPosition = owner.GlobalPosition;
 

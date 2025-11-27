@@ -12,6 +12,8 @@ size = Vector2(163.52127, 20)
 
 [node name="CoffeeShot" type="CharacterBody2D"]
 scale = Vector2(0.45254055, 0.19620863)
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_ufxx8")
 data = ExtResource("2_fftk1")
 

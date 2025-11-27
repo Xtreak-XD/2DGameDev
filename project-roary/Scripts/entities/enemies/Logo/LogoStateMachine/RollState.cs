@@ -5,6 +5,7 @@ public partial class RollState : LogoState
 {
     public Timer timer;
     public bool EndRoll = false;
+    public bool SpawnedStarfish = false;
 
     public override void _Ready()
     {
@@ -25,6 +26,7 @@ public partial class RollState : LogoState
 
         Logo.hurtBox.Monitoring = false;
         Logo.hitbox.Monitoring = true;
+        SpawnedStarfish = false;
     }
 
     public override void ExitState()
@@ -34,7 +36,7 @@ public partial class RollState : LogoState
 
     public override LogoState Process(double delta)
     {
-        if(timer.TimeLeft == 1)
+        if(timer.TimeLeft <= timer.WaitTime / 2 && !SpawnedStarfish)
         {
             Vector2 direction = Logo.Velocity.Rotated(Logo.sprite.Rotation).Normalized();
 
@@ -45,6 +47,7 @@ public partial class RollState : LogoState
             starfish.Velocity = direction * (Logo.Data.SpinSpeed * 60);
 
             GD.Print("The logo has flung out a starfish");
+            SpawnedStarfish = true;
         }
 
         Logo.sprite.RotationDegrees += Logo.Data.SpinSpeed;

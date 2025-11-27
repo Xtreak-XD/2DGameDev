@@ -22,7 +22,7 @@ public partial class CoffeeWaveAttack : Node
         foreach(Vector2 dir in dirs)
         {
             CoffeeShot shot = (CoffeeShot)CoffeeShotScene.Instantiate();
-            owner.GetParent().AddChild(shot);
+            owner.GetParent().CallDeferred("add_child", shot);
 
             shot.GlobalPosition = owner.GlobalPosition;
 

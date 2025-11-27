@@ -47,7 +47,7 @@ public partial class Starfish : Enemy
     {
 		if(Velocity.Length() > 0)
         {
-            Velocity *= 0.9f * (float)delta;
+            Velocity *= 0.9f;
         }
 
 		if(Velocity.Length() <= 0.08)

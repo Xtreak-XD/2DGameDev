@@ -1,16 +1,137 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=17 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
 [ext_resource type="PackedScene" uid="uid://con1q0nhgkj8i" path="res://Scenes/entities/player/DriveableCar.tscn" id="2_5wdrb"]
+[ext_resource type="Texture2D" uid="uid://7u02swqak463" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_up.png" id="2_yosyq"]
+[ext_resource type="Texture2D" uid="uid://dbvfow4rqjtkt" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_up.png" id="3_5oly8"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="4_ie86c"]
+[ext_resource type="Texture2D" uid="uid://dgffmm8g3vtsi" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_down.png" id="4_wq2dn"]
 [ext_resource type="PackedScene" uid="uid://c6i3fao4yxrbg" path="res://Scenes/entities/enemies/CarEnemy.tscn" id="5_a1t8p"]
+[ext_resource type="Texture2D" uid="uid://dla7tarvtsdj0" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_up.png" id="5_vebei"]
+[ext_resource type="Texture2D" uid="uid://rowkec0a17b4" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_down.png" id="6_slse4"]
+[ext_resource type="Texture2D" uid="uid://bluy0qp8psjqu" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_down.png" id="7_fi4eq"]
+[ext_resource type="Texture2D" uid="uid://j07h24a14hbk" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_left.png" id="8_581fp"]
+[ext_resource type="Texture2D" uid="uid://dky5wwls7pm0h" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_right.png" id="9_dvqmy"]
+[ext_resource type="Texture2D" uid="uid://dq0r8ge3vlt23" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_left.png" id="10_shi2b"]
+[ext_resource type="Texture2D" uid="uid://chti0lo6xmjjd" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_right.png" id="11_r3yff"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="12_5oly8"]
 
 [node name="ParkingGarage" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4995, 5003)
 texture = ExtResource("1_5wdrb")
+
+[node name="DummyCar" type="Sprite2D" parent="."]
+position = Vector2(3044, 969)
+texture = ExtResource("2_yosyq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar/StaticBody2D"]
+position = Vector2(-304.47632, -476.8645)
+polygon = PackedVector2Array(-11.523682, -19.135498, 691.4763, -19.135498, 710.4763, 1017.8645, -72.52368, 1021.8645)
+
+[node name="DummyCar2" type="Sprite2D" parent="."]
+position = Vector2(5989, 999)
+texture = ExtResource("3_5oly8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar2/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+
+[node name="DummyCar3" type="Sprite2D" parent="."]
+position = Vector2(4087.6104, 929.83203)
+texture = ExtResource("4_wq2dn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar3/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+
+[node name="DummyCar4" type="Sprite2D" parent="."]
+position = Vector2(4031.423, 9090.94)
+texture = ExtResource("5_vebei")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar4/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+
+[node name="DummyCar5" type="Sprite2D" parent="."]
+position = Vector2(8002.677, 1023.552)
+texture = ExtResource("6_slse4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar5"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar5/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+
+[node name="DummyCar6" type="Sprite2D" parent="."]
+position = Vector2(6964.502, 8985.773)
+texture = ExtResource("5_vebei")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar6"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar6/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+
+[node name="DummyCar7" type="Sprite2D" parent="."]
+position = Vector2(4955.8467, 9063.1875)
+texture = ExtResource("7_fi4eq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar7/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+
+[node name="DummyCar8" type="Sprite2D" parent="."]
+position = Vector2(9035.328, 5005.4146)
+texture = ExtResource("8_581fp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar8"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar8/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
+
+[node name="DummyCar9" type="Sprite2D" parent="."]
+position = Vector2(1193.065, 2962.3596)
+texture = ExtResource("9_dvqmy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar9"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar9/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
+
+[node name="DummyCar10" type="Sprite2D" parent="."]
+position = Vector2(1094.0352, 5871.993)
+texture = ExtResource("10_shi2b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar10"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar10/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
+
+[node name="DummyCar11" type="Sprite2D" parent="."]
+position = Vector2(1148.9502, 4973.764)
+texture = ExtResource("11_r3yff")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar11"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar11/StaticBody2D"]
+position = Vector2(-997, 835)
+polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 position = Vector2(208, 207)
@@ -59,28 +180,19 @@ polygon = PackedVector2Array(1.8686523, 0.049804688, -1.1313477, 1140.0498, 44.8
 position = Vector2(6841.379, 3680.8696)
 polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621094, 973.1304, 3.6210938, 969.1304)
 
-[node name="PlayerSpawnPoints" type="Node" parent="."]
+[node name="PlayerSpawnPoints" parent="." instance=ExtResource("12_5oly8")]
 
 [node name="fromStart" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(2811, 3519)
+position = Vector2(2783.8005, 3516.115)
 
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
 EnemySpawnTimerMin = 0.0
 EnemySpawnTimerMax = 0.2
-EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn1"), NodePath("EnemySpawnPointContainer2/CarSpawn2"), NodePath("EnemySpawnPointContainer2/CarSpawn3"), NodePath("EnemySpawnPointContainer2/CarSpawn4"), NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn7"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn9"), NodePath("EnemySpawnPointContainer2/CarSpawn10"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn12"), NodePath("EnemySpawnPointContainer2/CarSpawn13"), NodePath("EnemySpawnPointContainer2/CarSpawn14"), NodePath("EnemySpawnPointContainer2/CarSpawn15"), NodePath("EnemySpawnPointContainer2/CarSpawn16"), NodePath("EnemySpawnPointContainer2/CarSpawn17"), NodePath("EnemySpawnPointContainer2/CarSpawn18"), NodePath("EnemySpawnPointContainer2/CarSpawn19"), NodePath("EnemySpawnPointContainer2/CarSpawn20"), NodePath("EnemySpawnPointContainer2/CarSpawn21"), NodePath("EnemySpawnPointContainer2/CarSpawn22"), NodePath("EnemySpawnPointContainer2/CarSpawn23"), NodePath("EnemySpawnPointContainer2/CarSpawn24"), NodePath("EnemySpawnPointContainer2/CarSpawn25"), NodePath("EnemySpawnPointContainer2/CarSpawn26"), NodePath("EnemySpawnPointContainer2/CarSpawn27")]
+EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn4"), NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn7"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn15"), NodePath("EnemySpawnPointContainer2/CarSpawn16"), NodePath("EnemySpawnPointContainer2/CarSpawn17"), NodePath("EnemySpawnPointContainer2/CarSpawn18"), NodePath("EnemySpawnPointContainer2/CarSpawn20"), NodePath("EnemySpawnPointContainer2/CarSpawn21"), NodePath("EnemySpawnPointContainer2/CarSpawn22"), NodePath("EnemySpawnPointContainer2/CarSpawn25"), NodePath("EnemySpawnPointContainer2/CarSpawn26"), NodePath("EnemySpawnPointContainer2/CarSpawn27")]
 EnemyScene = ExtResource("5_a1t8p")
-MaxEnemiesAlive = 12
+MaxEnemiesAlive = 10
 
 [node name="EnemySpawnPointContainer2" type="Node2D" parent="Enemymanager"]
-
-[node name="CarSpawn1" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(3916, 9098)
-
-[node name="CarSpawn2" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(6890, 9078)
-
-[node name="CarSpawn3" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(806, 4971)
 
 [node name="CarSpawn4" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(9156, 6968)
@@ -97,23 +209,8 @@ position = Vector2(791, 7971)
 [node name="CarSpawn8" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(730, 6885)
 
-[node name="CarSpawn9" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(4112, 989)
-
-[node name="CarSpawn10" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(9046, 5074)
-
 [node name="CarSpawn11" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(6934, 996)
-
-[node name="CarSpawn12" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(773, 3015)
-
-[node name="CarSpawn13" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(5875, 1059)
-
-[node name="CarSpawn14" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(2989, 970)
 
 [node name="CarSpawn15" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(1990, 944)
@@ -127,9 +224,6 @@ position = Vector2(1011, 1980)
 [node name="CarSpawn18" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(2988, 8928)
 
-[node name="CarSpawn19" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(896, 5992)
-
 [node name="CarSpawn20" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(857, 4015)
 
@@ -138,12 +232,6 @@ position = Vector2(8919, 2019)
 
 [node name="CarSpawn22" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(9015, 4111)
-
-[node name="CarSpawn23" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(8074, 1040)
-
-[node name="CarSpawn24" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(4965, 9006)
 
 [node name="CarSpawn25" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(8036, 9082)

@@ -16,6 +16,7 @@ public partial class InteractionManager : Node2D
     public override void _Ready()
     {
         player = (Player)GetTree().GetFirstNodeInGroup("player");
+    
         label = GetNode<Label>("Label");
         
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
@@ -24,9 +25,12 @@ public partial class InteractionManager : Node2D
 
     public override void _Process(double delta)
     {
+        if(player is not Player) return;
+
         if (player == null || !IsInstanceValid(player))
         {
             player = (Player)GetTree().GetFirstNodeInGroup("player");
+            
             if (player == null) return; 
         }
 

@@ -20,6 +20,12 @@ public partial class CarEnemy : Enemy
         anim = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
+    public override void _EnterTree()
+    {
+        currentDirection = (directionChosen)Enum.GetValues(typeof(directionChosen))
+        .GetValue(new Random().Next(0, 4));
+    }
+
     public override void _Process(double delta)
     {
         switch (currentDirection)

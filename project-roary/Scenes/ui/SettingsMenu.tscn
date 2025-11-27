@@ -270,7 +270,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer"]
 layout_mode = 2
-theme_override_constants/separation = 210
+theme_override_constants/separation = 220
 alignment = 1
 
 [node name="BackButton" type="Button" parent="SettingsPanel/ContentContainer/HBoxContainer"]

@@ -12,14 +12,10 @@ size = Vector2(163.52127, 20)
 
 [node name="CoffeeShot" type="CharacterBody2D"]
 scale = Vector2(0.45254055, 0.19620863)
-collision_layer = 0
-collision_mask = 4
 script = ExtResource("1_ufxx8")
 data = ExtResource("2_fftk1")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_cjbm1")]
-collision_layer = 16
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 scale = Vector2(17.679955, 6.8869348)

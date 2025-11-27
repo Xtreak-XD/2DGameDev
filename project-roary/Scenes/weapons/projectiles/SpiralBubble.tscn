@@ -12,14 +12,10 @@ radius = 34.026276
 
 [node name="SpiralBubble" type="CharacterBody2D"]
 scale = Vector2(0.70594925, 0.70594925)
-collision_layer = 0
-collision_mask = 4
 script = ExtResource("1_k1adf")
 data = ExtResource("2_gpw7c")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_nw0cm")]
-collision_layer = 16
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 scale = Vector2(8.673077, 8.673077)

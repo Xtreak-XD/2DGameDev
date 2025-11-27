@@ -24,7 +24,7 @@ public partial class SBAttack : Node
             SpiralBubble bubble = (SpiralBubble)SpiralBubble.Instantiate();
 
             bubble.Name = "Bubble";
-            owner.GetParent().AddChild(bubble);
+            owner.GetParent().CallDeferred("add_child", bubble);
             bubble.GlobalPosition = owner.GlobalPosition;
             bubble.Velocity = dir.Normalized() * bubble.data.speed;
         }

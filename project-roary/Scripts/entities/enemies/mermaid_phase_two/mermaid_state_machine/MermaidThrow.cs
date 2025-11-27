@@ -43,16 +43,19 @@ public partial class MermaidThrow : MermaidState
 			} 
 			else if(ActiveEnemy.Shielded)
 			{
-				GD.Print("The mermaid is throwing its shield");
+				if(new Random().Next(2) == 1)
+				{
+					GD.Print("The mermaid is throwing its shield");
 
-				MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
-				ActiveEnemy.Owner.AddChild(shieldProjectile);
+					MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
+					ActiveEnemy.Owner.AddChild(shieldProjectile);
 
-				shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
-				shieldProjectile.sprite.LookAt(targetPos);
-				shieldProjectile.parent = ActiveEnemy;
+					shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
+					shieldProjectile.sprite.LookAt(targetPos);
+					shieldProjectile.parent = ActiveEnemy;
 
-				shieldProjectile.Velocity = direction * shieldProjectile.data.speed;
+					shieldProjectile.Velocity = direction * shieldProjectile.data.speed;
+				}
 			}
     	}
 	}

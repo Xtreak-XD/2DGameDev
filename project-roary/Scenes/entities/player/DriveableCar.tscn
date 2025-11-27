@@ -17,6 +17,7 @@ size = Vector2(47, 18)
 
 [node name="DriveableCar" type="CharacterBody2D"]
 rotation = 4.712389
+scale = Vector2(8, 8)
 collision_layer = 2
 collision_mask = 64
 script = ExtResource("1_n2rgb")
@@ -52,3 +53,4 @@ script = ExtResource("4_hjrlu")
 shape = SubResource("RectangleShape2D_yhw32")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)

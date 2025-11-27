@@ -1,11 +1,131 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=6 format=3 uid="uid://d2ytf1v7y24q7"]
 
+[ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
 [ext_resource type="PackedScene" uid="uid://con1q0nhgkj8i" path="res://Scenes/entities/player/DriveableCar.tscn" id="2_5wdrb"]
+[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="4_ie86c"]
+[ext_resource type="PackedScene" uid="uid://c6i3fao4yxrbg" path="res://Scenes/entities/enemies/CarEnemy.tscn" id="5_a1t8p"]
 
 [node name="ParkingGarage" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4995, 5003)
+texture = ExtResource("1_5wdrb")
+
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+position = Vector2(208, 207)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+polygon = PackedVector2Array(-190, -208, -216, 28, -181, 8, 9734, 2, 9748, -195)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="WorldBorder"]
+polygon = PackedVector2Array(-6, -12, -208, -2, -190, 9774, -2, 9774)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="WorldBorder"]
+position = Vector2(-37.090942, 9590.181)
+polygon = PackedVector2Array(16.090942, -14.180664, 9817.091, -8.180664, 9820.091, 202.81934, -40.909058, 202.81934)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="WorldBorder"]
+position = Vector2(9589.643, -64.680664)
+polygon = PackedVector2Array(-2.6425781, -2.319336, -20.642578, 9815.681, 186.35742, 9815.681, 164.35742, -26.319336)
+
+[node name="Barrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barrier"]
+position = Vector2(3097.3196, 3597.0962)
+polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
+
+[node name="Barrier2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barrier2"]
+position = Vector2(3079, 5927)
+polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
+
+[node name="WiderBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WiderBarrier"]
+position = Vector2(3075.156, 4661.5396)
+polygon = PackedVector2Array(-11.156006, -3.5395508, 3784.844, 0.46044922, 3792.844, 121.46045, -3.1560059, 116.46045)
+
+[node name="SmallBarrier1" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SmallBarrier1"]
+position = Vector2(3053.1313, 4780.95)
+polygon = PackedVector2Array(1.8686523, 0.049804688, -1.1313477, 1140.0498, 44.868652, 1134.0498, 36.868652, -0.9501953)
+
+[node name="SmallBarrier2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SmallBarrier2"]
+position = Vector2(6841.379, 3680.8696)
+polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621094, 973.1304, 3.6210938, 969.1304)
+
+[node name="PlayerSpawnPoints" type="Node" parent="."]
+
+[node name="fromStart" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2811, 3519)
+
+[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
+EnemySpawnTimerMin = 0.0
+EnemySpawnTimerMax = 0.2
+EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn1"), NodePath("EnemySpawnPointContainer2/CarSpawn2"), NodePath("EnemySpawnPointContainer2/CarSpawn3"), NodePath("EnemySpawnPointContainer2/CarSpawn4"), NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn7"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn9"), NodePath("EnemySpawnPointContainer2/CarSpawn10"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn12"), NodePath("EnemySpawnPointContainer2/CarSpawn13"), NodePath("EnemySpawnPointContainer2/CarSpawn14"), NodePath("EnemySpawnPointContainer2/CarSpawn15")]
+EnemyScene = ExtResource("5_a1t8p")
+MaxEnemiesAlive = 8
+
+[node name="EnemySpawnPointContainer2" type="Node2D" parent="Enemymanager"]
+
+[node name="CarSpawn1" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(3916, 9098)
+
+[node name="CarSpawn2" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(5374, 7255)
+
+[node name="CarSpawn3" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(806, 4971)
+
+[node name="CarSpawn4" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9156, 6968)
+
+[node name="CarSpawn5" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(8945, 3148)
+
+[node name="CarSpawn6" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(5950, 9137)
+
+[node name="CarSpawn7" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(791, 7971)
+
+[node name="CarSpawn8" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(730, 6885)
+
+[node name="CarSpawn9" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(6377, 4156)
+
+[node name="CarSpawn10" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9046, 5074)
+
+[node name="CarSpawn11" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(7433, 3146)
+
+[node name="CarSpawn12" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(773, 3015)
+
+[node name="CarSpawn13" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(5894, 925)
+
+[node name="CarSpawn14" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(2989, 970)
+
+[node name="CarSpawn15" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(1875, 944)
+
+[node name="EntityContainer" type="Node2D" parent="Enemymanager"]
+
 [node name="GoalTimerAndIndicator" parent="." instance=ExtResource("1_aywsj")]
+position = Vector2(1914, 9094)
+scale = Vector2(8, 8)
 
 [node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
-position = Vector2(191, 122)
+position = Vector2(2808.0002, 3307.0005)
+rotation = -1.5707964
+collision_layer = 1
+collision_mask = 1

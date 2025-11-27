@@ -4,6 +4,10 @@ public partial class Logo : Enemy
 {
     public new LogoStateMachine stateMachine;
 
+    public Player target;
+
+    private Timer TargetTimer;
+
 	public LogoIdleState IdleState;
 
 	public RollState RollState;
@@ -21,18 +25,11 @@ public partial class Logo : Enemy
 
     [Export]
     public PackedScene starfish;
+
+    [Export]
+    public PackedScene mermaid;
     
     [Export] public LogoData Data { get; set; }
-
-    [Export] public RollDirection Direction = RollDirection.TopRight;
-
-    public enum RollDirection
-    {
-        BottomLeft,
-        BottomRight,
-        TopLeft,
-        TopRight,
-    }
     
     public override void _Ready()
     {
@@ -54,10 +51,33 @@ public partial class Logo : Enemy
 
 		IdleState = stateMachine.GetNode<LogoIdleState>("LogoIdleState");
     	RollState = stateMachine.GetNode<RollState>("RollState");
+
+        TargetTimer = GetNode<Timer>("SetTargetTimer");
+        TargetTimer.Timeout += SetTarget;
+        TargetTimer.Start();
     }
 
     public override void _PhysicsProcess(double delta)
     {
         MoveAndSlide();
+    }
+
+    public void SetTarget()
+    {
+        target = (Player)GetTree().GetFirstNodeInGroup("player");
+
+        if(target == null)
+        {
+            GD.PrintErr("The player could not be found");
+        }
+    }
+
+    public override void Die()
+    {
+        Mermaid phaseTwo = (Mermaid) mermaid.Instantiate();
+        phaseTwo.GlobalPosition = GlobalPosition;
+        GetParent().AddChild(phaseTwo);
+        
+        base.Die();
     }
 }

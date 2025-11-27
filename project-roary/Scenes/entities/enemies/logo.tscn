@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bed4fyrobgykm"]
+[gd_scene load_steps=18 format=3 uid="uid://bed4fyrobgykm"]
 
 [ext_resource type="Texture2D" uid="uid://bq3pb7db1an04" path="res://Sprites/entities/enemies/coin.jpeg" id="1_5f7fq"]
 [ext_resource type="Script" uid="uid://ipdydiemqngx" path="res://Scripts/entities/enemies/Logo/Logo.cs" id="1_o8biw"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://5cxp70bjjaps" path="res://Scenes/weapons/projectiles/SpiralBubble.tscn" id="3_fa4y8"]
 [ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="3_qdifj"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_yhc4g"]
+[ext_resource type="PackedScene" uid="uid://bvws016o4cklc" path="res://Scenes/entities/enemies/starfish.tscn" id="4_401u3"]
 [ext_resource type="PackedScene" uid="uid://dmv2gjetynro5" path="res://Scenes/weapons/projectiles/CoffeeShot.tscn" id="4_fa4y8"]
+[ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="5_scbxm"]
 [ext_resource type="Script" uid="uid://drqeas6dkwycy" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/LogoIdleState.cs" id="5_yxpio"]
 [ext_resource type="Script" uid="uid://b3k4lgo6mu42s" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/LogoStateMachine.cs" id="6_scbxm"]
 [ext_resource type="Script" uid="uid://54d1w6gohr58" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/RollState.cs" id="6_yxpio"]
@@ -39,6 +41,8 @@ up_direction = Vector2(0.7071068, 0.7071068)
 script = ExtResource("1_o8biw")
 SBAttack = ExtResource("3_fa4y8")
 CoffeeShot = ExtResource("4_fa4y8")
+starfish = ExtResource("4_401u3")
+mermaid = ExtResource("5_scbxm")
 Data = ExtResource("2_40s8x")
 data = SubResource("Resource_p146o")
 
@@ -51,7 +55,12 @@ script = ExtResource("5_yxpio")
 [node name="RollState" type="Node" parent="LogoStateMachine"]
 script = ExtResource("6_yxpio")
 
-[node name="Timer" type="Timer" parent="LogoStateMachine"]
+[node name="RollTimer" type="Timer" parent="LogoStateMachine"]
+wait_time = 3.0
+one_shot = true
+
+[node name="IdleTimer" type="Timer" parent="LogoStateMachine"]
+one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.046080746, 0.049341306)
@@ -78,3 +87,7 @@ debug_color = Color(0.5532109, 0.56299573, 9.62615e-07, 0.41960785)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(3.705194, 3.9260502)
+
+[node name="SetTargetTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true

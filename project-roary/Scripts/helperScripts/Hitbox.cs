@@ -87,7 +87,7 @@ public partial class Hitbox : Area2D
 
     public void onAreaEntered(Area2D area)
     {
-        if (area.IsInGroup("hurtbox") && !(area.GetParent() == GetParent()) && !(GetParent() is Projectile) && !(GetParent() is MeleeWeapon))
+        if (area.IsInGroup("hurtbox") && !(area.GetParent() == GetParent()) && !(GetParent() is Projectile) && !(GetParent() is MeleeWeapon) && !(GetParent() is EnemyProjectile))
         {
             eventbus.EmitSignal("applyDamage", area.GetParent(), GetParent(), data.Damage);
             eventbus.EmitSignal("hitStop", 0.05); //set duration for hitstop

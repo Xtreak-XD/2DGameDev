@@ -2,14 +2,23 @@ using Godot;
 
 public partial class LogoIdleState : LogoState
 {
-    [Export] public float IdleDuration = 1f;
+    public Timer timer;
+    public bool IdleOver = false;
 
-    private float timer = 0f;
+    public override void _Ready()
+    {
+       timer = GetParent().GetNode<Timer>("IdleTimer");
+       timer.Timeout += SetIdleEnded;
+    }
+
+    public override void ExitState()
+    {
+        timer.Stop();
+    }
 
     public override void EnterState()
     {
         base.EnterState();
-        timer = 0f;
         
         float roll = GD.Randf();
 
@@ -23,19 +32,26 @@ public partial class LogoIdleState : LogoState
         }
 
         Logo.Velocity = Vector2.Zero;
+        IdleOver = false;
+        timer.Start();
+
+        Logo.hurtBox.Monitoring = true;
+        Logo.hitbox.Monitoring = false;
     }
 
     public override LogoState Process(double delta)
     {
-        timer += (float)delta;
-
-        if (timer >= IdleDuration)
+        if (IdleOver)
         {
-            timer = 0f;
             return Logo.RollState;  
         }
 
         return null; 
+    }
+
+    public void SetIdleEnded()
+    {
+        IdleOver = true;
     }
 }
 

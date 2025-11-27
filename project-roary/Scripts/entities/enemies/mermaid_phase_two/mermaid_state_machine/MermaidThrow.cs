@@ -40,10 +40,8 @@ public partial class MermaidThrow : MermaidState
 
 					tridentProjectile.Velocity = direction * tridentProjectile.data.speed;
 				}
-				
-			}
-
-			if(ActiveEnemy.Shielded)
+			} 
+			else if(ActiveEnemy.Shielded)
 			{
 				GD.Print("The mermaid is throwing its shield");
 

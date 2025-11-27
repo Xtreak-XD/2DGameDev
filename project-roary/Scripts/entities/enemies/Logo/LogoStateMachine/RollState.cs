@@ -3,42 +3,38 @@ using System;
 
 public partial class RollState : LogoState
 {
-    [Export] public float RollDuration = 3f;
+    public Timer timer;
+    public bool EndRoll = false;
 
-    private float timer = 0f;
+    public override void _Ready()
+    {
+       timer = GetParent().GetNode<Timer>("RollTimer");
+       timer.Timeout += SetRollEnded;
+    }
 
     public override void EnterState()
     {
-        timer = 0f;
-
-        RollDuration = (float)GD.RandRange(1.0, 2.5);
-
-        Array values = Enum.GetValues(typeof(Logo.RollDirection));
-        Logo.Direction = 
-            (Logo.RollDirection) values.GetValue(GD.Randi() % values.Length);
-        
-        Vector2 dir = Logo.Direction switch
+        if(Logo.target != null)
         {
-            Logo.RollDirection.TopRight    => new Vector2(-1,  1),
-            Logo.RollDirection.TopLeft     => new Vector2( 1,  1),
-            Logo.RollDirection.BottomRight => new Vector2(-1, -1),
-            Logo.RollDirection.BottomLeft  => new Vector2( 1, -1),
-            _ => Vector2.Zero
-        };
-        
-        Logo.Velocity = dir * Logo.Data.Speed;
+            Vector2 dir = (Logo.target.GlobalPosition - Logo.GlobalPosition).Normalized();
+
+            Logo.Velocity = dir * Logo.Data.Speed;
+            EndRoll = false;
+            timer.Start();
+        }
+
+        Logo.hurtBox.Monitoring = false;
+        Logo.hitbox.Monitoring = true;
     }
 
     public override void ExitState()
     {
-        
+        timer.Stop();
     }
 
     public override LogoState Process(double delta)
     {
-        timer += (float)delta;
-
-        if(timer >= 1.49 && timer <= 1.5)
+        if(timer.TimeLeft == 1)
         {
             Vector2 direction = Logo.Velocity.Rotated(Logo.sprite.Rotation).Normalized();
 
@@ -46,16 +42,23 @@ public partial class RollState : LogoState
             Logo.Owner.AddChild(starfish);
             starfish.GlobalPosition = Logo.GlobalPosition;
             
-            starfish.Velocity = direction * (Logo.Data.SpinSpeed * 50);
+            starfish.Velocity = direction * (Logo.Data.SpinSpeed * 60);
 
             GD.Print("The logo has flung out a starfish");
         }
 
         Logo.sprite.RotationDegrees += Logo.Data.SpinSpeed;
 
-        if (timer >= RollDuration)
+        if(EndRoll)
+        {
             return Logo.IdleState;
+        }
 
         return null;
+    }
+
+    public void SetRollEnded()
+    {
+        EndRoll = true;
     }
 }

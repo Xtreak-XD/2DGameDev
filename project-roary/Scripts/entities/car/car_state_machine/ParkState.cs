@@ -21,7 +21,7 @@ public partial class ParkState : CarState
 
     public override CarState Process(double delta)
     {
-        if (ActiveCar.HasThrottle())
+        if (ActiveCar.HasThrottle() || Input.IsActionPressed("Down"))
         {
             return DriveState;
         }

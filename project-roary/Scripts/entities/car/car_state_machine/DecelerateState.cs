@@ -53,8 +53,14 @@ public partial class DecelerateState : CarState
         if (currentVelocity.Length() > decelerationAmount)
         {
             Vector2 decelerationVector = currentVelocity.Normalized()
-             * decelerationAmount;
-            ActiveCar.Velocity -= decelerationVector * (float)delta;
+             * decelerationAmount * (float)delta;
+            ActiveCar.Velocity -= decelerationVector;
+
+            if(ActiveCar.Velocity.Length() > ActiveCar.stats.TopSpeed)
+            {
+                ActiveCar.Velocity = ActiveCar.Velocity.Normalized()
+                 * ActiveCar.stats.TopSpeed;
+            }
         }
         else
         {

@@ -25,21 +25,10 @@ public partial class DriveState : CarState
             return DecelerateState;
         }
 
-        //GD.Print($"Car Velocity: ({ActiveCar.Velocity.X}," +
-        //$"{ActiveCar.Velocity.Y})");
-        //GD.Print("Car Speed: " + ActiveCar.GetVelocity().Length());
-        //GD.Print("Car Position: " + ActiveCar.Position);
-        
-        /*
-        ActiveCar.Velocity = ActiveCar.Velocity.Lerp(ActiveCar.direction
-         * ActiveCar.stats.Acceleration * (float)delta,
-        ActiveCar.stats.TopSpeed);
-        */
-
         if (ActiveCar.Velocity.Length() > ActiveCar.stats.TopSpeed)
         {
             ActiveCar.Velocity = ActiveCar.Velocity.Normalized()
-             * ActiveCar.stats.TopSpeed * (float) delta;
+             * ActiveCar.stats.TopSpeed;
         }
 
         return null;

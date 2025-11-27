@@ -25,24 +25,25 @@ public partial class DriveableCar : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(HasThrottle() || Input.IsActionPressed("Down"))
+		if(HasThrottle())
         {
             float turn = Input.GetAxis("Left", "Right");
 			float turnAngle = Mathf.DegToRad(turn * stats.SteeringSpeed);
 			Vector2 accelerationVector = Vector2.Zero;
 
-			if (Input.IsActionPressed("Up"))
+			if(Input.IsActionPressed("Up"))
 			{
 				accelerationVector = Transform.X * stats.Acceleration;
 			}
 
-			if (Input.IsActionPressed("Down"))
-			{
-				accelerationVector = Transform.X * (-stats.Acceleration * 2);
-			}
-
 			Velocity += accelerationVector * (float) delta;
 			Velocity = Velocity.Rotated(turnAngle);
+
+			if(Velocity.Length() > stats.TopSpeed)
+            {
+                Velocity = Velocity.Normalized()
+                * stats.TopSpeed;
+            }
 
 			SetRotation();
 			MoveAndSlide();

@@ -23,160 +23,164 @@
 position = Vector2(4995, 5003)
 texture = ExtResource("1_5wdrb")
 
-[node name="DummyCar" type="Sprite2D" parent="."]
+[node name="DummyCarContainer" type="Node" parent="."]
+
+[node name="DummyCar" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(3044, 969)
 texture = ExtResource("2_yosyq")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar/StaticBody2D"]
 position = Vector2(-304.47632, -476.8645)
 polygon = PackedVector2Array(-11.523682, -19.135498, 691.4763, -19.135498, 710.4763, 1017.8645, -72.52368, 1021.8645)
 
-[node name="DummyCar2" type="Sprite2D" parent="."]
+[node name="DummyCar2" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(5989, 999)
 texture = ExtResource("3_5oly8")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar2"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar2/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar2/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
 
-[node name="DummyCar3" type="Sprite2D" parent="."]
+[node name="DummyCar3" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(4087.6104, 929.83203)
 texture = ExtResource("4_wq2dn")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar3"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar3/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar3/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
 
-[node name="DummyCar4" type="Sprite2D" parent="."]
+[node name="DummyCar4" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(4031.423, 9090.94)
 texture = ExtResource("5_vebei")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar4"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar4"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar4/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar4/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
 
-[node name="DummyCar5" type="Sprite2D" parent="."]
+[node name="DummyCar5" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(8002.677, 1023.552)
 texture = ExtResource("6_slse4")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar5"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar5"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar5/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar5/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
 
-[node name="DummyCar6" type="Sprite2D" parent="."]
+[node name="DummyCar6" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(6964.502, 8985.773)
 texture = ExtResource("5_vebei")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar6"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar6"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar6/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar6/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
 
-[node name="DummyCar7" type="Sprite2D" parent="."]
+[node name="DummyCar7" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(4955.8467, 9063.1875)
 texture = ExtResource("7_fi4eq")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar7"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar7"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar7/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar7/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
 
-[node name="DummyCar8" type="Sprite2D" parent="."]
+[node name="DummyCar8" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(9035.328, 5005.4146)
 texture = ExtResource("8_581fp")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar8"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar8"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar8/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar8/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
 
-[node name="DummyCar9" type="Sprite2D" parent="."]
+[node name="DummyCar9" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(1193.065, 2962.3596)
 texture = ExtResource("9_dvqmy")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar9"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar9"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar9/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar9/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
 
-[node name="DummyCar10" type="Sprite2D" parent="."]
+[node name="DummyCar10" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(1094.0352, 5871.993)
 texture = ExtResource("10_shi2b")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar10"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar10"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar10/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar10/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
 
-[node name="DummyCar11" type="Sprite2D" parent="."]
+[node name="DummyCar11" type="Sprite2D" parent="DummyCarContainer"]
 position = Vector2(1148.9502, 4973.764)
 texture = ExtResource("11_r3yff")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCar11"]
+[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar11"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCar11/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar11/StaticBody2D"]
 position = Vector2(-997, 835)
 polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
 
-[node name="WorldBorder" type="StaticBody2D" parent="."]
+[node name="MapCollisions" type="Node" parent="."]
+
+[node name="WorldBorder" type="StaticBody2D" parent="MapCollisions"]
 position = Vector2(208, 207)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
 polygon = PackedVector2Array(-190, -208, -216, 28, -181, 8, 9734, 2, 9748, -195)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="WorldBorder"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
 polygon = PackedVector2Array(-6, -12, -208, -2, -190, 9774, -2, 9774)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="WorldBorder"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
 position = Vector2(-37.090942, 9590.181)
 polygon = PackedVector2Array(16.090942, -14.180664, 9817.091, -8.180664, 9820.091, 202.81934, -40.909058, 202.81934)
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="WorldBorder"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
 position = Vector2(9589.643, -64.680664)
 polygon = PackedVector2Array(-2.6425781, -2.319336, -20.642578, 9815.681, 186.35742, 9815.681, 164.35742, -26.319336)
 
-[node name="Barrier" type="StaticBody2D" parent="."]
+[node name="Barrier" type="StaticBody2D" parent="MapCollisions"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barrier"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/Barrier"]
 position = Vector2(3097.3196, 3597.0962)
 polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
 
-[node name="Barrier2" type="StaticBody2D" parent="."]
+[node name="Barrier2" type="StaticBody2D" parent="MapCollisions"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barrier2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/Barrier2"]
 position = Vector2(3079, 5927)
 polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
 
-[node name="WiderBarrier" type="StaticBody2D" parent="."]
+[node name="WiderBarrier" type="StaticBody2D" parent="MapCollisions"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WiderBarrier"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/WiderBarrier"]
 position = Vector2(3075.156, 4661.5396)
 polygon = PackedVector2Array(-11.156006, -3.5395508, 3784.844, 0.46044922, 3792.844, 121.46045, -3.1560059, 116.46045)
 
-[node name="SmallBarrier1" type="StaticBody2D" parent="."]
+[node name="SmallBarrier1" type="StaticBody2D" parent="MapCollisions"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SmallBarrier1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/SmallBarrier1"]
 position = Vector2(3053.1313, 4780.95)
 polygon = PackedVector2Array(1.8686523, 0.049804688, -1.1313477, 1140.0498, 44.868652, 1134.0498, 36.868652, -0.9501953)
 
-[node name="SmallBarrier2" type="StaticBody2D" parent="."]
+[node name="SmallBarrier2" type="StaticBody2D" parent="MapCollisions"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SmallBarrier2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/SmallBarrier2"]
 position = Vector2(6841.379, 3680.8696)
 polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621094, 973.1304, 3.6210938, 969.1304)
 

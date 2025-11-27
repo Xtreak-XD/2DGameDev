@@ -40,19 +40,21 @@ public partial class MermaidThrow : MermaidState
 
 					tridentProjectile.Velocity = direction * tridentProjectile.data.speed;
 				}
-				else if(ActiveEnemy.Shielded)
-				{
-					GD.Print("The mermaid is throwing its shield");
+				
+			}
 
-					MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
-					ActiveEnemy.Owner.AddChild(shieldProjectile);
+			if(ActiveEnemy.Shielded)
+			{
+				GD.Print("The mermaid is throwing its shield");
 
-					shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
-					shieldProjectile.sprite.LookAt(targetPos);
-					shieldProjectile.parent = ActiveEnemy;
+				MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
+				ActiveEnemy.Owner.AddChild(shieldProjectile);
 
-					shieldProjectile.Velocity = direction * shieldProjectile.data.speed;
-				}
+				shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
+				shieldProjectile.sprite.LookAt(targetPos);
+				shieldProjectile.parent = ActiveEnemy;
+
+				shieldProjectile.Velocity = direction * shieldProjectile.data.speed;
 			}
     	}
 	}

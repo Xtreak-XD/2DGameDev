@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsckkhfcps7w4"]
+[gd_scene load_steps=19 format=3 uid="uid://bsckkhfcps7w4"]
 
 [ext_resource type="Script" uid="uid://c56qbr5eruv12" path="res://Scenes/ui/SettingsMenu.cs" id="1_vdp17"]
 [ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="2_welf5"]
@@ -16,12 +16,32 @@ bg_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwreh"]
 bg_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wji8m"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtue7"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7bgt"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhnqc"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vdp17"]
+
 [sub_resource type="DPITexture" id="DPITexture_vdp17"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#fff\" fill-opacity=\".75\" rx=\"2.333\"/><path fill=\"#1a1a1a\" d=\"m11.5 3.75-5.6 5.6-1.7-1.7-1.5 1.5 3.2 3.2 7.1-7.1z\"/></svg>
 "
 base_scale = 2.0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8mhaw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oinrb"]
 bg_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
@@ -208,11 +228,14 @@ text = "Fullscreen"
 
 [node name="FullscreenCheck" type="CheckBox" parent="SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wji8m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gtue7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w7bgt")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jhnqc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vdp17")
 theme_override_icons/checked = SubResource("DPITexture_vdp17")
-button_pressed = true
-icon = SubResource("PlaceholderTexture2D_8mhaw")
 alignment = 1
 icon_alignment = 1
 expand_icon = true
@@ -229,11 +252,14 @@ text = "Vsync"
 
 [node name="VsyncCheck" type="CheckBox" parent="SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wji8m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gtue7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w7bgt")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jhnqc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vdp17")
 theme_override_icons/checked = SubResource("DPITexture_vdp17")
-button_pressed = true
-icon = SubResource("PlaceholderTexture2D_8mhaw")
 alignment = 1
 icon_alignment = 1
 expand_icon = true

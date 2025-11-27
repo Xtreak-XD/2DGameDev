@@ -46,6 +46,15 @@ public partial class SettingsMenu : Control
 		LoadSettings();
     }
 
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ui_cancel") && Visible)
+		{
+			GetViewport().SetInputAsHandled(); // Prevents the event from propagating further (remove if we want to exit completely from option)
+			OnBackPressed();
+		}
+	}
+
 	public override void _ExitTree()
 	{
 		masterSlider.ValueChanged -= OnMasterVolumeChanged;
@@ -61,7 +70,6 @@ public partial class SettingsMenu : Control
 	public void ShowSettings()
 	{
 		Show();
-		LoadSettings();
 	}
 
 	private void SaveSettings()
@@ -116,6 +124,7 @@ public partial class SettingsMenu : Control
 
 	private void OnFullscreenToggled(bool toggledOn)
     {
+		GD.Print(toggledOn);
         if (toggledOn)
         {
             DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);

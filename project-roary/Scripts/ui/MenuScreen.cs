@@ -10,11 +10,14 @@ public partial class MenuScreen : Control
 
 	private readonly Dictionary<Button, float> _originalPositions = new();
 	private readonly Dictionary<Button, Tween> _buttonTweens = new();
+	private SettingsMenu settingsMenu;
 
 	public override void _Ready()
     {
      	Hide();
 		ProcessMode = ProcessModeEnum.Always;
+
+		settingsMenu = GetNode<SettingsMenu>("%Setting Menu");
 
 		var buttons = new[] {
 			GetNode<Button>("%Continue"),
@@ -125,7 +128,8 @@ public partial class MenuScreen : Control
 
 	private void OnSettingsPress()
     {
-        GD.Print("Open Settings");
+        Hide();
+		settingsMenu.ShowSettings();
     }
 
 	private void OnQuitPress()

@@ -27,19 +27,22 @@ public partial class SummonOrbitalHeads : RoaryState
 		attackTimer.Start();
 		attackOver = false;
 
-		for(int i = 0; i <= 360; i += 90)
+		if(ActiveEnemy.target != null)
         {
-            RoaryOrbitalHead orbitalHeadProjectile = (RoaryOrbitalHead)ActiveEnemy.orbitalHead.Instantiate();
-			ActiveEnemy.Owner.AddChild(orbitalHeadProjectile);
+            for(int i = 0; i <= 360; i += 90)
+			{
+				RoaryOrbitalHead orbitalHeadProjectile = (RoaryOrbitalHead)ActiveEnemy.orbitalHead.Instantiate();
+				ActiveEnemy.Owner.AddChild(orbitalHeadProjectile);
 
-			orbitalHeadProjectile.GlobalPosition = projectileSource.GlobalPosition;
-			orbitalHeadProjectile.angle = i;
+				orbitalHeadProjectile.GlobalPosition = projectileSource.GlobalPosition;
+				orbitalHeadProjectile.angle = i;
 
-			orbitalHeadProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
-			* ActiveEnemy.StatMultipler());
-			orbitalHeadProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
-			orbitalHeadProjectile.target = ActiveEnemy.target;
-			orbitalHeadProjectile.parent = ActiveEnemy;
+				orbitalHeadProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
+				* ActiveEnemy.StatMultipler());
+				orbitalHeadProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
+				orbitalHeadProjectile.target = ActiveEnemy.target;
+				orbitalHeadProjectile.parent = ActiveEnemy;
+			}
         }
     }
 
@@ -49,18 +52,21 @@ public partial class SummonOrbitalHeads : RoaryState
         {
             return InBetweenAttack();
         }
-
-		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
-		Vector2 currentPos = ActiveEnemy.GlobalPosition;
-		Vector2 targetVel = ActiveEnemy.target.Velocity;
-
-		Vector2 velocity = currentPos.Lerp(targetPos + targetVel, 200).Normalized();
-
-		//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
-		ActiveEnemy.Velocity = velocity * ActiveEnemy.TrueSpeed() * 
-		 (ActiveEnemy.TrueAcceleration() * (float) delta);
 		
-		ActiveEnemy.MoveAndSlide();
+		if(ActiveEnemy.target != null)
+        {
+            Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
+			Vector2 currentPos = ActiveEnemy.GlobalPosition;
+			Vector2 targetVel = ActiveEnemy.target.Velocity;
+
+			Vector2 velocity = currentPos.Lerp(targetPos + targetVel, 200).Normalized();
+
+			//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+			ActiveEnemy.Velocity = velocity * ActiveEnemy.TrueSpeed() * 
+			(ActiveEnemy.TrueAcceleration() * (float) delta);
+			
+			ActiveEnemy.MoveAndSlide();
+        }
 		
 		return null;
     }

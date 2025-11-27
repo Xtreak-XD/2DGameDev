@@ -67,9 +67,9 @@ position = Vector2(2811, 3519)
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
 EnemySpawnTimerMin = 0.0
 EnemySpawnTimerMax = 0.2
-EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn1"), NodePath("EnemySpawnPointContainer2/CarSpawn2"), NodePath("EnemySpawnPointContainer2/CarSpawn3"), NodePath("EnemySpawnPointContainer2/CarSpawn4"), NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn7"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn9"), NodePath("EnemySpawnPointContainer2/CarSpawn10"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn12"), NodePath("EnemySpawnPointContainer2/CarSpawn13"), NodePath("EnemySpawnPointContainer2/CarSpawn14"), NodePath("EnemySpawnPointContainer2/CarSpawn15")]
+EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn1"), NodePath("EnemySpawnPointContainer2/CarSpawn2"), NodePath("EnemySpawnPointContainer2/CarSpawn3"), NodePath("EnemySpawnPointContainer2/CarSpawn4"), NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn7"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn9"), NodePath("EnemySpawnPointContainer2/CarSpawn10"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn12"), NodePath("EnemySpawnPointContainer2/CarSpawn13"), NodePath("EnemySpawnPointContainer2/CarSpawn14"), NodePath("EnemySpawnPointContainer2/CarSpawn15"), NodePath("EnemySpawnPointContainer2/CarSpawn16"), NodePath("EnemySpawnPointContainer2/CarSpawn17"), NodePath("EnemySpawnPointContainer2/CarSpawn18"), NodePath("EnemySpawnPointContainer2/CarSpawn19"), NodePath("EnemySpawnPointContainer2/CarSpawn20"), NodePath("EnemySpawnPointContainer2/CarSpawn21"), NodePath("EnemySpawnPointContainer2/CarSpawn22"), NodePath("EnemySpawnPointContainer2/CarSpawn23"), NodePath("EnemySpawnPointContainer2/CarSpawn24"), NodePath("EnemySpawnPointContainer2/CarSpawn25"), NodePath("EnemySpawnPointContainer2/CarSpawn26"), NodePath("EnemySpawnPointContainer2/CarSpawn27")]
 EnemyScene = ExtResource("5_a1t8p")
-MaxEnemiesAlive = 8
+MaxEnemiesAlive = 12
 
 [node name="EnemySpawnPointContainer2" type="Node2D" parent="Enemymanager"]
 
@@ -77,7 +77,7 @@ MaxEnemiesAlive = 8
 position = Vector2(3916, 9098)
 
 [node name="CarSpawn2" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(5374, 7255)
+position = Vector2(6890, 9078)
 
 [node name="CarSpawn3" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(806, 4971)
@@ -98,25 +98,61 @@ position = Vector2(791, 7971)
 position = Vector2(730, 6885)
 
 [node name="CarSpawn9" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(6377, 4156)
+position = Vector2(4112, 989)
 
 [node name="CarSpawn10" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(9046, 5074)
 
 [node name="CarSpawn11" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(7433, 3146)
+position = Vector2(6934, 996)
 
 [node name="CarSpawn12" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(773, 3015)
 
 [node name="CarSpawn13" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(5894, 925)
+position = Vector2(5875, 1059)
 
 [node name="CarSpawn14" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(2989, 970)
 
 [node name="CarSpawn15" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(1875, 944)
+position = Vector2(1990, 944)
+
+[node name="CarSpawn16" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(5004, 944)
+
+[node name="CarSpawn17" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(1011, 1980)
+
+[node name="CarSpawn18" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(2988, 8928)
+
+[node name="CarSpawn19" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(896, 5992)
+
+[node name="CarSpawn20" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(857, 4015)
+
+[node name="CarSpawn21" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(8919, 2019)
+
+[node name="CarSpawn22" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9015, 4111)
+
+[node name="CarSpawn23" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(8074, 1040)
+
+[node name="CarSpawn24" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(4965, 9006)
+
+[node name="CarSpawn25" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(8036, 9082)
+
+[node name="CarSpawn26" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(8995, 8104)
+
+[node name="CarSpawn27" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(8957, 5992)
 
 [node name="EntityContainer" type="Node2D" parent="Enemymanager"]
 

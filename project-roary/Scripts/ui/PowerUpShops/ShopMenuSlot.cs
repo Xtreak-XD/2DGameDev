@@ -19,6 +19,11 @@ public partial class ShopMenuSlot : TextureButton
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 
 		Pressed += OnSlotPressed;
+		Toggled += OnSlotToggled;
+
+		MouseEntered += OnMouseEntered;
+		MouseExited += OnMouseExited;
+
 	}
 
 	public override void _ExitTree()
@@ -58,6 +63,8 @@ public partial class ShopMenuSlot : TextureButton
 		if (texture != null)
 		{
 			TextureNormal = texture;
+			TexturePressed = texture;
+			TextureHover = texture;
 		}
 	}
 
@@ -74,4 +81,40 @@ public partial class ShopMenuSlot : TextureButton
 		if (item == null || isSold) return;
 		eventbus.EmitSignal(Eventbus.SignalName.shopItemSelected, item);        
     }
+
+	private void OnSlotToggled(bool pressed)
+	{
+		UpdateVisualState();
+	}
+
+	private void OnMouseEntered()
+	{
+		if (item != null && !isSold && !ButtonPressed)
+		{
+			Modulate = new Color(1.2f, 1.2f, 1.2f);
+		}
+	}
+
+	private void OnMouseExited()
+	{
+		UpdateVisualState();
+	}
+
+	private void UpdateVisualState()
+	{
+		if (item == null || isSold)
+		{
+			Modulate = Colors.White;
+			return;
+		}
+		
+		if (ButtonPressed)
+		{
+			Modulate = new Color(0.6f, 0.6f, 0.6f);
+		}
+		else // Not selected
+		{
+			Modulate = Colors.White;
+		}
+	}
 }

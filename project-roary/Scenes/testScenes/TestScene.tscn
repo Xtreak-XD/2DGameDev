@@ -59,11 +59,11 @@ position = Vector2(581, 873)
 position = Vector2(48, 574)
 path = "res://Scenes/map/Overworld/Overworld.tscn"
 
-[node name="ShopKeeper" parent="." instance=ExtResource("10_3unw3")]
+[node name="FruitShop" parent="." instance=ExtResource("10_3unw3")]
 position = Vector2(1241, 183)
 shopConfig = ExtResource("8_d43vx")
 
-[node name="ShopKeeper2" parent="." instance=ExtResource("10_3unw3")]
+[node name="WeaponShop" parent="." instance=ExtResource("10_3unw3")]
 position = Vector2(1263, 857)
 shopConfig = ExtResource("9_fkpmq")
 

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d3fi3yqvki1b6"]
+
+[ext_resource type="Texture2D" uid="uid://dh6at627matq3" path="res://Sprites/world/Graham Center/Complete_Spritesheet_of_Stand_Shops_and_More.png" id="1_ylpog"]
+
+[resource]
+atlas = ExtResource("1_ylpog")
+region = Rect2(1209, 1884, 104, 91)

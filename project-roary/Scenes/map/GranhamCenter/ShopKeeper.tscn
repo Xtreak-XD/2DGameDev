@@ -1,28 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://baued8ndrkyqh"]
+[gd_scene load_steps=5 format=3 uid="uid://dsxvnrdp3nf1i"]
 
 [ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/TableTopDown2.png" id="1_b52hv"]
 [ext_resource type="Script" uid="uid://c0tdpp0yit7w7" path="res://Scripts/ui/PowerUpShops/ShopInteractable.cs" id="1_v0fjq"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="2_v0fjq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx1uv"]
-size = Vector2(232, 400)
+size = Vector2(288, 432)
 
 [node name="ShopKeeper" type="Node2D"]
 script = ExtResource("1_v0fjq")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 230.00002
-offset_top = -1.0
-offset_right = 630.0
-offset_bottom = 229.0
-rotation = 1.566736
+[node name="ShopSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(120.940414, 200.04959)
+rotation = 1.5707964
+scale = Vector2(1.0759437, 1.0829037)
 texture = ExtResource("1_b52hv")
-expand_mode = 1
-stretch_mode = 4
-metadata/_edit_use_anchors_ = true
 
 [node name="InteractableArea" parent="." instance=ExtResource("2_v0fjq")]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
-position = Vector2(116, 200)
+position = Vector2(120, 200)
 shape = SubResource("RectangleShape2D_nx1uv")

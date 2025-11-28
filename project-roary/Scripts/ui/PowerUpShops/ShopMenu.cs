@@ -66,6 +66,9 @@ public partial class ShopMenu : Control
     {
         if (shouldOpen && !Visible && config != null) {
 			shopConfig = config;
+
+			ApplyShopTheme();
+
 			Show();
 			PopulateShop();
 			GetTree().Paused = true;
@@ -80,6 +83,35 @@ public partial class ShopMenu : Control
 			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
 		}
     }
+
+	private void ApplyShopTheme()
+	{
+		if (shopConfig.TableTexture != null)
+		{
+			var tableContainer = GetNode<PanelContainer>("%TableContainer");
+			var styleBox = new StyleBoxTexture();
+			styleBox.Texture = shopConfig.TableTexture;
+			tableContainer.AddThemeStyleboxOverride("panel", styleBox);
+		}
+		
+		// Apply banner/receipt background texture
+		if (shopConfig.BannerTexture != null)
+		{
+			var bannerContainer = GetNode<PanelContainer>("%CoinsContainer"); // Or whatever you named it
+			var styleBox = new StyleBoxTexture();
+			styleBox.Texture = shopConfig.BannerTexture;
+			bannerContainer.AddThemeStyleboxOverride("panel", styleBox);
+		}
+		
+		// Apply slot textures to all 4 slots
+		if (shopConfig.SlotTexture != null)
+		{
+			foreach (var slot in shopItems)
+			{
+				slot.SetSlotTexture(shopConfig.SlotTexture);
+			}
+		}
+	}
 
 	private void AddItemToShoppingCart(IndividualItem item)
 	{

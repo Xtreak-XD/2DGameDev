@@ -53,6 +53,14 @@ public partial class ShopMenuSlot : TextureButton
 		quantityLabel.Text = "x" + item.shopQuantity;
     }
 
+	public void SetSlotTexture(Texture2D texture)
+	{
+		if (texture != null)
+		{
+			TextureNormal = texture;
+		}
+	}
+
 	public void markAsSold()
 	{
 		isSold = true;

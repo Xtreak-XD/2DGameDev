@@ -1,12 +1,20 @@
-[gd_resource type="Resource" script_class="ShopResource" load_steps=5 format=3 uid="uid://ba25mnd1fvhw0"]
+[gd_resource type="Resource" script_class="ShopResource" load_steps=9 format=3 uid="uid://ba25mnd1fvhw0"]
 
-[ext_resource type="Resource" uid="uid://cned2kwrifb3i" path="res://Resources/items/Apple.tres" id="1_gj4ia"]
+[ext_resource type="Resource" path="res://Resources/items/Apple.tres" id="1_gj4ia"]
 [ext_resource type="Script" uid="uid://cio6dcxoigeeo" path="res://Scripts/resources/ShopResource.cs" id="1_r1wek"]
+[ext_resource type="Texture2D" uid="uid://4g8dx7k85s3a" path="res://Sprites/world/Graham Center/GreenBanner.tres" id="1_u1usf"]
 [ext_resource type="Resource" uid="uid://nlw0o6c6hk6n" path="res://Resources/items/Banana.tres" id="2_kbg2u"]
-[ext_resource type="Resource" uid="uid://cbbxrwvl1caij" path="res://Resources/items/Grape.tres" id="3_q4k4y"]
+[ext_resource type="Resource" path="res://Resources/items/Grape.tres" id="3_q4k4y"]
+[ext_resource type="Texture2D" uid="uid://d3fi3yqvki1b6" path="res://Sprites/world/Graham Center/GreenSquare.tres" id="5_wboks"]
+[ext_resource type="Texture2D" uid="uid://uniuj28bgwht" path="res://Sprites/world/Graham Center/HealthInsideTable.tres" id="6_fj21b"]
+[ext_resource type="Texture2D" uid="uid://4rj4suw15iu4" path="res://Sprites/world/Graham Center/RightFacingWeaponTable.tres" id="7_u1usf"]
 
 [resource]
 script = ExtResource("1_r1wek")
 ShopName = "Fruits"
 Items = Array[Object]([ExtResource("1_gj4ia"), ExtResource("2_kbg2u"), ExtResource("3_q4k4y"), null])
+TableTexture = ExtResource("6_fj21b")
+SlotTexture = ExtResource("5_wboks")
+BannerTexture = ExtResource("1_u1usf")
+WorldShopSprite = ExtResource("7_u1usf")
 metadata/_custom_type_script = "uid://cio6dcxoigeeo"

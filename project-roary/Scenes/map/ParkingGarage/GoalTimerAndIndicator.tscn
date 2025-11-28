@@ -26,3 +26,4 @@ texture = ExtResource("1_vlqhk")
 
 [node name="ParkingTimer" type="Timer" parent="."]
 wait_time = 120.0
+one_shot = true

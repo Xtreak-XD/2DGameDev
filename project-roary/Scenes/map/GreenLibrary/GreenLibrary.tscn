@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://b7j1lsbdli03x"]
+[gd_scene load_steps=4 format=3 uid="uid://b7j1lsbdli03x"]
+
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_ict7c"]
+[ext_resource type="PackedScene" uid="uid://bed4fyrobgykm" path="res://Scenes/entities/enemies/logo.tscn" id="1_pynll"]
+[ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="2_pynll"]
 
 [node name="GreenLibrary" type="Node2D"]
+
+[node name="Logo" parent="." instance=ExtResource("1_pynll")]
+position = Vector2(571.99994, 544.99994)
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_ict7c")]
+spawnsAvailable = [NodePath("fromMaze")]
+
+[node name="fromMaze" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(1672, 531)
+
+[node name="MermaidPhase2" parent="." node_paths=PackedStringArray("starfishSpawns") instance=ExtResource("2_pynll")]
+position = Vector2(507, 159)
+starfishSpawns = [NodePath("../StarfishSpawn1"), NodePath("../StarfishSpawn2"), NodePath("../StarfishSpawn3"), NodePath("../StarfishSpawn4"), NodePath("../StarfishSpawn5")]
+
+[node name="StarfishSpawn1" type="Marker2D" parent="."]
+position = Vector2(1598, 169)
+
+[node name="StarfishSpawn2" type="Marker2D" parent="."]
+position = Vector2(283, 918)
+
+[node name="StarfishSpawn3" type="Marker2D" parent="."]
+position = Vector2(1136, 777)
+
+[node name="StarfishSpawn4" type="Marker2D" parent="."]
+position = Vector2(211, 352)
+
+[node name="StarfishSpawn5" type="Marker2D" parent="."]
+position = Vector2(1005, 269)

@@ -57,11 +57,13 @@ public partial class EnemyProjectile : CharacterBody2D
 	// of your override
 	public virtual void HitEntity(Area2D area)
 	{
-		if (area.GetParent().IsInGroup("player"))
+		if (!area.GetParent().IsInGroup("player"))
         {
-            GD.Print("Player has been hit by an enemy projectile");
-            QueueFree();
+            return;
         }
+
+		GD.Print("Player has been hit by an enemy projectile");
+        QueueFree();
     }
 
 	// If you override this, remember to

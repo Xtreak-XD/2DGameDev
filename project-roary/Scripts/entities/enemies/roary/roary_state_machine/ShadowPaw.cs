@@ -19,29 +19,32 @@ public partial class ShadowPaw : RoaryState
     {
 		GD.Print("Roary summoned his shadow paw at the player");
 
-		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
+		if(ActiveEnemy.target != null)
+        {
+            Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
         
-		RoaryShadowPaw shadowPawProjectile = (RoaryShadowPaw)ActiveEnemy.shadowPaw.Instantiate();
-		ActiveEnemy.Owner.AddChild(shadowPawProjectile);
+			RoaryShadowPaw shadowPawProjectile = (RoaryShadowPaw)ActiveEnemy.shadowPaw.Instantiate();
+			ActiveEnemy.Owner.AddChild(shadowPawProjectile);
 
-		float angle = (float)new RandomNumberGenerator().RandfRange(0, (float)(2 * Math.PI));
-		Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).Normalized() * 600;
-		Vector2 startPosition = targetPos + offset;
+			float angle = (float)new RandomNumberGenerator().RandfRange(0, (float)(2 * Math.PI));
+			Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)).Normalized() * 600;
+			Vector2 startPosition = targetPos + offset;
 
-		shadowPawProjectile.GlobalPosition = startPosition;
-		shadowPawProjectile.sprite.LookAt(targetPos);
-		shadowPawProjectile.parent = ActiveEnemy;
+			shadowPawProjectile.GlobalPosition = startPosition;
+			shadowPawProjectile.sprite.LookAt(targetPos);
+			shadowPawProjectile.parent = ActiveEnemy;
 
-		shadowPawProjectile.data.Damage = (int) (ActiveEnemy.data.Damage 
-		 * ActiveEnemy.StatMultipler());
-		shadowPawProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
+			shadowPawProjectile.data.Damage = (int) (ActiveEnemy.data.Damage 
+			* ActiveEnemy.StatMultipler());
+			shadowPawProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
 
-		float finalSpeed = shadowPawProjectile.data.speed *
-		 ActiveEnemy.StatMultipler();
+			float finalSpeed = shadowPawProjectile.data.speed *
+			ActiveEnemy.StatMultipler();
 
-		Vector2 direction = (targetPos - shadowPawProjectile.GlobalPosition).Normalized();
+			Vector2 direction = (targetPos - shadowPawProjectile.GlobalPosition).Normalized();
 
-		shadowPawProjectile.Velocity = direction * finalSpeed;
+			shadowPawProjectile.Velocity = direction * finalSpeed;
+        }
 	}
 	
 	public override RoaryState Process(double delta)

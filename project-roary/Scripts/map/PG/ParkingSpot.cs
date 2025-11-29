@@ -25,12 +25,18 @@ public partial class ParkingSpot : Area2D
 	{
 		if(body.IsInGroup("player"))
 		{
-			if(body.RotationDegrees >= 240 && body.RotationDegrees <= 300
-			|| body.RotationDegrees >= 60 && body.RotationDegrees <= 120)
+			if(body is DriveableCar car)
             {
-                ParkingTimer.Paused = true;
-				FlashingTimer.Paused = true;
-				GD.Print("The player has reached the parking spot");
+                if(body.RotationDegrees >= 240 && body.RotationDegrees <= 300
+				 || body.RotationDegrees >= 60 && body.RotationDegrees <= 120)
+            	{
+					if(car.IsParked())
+					{
+						ParkingTimer.Paused = true;
+						FlashingTimer.Paused = true;
+						GD.Print("The player has reached the parking spot");
+					}
+            	}
             }
 		}
     }

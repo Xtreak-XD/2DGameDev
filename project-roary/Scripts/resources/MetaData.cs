@@ -9,15 +9,23 @@ public partial class MetaData : Resource
     //player main metaData
     [Export] public int Money { get; set; }
     [Export] public Vector2 savePos { get; set; }
+
+    [Export] public string curScenepath { get; set; }
     [Export] public Array<InventorySlot> savedInventory { get; set; }
+
+    public void SetCurScenePath(string path)
+    {
+        curScenepath = path;
+    }
     public void SetSavePos(Vector2 pos)
     {
         savePos = pos;
     }
 
-    public void updateInventory(Array<InventorySlot> x)
+    public void updateInventory(Inventory x)
     {
-        savedInventory = x;
+        var slots = x.slots;
+        savedInventory = slots;
     }
 
     public void updateMoney(int amount)

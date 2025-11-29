@@ -27,15 +27,16 @@ public partial class SceneManager : Node
         }
     }
 
-    public void goToScene(Node from, string scene)
+    public void goToScene(Node from, string scene, bool loading = false)
     {
         comingFromName = currentScene.Name;
         player = from.GetNode<Player>("Player");//saving player
         player.GetParent().RemoveChild(player); 
-        CallDeferred("_deferred_scene_switch", scene);
+        CallDeferred("_deferred_scene_switch", scene, loading);
+        
     }
 
-    public void _deferred_scene_switch(string path)
+    public void _deferred_scene_switch(string path, bool loading)
     {
         PackedScene packedScene = GD.Load<PackedScene>(path);
         Node newScene = packedScene.Instantiate();
@@ -45,8 +46,15 @@ public partial class SceneManager : Node
         GetTree().Root.AddChild(newScene);
         GetTree().CurrentScene = newScene;
 
-        Vector2 spawn = extractCorrectSpawnpoint(newScene, comingFromName);
-        
+        Vector2 spawn;
+        if (!loading)
+        {
+            spawn = extractCorrectSpawnpoint(newScene, comingFromName);
+        }
+        else
+        {
+            spawn = player.metaData.savePos;
+        }
         
         newScene.AddChild(player);
         player.CallDeferred(nameof(Player.setSpawnPosition), spawn);

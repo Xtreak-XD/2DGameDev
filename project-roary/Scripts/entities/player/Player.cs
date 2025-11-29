@@ -5,7 +5,8 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 
-	public string save_file_path = "res://LocalSave/";
+	public SceneManager sceneManager;
+	public string save_file_path = "user://LocalSave/";
 	public string save_file_name = "playerMetaData.tres";
 	public MetaData metaData = new();
 	[Export] public GenericData data;
@@ -19,7 +20,7 @@ public partial class Player : CharacterBody2D
 
 	private Eventbus eventbus;
 	private int equippedSlot = -1;
-	private Inventory inv;
+	public Inventory inv;
 
 	public bool usingStamina = false;
 	public bool recoveringStamina = false;
@@ -30,46 +31,119 @@ public partial class Player : CharacterBody2D
 	public Vector2 mousePosition;
 	private Vector2 knockBackVelocity = Vector2.Zero;
 	private const float KnockBackDecay = 750.0f;
-	public override void _Ready()
-	{
-		VerifySaveDirectory(save_file_path);
-		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
+
+    public override void _EnterTree()
+    {
 		AddToGroup("player");
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
-		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-		stateMachine.Initialize(this);
-
-		inv = GetNode<Inventory>("/root/Inventory");
-
 		eventbus.itemDropped += spawnItemInWorld;
 		eventbus.itemEquipped += equipItem;
 		eventbus.inventoryUpdated += checkIfEquipped;
 		eventbus.save += save;
 		eventbus.load += loadSave;
+    }
+	public override void _Ready()
+	{
+		sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		VerifySaveDirectory(save_file_path);
+		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		stateMachine.Initialize(this);
+
+		inv = GetNode<Inventory>("/root/Inventory");
 	}
 
 	void loadSave()
     {
-        if (ResourceLoader.Exists(save_file_path + save_file_name))
+		string fullPath = save_file_path + save_file_name;
+        if (!ResourceLoader.Exists(fullPath))
         {
-            GD.Print("save exists");
-			metaData = ResourceLoader.Load<MetaData>(save_file_path + save_file_name);
-			GD.Print(metaData.savePos);
+			GD.Print("No save file found at " + fullPath);
+			return;
         }
-		onStartLoad();
+
+        try
+        {
+            metaData = ResourceLoader.Load<MetaData>(fullPath);
+
+			if (metaData == null)
+            {
+                GD.PrintErr("Failed to load save from " + fullPath);
+				return;
+            }
+
+			if (metaData.savedInventory != null && metaData.savedInventory.Count > 0)
+            {
+				if(inv.slots == metaData.savedInventory) //not loading the correct inventory
+                {
+                    GD.Print("saved inventory and current inventory are the same");
+                }
+                else
+                {
+                    GD.Print("saved inventory and current inventory are different");
+					inv.slots = metaData.savedInventory;
+					eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
+                }
+            }
+
+			if (metaData.Money > 0)
+            {
+                eventbus.EmitSignal("updateMoney", metaData.Money);
+            }
+
+			GD.Print("loaded save from " + fullPath);
+
+			string curScene = GetTree().CurrentScene.SceneFilePath;
+			if (curScene != metaData.curScenepath)
+            {
+                onStartLoad();
+            }
+            else
+            {
+                GlobalPosition = metaData.savePos;
+            }
+        }
+		catch(Exception e)
+        {
+            GD.PrintErr($"Error loading save: {e.Message}");
+        }
     }
 
 	void onStartLoad()
     {
-        Position = metaData.savePos;
+		if (string.IsNullOrEmpty(metaData.curScenepath))
+        {
+            GD.PrintErr("Can't load scene path");
+			return;
+        }
+		if (!ResourceLoader.Exists(metaData.curScenepath))
+		{
+			GD.PrintErr($"Scene doesn't exist: {metaData.curScenepath}");
+			return;
+		}
+		sceneManager.goToScene(GetParent(), metaData.curScenepath, true);
     }
 
 	void save()
     {
 		metaData.SetSavePos(Position);
-		metaData.updateMoney(900);
-        ResourceSaver.Save(metaData, save_file_path+save_file_name);
-		GD.Print("saved at " + save_file_path + save_file_name);
+		metaData.SetCurScenePath(GetTree().CurrentScene.SceneFilePath);
+		metaData.updateInventory(inv);
+
+		VerifySaveDirectory(save_file_path);
+
+		string fullPath = save_file_path+save_file_name;
+        Error result = ResourceSaver.Save(metaData, fullPath);
+		if (result == Error.Ok)
+        {
+            GD.Print("saved at " + save_file_path + save_file_name);
+			//emit signal to say we saved it later
+        }
+        else
+        {
+            GD.PrintErr($"Failed to save game: {result}");
+        }
+		
     }
 
 	void VerifySaveDirectory(string saveFilePath)
@@ -214,7 +288,6 @@ public partial class Player : CharacterBody2D
 
 	public void checkIfEquipped()
 	{
-		metaData.updateInventory(inv.slots);
 		if (equippedSlot < 0) return;
 
 		if (equippedSlot >= inv.slots.Count)

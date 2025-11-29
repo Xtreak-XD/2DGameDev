@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://k5ga4fhiiq1j"]
+
+[ext_resource type="FontFile" uid="uid://cbkp2sq5jjvfa" path="res://Sprites/Fonts/SpaceMono-Regular.ttf" id="1_aapep"]
+
+[resource]
+font = ExtResource("1_aapep")
+font_color = Color(0, 0, 0, 1)

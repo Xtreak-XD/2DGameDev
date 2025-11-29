@@ -47,7 +47,6 @@ public partial class EnemyStateMachine : Node
 	{
 		if (newState == null || newState == currentState)
 			return;
-		GD.Print($"FSM switch: {currentState?.Name ?? "null"} -> {newState.Name}");
 		if (!states.Contains(newState))
 		{
 			GD.PrintErr("State not found in state machine.");

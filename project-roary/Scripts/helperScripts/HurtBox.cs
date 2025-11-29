@@ -25,7 +25,6 @@ public partial class HurtBox : Area2D
             if (playerParent.data != null)
             {
                 data = playerParent.data;
-                GD.Print($"connected hurtbox to {parent.Name}");
             }
             else
             {
@@ -37,7 +36,6 @@ public partial class HurtBox : Area2D
             if (enemyParent.data != null)
             {
                 data = enemyParent.data;
-                GD.Print($"connected hurtbox to {parent.Name}");
             }
             else
             {

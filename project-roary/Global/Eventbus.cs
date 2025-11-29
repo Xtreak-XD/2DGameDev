@@ -32,7 +32,7 @@ public partial class Eventbus : Node
 
     //Inventory Signals
     [Signal] public delegate void inventoryUpdatedEventHandler(); //emitted when inventory changes
-    [Signal] public delegate void itemDroppedEventHandler(InventoryItem item, int quantity); //emitted when player drops an item
+    [Signal] public delegate void itemDroppedEventHandler(IndividualItem item, int quantity); //emitted when player drops an item
     [Signal] public delegate void itemEquippedEventHandler(int slotIndex); //emitted when player equips an item from hotbar
 
     //effects
@@ -43,4 +43,9 @@ public partial class Eventbus : Node
 
     // Interaction
     [Signal] public delegate void interactionCompleteEventHandler();
+
+    // Shop Signals
+    [Signal] public delegate void openShopMenuEventHandler(bool isOpen, ShopResource config);
+    [Signal] public delegate void shopItemSelectedEventHandler(IndividualItem item);
+    [Signal] public delegate void updateMoneyDisplayEventHandler();
 }

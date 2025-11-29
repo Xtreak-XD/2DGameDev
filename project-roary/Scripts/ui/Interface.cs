@@ -20,6 +20,8 @@ public partial class Interface : CanvasLayer
     public Label time;
     public Label curDay;
     public Label temp;
+    private Label moneyAmt;
+    public MetaData playerMetaData;
 
     public TextureProgressBar health;
     public TextureProgressBar stamina;
@@ -27,35 +29,38 @@ public partial class Interface : CanvasLayer
     public override void _EnterTree()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
-        eventbus.timeTick += setTime;
+        playerMetaData = ResourceLoader.Load<MetaData>("res://Resources/entities/player/playerMetaData.tres");
 
+        eventbus.timeTick += setTime;
         eventbus.updateHealth += updateHealth;
         eventbus.updateStamina += updateStamina;
+        eventbus.updateMoneyDisplay += updateMoneyDisplay;
     }
 
     public override void _Ready()
     {
         player = GetTree().GetFirstNodeInGroup("player");
-        stamina = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Stamina");
-        health = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Health");
+        stamina = GetNode<TextureProgressBar>("%Stamina");
+        health = GetNode<TextureProgressBar>("%Health");
+        moneyAmt = GetNode<Label>("%MoneyAmount");
 
-        time = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/time");
-        curDay = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/day");
-        temp = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/temp");
+        time = GetNode<Label>("%time");
+        curDay = GetNode<Label>("%day");
+        temp = GetNode<Label>("%temp");
     }
 
 
-    public void updateStamina(int value)
+    private void updateStamina(int value)
     {
         stamina.Value = value;
     }
     
-    public void updateHealth(int value)
+    private void updateHealth(int value)
     {
         health.Value = value;
     }
 
-    public void setTime(int day, int hour, int min, float temp)
+    private void setTime(int day, int hour, int min, float temp)
     {
         //set temp in c
         this.temp.Text = ((int)temp).ToString() + "°F";
@@ -93,6 +98,14 @@ public partial class Interface : CanvasLayer
             case 6:
                 curDay.Text = days[6];
                 break;
+        }
+    }
+
+    private void updateMoneyDisplay()
+    {
+        if (moneyAmt != null && player != null)
+        {
+            moneyAmt.Text = playerMetaData.Money.ToString();
         }
     }
 

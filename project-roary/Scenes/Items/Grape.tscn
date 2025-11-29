@@ -1,9 +1,0 @@
-[gd_scene load_steps=4 format=3 uid="uid://dekv33yudwobc"]
-
-[ext_resource type="PackedScene" uid="uid://r6a6orujjhgt" path="res://Scenes/ui/inventory/Items.tscn" id="1_f1c2o"]
-[ext_resource type="Texture2D" uid="uid://h55s6eqn1uxc" path="res://Sprites/item/grape.png" id="2_jr41b"]
-[ext_resource type="Resource" uid="uid://cbbxrwvl1caij" path="res://Resources/items/Grape.tres" id="3_ox8qj"]
-
-[node name="Items" instance=ExtResource("1_f1c2o")]
-texture = ExtResource("2_jr41b")
-itemResource = ExtResource("3_ox8qj")

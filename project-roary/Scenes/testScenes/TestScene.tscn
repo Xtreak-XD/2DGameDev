@@ -67,8 +67,6 @@ shopConfig = ExtResource("8_d43vx")
 [node name="WeaponShop" parent="." instance=ExtResource("10_3unw3")]
 position = Vector2(1263, 857)
 shopConfig = ExtResource("9_fkpmq")
-[node name="Starfish" parent="." instance=ExtResource("8_hm8wl")]
-position = Vector2(1277, 400)
 
 [node name="Items" parent="." instance=ExtResource("8_k25gx")]
 position = Vector2(1700, 870)

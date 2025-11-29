@@ -49,6 +49,6 @@ public partial class Eventbus : Node
     [Signal] public delegate void openShopMenuEventHandler(bool isOpen, ShopResource config);
     [Signal] public delegate void shopItemSelectedEventHandler(IndividualItem item);
     //save and load
-    [Signal] public delegate void saveEventHandler();
+    [Signal] public delegate void saveEventHandler(bool firstLoad = false);
     [Signal] public delegate void loadEventHandler();
 }

@@ -66,7 +66,7 @@ public partial class MainMenu : Control
             GD.PrintErr($"First scene not found: {firstScenePath}");
             return;
         }
-        
+        saveManager.CreateNewSave(firstScenePath);
         sceneManager.goToScene(this, firstScenePath, false);
     }
 

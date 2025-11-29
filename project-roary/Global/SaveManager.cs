@@ -32,7 +32,7 @@ public partial class SaveManager : Node
         return ResourceLoader.Exists(fullPath);
     }
 
-    public void Save()
+    public void Save(bool firstLoad = false)
     {
         // Get player
         Player player = GetTree().Root.GetNodeOrNull<Player>("Player");
@@ -46,8 +46,11 @@ public partial class SaveManager : Node
         {
             metaData.SetSavePos(player.Position);
         }
-
-        metaData.SetCurScenePath(GetTree().CurrentScene.SceneFilePath);
+        if (!firstLoad)
+        {
+            metaData.SetCurScenePath(GetTree().CurrentScene.SceneFilePath);
+        }
+        
         metaData.updateInventory(inv);
 
         VerifySaveDirectory(save_file_path);
@@ -138,6 +141,25 @@ public partial class SaveManager : Node
             loadedInventory.Add(newSlot);
         }
         inv.slots = loadedInventory;
+    }
+
+    public void CreateNewSave(string startingScenePath)
+    {
+        metaData = new MetaData();
+        metaData.Money = 0;
+        metaData.savePos = Vector2.Zero; //imma change this to the starting location later
+        metaData.SetCurScenePath(startingScenePath);
+
+        var inv = GetNode<Inventory>("/root/Inventory");
+        inv.slots = new Godot.Collections.Array<InventorySlot>();
+        for (int i = 0; i < Inventory.TOTAL_SIZE; i++)
+        {
+            inv.slots.Add(new InventorySlot());
+        }
+
+        metaData.updateInventory(inv);
+
+        Save(true);
     }
 
     private void VerifySaveDirectory(string saveFilePath)

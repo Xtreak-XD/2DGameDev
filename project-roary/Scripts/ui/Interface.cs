@@ -16,6 +16,7 @@ public partial class Interface : CanvasLayer
         {6, "Sunday"}
     };
     public Eventbus eventbus;
+    public SaveManager saveManager;
     public Player player;
     public Label Money;
     public Label time;
@@ -31,8 +32,7 @@ public partial class Interface : CanvasLayer
     public override void _EnterTree()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
-        playerMetaData = ResourceLoader.Load<MetaData>("res://Resources/entities/player/playerMetaData.tres");
-
+        saveManager = GetNode<SaveManager>("/root/SaveManager");
         eventbus.timeTick += setTime;
         eventbus.updateHealth += updateHealth;
         eventbus.updateStamina += updateStamina;
@@ -51,7 +51,8 @@ public partial class Interface : CanvasLayer
         temp = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/temp");
 
         //setting default
-        updateMoney(player.metaData.Money);
+        MetaData metadata = saveManager.GetMetaData();
+        updateMoney(metadata.Money);
     }
 
     public void updateMoney(int value)
@@ -116,6 +117,7 @@ public partial class Interface : CanvasLayer
 
         eventbus.updateHealth -= updateHealth;
         eventbus.updateStamina -= updateStamina;
+        eventbus.updateMoney -= updateMoney;
     }
 
     //use this to receive events for player input related to pause/and ui

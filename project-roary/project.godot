@@ -11,18 +11,19 @@ config_version=5
 [application]
 
 config/name="Project Roary"
-run/main_scene="uid://dkq42aw23ge1k"
+run/main_scene="uid://ctmsfrqpks4es"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Eventbus="*res://Global/Eventbus.cs"
+Inventory="*res://Global/Inventory.cs"
+SaveManager="*res://Global/SaveManager.cs"
 DialogueManager="*res://Global/dialogueManager.cs"
 InteractionManager="*res://Scenes/helperScenes/interaction_manager.tscn"
 Effects="*res://Global/effects.tscn"
 SceneManager="*res://Global/SceneManager.cs"
-Inventory="*res://Global/Inventory.cs"
 
 [display]
 

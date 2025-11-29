@@ -8,30 +8,62 @@ public partial class SceneManager : Node
     Player player;
     string comingFromName;
     Marker2D spawnPosition;
-
     PackedScene newPlayerInstance;
+    Vector2 loadSpawnPosition = Vector2.Zero;
+    private string[] scenesWithoutPlayer = {
+        "MainMenu",
+        "ParkingGarage",
+    };
 
     public override void _Ready()
     {
         newPlayerInstance = GD.Load<PackedScene>("res://Scenes/entities/player/player.tscn");
-        Player newInstance = (Player)newPlayerInstance.Instantiate();
         var root = GetTree().Root;
         currentScene = root.GetChild(root.GetChildCount() - 1);
 
+        if (!ShouldSceneHavePlayer(currentScene))
+        {
+            GD.Print($"Scene {currentScene.Name} should not have a player");
+            return;
+        }
+
         if (currentScene.GetNodeOrNull<Player>("Player") == null)
         {
+            Player newInstance = (Player)newPlayerInstance.Instantiate();
             currentScene.AddChild(newInstance);
             newInstance.CallDeferred("setSpawnPosition",extractCorrectSpawnpoint(currentScene,"Nothing"));
-
             player = newInstance;
         }
     }
 
-    public void goToScene(Node from, string scene, bool loading = false)
+    private bool ShouldSceneHavePlayer(Node scene)
+    {
+        foreach (string sceneName in scenesWithoutPlayer)
+        {
+            if (scene.Name.ToString().Equals(sceneName, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void goToScene(Node from, string scene, bool loading = false, Vector2 spawnPos = default)
     {
         comingFromName = currentScene.Name;
-        player = from.GetNode<Player>("Player");//saving player
-        player.GetParent().RemoveChild(player); 
+        
+        Player existingPlayer = from.GetNodeOrNull<Player>("Player");
+        if (existingPlayer != null)
+        {
+            player = existingPlayer; // saving player
+            player.GetParent().RemoveChild(player);
+        }
+
+        if (loading)
+        {
+            loadSpawnPosition = spawnPos;
+        }
+        
         CallDeferred("_deferred_scene_switch", scene, loading);
         
     }
@@ -46,6 +78,19 @@ public partial class SceneManager : Node
         GetTree().Root.AddChild(newScene);
         GetTree().CurrentScene = newScene;
 
+        if (!ShouldSceneHavePlayer(newScene))
+        {
+            GD.Print($"Scene {newScene.Name} should not have a player");
+            currentScene = newScene;
+            return;
+        }
+
+        if (player == null)
+        {
+            Player newInstance = (Player)newPlayerInstance.Instantiate();
+            player = newInstance;
+        }
+
         Vector2 spawn;
         if (!loading)
         {
@@ -53,7 +98,8 @@ public partial class SceneManager : Node
         }
         else
         {
-            spawn = player.metaData.savePos;
+            spawn = loadSpawnPosition;
+            loadSpawnPosition = Vector2.Zero;
         }
         
         newScene.AddChild(player);
@@ -76,6 +122,12 @@ public partial class SceneManager : Node
         }
 
         PlayerSpawn Spawns = sceneToSpawnIn.GetNode<PlayerSpawn>("PlayerSpawnPoints");
+
+        if (Spawns == null)
+        {
+            GD.PrintErr($"No PlayerSpawnPoints found in {sceneToSpawnIn.Name}");
+            return Vector2.Zero;
+        }
 
         foreach(Marker2D i in Spawns.spawnsAvailable)
         {

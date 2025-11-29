@@ -23,11 +23,15 @@ public partial class ParkingSpot : Area2D
 	
 	public void EndMinigameWithSuccess(Node2D body)
 	{
-		if (body.IsInGroup("player"))
+		if(body.IsInGroup("player"))
 		{
-			ParkingTimer.Paused = true;
-			FlashingTimer.Paused = true;
-			GD.Print("The player has reached the parking spot");
+			if(body.RotationDegrees >= 240 && body.RotationDegrees <= 300
+			|| body.RotationDegrees >= 60 && body.RotationDegrees <= 120)
+            {
+                ParkingTimer.Paused = true;
+				FlashingTimer.Paused = true;
+				GD.Print("The player has reached the parking spot");
+            }
 		}
     }
 }

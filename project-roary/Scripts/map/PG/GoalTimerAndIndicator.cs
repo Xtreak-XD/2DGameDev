@@ -3,16 +3,28 @@ using Godot;
 public partial class GoalTimerAndIndicator : Node2D
 {
 	public Timer timer;
+	public Timer flashTimer;
+	public Sprite2D sprite;
 
 	public override void _Ready()
 	{
 		timer = GetNode<Timer>("ParkingTimer");
+		flashTimer = GetNode<Timer>("FlashTime");
+		sprite = GetNode<Sprite2D>("Sprite2D");
 
 		timer.Timeout += TimeOut;
 		timer.Start();
 
+		flashTimer.Timeout += Flash;
+		flashTimer.Start();
+
 		GD.Print("Timer has " + timer.TimeLeft + " seconds.");
 	}
+
+	public void Flash()
+    {
+        sprite.Visible = !sprite.Visible;
+    }
 	
 	public void TimeOut()
 	{

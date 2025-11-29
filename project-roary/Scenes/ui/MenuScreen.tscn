@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7hfl3picvwq7"]
+
+[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="1_jg7d2"]
+[ext_resource type="Script" uid="uid://c6tys0w83aomw" path="res://Scripts/ui/MenuScreen.cs" id="1_n2gc5"]
+[ext_resource type="Theme" uid="uid://yw4cddpssmmj" path="res://Resources/misc/MenuButton.tres" id="2_mvmok"]
+[ext_resource type="Texture2D" uid="uid://dj4318gbfs0r" path="res://Sprites/Roary-Wave-Full-Body.png" id="2_n2gc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_24a1s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mvmok"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nu1e5"]
+bg_color = Color(0.03137255, 0.11764706, 0.24705882, 0.4)
+border_color = Color(0.8, 0.8, 0.8, 0)
+expand_margin_left = 300.0
+expand_margin_right = 1920.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07cvr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p338f"]
+
+[node name="Menu Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n2gc5")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Bar" type="Polygon2D" parent="."]
+color = Color(0.76862746, 0.5882353, 0.101960786, 1)
+polygon = PackedVector2Array(369, -35, 730, 1145, 350, 1145, -11, -35)
+uv = PackedVector2Array(280.10934, -8.382884, 728.0524, 1144.5076, 352.25064, 1143.5758, -1.5582215, -5.807821)
+
+[node name="Continue" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 180.0
+offset_top = 420.0
+offset_right = 512.0
+offset_bottom = 510.0
+theme = ExtResource("2_mvmok")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_jg7d2")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mvmok")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_07cvr")
+text = "Continue"
+alignment = 0
+
+[node name="Settings" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 225.0
+offset_top = 550.0
+offset_right = 552.0
+offset_bottom = 640.0
+theme = ExtResource("2_mvmok")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_jg7d2")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_07cvr")
+text = "Settings"
+alignment = 0
+
+[node name="Quit" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 270.0
+offset_top = 680.0
+offset_right = 591.0
+offset_bottom = 770.0
+theme = ExtResource("2_mvmok")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_jg7d2")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_07cvr")
+text = "Quit"
+alignment = 0
+
+[node name="GameTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 6.0
+offset_right = 1675.0
+offset_bottom = 208.0
+theme_override_fonts/font = ExtResource("1_jg7d2")
+theme_override_font_sizes/font_size = 200
+text = "ROARY"
+
+[node name="GameImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 145.0
+offset_right = 1773.0
+offset_bottom = 1824.0
+texture = ExtResource("2_n2gc5")

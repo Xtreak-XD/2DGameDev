@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class FootballPlayer : CharacterBody2D
+public partial class FootballPlayer : Enemy
 {
     private Sprite2D footballSprite;
 

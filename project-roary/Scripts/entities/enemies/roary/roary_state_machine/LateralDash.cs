@@ -31,30 +31,33 @@ public partial class LateralDash : RoaryState
 	{
 		GD.Print("Roary is dashing the player from the side");
 
-        ChargeOver = false;
-        dashTimer.Start();
+        if(ActiveEnemy.target != null)
+        {
+            ChargeOver = false;
+            dashTimer.Start();
 
-        if(new Random().Next(2) == 1)
-        {
-            chargeDirection = Direction.West;
-        } 
-        else
-        {
-            chargeDirection = Direction.East;
+            if(new Random().Next(2) == 1)
+            {
+                chargeDirection = Direction.West;
+            } 
+            else
+            {
+                chargeDirection = Direction.East;
+            }
+
+            Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
+
+            if(chargeDirection == Direction.East)
+            {
+                ActiveEnemy.GlobalPosition = playerPos + new Vector2(-750, 0);
+            } 
+            else
+            {
+                ActiveEnemy.GlobalPosition = playerPos + new Vector2(750, 0);
+            }
+
+            direction = (playerPos - ActiveEnemy.GlobalPosition).Normalized();
         }
-
-        Vector2 playerPos = ActiveEnemy.target.GlobalPosition;
-
-        if(chargeDirection == Direction.East)
-        {
-            ActiveEnemy.GlobalPosition = playerPos + new Vector2(-750, 0);
-        } 
-        else
-        {
-            ActiveEnemy.GlobalPosition = playerPos + new Vector2(750, 0);
-        }
-
-        direction = (playerPos - ActiveEnemy.GlobalPosition).Normalized();
 	}
 
     public override void ExitState()

@@ -19,27 +19,30 @@ public partial class ThrowFirework : RoaryState
     {
 		GD.Print("Roary is throwing a firework at the player");
 
-		Vector2 currentPos = projectileSource.GlobalPosition;
-		Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
+		if(ActiveEnemy.target != null)
+        {
+			Vector2 currentPos = projectileSource.GlobalPosition;
+			Vector2 targetPos = ActiveEnemy.target.GlobalPosition;
 
-		Vector2 direction = (targetPos - currentPos).Normalized();
+			Vector2 direction = (targetPos - currentPos).Normalized();
 
-		RoaryFirework fireworkProjectile = (RoaryFirework)ActiveEnemy.firework.Instantiate();
-		ActiveEnemy.Owner.AddChild(fireworkProjectile);
+			RoaryFirework fireworkProjectile = (RoaryFirework)ActiveEnemy.firework.Instantiate();
+			ActiveEnemy.Owner.AddChild(fireworkProjectile);
 
-		fireworkProjectile.GlobalPosition = currentPos;
-		fireworkProjectile.sprite.LookAt(targetPos);
-		fireworkProjectile.parent = ActiveEnemy;
-		fireworkProjectile.target = ActiveEnemy.target;
+			fireworkProjectile.GlobalPosition = currentPos;
+			fireworkProjectile.sprite.LookAt(targetPos);
+			fireworkProjectile.parent = ActiveEnemy;
+			fireworkProjectile.target = ActiveEnemy.target;
 
-		fireworkProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
-		 * ActiveEnemy.StatMultipler());
-		fireworkProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
+			fireworkProjectile.data.Damage = (int)(ActiveEnemy.data.Damage 
+			* ActiveEnemy.StatMultipler());
+			fireworkProjectile.data.knockback = ActiveEnemy.data.knockBackAmount;
 
-		float finalSpeed = fireworkProjectile.data.speed *
-		 ActiveEnemy.StatMultipler();
+			float finalSpeed = fireworkProjectile.data.speed *
+			ActiveEnemy.StatMultipler();
 
-		fireworkProjectile.Velocity = direction * finalSpeed;
+			fireworkProjectile.Velocity = direction * finalSpeed;
+        }
 	}
 	
 	public override RoaryState Process(double delta)

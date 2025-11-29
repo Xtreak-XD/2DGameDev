@@ -26,7 +26,7 @@ public partial class Enemy : CharacterBody2D
         visibilityNotifier.ScreenExited += OnScreenExit;
         visibilityNotifier.ScreenEntered += OnScreenEnter;
 	}
-	public void Die()
+	public virtual void Die()
 	{
 		GD.Print($"{Name} died!");
 		Eventbus.EnemyDied(this);

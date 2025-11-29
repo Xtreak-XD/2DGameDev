@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://chs7gt8okxl58"]
+
+[ext_resource type="Script" uid="uid://b4fiwsaoaon6o" path="res://Scripts/weapons/projectiles/RoaryOrbitalHead.cs" id="1_4ftsf"]
+[ext_resource type="Resource" uid="uid://oln0bnp1r7c5" path="res://Resources/weapons/projectiles/RoaryOrbitalHeadData.tres" id="2_alqot"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_m8fdp"]
+[ext_resource type="Texture2D" uid="uid://bt7twqbsymbdo" path="res://Sprites/misc/panther_head.jpg" id="4_4ftsf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
+radius = 12.0415945
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxgqv"]
+size = Vector2(8, 13.333336)
+
+[node name="RoaryOrbitalHead" type="CharacterBody2D"]
+script = ExtResource("1_4ftsf")
+data = ExtResource("2_alqot")
+
+[node name="LifespanTimer" type="Timer" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ny5u")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_m8fdp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_nxgqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.3841858e-07, 0)
+scale = Vector2(0.08313941, 0.105)
+texture = ExtResource("4_4ftsf")
+
+[node name="SetSpawnTimer" type="Timer" parent="."]
+wait_time = 0.05

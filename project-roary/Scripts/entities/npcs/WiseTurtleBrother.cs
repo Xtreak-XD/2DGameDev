@@ -68,5 +68,6 @@ public partial class WiseTurtleBrother : CharacterBody2D
         _anim.Play("idle");
 
         _isInteracting = false;
+        _eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
     }
 }

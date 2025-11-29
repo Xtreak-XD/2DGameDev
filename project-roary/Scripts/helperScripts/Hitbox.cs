@@ -56,6 +56,17 @@ public partial class Hitbox : Area2D
                 GD.PushWarning("Parent's 'data' property is null");
             }
         }
+        else if (parent is EnemyProjectile enemyProjectileParent)
+        {
+            if (enemyProjectileParent.data != null)
+            {
+                projectileData = enemyProjectileParent.data;
+            }
+            else
+            {
+                GD.PushWarning("Parent's 'data' property is null");
+            }
+        }
          else if (parent is MeleeWeapon MelleeParent)
         {
             if (MelleeParent.data != null)
@@ -76,7 +87,7 @@ public partial class Hitbox : Area2D
 
     public void onAreaEntered(Area2D area)
     {
-        if (area.IsInGroup("hurtbox") && !(area.GetParent() == GetParent()) && !(GetParent() is Projectile) && !(GetParent() is MeleeWeapon))
+        if (area.IsInGroup("hurtbox") && !(area.GetParent() == GetParent()) && !(GetParent() is Projectile) && !(GetParent() is MeleeWeapon) && !(GetParent() is EnemyProjectile))
         {
             eventbus.EmitSignal("applyDamage", area.GetParent(), GetParent(), data.Damage);
             eventbus.EmitSignal("hitStop", 0.05); //set duration for hitstop
@@ -99,6 +110,13 @@ public partial class Hitbox : Area2D
             eventbus.EmitSignal("hitStop", 0.05);
 
             eventbus.EmitSignal("knockBack", (CharacterBody2D)area.GetParent(), meleeData.knockback * 5, GlobalPosition);
+        }
+         else if (area.IsInGroup("hurtbox") && area.GetParent().IsInGroup("player") && !(area.GetParent() == GetParent()) && (GetParent() is EnemyProjectile))
+        {
+            eventbus.EmitSignal("applyDamage", area.GetParent(), GetParent(), projectileData.Damage);
+            eventbus.EmitSignal("hitStop", 0.05);
+
+            eventbus.EmitSignal("knockBack", (CharacterBody2D)area.GetParent(), projectileData.knockback * 5, GlobalPosition);
         }
     }
     

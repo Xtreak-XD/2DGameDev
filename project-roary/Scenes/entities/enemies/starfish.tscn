@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvws016o4cklc"]
+
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="1_patm7"]
+[ext_resource type="Script" uid="uid://cimctij2j0hb0" path="res://Scripts/entities/enemies/starfish/Starfish.cs" id="1_uif1x"]
+[ext_resource type="Texture2D" uid="uid://cc3idcq2x1jbw" path="res://Sprites/entities/enemies/starfish.jpg" id="2_4k3sw"]
+[ext_resource type="Resource" uid="uid://dmmxr75d6fl4l" path="res://Resources/entities/enemy/StarfishData.tres" id="2_hcr8f"]
+[ext_resource type="PackedScene" uid="uid://dwe1m11wtutwx" path="res://Scenes/weapons/projectiles/StarfishBubble.tscn" id="3_dehck"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_patm7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_patm7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4k3sw"]
+radius = 77.82673
+
+[node name="Starfish" type="CharacterBody2D" node_paths=PackedStringArray("projectileTimer")]
+scale = Vector2(0.9047619, 0.8888889)
+script = ExtResource("1_uif1x")
+bubbleProjectile = ExtResource("3_dehck")
+projectileTimer = NodePath("ProjectileTimer")
+data = ExtResource("2_hcr8f")
+
+[node name="StarfishCollider" type="CollisionShape2D" parent="."]
+scale = Vector2(3.292599, 3.7507818)
+shape = SubResource("CapsuleShape2D_patm7")
+debug_color = Color(0.5353024, 0.4106657, 1, 0.41960785)
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="Radius" type="CollisionShape2D" parent="Detection"]
+scale = Vector2(-10.818182, -12.630682)
+shape = SubResource("CircleShape2D_patm7")
+
+[node name="HurtBox" parent="." instance=ExtResource("1_patm7")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(0.7894737, 0.9047619)
+shape = SubResource("CircleShape2D_4k3sw")
+debug_color = Color(0.97543937, 0, 0.42290747, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.026119294, 0.07311371)
+texture = ExtResource("2_4k3sw")
+
+[node name="ProjectileSource" type="Marker2D" parent="."]
+
+[node name="ProjectileTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="SetTargetTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="ProjectileContainer" type="Node" parent="."]

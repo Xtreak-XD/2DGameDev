@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://chhmqeuo2j4ph"]
+
+[ext_resource type="Script" uid="uid://cg5sgeglps0vr" path="res://Scripts/resources/ProjectileData.cs" id="1_npaoj"]
+
+[resource]
+script = ExtResource("1_npaoj")
+speed = 200.0
+lifeSpan = 3.0

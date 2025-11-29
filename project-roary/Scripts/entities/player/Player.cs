@@ -54,75 +54,64 @@ public partial class Player : CharacterBody2D
 	}
 
 	void loadSave()
-    {
+	{
 		string fullPath = save_file_path + save_file_name;
-        if (!ResourceLoader.Exists(fullPath))
-        {
+		if (!ResourceLoader.Exists(fullPath))
+		{
 			GD.Print("No save file found at " + fullPath);
 			return;
-        }
+		}
 
-        try
-        {
-            metaData = ResourceLoader.Load<MetaData>(fullPath);
+		try
+		{
+
+			metaData = ResourceLoader.Load<MetaData>(fullPath,null, ResourceLoader.CacheMode.ReplaceDeep);
 
 			if (metaData == null)
-            {
-                GD.PrintErr("Failed to load save from " + fullPath);
+			{
+				GD.PrintErr("Failed to load save from " + fullPath);
 				return;
-            }
+			}
 
 			if (metaData.savedInventory != null && metaData.savedInventory.Count > 0)
-            {
-				if(inv.slots == metaData.savedInventory) //not loading the correct inventory
-                {
-                    GD.Print("saved inventory and current inventory are the same");
-                }
-                else
-                {
-                    GD.Print("saved inventory and current inventory are different");
-					inv.slots = metaData.savedInventory;
-					eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
-                }
-            }
+			{
+				var loadedInventory = new Godot.Collections.Array<InventorySlot>();
+
+				foreach (var savedSlot in metaData.savedInventory)
+				{
+					var newSlot = new InventorySlot();
+					newSlot.item = savedSlot.item;
+					newSlot.quantity = savedSlot.quantity;
+					loadedInventory.Add(newSlot);
+				}
+
+				inv.slots = loadedInventory;
+				eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
+				GD.Print("Inventory loaded successfully with " + loadedInventory.Count + " slots");
+			}
 
 			if (metaData.Money > 0)
-            {
-                eventbus.EmitSignal("updateMoney", metaData.Money);
-            }
+			{
+				eventbus.EmitSignal("updateMoney", metaData.Money);
+			}
 
 			GD.Print("loaded save from " + fullPath);
 
-			string curScene = GetTree().CurrentScene.SceneFilePath;
-			if (curScene != metaData.curScenepath)
+			string sceneToLoad = metaData.curScenepath;
+			if(!string.IsNullOrEmpty(sceneToLoad) && ResourceLoader.Exists(sceneToLoad))
             {
-                onStartLoad();
+                sceneManager.goToScene(GetParent(), sceneToLoad, true);
             }
             else
             {
-                GlobalPosition = metaData.savePos;
+                GD.PrintErr("Invalid scene path in save file");
             }
-        }
-		catch(Exception e)
-        {
-            GD.PrintErr($"Error loading save: {e.Message}");
-        }
-    }
-
-	void onStartLoad()
-    {
-		if (string.IsNullOrEmpty(metaData.curScenepath))
-        {
-            GD.PrintErr("Can't load scene path");
-			return;
-        }
-		if (!ResourceLoader.Exists(metaData.curScenepath))
-		{
-			GD.PrintErr($"Scene doesn't exist: {metaData.curScenepath}");
-			return;
 		}
-		sceneManager.goToScene(GetParent(), metaData.curScenepath, true);
-    }
+		catch (Exception e)
+		{
+			GD.PrintErr($"Error loading save: {e.Message}");
+		}
+	}
 
 	void save()
     {

@@ -24,8 +24,15 @@ public partial class MetaData : Resource
 
     public void updateInventory(Inventory x)
     {
-        var slots = x.slots;
-        savedInventory = slots;
+        savedInventory = new Array<InventorySlot>();
+
+        foreach (var slot in x.slots)
+        {
+            var newSlot = new InventorySlot();
+            newSlot.item = slot.item;
+            newSlot.quantity = slot.quantity;
+            savedInventory.Add(newSlot);
+        }
     }
 
     public void updateMoney(int amount)

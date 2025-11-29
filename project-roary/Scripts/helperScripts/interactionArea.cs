@@ -35,7 +35,7 @@ public partial class interactionArea : Area2D
     {
         if (body.IsInGroup("player"))
         {
-            GD.Print("unregistered to manager");
+            // GD.Print("unregistered to manager");
             interactionManager.unregisterArea(this);
         }
         return;

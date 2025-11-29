@@ -136,7 +136,7 @@ public partial class Player : CharacterBody2D
         GlobalPosition = pos;
     }
 
-	public void spawnItemInWorld(InventoryItem item, int quantity)
+	public void spawnItemInWorld(IndividualItem item, int quantity)
 	{
 		PackedScene itemScene = GD.Load<PackedScene>("res://Scenes/ui/inventory/Items.tscn");
 		Items itemInstance = itemScene.Instantiate() as Items;

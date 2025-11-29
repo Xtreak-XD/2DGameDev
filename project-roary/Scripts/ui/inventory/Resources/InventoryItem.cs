@@ -18,4 +18,8 @@ public partial class InventoryItem : Resource
 	public bool isStackable { get; set; } = false;
 	[Export]
 	public int maxStackSize { get; set; } = 20;
+
+// Shop Specific Resources
+	[Export] public int shopPrice { get; set; } = -1;
+	[Export] public bool isSellableInShop { get; set; } = false;
 }

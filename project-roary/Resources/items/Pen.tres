@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="IndividualItem" load_steps=3 format=3 uid="uid://jbi04iutyxhr"]
+
+[ext_resource type="Script" uid="uid://h7rsrpy6mpd2" path="res://Scripts/ui/inventory/Resources/IndividualItem.cs" id="1_sb6hb"]
+[ext_resource type="Texture2D" uid="uid://byln8174ny0mb" path="res://Sprites/item/Pen.png" id="2_ihfa6"]
+
+[resource]
+script = ExtResource("1_sb6hb")
+itemName = "Pen"
+texture = ExtResource("2_ihfa6")
+description = "Pen upgrade of a pencil"
+maxStackSize = 1
+shopPrice = 20
+isSellableInShop = true
+metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

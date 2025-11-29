@@ -77,7 +77,7 @@ public partial class InventoryUI : Control
 			else
 			{
 				// Dropped outside inventory UI
-				InventoryItem draggedItem = inv.RemoveItem(draggedItemSlot.slotIndex);
+				IndividualItem draggedItem = inv.RemoveItem(draggedItemSlot.slotIndex);
 				if (draggedItem != null)
 				{
 					eventbus.EmitSignal(Eventbus.SignalName.itemDropped, draggedItem, 1);

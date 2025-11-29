@@ -51,8 +51,6 @@ public partial class RoaryFirework : EnemyProjectile
                 Velocity = Velocity.Normalized() * data.speed;
             }
 
-            GD.Print($"Velocity: {Velocity}");
-
             previousLocation = GlobalPosition;
             previousTargetPos = targetPos;
         }

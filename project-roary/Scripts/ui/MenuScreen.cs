@@ -42,30 +42,6 @@ public partial class MenuScreen : Control
         }
     }
 
-	public override void _ExitTree()
-	{
-		var buttons = new[] {
-			GetNode<Button>("%Continue"),
-			GetNode<Button>("%Settings"),
-			GetNode<Button>("%Quit")
-		};
-
-		foreach (var button in buttons)
-		{
-			if (button == null) continue;
-
-			button.MouseEntered -= () => SlideButton(button, _originalPositions[button], true);
-			button.MouseExited -= () => SlideButton(button, _originalPositions[button], false);
-			button.Pressed -= () => OnButtonPressed(button.Name);
-
-			// Clean up any running tweens
-			if (_buttonTweens.TryGetValue(button, out var tween) && tween != null)
-			{
-				tween.Kill();
-			}
-		}
-	}
-
 	private void SlideButton(Button button, float originalX, bool isHovering)
     {
 		// Kill any existing tween for this button to prevent overlapping animations

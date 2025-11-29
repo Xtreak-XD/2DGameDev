@@ -190,7 +190,7 @@ polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621
 
 [node name="PlayerSpawnPoints" parent="." instance=ExtResource("12_5oly8")]
 
-[node name="fromStart" type="Marker2D" parent="PlayerSpawnPoints"]
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(6325, 4171)
 
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
@@ -264,10 +264,10 @@ collision_mask = 1
 
 [node name="TimerLabel" type="Label" parent="."]
 top_level = true
-offset_left = -16.0
-offset_top = -14.0
-offset_right = 27.0
-offset_bottom = 9.0
+offset_left = -67.0
+offset_top = -256.0
+offset_right = 103.0
+offset_bottom = -168.0
 text = "Time:"
 label_settings = SubResource("LabelSettings_vebei")
 horizontal_alignment = 1

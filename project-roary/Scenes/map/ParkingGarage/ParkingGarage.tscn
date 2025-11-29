@@ -191,7 +191,7 @@ polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621
 [node name="PlayerSpawnPoints" parent="." instance=ExtResource("12_5oly8")]
 
 [node name="fromStart" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(2783.8005, 3516.115)
+position = Vector2(6325, 4171)
 
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
 EnemySpawnTimerMin = 0.0
@@ -257,8 +257,8 @@ position = Vector2(1914, 9094)
 scale = Vector2(8, 8)
 
 [node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
-position = Vector2(2808.0002, 3307.0005)
-rotation = -1.5707964
+position = Vector2(6123, 4182)
+rotation = 3.1415927
 collision_layer = 1
 collision_mask = 1
 

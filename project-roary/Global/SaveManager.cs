@@ -14,6 +14,10 @@ public partial class SaveManager : Node
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         inv = GetNode<Inventory>("/root/Inventory");
 
+        //metaData.Money = 5000;
+        //change metadata info here to test!
+        //metadata.... = ...;
+
         eventbus.save += Save;
         eventbus.load += Load;
 

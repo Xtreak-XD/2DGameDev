@@ -6,13 +6,14 @@ public partial class SceneManager : Node
 {
     Node currentScene;
     Player player;
-    string comingFromName;
+    public string comingFromName;
     Marker2D spawnPosition;
     PackedScene newPlayerInstance;
     Vector2 loadSpawnPosition = Vector2.Zero;
     private string[] scenesWithoutPlayer = {
         "MainMenu",
         "ParkingGarage",
+        "Setting Menu",
     };
 
     public override void _Ready()
@@ -20,7 +21,7 @@ public partial class SceneManager : Node
         newPlayerInstance = GD.Load<PackedScene>("res://Scenes/entities/player/player.tscn");
         var root = GetTree().Root;
         currentScene = root.GetChild(root.GetChildCount() - 1);
-
+        
         if (!ShouldSceneHavePlayer(currentScene))
         {
             GD.Print($"Scene {currentScene.Name} should not have a player");

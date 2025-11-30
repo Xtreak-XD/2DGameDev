@@ -24,7 +24,9 @@ public partial class MainMenu : Control
         saveManager = GetNode<SaveManager>("/root/SaveManager");
 
         checkForSaveFile();
+        eventbus.EmitSignal("loadSettings");
 
+        eventbus.leftSettings += onLeftSettings;
         playContinue.Pressed += onPlayContinuePressed;
         Options.Pressed += onOptionsPressed;
         Exit.Pressed += onExitPressed;
@@ -72,8 +74,13 @@ public partial class MainMenu : Control
 
     void onOptionsPressed()
     {
-        //do later
-        GD.Print("open options scene!");
+        Hide();
+        eventbus.EmitSignal("showSettings");
+    }
+
+    void onLeftSettings()
+    {
+        Show();
     }
 
     void onExitPressed()
@@ -84,6 +91,7 @@ public partial class MainMenu : Control
 
     public override void _ExitTree()
     {
+        eventbus.leftSettings -= onLeftSettings;
         playContinue.Pressed -= onPlayContinuePressed;
         Options.Pressed -= onOptionsPressed;
         Exit.Pressed -= onExitPressed;

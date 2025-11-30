@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=18 format=3 uid="uid://bcml7nmxbu4j4"]
 
+[ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
 [ext_resource type="Texture2D" uid="uid://ccibbsncsdid5" path="res://Sprites/world/overworld_stadium.png" id="2_gknab"]
+[ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_otqv2"]
 [ext_resource type="Texture2D" uid="uid://dtook4le0doxv" path="res://Sprites/world/overworld_gc.png" id="3_depd0"]
 [ext_resource type="Texture2D" uid="uid://xvnrsto6o2h5" path="res://Sprites/world/overworld_pg.png" id="4_255qt"]
 [ext_resource type="Texture2D" uid="uid://cobka0qcnaod1" path="res://Sprites/world/overworld_gl.png" id="4_gknab"]
@@ -12,14 +14,25 @@
 [ext_resource type="Texture2D" uid="uid://dmede855fvmky" path="res://Sprites/misc/firework_rocket.png" id="11_pnd8i"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
+texture = ExtResource("1_pnd8i")
+modulate_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lmre"]
+shader = ExtResource("2_otqv2")
+shader_parameter/intensity = 0.250000011875
+shader_parameter/base_water_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_scale = 1.25000005611512
+shader_parameter/clarity = 0.0430000020425
+
 [sub_resource type="Environment" id="Environment_uny04"]
 background_mode = 3
 glow_normalized = true
 adjustment_enabled = true
 adjustment_saturation = 1.25
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_up40q"]
-radius = 177.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_rm1pb"]
+radius = 148.33745
 
 [node name="Overworld" type="Node2D"]
 
@@ -34,6 +47,19 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lakeBorder"]
 polygon = PackedVector2Array(2345, 6197, 2226, 6182, 2144, 6147, 2042, 6083, 1934, 5990, 1842, 5736, 1934, 5387, 2066, 5138, 2179, 4999, 2288, 4928, 2516, 4740, 2708, 4653, 2921, 4493, 3048, 4446, 3813, 4003, 4500, 3557, 4740, 3434, 4957, 3375, 5164, 3357, 5385, 3375, 5592, 3476, 5797, 3604, 5917, 3733, 6002, 3842, 6072, 3987, 6098, 4120, 6090, 4249, 6057, 4371, 6031, 4465, 5971, 4574, 5891, 4768, 5828, 4887, 5800, 4952, 5770.7974, 5032.782, 5764, 5152, 5828, 5440, 5885, 5601, 5870, 5785, 5797, 5951, 5704, 6042, 5553, 6108, 5276, 6389, 5133, 6659, 4950, 6921, 4705, 7123, 4519, 7271, 4320, 7380, 4132, 7429, 3980, 7393, 3829, 7214, 3702, 6934, 3580, 6511, 3429, 6335, 3250, 6267, 3050, 6270, 2789, 6283)
+
+[node name="LakeBottom" type="Panel" parent="."]
+offset_left = 1454.0
+offset_top = 3098.0
+offset_right = 6828.0
+offset_bottom = 7793.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_otqv2")
+
+[node name="lakeShader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_1lmre")
+position = Vector2(3982.5002, 5386)
+scale = Vector2(0.7355, 1.061)
+texture = ExtResource("1_pnd8i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uny04")
@@ -109,8 +135,8 @@ texture = ExtResource("3_depd0")
 position = Vector2(5740, 6787)
 path = "res://Scenes/testScenes/TestScene.tscn"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
-shape = SubResource("CircleShape2D_up40q")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="sceneSwitchArea"]
+shape = SubResource("CircleShape2D_rm1pb")
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
 spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing")]

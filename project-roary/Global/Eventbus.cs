@@ -51,4 +51,8 @@ public partial class Eventbus : Node
     //save and load
     [Signal] public delegate void saveEventHandler(bool firstLoad = false);
     [Signal] public delegate void loadEventHandler();
+    [Signal] public delegate void loadSettingsEventHandler();
+
+    [Signal] public delegate void showSettingsEventHandler();
+    [Signal] public delegate void leftSettingsEventHandler();
 }

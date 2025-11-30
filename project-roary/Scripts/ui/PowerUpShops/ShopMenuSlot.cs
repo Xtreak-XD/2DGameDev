@@ -28,7 +28,11 @@ public partial class ShopMenuSlot : TextureButton
 
 	public override void _ExitTree()
     {
-       Pressed -= OnSlotPressed;
+    	Pressed -= OnSlotPressed;
+		Toggled -= OnSlotToggled;
+
+		MouseEntered -= OnMouseEntered;
+		MouseExited -= OnMouseExited;
     }
 
 	public void SetItem(IndividualItem newItem)

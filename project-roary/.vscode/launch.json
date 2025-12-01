@@ -7,7 +7,7 @@
       "request": "launch",
       "preLaunchTask": "build",
       "program": "${env:GODOT4}", //we will need to have everyone set env varable for godot!!
-      "args": [],
+      "args": ["--debug-collisions"],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
     }

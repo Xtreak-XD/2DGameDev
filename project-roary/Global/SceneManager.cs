@@ -10,7 +10,6 @@ public partial class SceneManager : Node
     Marker2D spawnPosition;
 
     PackedScene newPlayerInstance;
-
     public override void _Ready()
     {
         newPlayerInstance = GD.Load<PackedScene>("res://Scenes/entities/player/player.tscn");
@@ -31,7 +30,8 @@ public partial class SceneManager : Node
     {
         comingFromName = currentScene.Name;
         player = from.GetNode<Player>("Player");//saving player
-        player.GetParent().RemoveChild(player); 
+        player.GetParent().RemoveChild(player);
+
         CallDeferred("_deferred_scene_switch", scene);
     }
 
@@ -52,7 +52,6 @@ public partial class SceneManager : Node
         player.CallDeferred(nameof(Player.setSpawnPosition), spawn);
 
         currentScene = newScene;
-
     }
 
     public Vector2 extractCorrectSpawnpoint(Node sceneToSpawnIn, string comingFromName)

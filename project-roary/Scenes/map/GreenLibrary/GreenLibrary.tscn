@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7j1lsbdli03x"]
+[gd_scene load_steps=7 format=3 uid="uid://b7j1lsbdli03x"]
 
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_ict7c"]
 [ext_resource type="PackedScene" uid="uid://bed4fyrobgykm" path="res://Scenes/entities/enemies/logo.tscn" id="1_pynll"]
 [ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="2_pynll"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="4_ovpjc"]
+[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://audio/WorldAudioManager.cs" id="5_brcu7"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_j2nck"]
+clip_count = 2
+clip_0/name = &"bossMusic"
+clip_0/auto_advance = 0
+clip_1/name = &"Bg"
+clip_1/auto_advance = 0
 
 [node name="GreenLibrary" type="Node2D"]
 
@@ -10,10 +19,16 @@
 position = Vector2(571.99994, 544.99994)
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_ict7c")]
-spawnsAvailable = [NodePath("fromMaze")]
+spawnsAvailable = [NodePath("fromMaze"), NodePath("fromOverworld"), NodePath("fromNothing")]
 
 [node name="fromMaze" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(1672, 531)
+
+[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(1673, 517)
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(98, 110)
 
 [node name="MermaidPhase2" parent="." node_paths=PackedStringArray("starfishSpawns") instance=ExtResource("2_pynll")]
 position = Vector2(507, 159)
@@ -33,3 +48,15 @@ position = Vector2(211, 352)
 
 [node name="StarfishSpawn5" type="Marker2D" parent="."]
 position = Vector2(1005, 269)
+
+[node name="GLToOverworld" parent="." instance=ExtResource("4_ovpjc")]
+position = Vector2(1197, 873)
+path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="WorldAudioManager" type="Node" parent="."]
+script = ExtResource("5_brcu7")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = SubResource("AudioStreamInteractive_j2nck")
+autoplay = true
+bus = &"Music"

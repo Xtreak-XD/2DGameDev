@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
-[ext_resource type="Texture2D" uid="uid://bnoo3dtouqe8i" path="res://placeholderTestAssets/testBackground.png" id="1_hm8wl"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="3_106wm"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="4_bobsk"]
@@ -8,11 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="6_lfsl6"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="7_lfsl6"]
 [ext_resource type="Resource" uid="uid://ba25mnd1fvhw0" path="res://Resources/Shop/TestFruits.tres" id="8_d43vx"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Pen.tscn" id="8_k25gx"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Thumbstack.tscn" id="9_3unw3"]
 [ext_resource type="Resource" uid="uid://dvkbfxeeae2tp" path="res://Resources/Shop/WeaponShop.tres" id="9_fkpmq"]
 [ext_resource type="PackedScene" uid="uid://dsxvnrdp3nf1i" path="res://Scenes/map/GranhamCenter/ShopKeeper.tscn" id="10_3unw3"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Pencil.tscn" id="10_d43vx"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -67,20 +63,5 @@ shopConfig = ExtResource("8_d43vx")
 [node name="WeaponShop" parent="." instance=ExtResource("10_3unw3")]
 position = Vector2(1263, 857)
 shopConfig = ExtResource("9_fkpmq")
-
-[node name="Items" parent="." instance=ExtResource("8_k25gx")]
-position = Vector2(1700, 870)
-
-[node name="Pen" parent="." instance=ExtResource("8_k25gx")]
-position = Vector2(1654, 1458)
-
-[node name="Thumbstack" parent="." instance=ExtResource("9_3unw3")]
-position = Vector2(2373, 996)
-
-[node name="Pencil" parent="." instance=ExtResource("10_d43vx")]
-position = Vector2(2202, 368)
-
-[node name="Pencil2" parent="." instance=ExtResource("10_d43vx")]
-position = Vector2(2503, 1600)
 
 [editable path="Enemymanager"]

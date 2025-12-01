@@ -16,6 +16,7 @@ public partial class InteractionManager : Node2D
     public override void _Ready()
     {
         player = (Player)GetTree().GetFirstNodeInGroup("player");
+        GD.Print(player);
     
         label = GetNode<Label>("Label");
         
@@ -25,8 +26,6 @@ public partial class InteractionManager : Node2D
 
     public override void _Process(double delta)
     {
-        if(player is not Player) return;
-
         if (player == null || !IsInstanceValid(player))
         {
             player = (Player)GetTree().GetFirstNodeInGroup("player");
@@ -41,7 +40,7 @@ public partial class InteractionManager : Node2D
             activeAreas.Sort(SortByDistanceToPlayer);
             
             label.Text = labelText + activeAreas[0].actionName;
-            label.GlobalPosition = activeAreas[0].GlobalPosition + new Vector2(-(label.Size.X / 2), -36);
+            label.GlobalPosition = activeAreas[0].GlobalPosition + new Vector2(-(label.Size.X / 2), -300);
             label.Show();
         }
         else

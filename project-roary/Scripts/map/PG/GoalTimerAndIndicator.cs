@@ -22,6 +22,11 @@ public partial class GoalTimerAndIndicator : Node2D
 
 		GD.Print("Timer has " + timer.TimeLeft + " seconds.");
 	}
+    public override void _ExitTree()
+    {
+        timer.Timeout -= TimeOut;
+		flashTimer.Timeout -= Flash;
+    }
 
 	public void Flash()
     {

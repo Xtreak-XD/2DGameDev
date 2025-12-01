@@ -23,39 +23,12 @@ public partial class DriveableCar : Player
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(HasThrottle())
-        {
-            float turn = Input.GetAxis("Left", "Right");
-			float turnAngle = Mathf.DegToRad(turn * stats.SteeringSpeed);
-			Vector2 accelerationVector = Vector2.Zero;
-
-			if(Input.IsActionPressed("Up"))
-			{
-				accelerationVector = Transform.X * stats.Acceleration;
-			}
-
-			Velocity += accelerationVector * (float) delta;
-			Velocity = Velocity.Rotated(turnAngle);
-
-			if(Velocity.Length() > stats.TopSpeed)
-            {
-                Velocity = Velocity.Normalized()
-                * stats.TopSpeed;
-            }
-
-			SetRotation();
-			MoveAndSlide();
-        }
+		SetRotation();
     }
-
-	public bool HasThrottle()
-	{	
-		return Input.IsActionPressed("Up");
-	}
 
 	public void SetRotation()
 	{
-		if (StateMachine.currentState is ParkState)
+		if (StateMachine.currentState is ParkState || StateMachine.currentState is ReverseState)
 		{
 			return;
 		}

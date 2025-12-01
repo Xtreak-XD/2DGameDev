@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=23 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="12_5oly8"]
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="17_vebei"]
 [ext_resource type="Script" uid="uid://c220iuf2a0kll" path="res://Scripts/map/PG/TimerLabel.cs" id="17_wq2dn"]
+[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="19_slse4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vebei"]
 size = Vector2(1043, 1224)
@@ -212,6 +213,172 @@ polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(6325, 4171)
+
+[node name="reservedLabels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="reserveLabel" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1327.0
+offset_top = 4413.0
+offset_right = 2143.0
+offset_bottom = 4561.0
+rotation = -1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel10" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1535.0
+offset_top = 1346.0
+offset_right = 2351.0
+offset_bottom = 1494.0
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel11" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 4643.0
+offset_top = 1353.0
+offset_right = 5459.0
+offset_bottom = 1501.0
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel12" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 6607.0
+offset_top = 1340.0
+offset_right = 7423.0
+offset_bottom = 1488.0
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel13" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8419.0
+offset_top = 8789.0
+offset_right = 9235.0
+offset_bottom = 8937.0
+rotation = -3.1415927
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel14" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 6357.0
+offset_top = 8741.0
+offset_right = 7173.0
+offset_bottom = 8889.0
+rotation = -3.1415927
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel15" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 3425.0
+offset_top = 8681.0
+offset_right = 4241.0
+offset_bottom = 8829.0
+rotation = -3.1415927
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel2" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1291.0
+offset_top = 7323.0
+offset_right = 2107.0
+offset_bottom = 7471.0
+rotation = -1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel3" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1264.0
+offset_top = 2354.0
+offset_right = 2080.0
+offset_bottom = 2502.0
+rotation = -1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel4" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8725.0
+offset_top = 3681.0
+offset_right = 9541.0
+offset_bottom = 3829.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel5" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8689.0
+offset_top = 6591.0
+offset_right = 9505.0
+offset_bottom = 6739.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel6" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8662.0
+offset_top = 1622.0
+offset_right = 9478.0
+offset_bottom = 1770.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel7" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8679.0
+offset_top = 2651.0
+offset_right = 9495.0
+offset_bottom = 2799.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel8" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8712.0
+offset_top = 5598.0
+offset_right = 9528.0
+offset_bottom = 5746.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel9" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8696.0
+offset_top = 7682.0
+offset_right = 9512.0
+offset_bottom = 7830.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
 
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
 EnemySpawnTimerMin = 0.0

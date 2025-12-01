@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://con1q0nhgkj8i"]
+[gd_scene load_steps=16 format=3 uid="uid://con1q0nhgkj8i"]
 
 [ext_resource type="Script" uid="uid://c3of3utw4kpaw" path="res://Scripts/entities/car/DriveableCar.cs" id="1_n2rgb"]
 [ext_resource type="Texture2D" uid="uid://b1twhsk52s8ia" path="res://Sprites/entities/player/driveable_car.jpeg" id="1_u0rys"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://qkt22wionkvp" path="res://Scripts/entities/car/car_state_machine/DriveState.cs" id="5_7i5lx"]
 [ext_resource type="Script" uid="uid://c60jcyd2mmvco" path="res://Scripts/entities/car/car_state_machine/DecelerateState.cs" id="6_7i5lx"]
 [ext_resource type="PackedScene" uid="uid://b7hfl3picvwq7" path="res://Scenes/ui/MenuScreen.tscn" id="9_emffi"]
+[ext_resource type="Script" uid="uid://cmmmk7qcu7n77" path="res://Scripts/entities/car/car_state_machine/ReverseState.cs" id="10_8qdtk"]
 
 [sub_resource type="Resource" id="Resource_8qdtk"]
 script = ExtResource("3_pc2um")
@@ -61,14 +62,17 @@ script = ExtResource("2_0u1t5")
 [node name="ParkTimer" type="Timer" parent="DriveableCarStateMachine"]
 wait_time = 0.1
 
+[node name="Park" type="Node" parent="DriveableCarStateMachine"]
+script = ExtResource("4_hjrlu")
+
 [node name="Drive" type="Node" parent="DriveableCarStateMachine"]
 script = ExtResource("5_7i5lx")
 
 [node name="Decelerate" type="Node" parent="DriveableCarStateMachine"]
 script = ExtResource("6_7i5lx")
 
-[node name="Park" type="Node" parent="DriveableCarStateMachine"]
-script = ExtResource("4_hjrlu")
+[node name="Reverse" type="Node" parent="DriveableCarStateMachine"]
+script = ExtResource("10_8qdtk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yhw32")

@@ -181,4 +181,11 @@ public partial class SettingsMenu : Control
 		float volumeDb = linear > 0 ? Mathf.LinearToDb(linear) : -80f;
 	    AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(name), volumeDb);
     }
+
+	private void ChangeVolume(double value, String name)
+    {
+		float linear = (float)value / 100.0f;
+		float volumeDb = linear > 0 ? Mathf.LinearToDb(linear) : -80f;
+	    AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(name), volumeDb);
+    }
 }

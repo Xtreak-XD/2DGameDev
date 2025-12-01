@@ -1,4 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="3_106wm"]

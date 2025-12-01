@@ -4,6 +4,7 @@ using System;
 public partial class SettingsMenu : Control
 {
 	public Eventbus eventbus;
+	private AudioGlobal audioGlobal;
 	// Audio sliders
 	private HSlider masterSlider;
 	private Label masterValueLabel;
@@ -16,19 +17,20 @@ public partial class SettingsMenu : Control
 
 	// Display settings
 	private CheckBox fullscreenCheck;
-
-	private MenuScreen menuScreen;
 	private CheckBox vsyncCheck;
 
 	public SceneManager sceneManager;
-	
 	public Button back;
 	public Button apply;
+
 	public override void _Ready()
     {
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		audioGlobal = GetNode<AudioGlobal>("/root/AudioGlobal");
+
         Hide();
+
 		ProcessMode = ProcessModeEnum.Always;
 
 		// Audio settings nodes
@@ -42,8 +44,6 @@ public partial class SettingsMenu : Control
 		enemySFXLabel = GetNode<Label>("%EnemySFXValue");
 		fullscreenCheck = GetNode<CheckBox>("%FullscreenCheck");
 		vsyncCheck = GetNode<CheckBox>("%VsyncCheck");
-
-		//menuScreen = GetNode<MenuScreen>("%Menu Screen");
 
 		back = GetNode<Button>("%BackButton");
 		apply = GetNode<Button>("%ApplyButton");
@@ -60,8 +60,6 @@ public partial class SettingsMenu : Control
 
 		//eventbus.loadSettings += LoadSettings;
 		eventbus.showSettings += ShowSettings;
-    
-		LoadSettings();
 	}
 
 	public override void _Input(InputEvent @event)
@@ -75,80 +73,83 @@ public partial class SettingsMenu : Control
 
 	public void ShowSettings()
 	{
+		LoadSettingsToUI();
 		Show();
 	}
 
 	private void SaveSettings()
     {
-        var config = new ConfigFile();
-		config.SetValue("audio", "master_volume", masterSlider.Value);
-		config.SetValue("audio", "music_volume", musicSlider.Value);
-		config.SetValue("audio", "playerSFX_volume", playerSFXSlider.Value);
-		config.SetValue("audio", "enemySFX_volume", enemySFXSlider.Value);
+		audioGlobal.SaveSettings(
+			(float)masterSlider.Value,
+			(float)musicSlider.Value,
+			(float)playerSFXSlider.Value,
+			(float)enemySFXSlider.Value
+		);
 
+        var config = new ConfigFile();
+		config.Load("user://settings.cfg");
 		config.SetValue("display", "fullscreen", fullscreenCheck.ButtonPressed);
 		config.SetValue("display", "vsync", vsyncCheck.ButtonPressed);
-
 		config.Save("user://settings.cfg");
     }
 
-	private void LoadSettings()
+	private void LoadSettingsToUI()
 	{
-		var config = new ConfigFile();
-		var err = config.Load("user://settings.cfg");
+		// Load audio settings from AudioGlobal
+		masterSlider.Value = audioGlobal.MasterVolume;
+		musicSlider.Value = audioGlobal.MusicVolume;
+		playerSFXSlider.Value = audioGlobal.PlayerSFXVolume;
+		enemySFXSlider.Value = audioGlobal.EnemySFXVolume;
 
-		if (err != Error.Ok)
-		{
-			masterSlider.Value = 80;
-			musicSlider.Value = 70;
-			playerSFXSlider.Value = 85;
-			enemySFXSlider.Value = 85;
-			return;
-		}
-
-		masterSlider.Value = (float)config.GetValue("audio", "master_volume", 80);
-		musicSlider.Value = (float)config.GetValue("audio", "music_volume", 70);
-		playerSFXSlider.Value = (float)config.GetValue("audio", "playerSFX_volume", 85);
-		enemySFXSlider.Value = (float)config.GetValue("audio", "enemySFX_volume", 85);
-
+		// Update labels (ValueChanged events will fire automatically)
 		masterValueLabel.Text = $"{(int)masterSlider.Value}%";
 		musicValueLabel.Text = $"{(int)musicSlider.Value}%";
 		playerSFXValueLabel.Text = $"{(int)playerSFXSlider.Value}%";
 		enemySFXLabel.Text = $"{(int)enemySFXSlider.Value}%";
 
-		fullscreenCheck.ButtonPressed = (bool)config.GetValue("display", "fullscreen", true);
-		vsyncCheck.ButtonPressed = (bool)config.GetValue("display", "vsync", true);
+		var config = new ConfigFile();
+		var err = config.Load("user://settings.cfg");
+		
+		if (err == Error.Ok)
+		{
+			fullscreenCheck.ButtonPressed = (bool)config.GetValue("display", "fullscreen", true);
+			vsyncCheck.ButtonPressed = (bool)config.GetValue("display", "vsync", true);
+		}
+		else
+		{
+			fullscreenCheck.ButtonPressed = true;
+			vsyncCheck.ButtonPressed = true;
+		}
 	}
 
     private void OnMasterVolumeChanged(double value)
     {
         masterValueLabel.Text = $"{(int)value}%";
 
-		ChangeVolume(value, "Master");
+		audioGlobal.SetVolume((float)value, "Master");
     }
 
     private void OnMusicVolumeChanged(double value)
     {
         musicValueLabel.Text = $"{(int)value}%";
 
-		ChangeVolume(value, "Music");
+		audioGlobal.SetVolume((float)value, "Music");
     }
 
     private void OnPlayerSFXVolumeChanged(double value)
     {
         playerSFXValueLabel.Text = $"{(int)value}%";
-		ChangeVolume(value, "PlayerSFX");
+		audioGlobal.SetVolume((float)value, "PlayerSFX");
     }
 
 	private void OnEnemySFXVolumeChanged(double value)
 	{
 		enemySFXLabel.Text = $"{(int)value}%";
-		ChangeVolume(value, "EnemySFX");
+		audioGlobal.SetVolume((float)value, "EnemySFX");
 	}
 
 	private void OnFullscreenToggled(bool toggledOn)
     {
-		GD.Print(toggledOn);
         if (toggledOn)
         {
             DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
@@ -176,11 +177,4 @@ public partial class SettingsMenu : Control
 		Hide();
 		eventbus.EmitSignal("leftSettings");
 	}
-
-	private void ChangeVolume(double value, String name)
-    {
-		float linear = (float)value / 100.0f;
-		float volumeDb = linear > 0 ? Mathf.LinearToDb(linear) : -80f;
-	    AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(name), volumeDb);
-    }
 }

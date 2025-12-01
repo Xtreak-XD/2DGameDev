@@ -4,9 +4,11 @@ using System;
 public partial class AudioGlobal : Node
 {
 	public String currScene; // OverWorld, GC, PG, GL, Stadium, Boss
-	public int musicVolume;
-	public int sfxVolume;
 	private Eventbus eventbus;
+	public float MasterVolume { get; private set; }
+	public float MusicVolume { get; private set; }
+	public float PlayerSFXVolume { get; private set; }
+	public float EnemySFXVolume { get; private set; }
 
 	public override void _Ready()
     {
@@ -22,11 +24,10 @@ public partial class AudioGlobal : Node
 
 		if (err != Error.Ok)
 		{
-			// Apply defaults if no settings file exists
-			ApplyVolume(80, "Master");
-			ApplyVolume(70, "Music");
-			ApplyVolume(85, "PlayerSFX");
-			ApplyVolume(85, "EnemySFX");
+			SetVolume(80, "Master");
+			SetVolume(70, "Music");
+			SetVolume(85, "PlayerSFX");
+			SetVolume(85, "EnemySFX");
 			return;
 		}
 
@@ -36,16 +37,43 @@ public partial class AudioGlobal : Node
 		float playerSFXVolume = (float)config.GetValue("audio", "playerSFX_volume", 85);
 		float enemySFXVolume = (float)config.GetValue("audio", "enemySFX_volume", 85);
 
-		ApplyVolume(masterVolume, "Master");
-		ApplyVolume(musicVolume, "Music");
-		ApplyVolume(playerSFXVolume, "PlayerSFX");
-		ApplyVolume(enemySFXVolume, "EnemySFX");
+		SetVolume(masterVolume, "Master");
+		SetVolume(musicVolume, "Music");
+		SetVolume(playerSFXVolume, "PlayerSFX");
+		SetVolume(enemySFXVolume, "EnemySFX");
 		
 		GD.Print($"Loaded settings - Music: {musicVolume}, Master: {masterVolume}");
 	}
 
-	public void ApplyVolume(float value, string busName)
+	public void SaveSettings(float master, float music, float playerSFX, float enemySFX)
+    {
+        var config = new ConfigFile();
+		config.Load("user://settings.cfg");
+		config.SetValue("audio", "master_volume", master);
+		config.SetValue("audio", "music_volume", music);
+		config.SetValue("audio", "playerSFX_volume", playerSFX);
+		config.SetValue("audio", "enemySFX_volume", enemySFX);
+		config.Save("user://settings.cfg");
+    }
+
+	public void SetVolume(float value, string busName)
 	{
+		switch (busName)
+		{
+			case "Master":
+				MasterVolume = value;
+				break;
+			case "Music":
+				MusicVolume = value;
+				break;
+			case "PlayerSFX":
+				PlayerSFXVolume = value;
+				break;
+			case "EnemySFX":
+				EnemySFXVolume = value;
+				break;
+		}
+		
 		float linear = value / 100.0f;
 		float volumeDb = linear > 0 ? Mathf.LinearToDb(linear) : -80f;
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(busName), volumeDb);

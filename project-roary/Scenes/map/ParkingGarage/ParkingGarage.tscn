@@ -76,7 +76,7 @@ car = ExtResource("8_581fp")
 [node name="Hitbox" parent="DummyCarContainer/DummyCar16" instance=ExtResource("3_slse4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar16/Hitbox"]
-position = Vector2(61.5, 44)
+position = Vector2(143, 66)
 shape = SubResource("RectangleShape2D_slse4")
 
 [node name="DummyCar17" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
@@ -86,7 +86,7 @@ car = ExtResource("9_dvqmy")
 [node name="Hitbox" parent="DummyCarContainer/DummyCar17" instance=ExtResource("3_slse4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar17/Hitbox"]
-position = Vector2(81, -5)
+position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_slse4")
 
 [node name="DummyCar18" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
@@ -96,7 +96,7 @@ car = ExtResource("10_shi2b")
 [node name="Hitbox" parent="DummyCarContainer/DummyCar18" instance=ExtResource("3_slse4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar18/Hitbox"]
-position = Vector2(81, -25)
+position = Vector2(-35, -19)
 shape = SubResource("RectangleShape2D_slse4")
 
 [node name="DummyCar19" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
@@ -106,7 +106,7 @@ car = ExtResource("10_vebei")
 [node name="Hitbox" parent="DummyCarContainer/DummyCar19" instance=ExtResource("3_slse4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar19/Hitbox"]
-position = Vector2(111, -74)
+position = Vector2(-8, -74)
 shape = SubResource("RectangleShape2D_slse4")
 
 [node name="DummyCar12" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]

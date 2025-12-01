@@ -11,6 +11,7 @@ public partial class TimerLabel : Label
 
 	public override void _Ready()
     {
+		LabelSettings.FontColor = Colors.White;
         goalTimerAndIndicator = GetParent().GetNode<GoalTimerAndIndicator>("GoalTimerAndIndicator");
 		player = GetParent().GetNode<DriveableCar>("DriveableCar");
 

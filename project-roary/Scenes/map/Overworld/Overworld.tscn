@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
 [ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
 [ext_resource type="Texture2D" uid="uid://dmede855fvmky" path="res://Sprites/misc/firework_rocket.png" id="11_pnd8i"]
+[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://audio/WorldAudioManager.cs" id="10_rm1pb"]
+[ext_resource type="AudioStream" uid="uid://c77tlt3vjt80v" path="res://audio/Background/Sadge.mp3" id="10_up40q"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
@@ -33,6 +35,10 @@ adjustment_saturation = 1.25
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm1pb"]
 radius = 148.33745
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_rm1pb"]
+stream_count = 1
+stream_0 = ExtResource("10_up40q")
 
 [node name="Overworld" type="Node2D"]
 
@@ -139,14 +145,34 @@ path = "res://Scenes/testScenes/TestScene.tscn"
 shape = SubResource("CircleShape2D_rm1pb")
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
-spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing")]
+spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing"), NodePath("fromGreenLibrary"), NodePath("fromGrahamCenter")]
 
 [node name="fromTestScene" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(4729, 8931)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(6102, 3345)
+position = Vector2(5050, 9465)
 
-[node name="Save" parent="." instance=ExtResource("10_up40q")]
-position = Vector2(7151, 3776)
-texture = ExtResource("11_pnd8i")
+[node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2411, 9590)
+
+[node name="fromGrahamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
+z_index = 4
+position = Vector2(7626, 8955)
+
+[node name="WorldAudioManager" type="Node" parent="."]
+script = ExtResource("10_rm1pb")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = SubResource("AudioStreamPlaylist_rm1pb")
+autoplay = true
+bus = &"Music"
+
+[node name="OverworldToGL" parent="." instance=ExtResource("9_ngc8d")]
+z_index = 3
+position = Vector2(1890, 9514)
+path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
+
+[node name="OverworldToGC" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(8113, 8849)
+path = "res://Scenes/map/GranhamCenter/GrahamCenter.tscn"

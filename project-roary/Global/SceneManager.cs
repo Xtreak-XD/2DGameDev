@@ -107,7 +107,6 @@ public partial class SceneManager : Node
         player.CallDeferred(nameof(Player.setSpawnPosition), spawn);
 
         currentScene = newScene;
-
     }
 
     public Vector2 extractCorrectSpawnpoint(Node sceneToSpawnIn, string comingFromName)

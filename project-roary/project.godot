@@ -25,6 +25,7 @@ InteractionManager="*res://Scenes/helperScenes/interaction_manager.tscn"
 Effects="*res://Global/effects.tscn"
 SceneManager="*res://Global/SceneManager.cs"
 SettingsMenu="*res://Scenes/ui/SettingsMenu.tscn"
+AudioGlobal="*res://Scripts/audio/AudioGlobal.cs"
 
 [display]
 

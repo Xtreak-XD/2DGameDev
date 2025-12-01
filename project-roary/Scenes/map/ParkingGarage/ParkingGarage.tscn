@@ -1,5 +1,3 @@
-//arking Garage Scene
-
 [gd_scene load_steps=7 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]

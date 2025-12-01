@@ -10,6 +10,8 @@ public partial class ShopMenu : Control
 
 	private Eventbus eventbus;
 
+	public SaveManager saveManager;
+
 	private Label receiptLabel;
 	private Label coinLabel;
 	private Label totalLabel;
@@ -28,15 +30,16 @@ public partial class ShopMenu : Control
     {
 		Hide();
 		ProcessMode = ProcessModeEnum.Always;
+		saveManager = GetNode<SaveManager>("/root/SaveManager");
 
 		cart = new System.Collections.Generic.Dictionary<IndividualItem, CartItem>();
 		receiptLabel = GetNode<Label>("%Receipt");
 		coinLabel = GetNode<Label>("%Coins");
 		totalLabel = GetNode<Label>("%Total");
-		playerMetaData = ResourceLoader.Load<MetaData>("res://Resources/entities/player/playerMetaData.tres");
 		playerInv = GetNode<Inventory>("/root/Inventory");
 		buyButton = GetNode<Button>("%BuyButton");
 		player = (Player)GetTree().GetFirstNodeInGroup("player");
+		playerMetaData = saveManager.GetMetaData();
 		
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
         eventbus.openShopMenu += OpenShop;
@@ -135,7 +138,7 @@ public partial class ShopMenu : Control
 			return;
 		}
 
-		String receipt = "";
+		string receipt = "";
 		totalCost = 0;
         foreach (var entry in cart.Values)
         {
@@ -148,7 +151,7 @@ public partial class ShopMenu : Control
 		receiptLabel.Text = receipt;
 		totalLabel.Text = "Total: $" + totalCost;
 
-		buyButton.Disabled = (totalCost > playerMetaData.Money || cart.Count == 0);
+		buyButton.Disabled = totalCost > playerMetaData.Money || cart.Count == 0;
 
 		// Change total label color
 		if (totalCost > playerMetaData.Money)
@@ -165,7 +168,7 @@ public partial class ShopMenu : Control
 	{
 		if (cart.Count == 0) return;
 
-		playerMetaData.Money -= totalCost;
+		playerMetaData.updateMoney(-totalCost);
 		bool allItemsAdded = PurchaseItems();
 		
 		removeItemFromShop();
@@ -199,7 +202,7 @@ public partial class ShopMenu : Control
 		{
 			coinLabel.Text = playerMetaData.Money.ToString();
 		}
-		eventbus.EmitSignal(Eventbus.SignalName.updateMoneyDisplay);
+		eventbus.EmitSignal(Eventbus.SignalName.updateMoney, playerMetaData.Money);
 	}
 
 	private void PopulateShop()

@@ -33,5 +33,6 @@ public partial class ShopInteractable : Node2D
 	public void openShop()
     {
 		eventbus.EmitSignal(Eventbus.SignalName.openShopMenu, true, shopConfig);
+		eventbus.EmitSignal("interactionComplete");
     }
 }

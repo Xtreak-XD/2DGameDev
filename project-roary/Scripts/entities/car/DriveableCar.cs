@@ -1,13 +1,13 @@
 using System;
 using Godot;
 
-public partial class DriveableCar : CharacterBody2D
+public partial class DriveableCar : Player
 {
-	public CarStateMachine stateMachine;
+	public CarStateMachine StateMachine;
 
 	[Export]
 	public CarStats stats;
-	public Vector2 direction = Vector2.Zero;
+	public Vector2 Direction = Vector2.Zero;
 
 	public override void _Ready()
 	{
@@ -15,8 +15,8 @@ public partial class DriveableCar : CharacterBody2D
 
 		//GD.Print("Car is in: " + GetGroups());
 
-		stateMachine = GetNode<CarStateMachine>("DriveableCarStateMachine");
-		stateMachine.Initialize(this);
+		StateMachine = GetNode<CarStateMachine>("DriveableCarStateMachine");
+		StateMachine.Initialize(this);
 	}
 
 	public override void _Process(double delta)
@@ -57,7 +57,7 @@ public partial class DriveableCar : CharacterBody2D
 
 	public void SetRotation()
 	{
-		if (stateMachine.currentState is ParkState)
+		if (StateMachine.currentState is ParkState)
 		{
 			return;
 		}

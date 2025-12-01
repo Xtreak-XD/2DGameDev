@@ -3,6 +3,7 @@ using System;
 
 public partial class SettingsMenu : Control
 {
+	public Eventbus eventbus;
 	// Audio sliders
 	private HSlider masterSlider;
 	private Label masterValueLabel;
@@ -16,9 +17,15 @@ public partial class SettingsMenu : Control
 
 	private MenuScreen menuScreen;
 	private CheckBox vsyncCheck;
+
+	public SceneManager sceneManager;
 	
+	public Button back;
+	public Button apply;
 	public override void _Ready()
     {
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		sceneManager = GetNode<SceneManager>("/root/SceneManager");
         Hide();
 		ProcessMode = ProcessModeEnum.Always;
 
@@ -32,7 +39,10 @@ public partial class SettingsMenu : Control
 		fullscreenCheck = GetNode<CheckBox>("%FullscreenCheck");
 		vsyncCheck = GetNode<CheckBox>("%VsyncCheck");
 
-		menuScreen = GetNode<MenuScreen>("%Menu Screen");
+		//menuScreen = GetNode<MenuScreen>("%Menu Screen");
+
+		back = GetNode<Button>("%BackButton");
+		apply = GetNode<Button>("%ApplyButton");
 
 		masterSlider.ValueChanged += OnMasterVolumeChanged;
 		musicSlider.ValueChanged += OnMusicVolumeChanged;
@@ -40,15 +50,16 @@ public partial class SettingsMenu : Control
 		fullscreenCheck.Toggled += OnFullscreenToggled;
 		vsyncCheck.Toggled += OnVSyncToggled;
 
-		GetNode<Button>("%BackButton").Pressed += OnBackPressed;
-		GetNode<Button>("%ApplyButton").Pressed += SaveSettings;	
+		back.Pressed += OnBackPressed;
+		apply.Pressed += SaveSettings;	
 
-		LoadSettings();
+		eventbus.loadSettings += LoadSettings;
+		eventbus.showSettings += ShowSettings;
     }
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("ui_cancel") && Visible)
+		if (@event.IsActionPressed("Pause") && Visible)
 		{
 			GetViewport().SetInputAsHandled(); // Prevents the event from propagating further (remove if we want to exit completely from option)
 			OnBackPressed();
@@ -63,8 +74,10 @@ public partial class SettingsMenu : Control
 		fullscreenCheck.Toggled -= OnFullscreenToggled;
 		vsyncCheck.Toggled -= OnVSyncToggled;
 
-		GetNode<Button>("%BackButton").Pressed -= OnBackPressed;
-		GetNode<Button>("%ApplyButton").Pressed -= SaveSettings;	
+		back.Pressed -= OnBackPressed;
+		apply.Pressed -= SaveSettings;
+		eventbus.loadSettings -= LoadSettings;
+		eventbus.showSettings -= ShowSettings;
 	}
 
 	public void ShowSettings()
@@ -92,15 +105,15 @@ public partial class SettingsMenu : Control
 
 		if (err != Error.Ok)
 		{
-			masterSlider.Value = 80;
-			musicSlider.Value = 70;
-			sfxSlider.Value = 85;
+			masterSlider.Value = 100;
+			musicSlider.Value = 100;
+			sfxSlider.Value = 100;
 			return;
 		}
 
-		masterSlider.Value = (float)config.GetValue("audio", "master_volume", 80);
-		musicSlider.Value = (float)config.GetValue("audio", "music_volume", 70);
-		sfxSlider.Value = (float)config.GetValue("audio", "sfx_volume", 85);
+		masterSlider.Value = (float)config.GetValue("audio", "master_volume", 100);
+		musicSlider.Value = (float)config.GetValue("audio", "music_volume", 100);
+		sfxSlider.Value = (float)config.GetValue("audio", "sfx_volume", 100);
 
 		fullscreenCheck.ButtonPressed = (bool)config.GetValue("display", "fullscreen", true);
 		vsyncCheck.ButtonPressed = (bool)config.GetValue("display", "vsync", true);
@@ -149,7 +162,7 @@ public partial class SettingsMenu : Control
 	
 	private void OnBackPressed()
     {
-        Hide();
-		menuScreen.Show();
-    }
+		Hide();
+		eventbus.EmitSignal("leftSettings");
+	}
 }

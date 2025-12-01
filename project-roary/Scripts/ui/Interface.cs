@@ -16,7 +16,9 @@ public partial class Interface : CanvasLayer
         {6, "Sunday"}
     };
     public Eventbus eventbus;
-    public Node player;
+    public SaveManager saveManager;
+    public Player player;
+    public Label Money;
     public Label time;
     public Label curDay;
     public Label temp;
@@ -26,29 +28,37 @@ public partial class Interface : CanvasLayer
     public TextureProgressBar health;
     public TextureProgressBar stamina;
 
+
     public override void _EnterTree()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
-        playerMetaData = ResourceLoader.Load<MetaData>("res://Resources/entities/player/playerMetaData.tres");
-
+        saveManager = GetNode<SaveManager>("/root/SaveManager");
         eventbus.timeTick += setTime;
         eventbus.updateHealth += updateHealth;
         eventbus.updateStamina += updateStamina;
-        eventbus.updateMoneyDisplay += updateMoneyDisplay;
+        eventbus.updateMoney += updateMoney;
     }
 
     public override void _Ready()
     {
-        player = GetTree().GetFirstNodeInGroup("player");
-        stamina = GetNode<TextureProgressBar>("%Stamina");
-        health = GetNode<TextureProgressBar>("%Health");
-        moneyAmt = GetNode<Label>("%MoneyAmount");
+        player = (Player)GetTree().GetFirstNodeInGroup("player");
+        Money = GetNode<Label>("HUD/playerinfo/HBoxContainer/VBoxContainer2/HBoxContainer/MoneyAmount");
+        stamina = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Stamina");
+        health = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Health");
 
-        time = GetNode<Label>("%time");
-        curDay = GetNode<Label>("%day");
-        temp = GetNode<Label>("%temp");
+        time = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/time");
+        curDay = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/day");
+        temp = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/temp");
+
+        //setting default
+        MetaData metadata = saveManager.GetMetaData();
+        updateMoney(metadata.Money);
     }
 
+    public void updateMoney(int value)
+    {
+        Money.Text = ": " + value;
+    }
 
     private void updateStamina(int value)
     {
@@ -101,20 +111,13 @@ public partial class Interface : CanvasLayer
         }
     }
 
-    private void updateMoneyDisplay()
-    {
-        if (moneyAmt != null && player != null)
-        {
-            moneyAmt.Text = playerMetaData.Money.ToString();
-        }
-    }
-
     public override void _ExitTree()
     {
         eventbus.timeTick -= setTime;
 
         eventbus.updateHealth -= updateHealth;
         eventbus.updateStamina -= updateStamina;
+        eventbus.updateMoney -= updateMoney;
     }
 
     //use this to receive events for player input related to pause/and ui

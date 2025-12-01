@@ -1,10 +1,11 @@
+using System;
 using Godot;
 
 
 public partial class Player : CharacterBody2D
 {
 
-	[Export] Resource metaData;
+	public SceneManager sceneManager;
 	[Export] public GenericData data;
 	public AnimationPlayer animationPlayer;
 	public PlayerStateMachine stateMachine;
@@ -16,7 +17,7 @@ public partial class Player : CharacterBody2D
 
 	private Eventbus eventbus;
 	private int equippedSlot = -1;
-	private Inventory inv;
+	public Inventory inv;
 
 	public bool usingStamina = false;
 	public bool recoveringStamina = false;
@@ -27,19 +28,23 @@ public partial class Player : CharacterBody2D
 	public Vector2 mousePosition;
 	private Vector2 knockBackVelocity = Vector2.Zero;
 	private const float KnockBackDecay = 750.0f;
-	public override void _Ready()
-	{
-		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
+
+    public override void _EnterTree()
+    {
 		AddToGroup("player");
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		eventbus.itemDropped += spawnItemInWorld;
+		eventbus.itemEquipped += equipItem;
+		eventbus.inventoryUpdated += checkIfEquipped;
+    }
+	public override void _Ready()
+	{
+		sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		stateMachine.Initialize(this);
 
 		inv = GetNode<Inventory>("/root/Inventory");
-
-		eventbus.itemDropped += spawnItemInWorld;
-		eventbus.itemEquipped += equipItem;
-		eventbus.inventoryUpdated += checkIfEquipped;
 	}
 
 	public override void _Process(double delta)
@@ -191,5 +196,14 @@ public partial class Player : CharacterBody2D
 			GD.Print("Equipped slot is now empty");
 		}
 	}
+
+	//for testing
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("load"))
+        {
+            eventbus.EmitSignal("load");
+        }
+    }
 
 }

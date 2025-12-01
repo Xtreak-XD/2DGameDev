@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_mqb3x")
-TopSpeed = 750.0
-Acceleration = 250.0
-SteeringSpeed = 3.0
+TopSpeed = 775.0
+Acceleration = 300.0
+SteeringSpeed = 4.0

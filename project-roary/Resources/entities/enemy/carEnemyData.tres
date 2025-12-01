@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_bfc2a")
 Damage = 1000
-Speed = 500
-Accel = 100.0
+Speed = 800
+Accel = 200.0
 metadata/_custom_type_script = "uid://dkov12aknt46v"

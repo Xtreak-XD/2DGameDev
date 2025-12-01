@@ -206,4 +206,12 @@ public partial class Player : CharacterBody2D
         }
     }
 
+	public void Die()
+    {
+		GD.Print("player died / lost!");
+		var deadScene = "res://Scenes/ui/died_screen.tscn";
+        //play dead animation idk maybe..
+		sceneManager.goToScene(GetParent(), deadScene, false);
+    }
+
 }

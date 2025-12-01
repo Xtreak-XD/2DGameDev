@@ -66,7 +66,7 @@ public partial class HurtBox : Area2D
         if (data.Health <= 0 && IsInstanceValid(parent))
         {
             if (Owner is Enemy enemy) { enemy.Die(); }
-            else if(Owner is Player player) { GD.Print("player died"); }
+            else if(Owner is Player player) { player.Die(); }
         }
     }
 

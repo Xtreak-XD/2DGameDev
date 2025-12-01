@@ -139,13 +139,25 @@ path = "res://Scenes/testScenes/TestScene.tscn"
 shape = SubResource("CircleShape2D_rm1pb")
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
-spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing")]
+spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing"), NodePath("fromParkingGarage"), NodePath("fromNaturePreserve"), NodePath("fromGreenLibrary"), NodePath("fromGranhamCenter")]
 
 [node name="fromTestScene" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(4729, 8931)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(6102, 3345)
+position = Vector2(6217, 4946)
+
+[node name="fromParkingGarage" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(8264, 6060)
+
+[node name="fromNaturePreserve" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(5740, 2884)
+
+[node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(7499, 8941)
+
+[node name="fromGranhamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2408, 9590)
 
 [node name="Save" parent="." instance=ExtResource("10_up40q")]
 position = Vector2(7151, 3776)

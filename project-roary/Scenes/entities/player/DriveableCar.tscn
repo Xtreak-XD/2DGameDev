@@ -8,10 +8,13 @@
 [ext_resource type="Script" uid="uid://y24dyjapjtlc" path="res://Scripts/entities/car/car_state_machine/ParkState.cs" id="4_hjrlu"]
 [ext_resource type="Script" uid="uid://qkt22wionkvp" path="res://Scripts/entities/car/car_state_machine/DriveState.cs" id="5_7i5lx"]
 [ext_resource type="Script" uid="uid://c60jcyd2mmvco" path="res://Scripts/entities/car/car_state_machine/DecelerateState.cs" id="6_7i5lx"]
+
 [ext_resource type="PackedScene" uid="uid://b7hfl3picvwq7" path="res://Scenes/ui/MenuScreen.tscn" id="9_emffi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrs41"]
 size = Vector2(14, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rrs41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhw32"]
 size = Vector2(47, 18)
@@ -57,6 +60,7 @@ script = ExtResource("4_hjrlu")
 shape = SubResource("RectangleShape2D_yhw32")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.33, 0.33)
 limit_left = 0
 limit_top = 0
 limit_right = 10000

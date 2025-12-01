@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx7ll3dt60806"]
+
+[ext_resource type="Script" uid="uid://d3lpufr8xsjlq" path="res://Scripts/entities/obstacles/Obstacle.cs" id="1_a1bd6"]
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="2_6cb2e"]
+
+[sub_resource type="Resource" id="Resource_sevpv"]
+script = ExtResource("2_6cb2e")
+_health = 10000
+MaxHealth = 10000
+Damage = 10000
+metadata/_custom_type_script = "uid://dkov12aknt46v"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_migvi"]
+radius = 78.26238
+
+[node name="DummyCar" type="CharacterBody2D"]
+script = ExtResource("1_a1bd6")
+data = SubResource("Resource_sevpv")
+
+[node name="DummyCar" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_migvi")

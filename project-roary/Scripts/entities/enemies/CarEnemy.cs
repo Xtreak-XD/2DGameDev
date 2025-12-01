@@ -3,7 +3,7 @@ using Godot;
 
 public partial class CarEnemy : Enemy
 {
-    private enum directionChosen
+    public enum directionChosen
     {
         North,
         East,
@@ -11,19 +11,16 @@ public partial class CarEnemy : Enemy
         West
     }
 
-    [Export] private directionChosen currentDirection { get; set; } = directionChosen.North;
+    [Export] public directionChosen currentDirection { get; set; } = directionChosen.North;
 
     public AnimationPlayer anim;
+
+    private float despawnTimer;
 
     public override void _Ready()
     {
         anim = GetNode<AnimationPlayer>("AnimationPlayer");
-    }
-
-    public override void _EnterTree()
-    {
-        currentDirection = (directionChosen)Enum.GetValues(typeof(directionChosen))
-        .GetValue(new Random().Next(0, 4));
+        despawnTimer = OffScreenDespawnTime;
     }
 
     public override void _Process(double delta)
@@ -46,6 +43,12 @@ public partial class CarEnemy : Enemy
                 Velocity = Vector2.Left * data.Speed * ((float)delta * (float)data.Accel);
                 anim.Play("west");
                 break;
+        }
+        despawnTimer -= (float)delta;
+        if (despawnTimer <= 0f)
+        {
+            QueueFree();
+            return;
         }
     }
 

@@ -25,7 +25,7 @@ metadata/_custom_type_script = "uid://dkov12aknt46v"
 [sub_resource type="SpriteFrames" id="SpriteFrames_rrs41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrs41"]
-size = Vector2(14, 20)
+size = Vector2(56.625, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhw32"]
 size = Vector2(47, 18)
@@ -51,7 +51,7 @@ sprite_frames = SubResource("SpriteFrames_rrs41")
 [node name="HurtBox" parent="." instance=ExtResource("3_rrs41")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(24, 0)
+position = Vector2(2.6875, -2.4868996e-14)
 shape = SubResource("RectangleShape2D_rrs41")
 debug_color = Color(0.9576711, 2.887845e-06, 0.5339322, 0.41960785)
 

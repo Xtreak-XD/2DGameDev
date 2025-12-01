@@ -1,23 +1,29 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=22 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
 [ext_resource type="PackedScene" uid="uid://con1q0nhgkj8i" path="res://Scenes/entities/player/DriveableCar.tscn" id="2_5wdrb"]
+[ext_resource type="PackedScene" uid="uid://dx7ll3dt60806" path="res://Scenes/entities/obstacles/dummy_car.tscn" id="2_wq2dn"]
 [ext_resource type="Texture2D" uid="uid://7u02swqak463" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_up.png" id="2_yosyq"]
-[ext_resource type="Texture2D" uid="uid://dbvfow4rqjtkt" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_up.png" id="3_5oly8"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_slse4"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="4_ie86c"]
 [ext_resource type="Texture2D" uid="uid://dgffmm8g3vtsi" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_down.png" id="4_wq2dn"]
 [ext_resource type="PackedScene" uid="uid://c6i3fao4yxrbg" path="res://Scenes/entities/enemies/CarEnemy.tscn" id="5_a1t8p"]
-[ext_resource type="Texture2D" uid="uid://dla7tarvtsdj0" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_up.png" id="5_vebei"]
 [ext_resource type="Texture2D" uid="uid://rowkec0a17b4" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_down.png" id="6_slse4"]
 [ext_resource type="Texture2D" uid="uid://bluy0qp8psjqu" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_down.png" id="7_fi4eq"]
 [ext_resource type="Texture2D" uid="uid://j07h24a14hbk" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_left.png" id="8_581fp"]
 [ext_resource type="Texture2D" uid="uid://dky5wwls7pm0h" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_right.png" id="9_dvqmy"]
 [ext_resource type="Texture2D" uid="uid://dq0r8ge3vlt23" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_left.png" id="10_shi2b"]
-[ext_resource type="Texture2D" uid="uid://chti0lo6xmjjd" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_right.png" id="11_r3yff"]
+[ext_resource type="Texture2D" uid="uid://dj0n8mxrpvo1t" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_right.png" id="10_vebei"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="12_5oly8"]
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="17_vebei"]
 [ext_resource type="Script" uid="uid://c220iuf2a0kll" path="res://Scripts/map/PG/TimerLabel.cs" id="17_wq2dn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vebei"]
+size = Vector2(1043, 1224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slse4"]
+size = Vector2(1337, 910)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vebei"]
 font = ExtResource("17_vebei")
@@ -33,115 +39,115 @@ texture = ExtResource("1_5wdrb")
 
 [node name="DummyCarContainer" type="Node" parent="."]
 
-[node name="DummyCar" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(3044, 969)
-texture = ExtResource("2_yosyq")
+[node name="DummyCar13" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(6860, 9091)
+car = ExtResource("7_fi4eq")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar13" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar/StaticBody2D"]
-position = Vector2(-304.47632, -476.8645)
-polygon = PackedVector2Array(-11.523682, -19.135498, 691.4763, -19.135498, 710.4763, 1017.8645, -72.52368, 1021.8645)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar13/Hitbox"]
+position = Vector2(67.5, 47)
+shape = SubResource("RectangleShape2D_vebei")
 
-[node name="DummyCar2" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(5989, 999)
-texture = ExtResource("3_5oly8")
+[node name="DummyCar14" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(3975, 9091)
+car = ExtResource("4_wq2dn")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar2"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar14" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar2/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar14/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
 
-[node name="DummyCar3" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(4087.6104, 929.83203)
-texture = ExtResource("4_wq2dn")
+[node name="DummyCar15" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(4929, 9056)
+car = ExtResource("6_slse4")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar3"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar15" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar3/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar15/Hitbox"]
+position = Vector2(67.5, 47)
+shape = SubResource("RectangleShape2D_vebei")
 
-[node name="DummyCar4" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(4031.423, 9090.94)
-texture = ExtResource("5_vebei")
+[node name="DummyCar16" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(9023, 4997)
+car = ExtResource("8_581fp")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar4"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar16" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar4/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar16/Hitbox"]
+position = Vector2(61.5, 44)
+shape = SubResource("RectangleShape2D_slse4")
 
-[node name="DummyCar5" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(8002.677, 1023.552)
-texture = ExtResource("6_slse4")
+[node name="DummyCar17" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(877, 5945)
+car = ExtResource("9_dvqmy")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar5"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar17" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar5/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar17/Hitbox"]
+position = Vector2(81, -5)
+shape = SubResource("RectangleShape2D_slse4")
 
-[node name="DummyCar6" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(6964.502, 8985.773)
-texture = ExtResource("5_vebei")
+[node name="DummyCar18" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(900, 4967)
+car = ExtResource("10_shi2b")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar6"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar18" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar6/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar18/Hitbox"]
+position = Vector2(81, -25)
+shape = SubResource("RectangleShape2D_slse4")
 
-[node name="DummyCar7" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(4955.8467, 9063.1875)
-texture = ExtResource("7_fi4eq")
+[node name="DummyCar19" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(865, 3061)
+car = ExtResource("10_vebei")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar7"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar19" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar7/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(679.47656, -1327.1355, 1382.4766, -1327.1355, 1401.4766, -290.1355, 618.47656, -286.1355)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar19/Hitbox"]
+position = Vector2(111, -74)
+shape = SubResource("RectangleShape2D_slse4")
 
-[node name="DummyCar8" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(9035.328, 5005.4146)
-texture = ExtResource("8_581fp")
+[node name="DummyCar12" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(3039, 941)
+car = ExtResource("2_yosyq")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar8"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar12" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar8/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar12/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
 
-[node name="DummyCar9" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(1193.065, 2962.3596)
-texture = ExtResource("9_dvqmy")
+[node name="DummyCar20" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(8045, 931)
+car = ExtResource("4_wq2dn")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar9"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar20" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar9/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar20/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
 
-[node name="DummyCar10" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(1094.0352, 5871.993)
-texture = ExtResource("10_shi2b")
+[node name="DummyCar21" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(5972, 955)
+car = ExtResource("6_slse4")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar10"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar21" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar10/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar21/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
 
-[node name="DummyCar11" type="Sprite2D" parent="DummyCarContainer"]
-position = Vector2(1148.9502, 4973.764)
-texture = ExtResource("11_r3yff")
+[node name="DummyCar22" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(4053, 950)
+car = ExtResource("4_wq2dn")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="DummyCarContainer/DummyCar11"]
+[node name="Hitbox" parent="DummyCarContainer/DummyCar22" instance=ExtResource("3_slse4")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DummyCarContainer/DummyCar11/StaticBody2D"]
-position = Vector2(-997, 835)
-polygon = PackedVector2Array(399.67188, -1114.4146, 406.67188, -539.41455, 1543.6719, -539.41455, 1598.6719, -1120.4146)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar22/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
 
 [node name="MapCollisions" type="Node" parent="."]
 
@@ -210,7 +216,7 @@ MaxEnemiesAlive = 10
 position = Vector2(9156, 6968)
 
 [node name="CarSpawn5" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(8945, 3148)
+position = Vector2(9192, 3292)
 
 [node name="CarSpawn6" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(5950, 9137)
@@ -231,7 +237,7 @@ position = Vector2(1990, 944)
 position = Vector2(5004, 944)
 
 [node name="CarSpawn17" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(1011, 1980)
+position = Vector2(981, 2153)
 
 [node name="CarSpawn18" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(2988, 8928)
@@ -240,7 +246,7 @@ position = Vector2(2988, 8928)
 position = Vector2(857, 4015)
 
 [node name="CarSpawn21" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(8919, 2019)
+position = Vector2(9166, 2163)
 
 [node name="CarSpawn22" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(9015, 4111)
@@ -249,10 +255,10 @@ position = Vector2(9015, 4111)
 position = Vector2(8036, 9082)
 
 [node name="CarSpawn26" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(8995, 8104)
+position = Vector2(9052, 7855)
 
 [node name="CarSpawn27" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(8957, 5992)
+position = Vector2(9156, 5900)
 
 [node name="EntityContainer" type="Node2D" parent="Enemymanager"]
 

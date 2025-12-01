@@ -15,8 +15,6 @@ public partial class InteractionManager : Node2D
 
     public override void _Ready()
     {
-        player = (Player)GetTree().GetFirstNodeInGroup("player");
-        GD.Print(player);
     
         label = GetNode<Label>("Label");
         

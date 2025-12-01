@@ -18,15 +18,29 @@ public partial class Inventory : Node
 
     private Eventbus eventbus; // Reference to the Eventbus for emitting signals
 
+    private bool hasBeenInitialized = false;
+
+    public override void _EnterTree()
+    {
+        if (!hasBeenInitialized && (slots == null || slots.Count == 0))
+        {
+            slots = new Array<InventorySlot>();
+            for (int i = 0; i < TOTAL_SIZE; i++)
+            {
+                slots.Add(new InventorySlot());
+            }
+            hasBeenInitialized = true;
+        }
+        else
+        {
+            GD.Print($"Inventory preserving {slots?.Count ?? 0} slots");
+        }
+    }
+
+
     public override void _Ready()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus"); // Get the Eventbus node
-        slots = new Array<InventorySlot>(); // Initialize the slots array
-        // Initialize inventory with empty slots
-        for (int i = 0; i < TOTAL_SIZE; i++)
-        {
-            slots.Add(new InventorySlot());// Add an empty InventorySlot to the slots array
-        }
     }
 
 

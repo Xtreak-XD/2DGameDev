@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsxvnrdp3nf1i"]
+[gd_scene load_steps=6 format=3 uid="uid://dsxvnrdp3nf1i"]
 
 [ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/TableTopDown2.png" id="1_b52hv"]
 [ext_resource type="Script" uid="uid://c0tdpp0yit7w7" path="res://Scripts/ui/PowerUpShops/ShopInteractable.cs" id="1_v0fjq"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="2_v0fjq"]
+[ext_resource type="PackedScene" uid="uid://bjmlx6ijljs1" path="res://Scenes/map/GranhamCenter/ShopMenu.tscn" id="4_nx1uv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx1uv"]
 size = Vector2(288, 432)
@@ -19,7 +20,13 @@ texture = ExtResource("1_b52hv")
 
 [node name="InteractableArea" parent="." instance=ExtResource("2_v0fjq")]
 unique_name_in_owner = true
+actionName = "interact"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
 position = Vector2(120, 200)
 shape = SubResource("RectangleShape2D_nx1uv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ShopMenu" parent="CanvasLayer" instance=ExtResource("4_nx1uv")]

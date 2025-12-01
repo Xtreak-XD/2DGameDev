@@ -93,7 +93,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_07cvr")
-text = "Quit"
+text = "Main Menu"
 alignment = 0
 
 [node name="GameTitle" type="Label" parent="."]

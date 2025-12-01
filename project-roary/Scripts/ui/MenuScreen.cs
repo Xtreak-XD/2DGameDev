@@ -1,5 +1,4 @@
 using Godot;
-using GodotPlugins.Game;
 using System;
 using System.Collections.Generic;
 
@@ -11,13 +10,20 @@ public partial class MenuScreen : Control
 	private readonly Dictionary<Button, float> _originalPositions = new();
 	private readonly Dictionary<Button, Tween> _buttonTweens = new();
 	private SettingsMenu settingsMenu;
+	public Eventbus eventbus;
+	public SceneManager sceneManager;
+
+    public override void _EnterTree()
+    {
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
+		eventbus.leftSettings += onLeftSettings;
+    }
 
 	public override void _Ready()
     {
      	Hide();
 		ProcessMode = ProcessModeEnum.Always;
-
-		settingsMenu = GetNode<SettingsMenu>("%Setting Menu");
+        sceneManager = GetNode<SceneManager>("/root/SceneManager");
 
 		var buttons = new[] {
 			GetNode<Button>("%Continue"),
@@ -42,6 +48,10 @@ public partial class MenuScreen : Control
         }
     }
 
+    public override void _ExitTree()
+    {
+        eventbus.leftSettings -= onLeftSettings;
+    }
 	private void SlideButton(Button button, float originalX, bool isHovering)
     {
 		// Kill any existing tween for this button to prevent overlapping animations
@@ -105,12 +115,23 @@ public partial class MenuScreen : Control
 	private void OnSettingsPress()
     {
         Hide();
-		settingsMenu.ShowSettings();
+        eventbus.EmitSignal("showSettings");
+    }
+
+	void onLeftSettings()
+    {
+        Show();
     }
 
 	private void OnQuitPress()
     {
 		GetTree().Paused = false;
-        GetTree().Quit();
-    }
+		string path = "res://Scenes/ui/menus/main_menu.tscn";
+		if (!ResourceLoader.Exists(path))
+		{
+			GD.PrintErr($"First scene not found: {path}");
+			return;
+		}
+		sceneManager.goToScene(this, path, false);
+	}
 }

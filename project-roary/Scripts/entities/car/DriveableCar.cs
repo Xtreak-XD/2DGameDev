@@ -12,9 +12,7 @@ public partial class DriveableCar : Player
 	public override void _Ready()
 	{
 		AddToGroup("player");
-
-		//GD.Print("Car is in: " + GetGroups());
-
+		sceneManager = GetNode<SceneManager>("/root/SceneManager");
 		StateMachine = GetNode<CarStateMachine>("DriveableCarStateMachine");
 		StateMachine.Initialize(this);
 	}

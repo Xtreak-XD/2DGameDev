@@ -14,6 +14,7 @@ public partial class SceneManager : Node
         "MainMenu",
         "ParkingGarage",
         "Setting Menu",
+        "DiedScreen",
     };
 
     public override void _Ready()

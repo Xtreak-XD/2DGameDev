@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=19 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -10,9 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
-[ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
-[ext_resource type="Texture2D" uid="uid://dmede855fvmky" path="res://Sprites/misc/firework_rocket.png" id="11_pnd8i"]
-[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://audio/WorldAudioManager.cs" id="10_rm1pb"]
+[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="10_rm1pb"]
 [ext_resource type="AudioStream" uid="uid://c77tlt3vjt80v" path="res://audio/Background/Sadge.mp3" id="10_up40q"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 
@@ -145,13 +143,10 @@ path = "res://Scenes/testScenes/TestScene.tscn"
 shape = SubResource("CircleShape2D_rm1pb")
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
-spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing"), NodePath("fromGreenLibrary"), NodePath("fromGrahamCenter")]
-
-[node name="fromTestScene" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(4729, 8931)
+spawnsAvailable = [NodePath("fromNothing"), NodePath("fromGreenLibrary"), NodePath("fromGrahamCenter"), NodePath("fromParkingGarage"), NodePath("fromStadium"), NodePath("fromNaturePreserve")]
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(5050, 9465)
+position = Vector2(1344, 5677)
 
 [node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(2411, 9590)
@@ -159,6 +154,15 @@ position = Vector2(2411, 9590)
 [node name="fromGrahamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
 z_index = 4
 position = Vector2(7626, 8955)
+
+[node name="fromParkingGarage" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(8268, 6084)
+
+[node name="fromStadium" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2816, 3733)
+
+[node name="fromNaturePreserve" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(5659, 2972)
 
 [node name="WorldAudioManager" type="Node" parent="."]
 script = ExtResource("10_rm1pb")
@@ -176,3 +180,15 @@ path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
 [node name="OverworldToGC" parent="." instance=ExtResource("9_ngc8d")]
 position = Vector2(8113, 8849)
 path = "res://Scenes/map/GranhamCenter/GrahamCenter.tscn"
+
+[node name="OverworldToStadium" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(2656, 3304)
+path = "res://Scenes/map/Stadium/Stadium.tscn"
+
+[node name="OverworldToPG" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(8753, 5895)
+path = "res://Scenes/map/ParkingGarage/ParkingGarage.tscn"
+
+[node name="OverworldToNaturePreserve" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(5765, 2582)
+path = "res://Scenes/map/NaturePreserve/NaturePreserve.tscn"

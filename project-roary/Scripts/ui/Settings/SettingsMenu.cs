@@ -58,9 +58,11 @@ public partial class SettingsMenu : Control
 		back.Pressed += OnBackPressed;
 		apply.Pressed += SaveSettings;	
 
-		eventbus.loadSettings += LoadSettings;
+		//eventbus.loadSettings += LoadSettings;
 		eventbus.showSettings += ShowSettings;
-    }
+    
+		LoadSettings();
+	}
 
 	public override void _Input(InputEvent @event)
 	{
@@ -174,13 +176,6 @@ public partial class SettingsMenu : Control
 		Hide();
 		eventbus.EmitSignal("leftSettings");
 	}
-
-	private void ChangeVolume(double value, String name)
-    {
-		float linear = (float)value / 100.0f;
-		float volumeDb = linear > 0 ? Mathf.LinearToDb(linear) : -80f;
-	    AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(name), volumeDb);
-    }
 
 	private void ChangeVolume(double value, String name)
     {

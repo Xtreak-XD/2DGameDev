@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bjmlx6ijljs1"]
 
-[ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/TableTopDown2.png" id="1_jqod7"]
+[ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/world/Graham Center/TableTopDown2.png" id="1_jqod7"]
 [ext_resource type="Script" uid="uid://c8vsyptmaavtn" path="res://Scripts/ui/PowerUpShops/ShopMenu.cs" id="1_tgvhk"]
 [ext_resource type="Texture2D" uid="uid://uniuj28bgwht" path="res://Sprites/world/Graham Center/HealthInsideTable.tres" id="2_msshn"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_tgvhk"]

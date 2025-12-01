@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bvsia71n1w6wu"
+path="res://.godot/imported/mermaid boss theme.wav-07ac79e3fa3fd406c2c90e34c8356952.sample"
+
+[deps]
+
+source_file="res://audio/Background/mermaid boss theme.wav"
+dest_files=["res://.godot/imported/mermaid boss theme.wav-07ac79e3fa3fd406c2c90e34c8356952.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

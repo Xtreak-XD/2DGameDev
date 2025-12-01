@@ -81,7 +81,6 @@ public partial class SceneManager : Node
 
         if (!ShouldSceneHavePlayer(newScene))
         {
-            GD.Print($"Scene {newScene.Name} should not have a player");
             currentScene = newScene;
             return;
         }
@@ -121,6 +120,8 @@ public partial class SceneManager : Node
             spawnPointName = "from" + comingFromName;
         }
 
+        GD.Print("Spawning in " + $"{spawnPointName}");
+
         PlayerSpawn Spawns = sceneToSpawnIn.GetNode<PlayerSpawn>("PlayerSpawnPoints");
 
         if (Spawns == null)
@@ -133,9 +134,12 @@ public partial class SceneManager : Node
         {
             if (i.Name.Equals(spawnPointName))
             {
+                GD.Print("" + i.Name);
                 return i.GlobalPosition;
             }
         }
+
+        GD.Print("No matching spawn point found, defaulting to (0,0)");
         return Vector2.Zero;
     }
 

@@ -1,14 +1,10 @@
 [gd_scene load_steps=23 format=3 uid="uid://bsckkhfcps7w4"]
 
 [ext_resource type="Script" uid="uid://c56qbr5eruv12" path="res://Scripts/ui/Settings/SettingsMenu.cs" id="1_vdp17"]
-[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="2_welf5"]
+[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Fonts/Wallpoet-Regular.ttf" id="2_welf5"]
 [ext_resource type="Theme" uid="uid://cxtctvyuxxeoi" path="res://Resources/misc/OptionsTitle.tres" id="3_lwreh"]
 [ext_resource type="Theme" uid="uid://cajuv1budl77k" path="res://Resources/misc/OptionText.tres" id="4_oinrb"]
 [ext_resource type="Theme" uid="uid://yw4cddpssmmj" path="res://Resources/misc/MenuButton.tres" id="5_ftffc"]
-[ext_resource type="Script" uid="uid://cuy125glpi33o" path="res://Scripts/ui/Settings/MasterSlider.cs" id="5_wji8m"]
-[ext_resource type="Script" uid="uid://o40n68ikvlj8" path="res://Scripts/ui/Settings/MusicSlider.cs" id="6_4fgq0"]
-[ext_resource type="Script" uid="uid://qc0lq0jdr2ty" path="res://Scripts/ui/Settings/PlayerSfxSlider.cs" id="7_jhnqc"]
-[ext_resource type="Script" uid="uid://bopf4cdm0hvu1" path="res://Scripts/ui/Settings/EnemySfxSlider.cs" id="8_gtue7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdp17"]
 border_width_top = 4
@@ -153,7 +149,6 @@ layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
-script = ExtResource("5_wji8m")
 
 [node name="MasterValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 unique_name_in_owner = true
@@ -176,7 +171,6 @@ layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
-script = ExtResource("6_4fgq0")
 
 [node name="MusicValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 unique_name_in_owner = true
@@ -199,7 +193,6 @@ layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
-script = ExtResource("7_jhnqc")
 
 [node name="PlayerSFXValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 unique_name_in_owner = true
@@ -222,7 +215,6 @@ layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
-script = ExtResource("8_gtue7")
 
 [node name="EnemySFXValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
 unique_name_in_owner = true
@@ -242,7 +234,7 @@ size_flags_horizontal = 0
 theme = ExtResource("3_lwreh")
 text = "Display"
 
-[node name="Spacer2" type="Panel" parent="SettingsPanel/ContentContainer/DisplayContainer"]
+[node name="Spacer" type="Panel" parent="SettingsPanel/ContentContainer/DisplayContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 

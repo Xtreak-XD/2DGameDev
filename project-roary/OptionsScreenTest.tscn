@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cpytl7q3hdb75"]
 
-[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="1_shhlb"]
+[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Fonts/Wallpoet-Regular.ttf" id="1_shhlb"]
 [ext_resource type="Theme" uid="uid://yw4cddpssmmj" path="res://Resources/misc/MenuButton.tres" id="2_eldvx"]
 [ext_resource type="Theme" uid="uid://cxtctvyuxxeoi" path="res://Resources/misc/OptionsTitle.tres" id="3_2xyss"]
 [ext_resource type="Theme" uid="uid://cajuv1budl77k" path="res://Resources/misc/OptionText.tres" id="4_b6nkl"]

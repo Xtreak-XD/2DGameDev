@@ -1,17 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7j1lsbdli03x"]
+[gd_scene load_steps=9 format=3 uid="uid://b7j1lsbdli03x"]
 
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_ict7c"]
 [ext_resource type="PackedScene" uid="uid://bed4fyrobgykm" path="res://Scenes/entities/enemies/logo.tscn" id="1_pynll"]
 [ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="2_pynll"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="4_ovpjc"]
-[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://audio/WorldAudioManager.cs" id="5_brcu7"]
+[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="5_brcu7"]
+[ext_resource type="AudioStream" uid="uid://bvsia71n1w6wu" path="res://audio/Background/mermaid boss theme.wav" id="6_ne70o"]
+[ext_resource type="AudioStream" uid="uid://4ks0n2aiwllh" path="res://audio/Background/Greens Library.wav" id="7_5rrx5"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_j2nck"]
 clip_count = 2
 clip_0/name = &"bossMusic"
+clip_0/stream = ExtResource("6_ne70o")
 clip_0/auto_advance = 0
-clip_1/name = &"Bg"
+clip_1/name = &"Background"
+clip_1/stream = ExtResource("7_5rrx5")
 clip_1/auto_advance = 0
+initial_clip = 1
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [node name="GreenLibrary" type="Node2D"]
 

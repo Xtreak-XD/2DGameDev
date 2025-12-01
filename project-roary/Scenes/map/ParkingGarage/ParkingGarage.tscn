@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2ytf1v7y24q7"]
+//arking Garage Scene
+
+[gd_scene load_steps=7 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
 [ext_resource type="PackedScene" uid="uid://con1q0nhgkj8i" path="res://Scenes/entities/player/DriveableCar.tscn" id="2_5wdrb"]
+[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="3_5hsdw"]
+[ext_resource type="AudioStream" uid="uid://dybprbidyciun" path="res://audio/Background/Garage.wav" id="4_5hsdw"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="5_ie86c"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="6_a1t8p"]
 
 [node name="ParkingGarage" type="Node2D"]
 
@@ -9,3 +15,24 @@
 
 [node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
 position = Vector2(191, 122)
+
+[node name="WorldAudioManager" type="Node" parent="."]
+script = ExtResource("3_5hsdw")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
+stream = ExtResource("4_5hsdw")
+autoplay = true
+bus = &"Music"
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("5_ie86c")]
+spawnsAvailable = [null, null, null]
+
+[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(784, 471)
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(793, 482)
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("6_a1t8p")]
+position = Vector2(1484, 844)
+path = "res://Scenes/map/Overworld/Overworld.tscn"

@@ -1,13 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://duifow0ycc63q"]
+[gd_scene load_steps=11 format=3 uid="uid://duifow0ycc63q"]
 
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="1_sepvu"]
+[ext_resource type="Texture2D" uid="uid://c4nfdtqoi2maa" path="res://Sprites/misc/flag animation.png" id="1_v6fvv"]
 [ext_resource type="Script" uid="uid://dbtpphho2ue0c" path="res://Scripts/helperScripts/Save.cs" id="1_vu6fj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi58d"]
+atlas = ExtResource("1_v6fvv")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwvfr"]
+atlas = ExtResource("1_v6fvv")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i67te"]
+atlas = ExtResource("1_v6fvv")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xat1"]
+atlas = ExtResource("1_v6fvv")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g08s5"]
+atlas = ExtResource("1_v6fvv")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vu6fj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi58d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwvfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i67te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xat1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g08s5")
+}],
+"loop": true,
+"name": &"flag",
+"speed": 8.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sepvu"]
 radius = 248.0
 
-[node name="Save" type="Sprite2D"]
+[node name="Save" type="Node2D"]
 script = ExtResource("1_vu6fj")
+
+[node name="Save" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(211, -47)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_vu6fj")
+animation = &"flag"
+autoplay = "flag"
+frame_progress = 0.7190935
 
 [node name="InteractableArea" parent="." instance=ExtResource("1_sepvu")]
 actionName = "Save"

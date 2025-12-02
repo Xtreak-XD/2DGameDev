@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bkfyv66pjiet8" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorDeathRoll.cs" id="9_yojey"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vph40"]
+resource_local_to_scene = true
 shader = ExtResource("4_0d4qt")
 shader_parameter/flash = false
 

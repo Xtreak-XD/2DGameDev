@@ -56,7 +56,7 @@ public partial class HurtBox : Area2D
     public async Task flash()
     {
         float flashDuration = 0.15f;
-        AnimatedSprite2D sprite = parent.GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        AnimatedSprite2D sprite = parent.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
         if (sprite.Material is ShaderMaterial shader)
         {
             shader.SetShaderParameter("flash", true);

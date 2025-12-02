@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bnn58vkaadqm7" path="res://Scripts/entities/enemies/petitioner/petitioner_StateMachine/PetitionerApproach.cs" id="7_hsg6v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6nq1m"]
+resource_local_to_scene = true
 shader = ExtResource("3_4dy67")
 shader_parameter/flash = false
 

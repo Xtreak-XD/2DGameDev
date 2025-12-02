@@ -1,33 +1,28 @@
 using System;
 using Godot;
 
-
 public partial class IguanaState : Node
 {
-	public static Iguana ActiveEnemy;
+	protected Iguana Enemy { get; private set; }
+    public void SetEnemy(Iguana enemy) => Enemy = enemy;
 
-	public override void _Ready()
-	{
-
-	}
-
-	// Called when the state is entered	
-	public virtual void EnterState()
-	{
-	}
-
-	// Called when the state is exited
-	public virtual void ExitState()
-	{
-	}
-
-	public virtual IguanaState Process(double delta)
-	{
-		return null;
-	}
-
-	public virtual IguanaState Physics(double delta)
+    // Called when the state is entered
+    public virtual void EnterState()
     {
-		return null;
+    }
+
+    // Called when the state is exited
+    public virtual void ExitState()
+    {
+    }
+
+    public virtual IguanaState Process(double delta)
+    {
+        return null;
+    }
+
+    public virtual IguanaState Physics(double delta)
+    {
+        return null;
     }
 }

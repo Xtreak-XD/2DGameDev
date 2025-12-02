@@ -110,9 +110,10 @@ public partial class EnemyManager : Node
         {
             carEnemyInstance.currentDirection = DetermineDirectionFromSpawnPoint(chosenSpawnPoint.GlobalPosition);
         }
-
+        
+        newEnemy.GlobalPosition = chosenSpawnPoint.GlobalPosition;
         entityContainer.AddChild(newEnemy);
-        newEnemy.Position = chosenSpawnPoint.GlobalPosition;
+        
 
         spawnPointCooldowns[chosenSpawnPoint] = SpawnPointCooldown;
 

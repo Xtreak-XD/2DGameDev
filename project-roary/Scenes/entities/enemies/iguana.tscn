@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://drfioqbhwrfpj"]
+[gd_scene load_steps=28 format=3 uid="uid://drfioqbhwrfpj"]
 
 [ext_resource type="Script" uid="uid://bm7qi0doje7wr" path="res://Scripts/entities/enemies/iguana/Iguana.cs" id="1_jatro"]
 [ext_resource type="Resource" uid="uid://d2poumfk783ed" path="res://Resources/entities/enemy/IguanaData.tres" id="2_0d8ee"]
@@ -334,14 +334,17 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_kinsv"]
 radius = 117.00427
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
-radius = 407.12283
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d8ee"]
 radius = 129.09686
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhv8h"]
 radius = 22.230335
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7bow"]
+radius = 555.2918
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vh2wc"]
+radius = 174.14075
 
 [node name="Iguana" type="CharacterBody2D"]
 collision_layer = 16
@@ -379,14 +382,6 @@ wait_time = 0.75
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_kinsv")
 
-[node name="TargetDetector" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="DetectionRadius" type="CollisionShape2D" parent="TargetDetector"]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_tdsod")
-
 [node name="HurtBox" parent="." instance=ExtResource("7_qt522")]
 position = Vector2(1, 0)
 
@@ -401,3 +396,17 @@ scale = Vector2(3.33, 3.33)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_fhv8h")
 debug_color = Color(0.9455138, 2.9841065e-06, 0.59439754, 0.41960785)
+
+[node name="ChaseDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseDetector"]
+shape = SubResource("CircleShape2D_m7bow")
+
+[node name="AttackDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
+shape = SubResource("CircleShape2D_vh2wc")

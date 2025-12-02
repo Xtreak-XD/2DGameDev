@@ -798,7 +798,7 @@ shape = SubResource("CapsuleShape2D_lyuh4")
 debug_color = Color(0.12662396, 0.63510716, 0.36427537, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.1, 0.1)
 limit_left = 0
 limit_top = 0
 limit_right = 10000

@@ -2,62 +2,79 @@ using Godot;
 
 public partial class IguanaRoam : IguanaState
 {
-	public Timer timer;
-	public IguanaAttack IguanaAttack;
-	public IguanaChase IguanaChase;
-	public Vector2 newPos;
+    public Timer timer;
+    public IguanaAttack IguanaAttack;
+    public IguanaChase IguanaChase;
+    private Vector2 targetPos;
 
-	public override void _Ready()
-	{
-		timer = GetParent().GetNode<Timer>("RoamTimer");
-		IguanaAttack = GetParent().GetNode<IguanaAttack>("IguanaAttack");
-		IguanaChase = GetParent().GetNode<IguanaChase>("IguanaChase");
-
-		timer.Timeout += PickPosition;
-    }
-
-	public override void EnterState()
+    public override void _Ready()
     {
-		timer.Start();
-
-		newPos = ActiveEnemy.Position;
+        timer = GetParent().GetNode<Timer>("RoamTimer");
+        IguanaAttack = GetParent().GetNode<IguanaAttack>("IguanaAttack");
+        IguanaChase = GetParent().GetNode<IguanaChase>("IguanaChase");
+        timer.Timeout += OnRoamTimeout;
+        timer.WaitTime = 2.0;
+        timer.OneShot = true;
     }
 
-	// Called when the state is exited
-	public override void ExitState()
+    public override void _ExitTree()
     {
+        timer.Timeout -= OnRoamTimeout;
     }
 
-	public override IguanaState Process(double delta)
-	{
-		Vector2 direction = (newPos - ActiveEnemy.Position).Normalized();
-		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
-		ActiveEnemy.MoveAndSlide();
+    public override void EnterState()
+    {
+        PickNewTargetPosition();
+    }
 
-		ActiveEnemy.animation(direction);
+    // Called when the state is exited
+    public override void ExitState()
+    {
+        timer.Stop();
+    }
 
-		if (ActiveEnemy.IsPlayerInChaseRange())
-		{
-			return IguanaChase;
-		}
+    public override IguanaState Process(double delta)
+    {
+        if (Enemy.IsPlayerInChaseRange())
+        {
+            return IguanaChase;
+        }
+        if (Enemy.IsPlayerInAttackRange())
+        {
+            return IguanaAttack;
+        }
+        return null;
+    }
 
-		if (ActiveEnemy.IsPlayerInAttackRange())
-		{
-			return IguanaAttack;
-		}
+    public override IguanaState Physics(double delta)
+    {
+        if (Enemy.GlobalPosition.DistanceTo(targetPos) > 10)
+        {
+            Vector2 direction = (targetPos - Enemy.GlobalPosition).Normalized();
+            Enemy.Velocity = direction * Enemy.data.Speed;
+            Enemy.MoveAndSlide();
+            Enemy.animation(direction);
+        }
+        else
+        {
+            Enemy.Velocity = Vector2.Zero;
+            Enemy.MoveAndSlide();
+            Enemy.animation(Vector2.Zero);
+            if (timer.IsStopped())
+            {
+                timer.Start();
+            }
+        }
+        return null;
+    }
 
-		return null;
-	}
-	
-	public void PickPosition()
-	{
-		if (ActiveEnemy.Position.DistanceTo(newPos) <= 50)
-		{
-			//GD.Print("Reached roam position.");
-			newPos = ActiveEnemy.GetRandomPositionInRoamRange();
-			//GD.Print("New Roam Position: " + newPos);
-		}
-		
-		timer.Start();
+    private void PickNewTargetPosition()
+    {
+        targetPos = Enemy.GetRandomPositionInRoamRange();
+    }
+
+    private void OnRoamTimeout()
+    {
+        PickNewTargetPosition();
     }
 }

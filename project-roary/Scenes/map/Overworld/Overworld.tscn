@@ -197,6 +197,7 @@ EnemySpawnTimerMax = 5.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4"), NodePath("EnemySpawnPointsContainer/Marker2D5"), NodePath("EnemySpawnPointsContainer/Marker2D6")]
 EnemyScene = ExtResource("13_otqv2")
 MaxEnemiesAlive = 4
+SpawnPointCooldown = 10.0
 
 [node name="EntityContainer" type="Node2D" parent="petitionerSpawner"]
 
@@ -226,6 +227,7 @@ EnemySpawnTimerMax = 5.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4"), NodePath("EnemySpawnPointsContainer/Marker2D5"), NodePath("EnemySpawnPointsContainer/Marker2D6"), NodePath("EnemySpawnPointsContainer/Marker2D7"), NodePath("EnemySpawnPointsContainer/Marker2D8"), NodePath("EnemySpawnPointsContainer/Marker2D9"), NodePath("EnemySpawnPointsContainer/Marker2D10"), NodePath("EnemySpawnPointsContainer/Marker2D11"), NodePath("EnemySpawnPointsContainer/Marker2D12"), NodePath("EnemySpawnPointsContainer/Marker2D13"), NodePath("EnemySpawnPointsContainer/Marker2D14")]
 EnemyScene = ExtResource("13_6v34l")
 MaxEnemiesAlive = 6
+SpawnPointCooldown = 10.0
 
 [node name="EntityContainer" type="Node2D" parent="IguanaSpawner"]
 

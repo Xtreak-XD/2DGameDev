@@ -26,7 +26,6 @@ public partial class EnemyStateMachine : Node
 	{
 		states = new List<EnemyState>();
 
-		GD.Print(GetChildCount());
 		foreach (Node node in GetChildren())
 		{
 			if (node is EnemyState state)

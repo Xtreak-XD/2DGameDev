@@ -72,6 +72,16 @@ car = ExtResource("8_581fp")
 position = Vector2(143, 66)
 shape = SubResource("RectangleShape2D_slse4")
 
+[node name="DummyCar25" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(730, 3915)
+car = ExtResource("8_581fp")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar25" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar25/Hitbox"]
+position = Vector2(143, 66)
+shape = SubResource("RectangleShape2D_slse4")
+
 [node name="DummyCar17" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
 position = Vector2(877, 5945)
 car = ExtResource("9_dvqmy")
@@ -109,6 +119,16 @@ car = ExtResource("10_vebei")
 [node name="Hitbox" parent="DummyCarContainer/DummyCar19" instance=ExtResource("3_slse4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar19/Hitbox"]
+position = Vector2(-8, -74)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar24" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(9156, 7084)
+car = ExtResource("10_vebei")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar24" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar24/Hitbox"]
 position = Vector2(-8, -74)
 shape = SubResource("RectangleShape2D_slse4")
 
@@ -156,6 +176,7 @@ shape = SubResource("RectangleShape2D_vebei")
 
 [node name="WorldBorder" type="StaticBody2D" parent="MapCollisions"]
 position = Vector2(208, 207)
+collision_mask = 18
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
 polygon = PackedVector2Array(-190, -208, -216, 28, -181, 8, 9734, 2, 9748, -195)
@@ -172,30 +193,35 @@ position = Vector2(9589.643, -64.680664)
 polygon = PackedVector2Array(-2.6425781, -2.319336, -20.642578, 9815.681, 186.35742, 9815.681, 164.35742, -26.319336)
 
 [node name="Barrier" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/Barrier"]
 position = Vector2(3097.3196, 3597.0962)
 polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
 
 [node name="Barrier2" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/Barrier2"]
 position = Vector2(3079, 5927)
 polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
 
 [node name="WiderBarrier" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/WiderBarrier"]
 position = Vector2(3075.156, 4661.5396)
 polygon = PackedVector2Array(-11.156006, -3.5395508, 3784.844, 0.46044922, 3792.844, 121.46045, -3.1560059, 116.46045)
 
 [node name="SmallBarrier1" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/SmallBarrier1"]
 position = Vector2(3053.1313, 4780.95)
 polygon = PackedVector2Array(1.8686523, 0.049804688, -1.1313477, 1140.0498, 44.868652, 1134.0498, 36.868652, -0.9501953)
 
 [node name="SmallBarrier2" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/SmallBarrier2"]
 position = Vector2(6841.379, 3680.8696)
@@ -388,14 +414,11 @@ horizontal_alignment = 1
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
 EnemySpawnTimerMin = 0.0
 EnemySpawnTimerMax = 0.2
-EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn4"), NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn15"), NodePath("EnemySpawnPointContainer2/CarSpawn16"), NodePath("EnemySpawnPointContainer2/CarSpawn17"), NodePath("EnemySpawnPointContainer2/CarSpawn18"), NodePath("EnemySpawnPointContainer2/CarSpawn20"), NodePath("EnemySpawnPointContainer2/CarSpawn21"), NodePath("EnemySpawnPointContainer2/CarSpawn22"), NodePath("EnemySpawnPointContainer2/CarSpawn25"), NodePath("EnemySpawnPointContainer2/CarSpawn26"), NodePath("EnemySpawnPointContainer2/CarSpawn27")]
+EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn15"), NodePath("EnemySpawnPointContainer2/CarSpawn16"), NodePath("EnemySpawnPointContainer2/CarSpawn17"), NodePath("EnemySpawnPointContainer2/CarSpawn18"), NodePath("EnemySpawnPointContainer2/CarSpawn21"), NodePath("EnemySpawnPointContainer2/CarSpawn22"), NodePath("EnemySpawnPointContainer2/CarSpawn25"), NodePath("EnemySpawnPointContainer2/CarSpawn26"), NodePath("EnemySpawnPointContainer2/CarSpawn27")]
 EnemyScene = ExtResource("5_a1t8p")
 MaxEnemiesAlive = 10
 
 [node name="EnemySpawnPointContainer2" type="Node2D" parent="Enemymanager"]
-
-[node name="CarSpawn4" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(9156, 6968)
 
 [node name="CarSpawn5" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(9192, 3292)
@@ -421,9 +444,6 @@ position = Vector2(981, 2153)
 [node name="CarSpawn18" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(2988, 8928)
 
-[node name="CarSpawn20" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
-position = Vector2(857, 4015)
-
 [node name="CarSpawn21" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
 position = Vector2(9166, 2163)
 
@@ -446,4 +466,17 @@ position = Vector2(1914, 9094)
 scale = Vector2(8, 8)
 
 [node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
-position = Vector2(191, 122)
+position = Vector2(6123, 4182)
+rotation = 3.1415927
+
+[node name="TimerLabel" type="Label" parent="."]
+top_level = true
+offset_left = -67.0
+offset_top = -256.0
+offset_right = 137.0
+offset_bottom = -140.0
+text = "Time:"
+label_settings = SubResource("LabelSettings_vebei")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_wq2dn")

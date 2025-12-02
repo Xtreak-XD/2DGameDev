@@ -21,6 +21,12 @@ public partial class TimerLabel : Label
 
 	public override void _Process(double delta)
     {
+		if (goalTimerAndIndicator.timer.Paused == true)
+        {
+            Text = $"Stay Parked!";
+			LabelSettings.FontColor = Colors.Green;
+			return;
+        }
 		time = goalTimerAndIndicator.timer.TimeLeft;
         Text = $"Find Parking | Time Left: {Math.Round(time, 2)} seconds";
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=25 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
@@ -19,6 +19,7 @@
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="17_vebei"]
 [ext_resource type="Script" uid="uid://c220iuf2a0kll" path="res://Scripts/map/PG/TimerLabel.cs" id="17_wq2dn"]
 [ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="19_slse4"]
+[ext_resource type="Script" uid="uid://cntw6675n18e3" path="res://Scripts/map/PG/InstructionLabel.cs" id="20_fi4eq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vebei"]
 size = Vector2(1043, 1224)
@@ -29,6 +30,12 @@ size = Vector2(1337, 910)
 [sub_resource type="LabelSettings" id="LabelSettings_vebei"]
 font = ExtResource("17_vebei")
 font_size = 96
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_581fp"]
+font = ExtResource("17_vebei")
+font_size = 72
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
@@ -457,3 +464,19 @@ label_settings = SubResource("LabelSettings_vebei")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("17_wq2dn")
+
+[node name="InstructionLabel" type="Label" parent="."]
+top_level = true
+offset_left = -67.0
+offset_top = -256.0
+offset_right = -27.0
+offset_bottom = -233.0
+text = "Find the available parking spot. (You'll know it when you see it)
+
+Controls:
+W: Accelerate in the current direction the car is facing 
+S: Decelerate in the opposite direction the car is facing
+A: Turn Left
+D: Turn Right"
+label_settings = SubResource("LabelSettings_581fp")
+script = ExtResource("20_fi4eq")

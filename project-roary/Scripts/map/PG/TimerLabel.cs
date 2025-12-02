@@ -32,6 +32,7 @@ public partial class TimerLabel : Label
         {
             LabelSettings.FontColor = Colors.Yellow;
         }
+		
 		float height = camera.GetWindow().Size.Y;
 
 		GlobalPosition = camera.GetScreenCenterPosition() - new Vector2(Size.X / 2, height + 400);

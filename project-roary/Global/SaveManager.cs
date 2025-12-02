@@ -15,6 +15,7 @@ public partial class SaveManager : Node
         inv = GetNode<Inventory>("/root/Inventory");
 
         //metaData.Money = 5000;
+        //metaData.Ammo = 500;
         //change metadata info here to test!
         //metadata.... = ...;
 
@@ -98,6 +99,10 @@ public partial class SaveManager : Node
             if (metaData.Money > 0)
             {
                 eventbus.EmitSignal("updateMoney", metaData.Money);
+            }
+            if(metaData.Ammo > 0)
+            {
+                eventbus.EmitSignal("updateAmmo", metaData.Ammo);
             }
 
             GD.Print("Save loaded from " + fullPath);

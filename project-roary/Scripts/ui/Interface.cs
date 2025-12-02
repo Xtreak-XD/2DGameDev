@@ -19,6 +19,7 @@ public partial class Interface : CanvasLayer
     public SaveManager saveManager;
     public Player player;
     public Label Money;
+    public Label Ammo;
     public Label time;
     public Label curDay;
     public Label temp;
@@ -37,12 +38,14 @@ public partial class Interface : CanvasLayer
         eventbus.updateHealth += updateHealth;
         eventbus.updateStamina += updateStamina;
         eventbus.updateMoney += updateMoney;
+        eventbus.updateAmmo += updateAmmo;
     }
 
     public override void _Ready()
     {
         player = (Player)GetTree().GetFirstNodeInGroup("player");
-        Money = GetNode<Label>("HUD/playerinfo/HBoxContainer/VBoxContainer2/HBoxContainer/MoneyAmount");
+        Money = GetNode<Label>("HUD/playerinfo/HBoxContainer/VBoxContainer/HBoxContainer2/MoneyAmount");
+        Ammo = GetNode<Label>("HUD/playerinfo/HBoxContainer/VBoxContainer/HBoxContainer/AmmoAmount"); 
         stamina = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Stamina");
         health = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Health");
 
@@ -53,11 +56,17 @@ public partial class Interface : CanvasLayer
         //setting default
         MetaData metadata = saveManager.GetMetaData();
         updateMoney(metadata.Money);
+        updateAmmo(metadata.Ammo);
     }
 
     public void updateMoney(int value)
     {
         Money.Text = ": " + value;
+    }
+    public void updateAmmo(int value)
+    {
+       int ammo = Mathf.Clamp(value, 0, 50);
+       Ammo.Text = "Ammo: " + ammo + "/50";
     }
 
     private void updateStamina(int value)
@@ -118,6 +127,7 @@ public partial class Interface : CanvasLayer
         eventbus.updateHealth -= updateHealth;
         eventbus.updateStamina -= updateStamina;
         eventbus.updateMoney -= updateMoney;
+        eventbus.updateAmmo -= updateAmmo;
     }
 
     //use this to receive events for player input related to pause/and ui

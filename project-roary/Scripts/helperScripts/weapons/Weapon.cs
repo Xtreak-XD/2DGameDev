@@ -13,6 +13,8 @@ public partial class Weapon : Node2D
 	public Node2D parent;
 	public Vector2 mousePosition;
 
+	private Eventbus.triggerAttackEventHandler attackCallback;
+
 	// IF YOU NEED TO OVERRIDE THIS, CALL base._Ready()
 	// DO NOT OVERRIDE THIS UNLESS YOU ARE CREATNG A NEW
 	// WEAPON SUBTYPE LIKE MeleeWeapon or RangedWeapon.
@@ -22,7 +24,8 @@ public partial class Weapon : Node2D
 		attackTimer = GetNode<Timer>("AttackTimer");
 		sprite = GetNode<Sprite2D>("Sprite2D");
 
-		eventbus.triggerAttack += () => Attack(mousePosition);
+		attackCallback = () => Attack(mousePosition);
+		eventbus.triggerAttack += attackCallback;
 
 		attackTimer.WaitTime = data.attackRate;
 		attackTimer.Timeout += SetCanAttack;
@@ -37,6 +40,19 @@ public partial class Weapon : Node2D
 
 		canAttack = true;
 	}
+
+	public override void _ExitTree()
+    {
+        if (eventbus != null && attackCallback != null)
+        {
+            eventbus.triggerAttack -= attackCallback;
+        }
+        
+        if (attackTimer != null)
+        {
+            attackTimer.Timeout -= SetCanAttack;
+        }
+    }
 
 	// DO NOT OVERRIDE THIS
 	public override void _Input(InputEvent @event)

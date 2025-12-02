@@ -36,7 +36,7 @@ public partial class RangedWeapon : Weapon
 		//GD.Print("A ranged weapon has shot");
 
 		Projectile proj = (Projectile)projectile.Instantiate();
-		Owner.AddChild(proj);
+		GetTree().GetCurrentScene().AddChild(proj);
 		
 		proj.GlobalPosition = projectileSource.GlobalPosition;
 		proj.sprite.LookAt(pos);

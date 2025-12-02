@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=17 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
 [ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
-[ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="13_otqv2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
 texture = ExtResource("1_pnd8i")
@@ -161,12 +160,3 @@ position = Vector2(2408, 9590)
 
 [node name="Save" parent="." instance=ExtResource("10_up40q")]
 position = Vector2(7151, 3776)
-
-[node name="Petitioner" parent="." instance=ExtResource("13_otqv2")]
-position = Vector2(3705, 8331)
-
-[node name="Petitioner2" parent="." instance=ExtResource("13_otqv2")]
-position = Vector2(2945, 7381)
-
-[node name="Petitioner3" parent="." instance=ExtResource("13_otqv2")]
-position = Vector2(4360, 9281)

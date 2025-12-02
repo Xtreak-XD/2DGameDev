@@ -160,7 +160,7 @@ public partial class Player : CharacterBody2D
 		GetTree().GetCurrentScene().AddChild(itemInstance);
 	}
 
-	public void equipItem(int slotIndex)
+	public async void equipItem(int slotIndex)
 	{
 		if (slotIndex < -1 || slotIndex >= inv.slots.Count)
 		{
@@ -174,6 +174,8 @@ public partial class Player : CharacterBody2D
 		{
 			equippedItemInstance.QueueFree();
 			equippedItemInstance = null;
+
+			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 		}
 
 		equippedSlot = slotIndex;

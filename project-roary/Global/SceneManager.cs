@@ -5,6 +5,7 @@ using Godot;
 public partial class SceneManager : Node
 {
     Node currentScene;
+    public Eventbus eventbus;
     Player player;
     public string comingFromName;
     Marker2D spawnPosition;
@@ -20,6 +21,7 @@ public partial class SceneManager : Node
 
     public override void _Ready()
     {
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
         newPlayerInstance = GD.Load<PackedScene>("res://Scenes/entities/player/player.tscn");
         var root = GetTree().Root;
         currentScene = root.GetChild(root.GetChildCount() - 1);
@@ -114,6 +116,13 @@ public partial class SceneManager : Node
         }
         
         newScene.AddChild(player);
+        if (loading)
+        {
+            player.data.Health = player.data.MaxHealth;
+            player.data.Stamina = player.data.MaxStamina;
+            eventbus.EmitSignal(Eventbus.SignalName.updateHealth, player.data.Health);
+            eventbus.EmitSignal(Eventbus.SignalName.updateStamina, player.data.Stamina);
+        }
         player.CallDeferred(nameof(Player.setSpawnPosition), spawn);
 
         currentScene = newScene;

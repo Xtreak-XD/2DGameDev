@@ -118,11 +118,49 @@ public partial class Iguana : Enemy
         return center + new Vector2(randomX, randomY);
     }
 
-    public void AttackPlayer()
+    public void AttackPlayer(Vector2 direction)
     {
-        // Play attack animation here
-        // anim.Play("attack");
-        GD.Print("Iguana attacking!");
+        if (direction.Length() < 0.1f)
+        {
+            if (anim.IsPlaying())
+                anim.Stop();
+            return;
+        }
+
+        if (Mathf.Abs(direction.X) > Mathf.Abs(direction.Y))
+        {
+            if (direction.X > 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_right_attack")
+                {
+                    anim.Play("walk_right_attack");
+                }
+            }
+            else if (direction.X < 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_left_attack")
+                {
+                    anim.Play("walk_left_attack");
+                }
+            }
+        }
+        else if (Mathf.Abs(direction.Y) > 0)
+        {
+            if (direction.Y > 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_down_attack")
+                {
+                    anim.Play("walk_down_attack");
+                }
+            }
+            else if (direction.Y < 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_up_attack")
+                {
+                    anim.Play("walk_up_attack");
+                }
+            }
+        }
     }
 
     public void animation(Vector2 direction)

@@ -9,4 +9,6 @@ MaxHealth = 35
 Damage = 10
 Speed = 100
 Accel = 25.0
+dealKnockback = true
+knockBackAmount = 250.0
 metadata/_custom_type_script = "uid://dkov12aknt46v"

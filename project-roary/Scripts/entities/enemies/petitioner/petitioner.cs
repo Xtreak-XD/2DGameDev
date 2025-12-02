@@ -15,7 +15,10 @@ public partial class petitioner : Enemy
 
     public override void _Ready()
     {
-
+        if (data != null)
+        {
+            data = (GenericData)data.Duplicate();
+        }
         anim = GetNode<AnimationPlayer>("AnimationPlayer");
 
         var fsm = GetNode<EnemyStateMachine>("EnemyStateMachine");

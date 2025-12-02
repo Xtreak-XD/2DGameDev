@@ -29,6 +29,10 @@ public partial class BookEnemy : Enemy
 
     public override void _Ready()
     {
+        if (data != null)
+		{
+			data = (GenericData)data.Duplicate();
+		}
         _player = GetTree().GetFirstNodeInGroup("player") as Node2D;
         if (_player == null)
         {

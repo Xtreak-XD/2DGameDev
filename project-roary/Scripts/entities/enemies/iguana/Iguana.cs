@@ -17,6 +17,10 @@ public partial class Iguana : Enemy
 
 	public override void _Ready()
 	{
+        if (data != null)
+		{
+			data = (GenericData)data.Duplicate();
+		}
 		AddToGroup("enemy");
 		target = (Player)GetTree().GetFirstNodeInGroup("player");
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");

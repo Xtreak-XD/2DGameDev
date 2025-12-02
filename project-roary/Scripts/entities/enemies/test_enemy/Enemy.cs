@@ -19,6 +19,10 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _Ready()
 	{
+		if (data != null)
+		{
+			data = (GenericData)data.Duplicate();
+		}
 		stateMachine = GetNode<EnemyStateMachine>("EnemyStateMachine");
 		stateMachine.Initialize(this);
 

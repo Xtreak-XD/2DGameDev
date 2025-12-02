@@ -25,7 +25,7 @@ public partial class Player : CharacterBody2D
     {
 		//{ "", ""}, name , path to tscn
         { "Pencil", "res://Scenes/weapons/PencilSword.tscn"},
-		{ "StapleGun", "res://Scenes/weapons/StapleGun.tscn"},
+		{ "Thumbstack", "res://Scenes/weapons/StapleGun.tscn"}, //switch to staple gun
     };
 
 	public bool usingStamina = false;

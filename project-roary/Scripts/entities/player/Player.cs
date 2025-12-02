@@ -18,6 +18,15 @@ public partial class Player : CharacterBody2D
 	private Eventbus eventbus;
 	private int equippedSlot = -1;
 	public Inventory inv;
+	public InventorySlot equippedItem;
+	private Node equippedItemInstance = null;
+
+	public Godot.Collections.Dictionary Equipables = new Godot.Collections.Dictionary
+    {
+		//{ "", ""}, name , path to tscn
+        { "Pencil", "res://Scenes/weapons/PencilSword.tscn"},
+		{ "StapleGun", "res://Scenes/weapons/StapleGun.tscn"},
+    };
 
 	public bool usingStamina = false;
 	public bool recoveringStamina = false;
@@ -159,7 +168,13 @@ public partial class Player : CharacterBody2D
 			return;
 		}
 
-		if (slotIndex == equippedSlot) return;	
+		if (slotIndex == equippedSlot) return;
+
+		if (equippedItemInstance != null)
+		{
+			equippedItemInstance.QueueFree();
+			equippedItemInstance = null;
+		}
 
 		equippedSlot = slotIndex;
 		if (slotIndex < 0)
@@ -168,11 +183,18 @@ public partial class Player : CharacterBody2D
 			return;
 		}
 
-		InventorySlot equipItem = inv.slots[slotIndex];
+		equippedItem = inv.slots[slotIndex];
 
-		if (equipItem.item != null && equipItem.quantity > 0)
+		if (equippedItem.item != null && equippedItem.quantity > 0)
 		{
-			GD.Print($"Equipped: {equipItem.item.itemName}");
+			string itemName = equippedItem.item.itemName;
+			GD.Print($"Equipped: {itemName}");
+			if (Equipables.ContainsKey(itemName))
+            {
+                PackedScene item = ResourceLoader.Load<PackedScene>((string)Equipables[itemName]);
+				equippedItemInstance = item.Instantiate();
+				AddChild(equippedItemInstance);
+            }
 		}
 		else
 		{

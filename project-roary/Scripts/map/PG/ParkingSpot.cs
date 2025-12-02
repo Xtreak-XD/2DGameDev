@@ -44,7 +44,7 @@ public partial class ParkingSpot : Area2D
 
 				GD.Print("The player has reached the parking spot");
 				GD.Print("Speed Based Score: " + score);
-				GD.Print("Time Based Score: " + Math.Round(ParkingTimer.TimeLeft * 5000, 2));
+				GD.Print("Time Based Score: " + Math.Round(ParkingTimer.TimeLeft * 6000, 2));
 
 				score += (float)ParkingTimer.TimeLeft * 6000;
 				GD.Print("Total Score: " + Math.Round(score, 2));

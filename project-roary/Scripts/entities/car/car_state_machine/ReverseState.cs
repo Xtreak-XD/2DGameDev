@@ -6,7 +6,7 @@ public partial class ReverseState : CarState
     public DriveState DriveState;
     Vector2 accelerationVector = Vector2.Zero;
     float turnAngle;
-    
+    float smoothTurn;
     public override void _Ready()
     {
         DriveState = GetParent().GetNode<DriveState>("Drive");
@@ -27,9 +27,20 @@ public partial class ReverseState : CarState
     public override CarState Process(double delta)
     {
         float turn = Input.GetAxis("Left", "Right");
-        turnAngle = Mathf.DegToRad(turn * ActiveCar.stats.SteeringSpeed);
+        if (Math.Abs(turn) < 0.30f) { turn = 0f; }
         
-        accelerationVector = -ActiveCar.Transform.X * ActiveCar.stats.Acceleration;
+        smoothTurn = Mathf.Lerp(smoothTurn, turn, 10f * (float)delta);
+        turnAngle = Mathf.DegToRad(smoothTurn * ActiveCar.stats.SteeringSpeed);
+
+        bool isReversing = Input.IsActionPressed("Down") || Input.GetActionStrength("break") > 0.1f;
+        if (isReversing)
+        {
+            accelerationVector = -ActiveCar.Transform.X * ActiveCar.stats.Acceleration;
+        }
+        else
+        {
+            accelerationVector = Vector2.Zero;
+        }
         
         return null;
     }
@@ -39,13 +50,10 @@ public partial class ReverseState : CarState
         if(accelerationVector != Vector2.Zero || turnAngle != 0f)
         {
             ActiveCar.Velocity += accelerationVector * (float)delta;
-
             if (turnAngle != 0f && ActiveCar.Velocity.Length() > 0.1f)
             {
                 ActiveCar.Rotation += turnAngle * 5f * (float)delta;
             }
-
-            // Use lower max speed for reverse
             float maxReverseSpeed = ActiveCar.stats.TopSpeed * 0.5f;
             if (ActiveCar.Velocity.Length() > maxReverseSpeed)
             {
@@ -60,7 +68,9 @@ public partial class ReverseState : CarState
     
     public override CarState HandleInput(InputEvent @event)
     {
-        if (@event.IsActionReleased("Down"))
+        bool brakeReleased = !Input.IsActionPressed("Down") && Input.GetActionStrength("break") <= 0.1f;
+        
+        if (brakeReleased)
         {
             return DecelerateState;
         }

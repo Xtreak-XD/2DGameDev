@@ -80,7 +80,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Setting Menu" type="Control"]
+[node name="SettingsMenu" type="CanvasLayer"]
+layer = 10
+
+[node name="Setting Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +91,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Setting Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,7 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.09411765, 0.18039216, 0.43529412, 1)
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="Setting Menu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -112,7 +115,7 @@ text = "Settings"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="SettingsPanel" type="Panel" parent="."]
+[node name="SettingsPanel" type="Panel" parent="Setting Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -126,7 +129,7 @@ offset_bottom = 405.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ContentContainer" type="VBoxContainer" parent="SettingsPanel"]
+[node name="ContentContainer" type="VBoxContainer" parent="Setting Menu/SettingsPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -141,19 +144,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="SoundContainer" type="VBoxContainer" parent="SettingsPanel/ContentContainer"]
+[node name="SoundContainer" type="VBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="AudioLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer"]
+[node name="AudioLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
 theme = ExtResource("3_lwreh")
 text = "Sound"
 
-[node name="MasterContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
+[node name="MasterContainer" type="HBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
 
-[node name="MasterLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
+[node name="MasterLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
@@ -182,10 +185,10 @@ layout_mode = 2
 theme = ExtResource("4_welf5")
 text = "%100"
 
-[node name="MusicContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
+[node name="MusicContainer" type="HBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
 
-[node name="MusicLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
+[node name="MusicLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
@@ -275,15 +278,15 @@ layout_mode = 2
 theme = ExtResource("4_welf5")
 text = "%100"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="DisplayContainer" type="VBoxContainer" parent="SettingsPanel/ContentContainer"]
+[node name="DisplayContainer" type="VBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="DisplayLabel" type="Label" parent="SettingsPanel/ContentContainer/DisplayContainer"]
+[node name="DisplayLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("3_lwreh")
@@ -293,10 +296,10 @@ text = "Display"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="FullscreenContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/DisplayContainer"]
+[node name="FullscreenContainer" type="HBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer"]
 layout_mode = 2
 
-[node name="FullscreenLabel" type="Label" parent="SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
+[node name="FullscreenLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
@@ -323,10 +326,10 @@ alignment = 1
 icon_alignment = 1
 expand_icon = true
 
-[node name="VsyncContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/DisplayContainer"]
+[node name="VsyncContainer" type="HBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer"]
 layout_mode = 2
 
-[node name="VsyncLabel" type="Label" parent="SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
+[node name="VsyncLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
@@ -352,16 +355,16 @@ alignment = 1
 icon_alignment = 1
 expand_icon = true
 
-[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer"]
+[node name="Spacer2" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer"]
 layout_mode = 2
 theme_override_constants/separation = 220
 alignment = 1
 
-[node name="BackButton" type="Button" parent="SettingsPanel/ContentContainer/HBoxContainer"]
+[node name="BackButton" type="Button" parent="Setting Menu/SettingsPanel/ContentContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
@@ -376,7 +379,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ftffc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wji8m")
 text = "Back"
 
-[node name="ApplyButton" type="Button" parent="SettingsPanel/ContentContainer/HBoxContainer"]
+[node name="ApplyButton" type="Button" parent="Setting Menu/SettingsPanel/ContentContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2

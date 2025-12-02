@@ -205,7 +205,7 @@ EnemySpawnTimerMin = 0.1
 EnemySpawnTimerMax = 5.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4")]
 EnemyScene = ExtResource("13_otqv2")
-MaxEnemiesAlive = 3
+MaxEnemiesAlive = 4
 
 [node name="EntityContainer" type="Node2D" parent="Enemymanager"]
 

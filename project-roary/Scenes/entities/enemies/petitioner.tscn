@@ -405,8 +405,8 @@ radius = 153.31015
 radius = 178.02528
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hsg6v"]
-radius = 508.0
-height = 1016.0
+radius = 952.0
+height = 1904.0
 
 [node name="Petitioner" type="CharacterBody2D"]
 collision_layer = 16

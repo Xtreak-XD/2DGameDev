@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class EnemyManager : Node
 {
@@ -8,10 +9,14 @@ public partial class EnemyManager : Node
     [Export] public Marker2D[] EnemySpawnPoints;
     [Export] public PackedScene EnemyScene;
     [Export] public int MaxEnemiesAlive = 4;
+    [Export] public float SpawnPointCooldown = 5.0f;
+
     private Timer EnemySpawnTimer;
     private RandomNumberGenerator random;
     public Node2D entityContainer;
     public string carEnemy = "res://Scenes/entities/enemies/CarEnemy.tscn";
+
+    private Dictionary<Marker2D, float> spawnPointCooldowns = new Dictionary<Marker2D, float>();
 
     public override void _Ready()
     {
@@ -26,6 +31,44 @@ public partial class EnemyManager : Node
         if (EnemySpawnTimer != null)
             EnemySpawnTimer.Timeout += OnEnemySpawn;
             EnemySpawnTimer.Start(EnemySpawnTimerMin);
+        
+        foreach (var spawnPoint in EnemySpawnPoints)
+        {
+            spawnPointCooldowns[spawnPoint] = 0f;
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        var keys = new List<Marker2D>(spawnPointCooldowns.Keys);
+        foreach (var spawnPoint in keys)
+        {
+            if (spawnPointCooldowns[spawnPoint] > 0f)
+            {
+                spawnPointCooldowns[spawnPoint] -= (float)delta;
+                if (spawnPointCooldowns[spawnPoint] < 0f)
+                    spawnPointCooldowns[spawnPoint] = 0f;
+            }
+        }
+    }
+
+    private Marker2D GetAvailableSpawnPoint()
+    {
+        var availablePoints = new List<Marker2D>();
+        
+        foreach (var spawnPoint in EnemySpawnPoints)
+        {
+            if (spawnPointCooldowns[spawnPoint] <= 0f)
+            {
+                availablePoints.Add(spawnPoint);
+            }
+        }
+        
+        if (availablePoints.Count == 0)
+            return null;
+        
+        int index = random.RandiRange(0, availablePoints.Count - 1);
+        return availablePoints[index];
     }
 
     private int GetCurrentEnemyCount()
@@ -52,10 +95,17 @@ public partial class EnemyManager : Node
             return;
         }
 
-        int index = random.RandiRange(0, EnemySpawnPoints.Length - 1);
-        Marker2D chosenSpawnPoint = EnemySpawnPoints[index];
-        Node2D newEnemy = (Node2D)EnemyScene.Instantiate();
+        Marker2D chosenSpawnPoint = GetAvailableSpawnPoint();
 
+        if (chosenSpawnPoint == null)
+        {
+            // No spawn points available, try again later
+            float randomTime = random.RandfRange(EnemySpawnTimerMin, EnemySpawnTimerMax);
+            EnemySpawnTimer.Start(randomTime);
+            return;
+        }
+        
+        Node2D newEnemy = (Node2D)EnemyScene.Instantiate();
         if (EnemyScene.ResourcePath == carEnemy && newEnemy is CarEnemy carEnemyInstance)
         {
             carEnemyInstance.currentDirection = DetermineDirectionFromSpawnPoint(chosenSpawnPoint.GlobalPosition);
@@ -63,6 +113,8 @@ public partial class EnemyManager : Node
 
         entityContainer.AddChild(newEnemy);
         newEnemy.Position = chosenSpawnPoint.GlobalPosition;
+
+        spawnPointCooldowns[chosenSpawnPoint] = SpawnPointCooldown;
 
         float nextSpawnTime = random.RandfRange(EnemySpawnTimerMin, EnemySpawnTimerMax);
         EnemySpawnTimer.Start(nextSpawnTime);

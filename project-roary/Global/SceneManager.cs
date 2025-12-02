@@ -55,7 +55,7 @@ public partial class SceneManager : Node
 
     public void goToScene(Node from, string scene, bool loading = false, Vector2 spawnPos = default)
     {
-        comingFromName = currentScene.Name;
+        comingFromName = ShouldSceneHavePlayer(currentScene) ? currentScene.Name : "";
         
         Player existingPlayer = from.GetNodeOrNull<Player>("Player");
         if (existingPlayer != null)
@@ -77,6 +77,11 @@ public partial class SceneManager : Node
     {
         PackedScene packedScene = GD.Load<PackedScene>(path);
         Node newScene = packedScene.Instantiate();
+
+        if (newScene.Name == "MainMenu")
+        {
+            player = null;
+        }
 
         currentScene.Free();
 

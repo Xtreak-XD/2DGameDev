@@ -40,12 +40,8 @@ public partial class SaveManager : Node
     public void Save(bool firstLoad = false)
     {
         // Get player
-        Player player = GetTree().Root.GetNodeOrNull<Player>("Player");
-        if (player == null)
-        {
-            var currentScene = GetTree().CurrentScene;
-            player = currentScene?.GetNodeOrNull<Player>("Player");
-        }
+        var currentScene = GetTree().CurrentScene;
+        Player player = currentScene?.GetNodeOrNull<Player>("Player");
 
         if (player != null)
         {

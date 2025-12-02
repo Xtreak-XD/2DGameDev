@@ -31,6 +31,12 @@ public partial class HotbarUI : Control
 		eventbus.inventoryUpdated += UpdateHotBar;
 	}
 
+    public override void _ExitTree()
+    {
+        eventbus.inventoryUpdated -= UpdateHotBar;
+    }
+
+
 	public override void _Input(InputEvent @event)
 	{
 		int selectedSlot = -1;

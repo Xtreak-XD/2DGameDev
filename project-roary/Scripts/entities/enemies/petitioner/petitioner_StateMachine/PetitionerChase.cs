@@ -4,7 +4,7 @@ using Godot;
 /// Simple horizontal patrol that flips at bounds. No player logic.
 public partial class PetitionerChase : EnemyState
 {
-    [Export] public float Speed = 80f;             // px/s
+    [Export] public float Speed = 800f;             // px/s
     [Export] public float PatrolDistance = 200f;   // total width (start ± half)
     [Export] public float TurnPause = 0.08f;       // tiny pause at ends
     [Export] public bool  LockYToStart = true;     // keep to one "row"

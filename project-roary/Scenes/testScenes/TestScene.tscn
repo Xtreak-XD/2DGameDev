@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=14 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="3_106wm"]
@@ -12,6 +12,9 @@
 [ext_resource type="Resource" uid="uid://dvkbfxeeae2tp" path="res://Resources/Shop/WeaponShop.tres" id="9_fkpmq"]
 [ext_resource type="PackedScene" uid="uid://dsxvnrdp3nf1i" path="res://Scenes/map/GranhamCenter/ShopKeeper.tscn" id="10_3unw3"]
 [ext_resource type="PackedScene" uid="uid://dy8gl83jijma" path="res://Scenes/Items/Pencil.tscn" id="10_d43vx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d43vx"]
+radius = 91.66242
 
 [node name="TestScene" type="Node2D"]
 
@@ -59,6 +62,9 @@ position = Vector2(581, 873)
 [node name="sceneSwitchArea" parent="." instance=ExtResource("7_lfsl6")]
 position = Vector2(48, 574)
 path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+shape = SubResource("CircleShape2D_d43vx")
 
 [node name="FruitShop" parent="." instance=ExtResource("10_3unw3")]
 position = Vector2(1241, 183)

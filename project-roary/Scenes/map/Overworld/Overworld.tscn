@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=23 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
 [ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
+[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="11_otqv2"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
+[ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="13_otqv2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
 texture = ExtResource("1_pnd8i")
@@ -31,7 +33,19 @@ adjustment_enabled = true
 adjustment_saturation = 1.25
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm1pb"]
-radius = 148.33745
+radius = 215.12787
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnd8i"]
+radius = 477.12683
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_otqv2"]
+radius = 497.01608
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lmre"]
+radius = 509.08643
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6v34l"]
+radius = 302.49792
 
 [node name="Overworld" type="Node2D"]
 
@@ -67,6 +81,25 @@ environment = SubResource("Environment_uny04")
 INGAME_SPEED = 50.0
 
 [node name="Map" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Map"]
+position = Vector2(2231, 1788)
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D"]
+polygon = PackedVector2Array(-2150, 1606, -1339, 1690, -410, 1595, 973, 1249, 1700, 915, 1962, 701, 2081, 415, 2582, 510, 2939, 677, 3154, 701, 3380, 605, 3714, 617, 3845, 725, 4119, 748, 4500, 832, 4632, 1011, 4584, 1189, 4715, 1273, 5025, 1380, 5180, 1404, 5382, 1547, 5394, 1750, 5275, 2024, 5156, 2262, 4941, 2584, 4667, 3013, 4357, 3394, 4512, 3573, 4858, 3680, 5263, 3680, 5549, 3704, 5597, 3859, 5811, 3978, 6407, 4050, 7575, 4074, 7730, 4085, 7849, 4074, 7766, -2005, -2615, -2005, -2388, 1630)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Map"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D2"]
+polygon = PackedVector2Array(-10, 6583, 969, 7485, 2024, 7811, 2293, 8080, 2466, 8176, 2696, 8560, 2792, 8944, 1391, 10057, -68, 10230, -279, 9251, -375, 6506)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Map"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D3"]
+polygon = PackedVector2Array(8646, 9155, 9241, 9519, 9798, 9596, 10009, 9462, 10149, 7346, 9721, 7350, 7611, 7361, 7322, 7427, 6443, 7938, 6140, 8399, 6025, 8702, 7744, 8713, 8090, 8579, 8704, 8848)
 
 [node name="ChunkTL" type="Sprite2D" parent="Map"]
 texture = ExtResource("1_rxqxp")
@@ -127,36 +160,101 @@ texture = ExtResource("4_255qt")
 
 [node name="GC" type="Sprite2D" parent="Map/ChunkBR"]
 z_index = 2
-position = Vector2(8054, 7984)
+position = Vector2(8065, 7984)
 texture = ExtResource("3_depd0")
 
-[node name="sceneSwitchArea" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(5740, 6787)
+[node name="testSceneEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(4667, 8420)
 path = "res://Scenes/testScenes/TestScene.tscn"
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="sceneSwitchArea"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="testSceneEntrance"]
 shape = SubResource("CircleShape2D_rm1pb")
 
-[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
-spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing"), NodePath("fromParkingGarage"), NodePath("fromNaturePreserve"), NodePath("fromGreenLibrary"), NodePath("fromGranhamCenter")]
+[node name="GcEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(8219, 8837)
+path = "res://Scenes/map/GranhamCenter/GranhamCenter.tscn"
 
-[node name="fromTestScene" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(4729, 8931)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GcEntrance"]
+shape = SubResource("CircleShape2D_pnd8i")
+
+[node name="GlEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(1819, 9600)
+path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlEntrance"]
+position = Vector2(0, -118)
+shape = SubResource("CircleShape2D_otqv2")
+
+[node name="StadiumEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(2725, 3379)
+path = "res://Scenes/map/Stadium/Stadium.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StadiumEntrance"]
+position = Vector2(-54, -119)
+shape = SubResource("CircleShape2D_1lmre")
+
+[node name="NpEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(5764, 2521)
+path = "res://Scenes/map/NaturePreserve/NaturePreserve.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NpEntrance"]
+shape = SubResource("CircleShape2D_6v34l")
+
+[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("11_otqv2")]
+EnemySpawnTimerMin = 0.1
+EnemySpawnTimerMax = 5.0
+EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4")]
+EnemyScene = ExtResource("13_otqv2")
+MaxEnemiesAlive = 3
+
+[node name="EntityContainer" type="Node2D" parent="Enemymanager"]
+
+[node name="EnemySpawnPointsContainer" type="Node2D" parent="Enemymanager"]
+
+[node name="Marker2D" type="Marker2D" parent="Enemymanager/EnemySpawnPointsContainer"]
+position = Vector2(2466, 7209)
+
+[node name="Marker2D2" type="Marker2D" parent="Enemymanager/EnemySpawnPointsContainer"]
+position = Vector2(3309, 9614)
+
+[node name="Marker2D3" type="Marker2D" parent="Enemymanager/EnemySpawnPointsContainer"]
+position = Vector2(3496, 8090)
+
+[node name="Marker2D4" type="Marker2D" parent="Enemymanager/EnemySpawnPointsContainer"]
+position = Vector2(4599, 9778)
+
+[node name="Enemymanager2" parent="." instance=ExtResource("11_otqv2")]
+EnemySpawnTimerMin = 0.1
+EnemySpawnTimerMax = 4.0
+MaxEnemiesAlive = 4
+
+[node name="EntityContainer" type="Node2D" parent="Enemymanager2"]
+
+[node name="EnemySpawnPointsContainer" type="Node2D" parent="Enemymanager2"]
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
+spawnsAvailable = [NodePath("fromNothing"), NodePath("fromParkingGarage"), NodePath("fromNaturePreserve"), NodePath("fromGreenLibrary"), NodePath("fromGranhamCenter")]
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(6217, 4946)
+position = Vector2(4429, 7699)
 
 [node name="fromParkingGarage" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(8264, 6060)
 
 [node name="fromNaturePreserve" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(5740, 2884)
+position = Vector2(5666, 2988)
 
 [node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(7499, 8941)
+position = Vector2(2634, 9656)
 
 [node name="fromGranhamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(2408, 9590)
+position = Vector2(7300, 9044)
 
 [node name="Save" parent="." instance=ExtResource("10_up40q")]
-position = Vector2(7151, 3776)
+position = Vector2(6635, 3367)
+
+[node name="Save2" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(2015, 3907)
+
+[node name="Save3" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(5689, 8644)

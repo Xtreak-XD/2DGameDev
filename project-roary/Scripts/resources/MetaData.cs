@@ -8,6 +8,7 @@ public partial class MetaData : Resource
 {
     //player main metaData
     [Export] public int Money { get; set; }
+    [Export] public int Ammo { get; set;}
     [Export] public Vector2 savePos { get; set; }
 
     [Export] public string curScenepath { get; set; }
@@ -38,6 +39,10 @@ public partial class MetaData : Resource
     public void updateMoney(int amount)
     {
         Money += amount;
+    }
+    public void updaateAmmo(int amount)
+    {
+        Ammo+= amount;
     }
 
     //dialogue flags pls make these booleans (pls add as needed)

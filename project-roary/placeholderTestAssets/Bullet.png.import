@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8js3ay45xsa7"
-path="res://.godot/imported/vector-illustration-day-night-concept-600nw-410616652-removebg-preview.png-8accd9a38194079063f4d645a8b4f60d.ctex"
+uid="uid://t2re6omg286k"
+path="res://.godot/imported/Bullet.png-72cb9029044799a161072cf908f2aec8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholderTestAssets/vector-illustration-day-night-concept-600nw-410616652-removebg-preview.png"
-dest_files=["res://.godot/imported/vector-illustration-day-night-concept-600nw-410616652-removebg-preview.png-8accd9a38194079063f4d645a8b4f60d.ctex"]
+source_file="res://placeholderTestAssets/Bullet.png"
+dest_files=["res://.godot/imported/Bullet.png-72cb9029044799a161072cf908f2aec8.ctex"]
 
 [params]
 

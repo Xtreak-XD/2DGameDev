@@ -95,7 +95,7 @@ public partial class Guide : CharacterBody2D
         if (!md.TalkedToWiseTurtleAboutBrother)
         {
             md.TalkedToWiseTurtleAboutBrother = true;
-            sm.Save();
+            sm.SaveNpcFlags();
         }
 
         eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);

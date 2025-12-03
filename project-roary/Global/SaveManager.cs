@@ -69,6 +69,23 @@ public partial class SaveManager : Node
         }
     }
 
+    public void SaveNpcFlags()
+    {
+        VerifySaveDirectory(save_file_path);
+
+        string fullPath = save_file_path + save_file_name;
+        Error result = ResourceSaver.Save(metaData, fullPath);
+
+        if (result == Error.Ok)
+        {
+            GD.Print("NPC flags saved at " + fullPath);
+        }
+        else
+        {
+            GD.PrintErr($"Failed to save NPC flags: {result}");
+        }
+    }
+
     public void Load()
     {
         string fullPath = save_file_path + save_file_name;

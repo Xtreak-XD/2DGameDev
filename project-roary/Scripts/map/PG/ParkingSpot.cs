@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class ParkingSpot : Area2D
@@ -26,7 +27,7 @@ public partial class ParkingSpot : Area2D
         {
             if(driveableCar.Velocity.Length() >= driveableCar.stats.TopSpeed * 0.99)
             {
-                score += 100;
+                score += 4;
             }
         }
 	}
@@ -40,10 +41,16 @@ public partial class ParkingSpot : Area2D
             {
 				ParkingTimer.Paused = true;
 				FlashingTimer.Paused = true;
+
 				GD.Print("The player has reached the parking spot");
-				score += (float)ParkingTimer.TimeLeft * 1000;
-				GD.Print("Player Score: " + score);
-				GD.Print("Cash Award: " + (int)(score / 500));
+				GD.Print("Speed Based Score: " + score);
+				GD.Print("Time Based Score: " + Math.Round(ParkingTimer.TimeLeft * 6000, 2));
+
+				score += (float)ParkingTimer.TimeLeft * 7000;
+				GD.Print("Total Score: " + Math.Round(score, 2));
+				
+				int cashAward = (int)(score / 200);
+				GD.Print("Cash Award: $" + cashAward);
 				//add some animation story thing here!
 
 				//wait 3 secs

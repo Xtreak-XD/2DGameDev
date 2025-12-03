@@ -18,7 +18,7 @@ public partial class Guide : CharacterBody2D
         dialogueManager = GetNode<dialogueManager>("/root/DialogueManager");
         interactionArea = GetNode<interactionArea>("InteractableArea");
         saveManager = GetNode<SaveManager>("/root/SaveManager");
-        interactionArea.interact = Callable.From(onInteract);
+        interactionArea.interact = Callable.From(onInteractWrapper);
 
         BuildLinesDictionary();
     }
@@ -64,7 +64,12 @@ public partial class Guide : CharacterBody2D
         };
     }
 
-    public async void onInteract()
+    public void onInteractWrapper()
+    {
+        _ = onInteract(); // call async function without returning Task
+    }
+
+    public async Task onInteract()
     {
         var sm = saveManager;
         var md = sm.metaData;
@@ -84,7 +89,7 @@ public partial class Guide : CharacterBody2D
             chosenLines = Lines["default"];
         }
 
-        dialogueManager.startDialog(GlobalPosition, chosenLines);
+        await dialogueManager.startDialog(GlobalPosition, chosenLines);
         await ToSignal(eventbus, "finishedDisplaying");
 
         if (!md.TalkedToWiseTurtleAboutBrother)

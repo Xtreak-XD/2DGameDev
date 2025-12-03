@@ -28,7 +28,7 @@ shape = SubResource("CircleShape2D_8mviv")
 [node name="InteractableArea" parent="." instance=ExtResource("3_8mviv")]
 position = Vector2(-3, 1)
 scale = Vector2(0.23999941, 0.34297517)
-actionName = "talk to wise"
+actionName = "listen to wise"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
 scale = Vector2(12.222848, -9.518578)

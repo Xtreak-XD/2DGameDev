@@ -1,81 +1,41 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7j1lsbdli03x"]
+[gd_scene load_steps=6 format=3 uid="uid://b7j1lsbdli03x"]
 
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_ict7c"]
-[ext_resource type="PackedScene" uid="uid://bed4fyrobgykm" path="res://Scenes/entities/enemies/logo.tscn" id="1_pynll"]
-[ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="2_pynll"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="4_ovpjc"]
 [ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="5_brcu7"]
-[ext_resource type="AudioStream" uid="uid://bvsia71n1w6wu" path="res://audio/Background/mermaid boss theme.wav" id="6_ne70o"]
 [ext_resource type="AudioStream" uid="uid://4ks0n2aiwllh" path="res://audio/Background/Greens Library.wav" id="7_5rrx5"]
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_j2nck"]
-clip_count = 2
-clip_0/name = &"bossMusic"
-clip_0/stream = ExtResource("6_ne70o")
-clip_0/auto_advance = 0
-clip_1/name = &"Background"
-clip_1/stream = ExtResource("7_5rrx5")
-clip_1/auto_advance = 0
-initial_clip = 1
-_transitions = {
-Vector2i(0, 1): {
-"fade_beats": 1.0,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(1, 0): {
-"fade_beats": 1.0,
-"fade_mode": 3,
-"from_time": 0,
-"to_time": 0
-}
-}
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ovpjc"]
+fade_time = 0.5
+stream_count = 1
+stream_0 = ExtResource("7_5rrx5")
 
 [node name="GreenLibrary" type="Node2D"]
-
-[node name="Logo" parent="." instance=ExtResource("1_pynll")]
-position = Vector2(571.99994, 544.99994)
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_ict7c")]
 spawnsAvailable = [NodePath("fromMaze"), NodePath("fromOverworld"), NodePath("fromNothing")]
 
 [node name="fromMaze" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(1672, 531)
+position = Vector2(96, 220)
 
 [node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(1673, 517)
+position = Vector2(97, 206)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(98, 110)
-
-[node name="MermaidPhase2" parent="." node_paths=PackedStringArray("starfishSpawns") instance=ExtResource("2_pynll")]
-position = Vector2(507, 159)
-starfishSpawns = [NodePath("../StarfishSpawn1"), NodePath("../StarfishSpawn2"), NodePath("../StarfishSpawn3"), NodePath("../StarfishSpawn4"), NodePath("../StarfishSpawn5")]
-
-[node name="StarfishSpawn1" type="Marker2D" parent="."]
-position = Vector2(1598, 169)
-
-[node name="StarfishSpawn2" type="Marker2D" parent="."]
-position = Vector2(283, 918)
-
-[node name="StarfishSpawn3" type="Marker2D" parent="."]
-position = Vector2(1136, 777)
-
-[node name="StarfishSpawn4" type="Marker2D" parent="."]
-position = Vector2(211, 352)
-
-[node name="StarfishSpawn5" type="Marker2D" parent="."]
-position = Vector2(1005, 269)
 
 [node name="GLToOverworld" parent="." instance=ExtResource("4_ovpjc")]
 position = Vector2(1197, 873)
 path = "res://Scenes/map/Overworld/Overworld.tscn"
 
+[node name="GLToBoss" parent="." instance=ExtResource("4_ovpjc")]
+position = Vector2(1535, 132)
+path = "res://Scenes/map/GreenLibrary/GreenLibraryBoss.tscn"
+
 [node name="WorldAudioManager" type="Node" parent="."]
 script = ExtResource("5_brcu7")
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = SubResource("AudioStreamInteractive_j2nck")
+stream = SubResource("AudioStreamPlaylist_ovpjc")
 autoplay = true
 bus = &"Music"

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj4318gbfs0r"
-path="res://.godot/imported/Roary-Wave-Full-Body.png-bd2d6321c844df95702ea5762720486c.ctex"
+path="res://.godot/imported/Roary-Wave-Full-Body.png-fe2b6afc591a14d728e74576fb5dd37f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Roary-Wave-Full-Body.png"
-dest_files=["res://.godot/imported/Roary-Wave-Full-Body.png-bd2d6321c844df95702ea5762720486c.ctex"]
+source_file="res://Sprites/Menus/Roary-Wave-Full-Body.png"
+dest_files=["res://.godot/imported/Roary-Wave-Full-Body.png-fe2b6afc591a14d728e74576fb5dd37f.ctex"]
 
 [params]
 

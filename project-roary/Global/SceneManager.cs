@@ -58,6 +58,7 @@ public partial class SceneManager : Node
     public void goToScene(Node from, string scene, bool loading = false, Vector2 spawnPos = default)
     {
         comingFromName = ShouldSceneHavePlayer(currentScene) ? currentScene.Name : "";
+        if(from.Name == "ParkingGarage"){ comingFromName = "ParkingGarage";} //look at these 2 lines later
         
         Player existingPlayer = from.GetNodeOrNull<Player>("Player");
         if (existingPlayer != null)

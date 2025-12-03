@@ -53,7 +53,7 @@ public partial class HurtBox : Area2D
         }
     }
 
-    public async Task flash()
+    public async void flash()
     {
         float flashDuration = 0.15f;
         AnimatedSprite2D sprite = parent.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");

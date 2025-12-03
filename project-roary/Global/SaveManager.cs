@@ -7,7 +7,7 @@ public partial class SaveManager : Node
     private string save_file_name = "playerMetaData.tres";
     private Eventbus eventbus;
     private Inventory inv;
-    private MetaData metaData = new();
+    public MetaData metaData = new();
 
     public override void _Ready()
     {

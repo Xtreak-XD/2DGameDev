@@ -19,13 +19,10 @@ public partial class TestNpc : CharacterBody2D
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         dialogueManager = GetNode<dialogueManager>("/root/DialogueManager");
         interactionArea = GetNode<interactionArea>("InteractableArea");
-        interactionArea.interact = Callable.From(() =>
-        {
-            onInteract();
-        });
+        interactionArea.interact = Callable.From(onInteract);
     }
 
-    public async Task onInteract()
+    public async void onInteract()
     {
         await dialogueManager.startDialog(GlobalPosition, thisLine);
         await ToSignal(eventbus, "finishedDisplaying");

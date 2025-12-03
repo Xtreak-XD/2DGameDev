@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=24 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
 [ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
+[ext_resource type="PackedScene" uid="uid://ddq3hijvn1xf3" path="res://Scenes/entities/npcs/Guide.tscn" id="10_y80uk"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="11_otqv2"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 [ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="13_6v34l"]
@@ -161,15 +162,18 @@ z_index = 2
 position = Vector2(8065, 7984)
 texture = ExtResource("3_depd0")
 
+[node name="WiseTurtle" parent="." instance=ExtResource("10_y80uk")]
+position = Vector2(5692, 5811)
+
 [node name="GcEntrance" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(8219, 8837)
+position = Vector2(8407, 8640)
 path = "res://Scenes/map/GranhamCenter/GranhamCenter.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GcEntrance"]
 shape = SubResource("CircleShape2D_pnd8i")
 
 [node name="GlEntrance" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(1819, 9600)
+position = Vector2(1635, 9508)
 path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GlEntrance"]
@@ -177,7 +181,7 @@ position = Vector2(0, -118)
 shape = SubResource("CircleShape2D_otqv2")
 
 [node name="StadiumEntrance" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(2725, 3379)
+position = Vector2(2663, 3140)
 path = "res://Scenes/map/Stadium/Stadium.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StadiumEntrance"]
@@ -185,7 +189,7 @@ position = Vector2(-54, -119)
 shape = SubResource("CircleShape2D_1lmre")
 
 [node name="NpEntrance" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(5764, 2521)
+position = Vector2(5777, 2435)
 path = "res://Scenes/map/NaturePreserve/NaturePreserve.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NpEntrance"]
@@ -197,7 +201,6 @@ EnemySpawnTimerMax = 5.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4"), NodePath("EnemySpawnPointsContainer/Marker2D5"), NodePath("EnemySpawnPointsContainer/Marker2D6")]
 EnemyScene = ExtResource("13_otqv2")
 MaxEnemiesAlive = 4
-SpawnPointCooldown = 10.0
 
 [node name="EntityContainer" type="Node2D" parent="petitionerSpawner"]
 
@@ -227,7 +230,6 @@ EnemySpawnTimerMax = 5.0
 EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4"), NodePath("EnemySpawnPointsContainer/Marker2D5"), NodePath("EnemySpawnPointsContainer/Marker2D6"), NodePath("EnemySpawnPointsContainer/Marker2D7"), NodePath("EnemySpawnPointsContainer/Marker2D8"), NodePath("EnemySpawnPointsContainer/Marker2D9"), NodePath("EnemySpawnPointsContainer/Marker2D10"), NodePath("EnemySpawnPointsContainer/Marker2D11"), NodePath("EnemySpawnPointsContainer/Marker2D12"), NodePath("EnemySpawnPointsContainer/Marker2D13"), NodePath("EnemySpawnPointsContainer/Marker2D14")]
 EnemyScene = ExtResource("13_6v34l")
 MaxEnemiesAlive = 6
-SpawnPointCooldown = 10.0
 
 [node name="EntityContainer" type="Node2D" parent="IguanaSpawner"]
 

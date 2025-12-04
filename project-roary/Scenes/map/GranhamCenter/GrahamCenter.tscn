@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://23dp7aok7gvy"]
+[gd_scene load_steps=3 format=3 uid="uid://23dp7aok7gvy"]
 
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="1_xaycd"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="2_fcsqv"]
-[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="3_augan"]
-[ext_resource type="AudioStream" uid="uid://ny3sdx2ih15x" path="res://audio/Background/Crossroads selection.wav" id="4_dnkm4"]
 
 [node name="GrahamCenter" type="Node2D"]
 
@@ -19,11 +17,3 @@ position = Vector2(784, 471)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(793, 482)
-
-[node name="WorldAudioManager" type="Node" parent="."]
-script = ExtResource("3_augan")
-
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = ExtResource("4_dnkm4")
-autoplay = true
-bus = &"Music"

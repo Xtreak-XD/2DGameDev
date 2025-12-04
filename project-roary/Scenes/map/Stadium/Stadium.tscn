@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1p5cxryw0kgj"]
+[gd_scene load_steps=4 format=3 uid="uid://b1p5cxryw0kgj"]
 
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_f5tiu"]
 [ext_resource type="PackedScene" uid="uid://c40jqbolu6ucs" path="res://Scenes/entities/enemies/Roary.tscn" id="2_f5tiu"]
-[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="3_cxkxa"]
-[ext_resource type="AudioStream" uid="uid://dpldemnr1bhj" path="res://audio/Background/Football Stadium.wav" id="4_1yqim"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="5_1yqim"]
 
 [node name="Stadium" type="Node2D"]
@@ -11,16 +9,8 @@
 [node name="Roary" parent="." instance=ExtResource("2_f5tiu")]
 position = Vector2(310, 492)
 
-[node name="WorldAudioManager" type="Node" parent="."]
-script = ExtResource("3_cxkxa")
-
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = ExtResource("4_1yqim")
-autoplay = true
-bus = &"Music"
-
 [node name="PlayerSpawnPoints2" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_f5tiu")]
-spawnsAvailable = [NodePath(""), NodePath(""), null]
+spawnsAvailable = [null, null, null]
 
 [node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints2"]
 position = Vector2(784, 471)

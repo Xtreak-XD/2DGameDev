@@ -1,16 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd2hskwafvd0n"]
+[gd_scene load_steps=5 format=3 uid="uid://dd2hskwafvd0n"]
 
 [ext_resource type="PackedScene" uid="uid://bed4fyrobgykm" path="res://Scenes/entities/enemies/logo.tscn" id="1_g1wpv"]
 [ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="2_qfpo3"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="3_qfpo3"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="4_c1hed"]
-[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="5_puw3y"]
-[ext_resource type="AudioStream" uid="uid://bvsia71n1w6wu" path="res://audio/Background/mermaid boss theme.wav" id="6_xy52c"]
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_6utow"]
-fade_time = 0.5
-stream_count = 1
-stream_0 = ExtResource("6_xy52c")
 
 [node name="GreenLibraryBoss" type="Node2D"]
 
@@ -48,12 +41,3 @@ position = Vector2(1005, 269)
 [node name="BossToGL" parent="." instance=ExtResource("4_c1hed")]
 position = Vector2(1197, 873)
 path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
-
-[node name="WorldAudioManager" type="Node" parent="."]
-script = ExtResource("5_puw3y")
-sceneWithBossMusic = PackedStringArray("res://Scenes/map/GreenLibrary/GreenLibraryBoss.tscn")
-
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = SubResource("AudioStreamPlaylist_6utow")
-autoplay = true
-bus = &"Music"

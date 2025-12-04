@@ -10,6 +10,7 @@ public partial class SceneManager : Node
     Marker2D spawnPosition;
     PackedScene newPlayerInstance;
     Vector2 loadSpawnPosition = Vector2.Zero;
+    private Eventbus eventbus;
     private string[] scenesWithoutPlayer = {
         "MainMenu",
         "ParkingGarage",
@@ -35,6 +36,8 @@ public partial class SceneManager : Node
             newInstance.CallDeferred("setSpawnPosition",extractCorrectSpawnpoint(currentScene,"Nothing"));
             player = newInstance;
         }
+
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
     }
 
     private bool ShouldSceneHavePlayer(Node scene)
@@ -78,6 +81,8 @@ public partial class SceneManager : Node
 
         GetTree().Root.AddChild(newScene);
         GetTree().CurrentScene = newScene;
+
+        eventbus.EmitSignal(Eventbus.SignalName.sceneChanged, newScene.Name);
 
         if (!ShouldSceneHavePlayer(newScene))
         {

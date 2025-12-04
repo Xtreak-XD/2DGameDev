@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=16 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -10,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
-[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="10_rm1pb"]
-[ext_resource type="AudioStream" uid="uid://c77tlt3vjt80v" path="res://audio/Background/Sadge.mp3" id="10_up40q"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
@@ -33,10 +31,6 @@ adjustment_saturation = 1.25
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rm1pb"]
 radius = 148.33745
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_rm1pb"]
-stream_count = 1
-stream_0 = ExtResource("10_up40q")
 
 [node name="Overworld" type="Node2D"]
 
@@ -163,14 +157,6 @@ position = Vector2(2816, 3733)
 
 [node name="fromNaturePreserve" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(5659, 2972)
-
-[node name="WorldAudioManager" type="Node" parent="."]
-script = ExtResource("10_rm1pb")
-
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = SubResource("AudioStreamPlaylist_rm1pb")
-autoplay = true
-bus = &"Music"
 
 [node name="OverworldToGL" parent="." instance=ExtResource("9_ngc8d")]
 z_index = 3

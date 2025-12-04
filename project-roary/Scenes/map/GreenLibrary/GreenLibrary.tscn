@@ -1,14 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7j1lsbdli03x"]
+[gd_scene load_steps=3 format=3 uid="uid://b7j1lsbdli03x"]
 
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_ict7c"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="4_ovpjc"]
-[ext_resource type="Script" uid="uid://d1ncmbui2ddbs" path="res://Scripts/audio/WorldAudioManager.cs" id="5_brcu7"]
-[ext_resource type="AudioStream" uid="uid://4ks0n2aiwllh" path="res://audio/Background/Greens Library.wav" id="7_5rrx5"]
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ovpjc"]
-fade_time = 0.5
-stream_count = 1
-stream_0 = ExtResource("7_5rrx5")
 
 [node name="GreenLibrary" type="Node2D"]
 
@@ -31,11 +24,3 @@ path = "res://Scenes/map/Overworld/Overworld.tscn"
 [node name="GLToBoss" parent="." instance=ExtResource("4_ovpjc")]
 position = Vector2(1535, 132)
 path = "res://Scenes/map/GreenLibrary/GreenLibraryBoss.tscn"
-
-[node name="WorldAudioManager" type="Node" parent="."]
-script = ExtResource("5_brcu7")
-
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager"]
-stream = SubResource("AudioStreamPlaylist_ovpjc")
-autoplay = true
-bus = &"Music"

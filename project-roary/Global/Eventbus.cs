@@ -56,4 +56,7 @@ public partial class Eventbus : Node
 
     [Signal] public delegate void showSettingsEventHandler();
     [Signal] public delegate void leftSettingsEventHandler();
+
+    // Audio
+    [Signal] public delegate void sceneChangedEventHandler(string newSceneName);
 }

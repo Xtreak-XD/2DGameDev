@@ -1,0 +1,45 @@
+[gd_resource type="AudioStreamInteractive" load_steps=7 format=3 uid="uid://xuqsa52jbu53"]
+
+[ext_resource type="AudioStream" uid="uid://c77tlt3vjt80v" path="res://audio/Background/Sadge.mp3" id="1_ekpeg"]
+[ext_resource type="AudioStream" uid="uid://4ks0n2aiwllh" path="res://audio/Background/Greens Library.wav" id="2_ciw46"]
+[ext_resource type="AudioStream" uid="uid://bvsia71n1w6wu" path="res://audio/Background/mermaid boss theme.wav" id="3_rlrtr"]
+[ext_resource type="AudioStream" uid="uid://ny3sdx2ih15x" path="res://audio/Background/Crossroads selection.wav" id="4_teg08"]
+[ext_resource type="AudioStream" uid="uid://dybprbidyciun" path="res://audio/Background/Garage.wav" id="5_tg7lf"]
+[ext_resource type="AudioStream" uid="uid://dpldemnr1bhj" path="res://audio/Background/Football Stadium.wav" id="6_5cbad"]
+
+[resource]
+clip_count = 7
+clip_0/name = &"OverworldMusic"
+clip_0/stream = ExtResource("1_ekpeg")
+clip_0/auto_advance = 0
+clip_1/name = &"GreenLibraryMusic"
+clip_1/stream = ExtResource("2_ciw46")
+clip_1/auto_advance = 0
+clip_2/name = &"GreenLibraryBoss"
+clip_2/stream = ExtResource("3_rlrtr")
+clip_2/auto_advance = 0
+clip_3/name = &"GrahamCenterMusic"
+clip_3/stream = ExtResource("4_teg08")
+clip_3/auto_advance = 0
+clip_4/name = &"NaturePreserveMusic"
+clip_4/auto_advance = 0
+clip_5/name = &"ParkingGarageMusic"
+clip_5/stream = ExtResource("5_tg7lf")
+clip_5/auto_advance = 0
+clip_6/name = &"StadiumMusic"
+clip_6/stream = ExtResource("6_5cbad")
+clip_6/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 5.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(-1, 2): {
+"fade_beats": 3.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}

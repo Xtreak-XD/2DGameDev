@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cs0e3peuo81yj" path="res://Scripts/helperScripts/SceneSwitchArea.cs" id="1_l1s26"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l1s26"]
-radius = 32.0
+radius = 271.00183
 
 [node name="sceneSwitchArea" type="Area2D"]
 collision_layer = 0

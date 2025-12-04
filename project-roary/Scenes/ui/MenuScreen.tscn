@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://b7hfl3picvwq7"]
 
-[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="1_jg7d2"]
-[ext_resource type="Script" uid="uid://c6tys0w83aomw" path="res://Scripts/ui/MenuScreen.cs" id="1_n2gc5"]
+[ext_resource type="Script" uid="uid://de4b0q361j8nj" path="res://Scripts/ui/MenuScreen.cs" id="1_n2gc5"]
 [ext_resource type="Theme" uid="uid://yw4cddpssmmj" path="res://Resources/misc/MenuButton.tres" id="2_mvmok"]
-[ext_resource type="Texture2D" uid="uid://dj4318gbfs0r" path="res://Sprites/Roary-Wave-Full-Body.png" id="2_n2gc5"]
+[ext_resource type="Texture2D" uid="uid://dj4318gbfs0r" path="res://Sprites/Menus/Roary-Wave-Full-Body.png" id="2_n2gc5"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="3_mvmok"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_24a1s"]
 
@@ -12,7 +12,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nu1e5"]
 bg_color = Color(0.03137255, 0.11764706, 0.24705882, 0.4)
 border_color = Color(0.8, 0.8, 0.8, 0)
-expand_margin_left = 300.0
+expand_margin_left = 500.0
 expand_margin_right = 1920.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07cvr"]
@@ -51,8 +51,8 @@ offset_right = 512.0
 offset_bottom = 510.0
 theme = ExtResource("2_mvmok")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_jg7d2")
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_mvmok")
+theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mvmok")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
@@ -69,8 +69,8 @@ offset_right = 552.0
 offset_bottom = 640.0
 theme = ExtResource("2_mvmok")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_jg7d2")
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_mvmok")
+theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
@@ -87,8 +87,8 @@ offset_right = 591.0
 offset_bottom = 770.0
 theme = ExtResource("2_mvmok")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_jg7d2")
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_mvmok")
+theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_24a1s")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p338f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nu1e5")
@@ -102,9 +102,10 @@ offset_left = 870.0
 offset_top = 6.0
 offset_right = 1675.0
 offset_bottom = 208.0
-theme_override_fonts/font = ExtResource("1_jg7d2")
+theme_override_fonts/font = ExtResource("3_mvmok")
 theme_override_font_sizes/font_size = 200
 text = "ROARY"
+horizontal_alignment = 1
 
 [node name="GameImage" type="TextureRect" parent="."]
 layout_mode = 0

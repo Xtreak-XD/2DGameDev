@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cxtctvyuxxeoi"]
 
-[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="1_uqrbe"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_uqrbe"]
 
 [resource]
 default_font = ExtResource("1_uqrbe")
-default_font_size = 48
+default_font_size = 64

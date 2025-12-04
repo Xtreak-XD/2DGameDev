@@ -1,14 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsckkhfcps7w4"]
+[gd_scene load_steps=23 format=3 uid="uid://bsckkhfcps7w4"]
 
-[ext_resource type="Script" uid="uid://c56qbr5eruv12" path="res://Scenes/ui/SettingsMenu.cs" id="1_vdp17"]
-[ext_resource type="FontFile" uid="uid://cleenee3pruoc" path="res://Sprites/Wallpoet-Regular.ttf" id="2_welf5"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_vdp17"]
 [ext_resource type="Theme" uid="uid://cxtctvyuxxeoi" path="res://Resources/misc/OptionsTitle.tres" id="3_lwreh"]
 [ext_resource type="Theme" uid="uid://cajuv1budl77k" path="res://Resources/misc/OptionText.tres" id="4_oinrb"]
+[ext_resource type="Theme" uid="uid://cypv6u2cdl7sy" path="res://Resources/misc/PercentageSettings.tres" id="4_welf5"]
 [ext_resource type="Theme" uid="uid://yw4cddpssmmj" path="res://Resources/misc/MenuButton.tres" id="5_ftffc"]
+
+[sub_resource type="DPITexture" id="DPITexture_welf5"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdp17"]
 border_width_top = 4
-border_color = Color(1, 0.33333334, 0.33333334, 1)
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_welf5"]
 bg_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
@@ -43,6 +47,16 @@ _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\">
 "
 base_scale = 2.0
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bcfl0"]
+size = Vector2(0, 0)
+
+[sub_resource type="DPITexture" id="DPITexture_lwreh"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#fff\" fill-opacity=\".37\" rx=\"2.333\"/><path fill=\"#1a1a1a\" fill-opacity=\".5\" d=\"m11.5 3.75-5.6 5.6-1.7-1.7-1.5 1.5 3.2 3.2 7.1-7.1z\"/></svg>
+"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vdp17"]
+size = Vector2(0, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oinrb"]
 bg_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
 corner_radius_top_left = 10
@@ -51,7 +65,11 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftffc"]
-bg_color = Color(1, 0.33333334, 0.33333334, 1)
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wji8m"]
 
@@ -69,7 +87,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_vdp17")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -78,7 +95,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.6)
+color = Color(0.09411765, 0.18039216, 0.43529412, 1)
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -89,9 +106,10 @@ offset_left = -384.0
 offset_right = 384.0
 offset_bottom = 130.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_welf5")
-theme_override_font_sizes/font_size = 128
+theme_override_fonts/font = ExtResource("1_vdp17")
+theme_override_font_sizes/font_size = 135
 text = "Settings"
+horizontal_alignment = 1
 uppercase = true
 
 [node name="SettingsPanel" type="Panel" parent="."]
@@ -101,10 +119,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -369.0
-offset_right = 640.0
-offset_bottom = 407.0
+offset_left = -639.0
+offset_top = -371.0
+offset_right = 641.0
+offset_bottom = 405.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -134,7 +152,6 @@ text = "Sound"
 
 [node name="MasterContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
 
 [node name="MasterLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 unique_name_in_owner = true
@@ -142,21 +159,31 @@ layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Master Volume"
 
+[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
 [node name="MasterSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(350, 40)
+custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
+theme_override_icons/grabber = SubResource("DPITexture_welf5")
 theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
 
+[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
 [node name="MasterValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("4_welf5")
+text = "%100"
 
 [node name="MusicContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
 
 [node name="MusicLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 unique_name_in_owner = true
@@ -164,39 +191,89 @@ layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Music Volume"
 
+[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+
 [node name="MusicSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(350, 40)
+custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
+
+[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 
 [node name="MusicValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("4_welf5")
+text = "%100"
 
-[node name="SFXContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
+[node name="PlayerSFXContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
 
-[node name="SFXLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/SFXContainer"]
+[node name="PlayerSFXLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
-text = "SFX Volume"
+text = "Player Volume"
 
-[node name="SFXSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/SFXContainer"]
+[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
+custom_minimum_size = Vector2(38, 0)
+layout_mode = 2
+
+[node name="PlayerSFXSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(350, 40)
+custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
 
-[node name="SFXValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/SFXContainer"]
+[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="PlayerSFXValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("4_welf5")
+text = "%100"
+
+[node name="EnmySFXContainer2" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
+layout_mode = 2
+
+[node name="EnemySFXLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_oinrb")
+text = "Enemy Volume"
+
+[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+custom_minimum_size = Vector2(39, 0)
+layout_mode = 2
+
+[node name="EnemySFXSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(340, 40)
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
+
+[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="EnemySFXValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_welf5")
+text = "%100"
 
 [node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -212,19 +289,22 @@ size_flags_horizontal = 0
 theme = ExtResource("3_lwreh")
 text = "Display"
 
-[node name="Spacer2" type="Panel" parent="SettingsPanel/ContentContainer/DisplayContainer"]
+[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/DisplayContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="FullscreenContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/DisplayContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
 
 [node name="FullscreenLabel" type="Label" parent="SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Fullscreen"
+
+[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
 
 [node name="FullscreenCheck" type="CheckBox" parent="SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
 unique_name_in_owner = true
@@ -236,19 +316,25 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_w7bgt")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jhnqc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vdp17")
 theme_override_icons/checked = SubResource("DPITexture_vdp17")
+theme_override_icons/unchecked = SubResource("PlaceholderTexture2D_bcfl0")
+theme_override_icons/checked_disabled = SubResource("DPITexture_lwreh")
+button_pressed = true
 alignment = 1
 icon_alignment = 1
 expand_icon = true
 
 [node name="VsyncContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/DisplayContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
 
 [node name="VsyncLabel" type="Label" parent="SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Vsync"
+
+[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 
 [node name="VsyncCheck" type="CheckBox" parent="SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
 unique_name_in_owner = true
@@ -260,6 +346,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_w7bgt")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jhnqc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vdp17")
 theme_override_icons/checked = SubResource("DPITexture_vdp17")
+theme_override_icons/unchecked = SubResource("PlaceholderTexture2D_vdp17")
+button_pressed = true
 alignment = 1
 icon_alignment = 1
 expand_icon = true
@@ -280,6 +368,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("5_ftffc")
+theme_override_colors/font_hover_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
+theme_override_fonts/font = ExtResource("1_vdp17")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_oinrb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ftffc")
@@ -291,6 +381,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 theme = ExtResource("5_ftffc")
+theme_override_colors/font_hover_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
+theme_override_fonts/font = ExtResource("1_vdp17")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_4fgq0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ftffc")

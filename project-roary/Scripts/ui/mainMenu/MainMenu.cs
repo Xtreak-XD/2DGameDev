@@ -24,7 +24,6 @@ public partial class MainMenu : Control
         saveManager = GetNode<SaveManager>("/root/SaveManager");
 
         checkForSaveFile();
-        eventbus.EmitSignal("loadSettings");
 
         eventbus.leftSettings += onLeftSettings;
         playContinue.Pressed += onPlayContinuePressed;

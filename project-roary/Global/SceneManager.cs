@@ -10,6 +10,7 @@ public partial class SceneManager : Node
     Marker2D spawnPosition;
     PackedScene newPlayerInstance;
     Vector2 loadSpawnPosition = Vector2.Zero;
+    private Eventbus eventbus;
     private string[] scenesWithoutPlayer = {
         "MainMenu",
         "ParkingGarage",
@@ -36,6 +37,8 @@ public partial class SceneManager : Node
             newInstance.CallDeferred("setSpawnPosition",extractCorrectSpawnpoint(currentScene,"Nothing"));
             player = newInstance;
         }
+
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
     }
 
     private bool ShouldSceneHavePlayer(Node scene)
@@ -80,9 +83,10 @@ public partial class SceneManager : Node
         GetTree().Root.AddChild(newScene);
         GetTree().CurrentScene = newScene;
 
+        eventbus.EmitSignal(Eventbus.SignalName.sceneChanged, newScene.Name);
+
         if (!ShouldSceneHavePlayer(newScene))
         {
-            GD.Print($"Scene {newScene.Name} should not have a player");
             currentScene = newScene;
             return;
         }
@@ -108,7 +112,6 @@ public partial class SceneManager : Node
         player.CallDeferred(nameof(Player.setSpawnPosition), spawn);
 
         currentScene = newScene;
-
     }
 
     public Vector2 extractCorrectSpawnpoint(Node sceneToSpawnIn, string comingFromName)
@@ -123,6 +126,8 @@ public partial class SceneManager : Node
             spawnPointName = "from" + comingFromName;
         }
 
+        GD.Print("Spawning in " + $"{spawnPointName}");
+
         PlayerSpawn Spawns = sceneToSpawnIn.GetNode<PlayerSpawn>("PlayerSpawnPoints");
 
         if (Spawns == null)
@@ -135,9 +140,12 @@ public partial class SceneManager : Node
         {
             if (i.Name.Equals(spawnPointName))
             {
+                GD.Print("" + i.Name);
                 return i.GlobalPosition;
             }
         }
+
+        GD.Print("No matching spawn point found, defaulting to (0,0)");
         return Vector2.Zero;
     }
 

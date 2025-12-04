@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkq42aw23ge1k"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq42aw23ge1k"]
 
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="3_6tqdf"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="3_106wm"]
@@ -67,20 +67,5 @@ shopConfig = ExtResource("8_d43vx")
 [node name="WeaponShop" parent="." instance=ExtResource("10_3unw3")]
 position = Vector2(1263, 857)
 shopConfig = ExtResource("9_fkpmq")
-
-[node name="Items" parent="." instance=ExtResource("8_k25gx")]
-position = Vector2(1700, 870)
-
-[node name="Pen" parent="." instance=ExtResource("8_k25gx")]
-position = Vector2(1654, 1458)
-
-[node name="Thumbstack" parent="." instance=ExtResource("9_3unw3")]
-position = Vector2(2373, 996)
-
-[node name="Pencil" parent="." instance=ExtResource("10_d43vx")]
-position = Vector2(2202, 368)
-
-[node name="Pencil2" parent="." instance=ExtResource("10_d43vx")]
-position = Vector2(2503, 1600)
 
 [editable path="Enemymanager"]

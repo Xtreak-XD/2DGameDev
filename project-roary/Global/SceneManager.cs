@@ -11,7 +11,6 @@ public partial class SceneManager : Node
     Marker2D spawnPosition;
     PackedScene newPlayerInstance;
     Vector2 loadSpawnPosition = Vector2.Zero;
-    private Eventbus eventbus;
     private string[] scenesWithoutPlayer = {
         "MainMenu",
         "ParkingGarage",

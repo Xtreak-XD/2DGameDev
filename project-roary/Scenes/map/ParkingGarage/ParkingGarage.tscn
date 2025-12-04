@@ -468,15 +468,3 @@ scale = Vector2(8, 8)
 [node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
 position = Vector2(6123, 4182)
 rotation = 3.1415927
-
-[node name="TimerLabel" type="Label" parent="."]
-top_level = true
-offset_left = -67.0
-offset_top = -256.0
-offset_right = 137.0
-offset_bottom = -140.0
-text = "Time:"
-label_settings = SubResource("LabelSettings_vebei")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("17_wq2dn")

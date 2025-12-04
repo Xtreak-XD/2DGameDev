@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bsckkhfcps7w4"]
+[gd_scene load_steps=24 format=3 uid="uid://bsckkhfcps7w4"]
 
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_vdp17"]
+[ext_resource type="Script" uid="uid://c56qbr5eruv12" path="res://Scripts/ui/Settings/SettingsMenu.cs" id="1_welf5"]
 [ext_resource type="Theme" uid="uid://cxtctvyuxxeoi" path="res://Resources/misc/OptionsTitle.tres" id="3_lwreh"]
 [ext_resource type="Theme" uid="uid://cajuv1budl77k" path="res://Resources/misc/OptionText.tres" id="4_oinrb"]
 [ext_resource type="Theme" uid="uid://cypv6u2cdl7sy" path="res://Resources/misc/PercentageSettings.tres" id="4_welf5"]
@@ -80,7 +81,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="SettingsMenu" type="CanvasLayer"]
+[node name="Setting Menu" type="CanvasLayer"]
 layer = 10
 
 [node name="Setting Menu" type="Control" parent="."]
@@ -90,6 +91,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_welf5")
 
 [node name="ColorRect" type="ColorRect" parent="Setting Menu"]
 layout_mode = 1
@@ -162,11 +164,11 @@ layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Master Volume"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="MasterSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
+[node name="MasterSlider" type="HSlider" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
@@ -175,11 +177,11 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
 
-[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
+[node name="Spacer2" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="MasterValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
+[node name="MasterValue" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MasterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_welf5")
@@ -194,11 +196,11 @@ layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Music Volume"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
-[node name="MusicSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
+[node name="MusicSlider" type="HSlider" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
@@ -206,30 +208,30 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
 
-[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
+[node name="Spacer2" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="MusicValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
+[node name="MusicValue" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/MusicContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_welf5")
 text = "%100"
 
-[node name="PlayerSFXContainer" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
+[node name="PlayerSFXContainer" type="HBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
 
-[node name="PlayerSFXLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
+[node name="PlayerSFXLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Player Volume"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 custom_minimum_size = Vector2(38, 0)
 layout_mode = 2
 
-[node name="PlayerSFXSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
+[node name="PlayerSFXSlider" type="HSlider" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
@@ -237,30 +239,30 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
 
-[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
+[node name="Spacer2" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="PlayerSFXValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
+[node name="PlayerSFXValue" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/PlayerSFXContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_welf5")
 text = "%100"
 
-[node name="EnmySFXContainer2" type="HBoxContainer" parent="SettingsPanel/ContentContainer/SoundContainer"]
+[node name="EnmySFXContainer2" type="HBoxContainer" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer"]
 layout_mode = 2
 
-[node name="EnemySFXLabel" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+[node name="EnemySFXLabel" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Enemy Volume"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
 custom_minimum_size = Vector2(39, 0)
 layout_mode = 2
 
-[node name="EnemySFXSlider" type="HSlider" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+[node name="EnemySFXSlider" type="HSlider" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
@@ -268,11 +270,11 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_vdp17")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_welf5")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lwreh")
 
-[node name="Spacer2" type="Control" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+[node name="Spacer2" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="EnemySFXValue" type="Label" parent="SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
+[node name="EnemySFXValue" type="Label" parent="Setting Menu/SettingsPanel/ContentContainer/SoundContainer/EnmySFXContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_welf5")
@@ -292,7 +294,7 @@ size_flags_horizontal = 0
 theme = ExtResource("3_lwreh")
 text = "Display"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/DisplayContainer"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
@@ -305,11 +307,11 @@ layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Fullscreen"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
 custom_minimum_size = Vector2(68, 0)
 layout_mode = 2
 
-[node name="FullscreenCheck" type="CheckBox" parent="SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
+[node name="FullscreenCheck" type="CheckBox" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer/FullscreenContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -335,11 +337,11 @@ layout_mode = 2
 theme = ExtResource("4_oinrb")
 text = "Vsync"
 
-[node name="Spacer" type="Control" parent="SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
+[node name="Spacer" type="Control" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="VsyncCheck" type="CheckBox" parent="SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
+[node name="VsyncCheck" type="CheckBox" parent="Setting Menu/SettingsPanel/ContentContainer/DisplayContainer/VsyncContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2

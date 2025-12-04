@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=25 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dtook4le0doxv" path="res://Sprites/world/overworld_gc.png" id="3_depd0"]
 [ext_resource type="Texture2D" uid="uid://xvnrsto6o2h5" path="res://Sprites/world/overworld_pg.png" id="4_255qt"]
 [ext_resource type="Texture2D" uid="uid://cobka0qcnaod1" path="res://Sprites/world/overworld_gl.png" id="4_gknab"]
+[ext_resource type="Texture2D" uid="uid://bw8ajsv2c71mk" path="res://Resources/dayNight/dayNightCycleGradient.tres" id="4_he2dp"]
 [ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
@@ -77,9 +78,20 @@ texture = ExtResource("1_pnd8i")
 environment = SubResource("Environment_uny04")
 
 [node name="CanvasModulate" parent="." instance=ExtResource("8_gqpsm")]
+gradient = ExtResource("4_he2dp")
 INGAME_SPEED = 50.0
 
 [node name="Map" type="Node2D" parent="."]
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Map"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D5"]
+polygon = PackedVector2Array(2223, 3568, 2306, 3561, 2343, 3239, 2280, 2920, 2195, 3146)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Map"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D4"]
+polygon = PackedVector2Array(3212, 3340, 3238, 2912, 2913, 2782, 2926, 3052, 3152, 3343)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Map"]
 position = Vector2(2231, 1788)
@@ -163,7 +175,7 @@ position = Vector2(8065, 7984)
 texture = ExtResource("3_depd0")
 
 [node name="WiseTurtle" parent="." instance=ExtResource("10_y80uk")]
-position = Vector2(5692, 5811)
+position = Vector2(5689, 5813)
 
 [node name="GcEntrance" parent="." instance=ExtResource("9_ngc8d")]
 position = Vector2(8407, 8640)
@@ -303,3 +315,6 @@ position = Vector2(2015, 3907)
 
 [node name="Save3" parent="." instance=ExtResource("10_up40q")]
 position = Vector2(5689, 8644)
+
+[node name="Save4" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(2981, 6562)

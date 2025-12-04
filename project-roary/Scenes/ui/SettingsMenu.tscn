@@ -37,9 +37,15 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7bgt"]
 bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhnqc"]
-bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.76862746, 0.5882353, 0.101960786, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vdp17"]
 
@@ -54,6 +60,9 @@ size = Vector2(0, 0)
 [sub_resource type="DPITexture" id="DPITexture_lwreh"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#fff\" fill-opacity=\".37\" rx=\"2.333\"/><path fill=\"#1a1a1a\" fill-opacity=\".5\" d=\"m11.5 3.75-5.6 5.6-1.7-1.7-1.5 1.5 3.2 3.2 7.1-7.1z\"/></svg>
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhnqc"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vdp17"]
 size = Vector2(0, 0)
@@ -318,7 +327,7 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_wji8m")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gtue7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w7bgt")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jhnqc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_w7bgt")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vdp17")
 theme_override_icons/checked = SubResource("DPITexture_vdp17")
 theme_override_icons/unchecked = SubResource("PlaceholderTexture2D_bcfl0")

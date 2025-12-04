@@ -3,11 +3,16 @@ using Godot;
 public partial class AlligatorDeathRoll : AlligatorState
 {
     public AlligatorChase AlligatorChase;
+    public AlligatorRoam AlligatorRoam;
     public Timer deathRollTimer;
+    public Eventbus eventbus;
+    public int times = 0;
 
     public override void _Ready()
     {
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
         AlligatorChase = GetParent().GetNode<AlligatorChase>("AlligatorChase");
+        AlligatorRoam = GetParent().GetNode<AlligatorRoam>("AlligatorRoam");
         deathRollTimer = GetParent().GetNode<Timer>("DeathRollTimer");
 
         deathRollTimer.Timeout += Attack;
@@ -17,6 +22,8 @@ public partial class AlligatorDeathRoll : AlligatorState
     {
         GD.Print("Alligator has entered Death Roll state.");
         deathRollTimer.Start();
+
+        times = 0;
     }
 
     public override void ExitState()
@@ -31,13 +38,22 @@ public partial class AlligatorDeathRoll : AlligatorState
         // The alligator will return to chase if the player dodges successfully
 
         ActiveEnemy.target.Velocity = Vector2.Zero;
+        ActiveEnemy.target.GlobalPosition = ActiveEnemy.hitbox.GlobalPosition;
 
+        if(times >= 7)
+        {
+            ActiveEnemy.target.GlobalPosition += -ActiveEnemy.Velocity.Normalized() * 600;
+
+            return AlligatorRoam;
+        }
+       
         return null;
     }
 
     public void Attack()
     {
-        GD.Print("Alligator Death Roll attack occurred.");
+        eventbus.EmitSignal("applyDamage", ActiveEnemy.target, ActiveEnemy, ActiveEnemy.data.Damage / 2);
+        times++;
 
         deathRollTimer.Start();
     }

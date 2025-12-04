@@ -4,6 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://byln8174ny0mb" path="res://Sprites/item/Pen.png" id="2_jxrua"]
 [ext_resource type="Resource" uid="uid://jbi04iutyxhr" path="res://Resources/items/Pen.tres" id="3_jxrua"]
 
-[node name="Items" instance=ExtResource("1_73xii")]
+[node name="Pen" instance=ExtResource("1_73xii")]
 texture = ExtResource("2_jxrua")
 itemResource = ExtResource("3_jxrua")

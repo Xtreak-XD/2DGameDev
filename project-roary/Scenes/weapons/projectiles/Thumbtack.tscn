@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c3meywcsjjdju" path="res://Scripts/weapons/projectiles/Thumbtack.cs" id="1_xnjh1"]
 [ext_resource type="Resource" uid="uid://cowh342gaim4e" path="res://Resources/weapons/projectiles/ThumbtackProjectileData.tres" id="2_rey06"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_ve44s"]
-[ext_resource type="Texture2D" uid="uid://b815bemr6djbm" path="res://Sprites/item/Thumbtack_Gun.png" id="4_rey06"]
+[ext_resource type="Texture2D" uid="uid://t2re6omg286k" path="res://placeholderTestAssets/Bullet.png" id="4_rey06"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
 radius = 34.058773
@@ -12,6 +12,7 @@ radius = 34.058773
 radius = 23.021729
 
 [node name="Thumbtack" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_xnjh1")

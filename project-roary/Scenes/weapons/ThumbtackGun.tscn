@@ -14,7 +14,7 @@ data = ExtResource("2_rav44")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5.9604645e-08, -1.1920929e-07)
-scale = Vector2(0.74145514, 0.7068918)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_utnin")
 
 [node name="ProjectileSource" type="Marker2D" parent="."]

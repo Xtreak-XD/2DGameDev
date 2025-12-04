@@ -6,4 +6,4 @@
 script = ExtResource("1_gpsem")
 damage = 5
 attackRate = 0.5
-knockback = 400.0
+knockback = 80.0

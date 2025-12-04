@@ -38,8 +38,6 @@ public partial class SceneManager : Node
             newInstance.CallDeferred("setSpawnPosition",extractCorrectSpawnpoint(currentScene,"Nothing"));
             player = newInstance;
         }
-
-        eventbus = GetNode<Eventbus>("/root/Eventbus");
     }
 
     private bool ShouldSceneHavePlayer(Node scene)

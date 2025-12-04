@@ -23,6 +23,28 @@ public partial class SettingsMenu : Control
 	public Button back;
 	public Button apply;
 
+
+	public override void _EnterTree()
+	{
+		// Load and apply display settings immediately when node enters tree
+		var config = new ConfigFile();
+		var err = config.Load("user://settings.cfg");
+		
+		if (err == Error.Ok)
+		{
+			bool fullscreen = (bool)config.GetValue("display", "fullscreen", true);
+			bool vsync = (bool)config.GetValue("display", "vsync", true);
+			
+			DisplayServer.WindowSetMode(fullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+			DisplayServer.WindowSetVsyncMode(vsync ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
+		}
+		else
+		{
+			// Apply defaults if no config exists
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+			DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
+		}
+	}
 	public override void _Ready()
     {
 		ProcessMode = ProcessModeEnum.Always;
@@ -58,8 +80,9 @@ public partial class SettingsMenu : Control
 		back.Pressed += OnBackPressed;
 		apply.Pressed += SaveSettings;	
 
-		//eventbus.loadSettings += LoadSettings;
 		eventbus.showSettings += ShowSettings;
+
+		LoadSettingsToUI();
 	}
 
 	public override void _Input(InputEvent @event)
@@ -148,28 +171,15 @@ public partial class SettingsMenu : Control
 		audioGlobal.SetVolume((float)value, "EnemySFX");
 	}
 
-	private void OnFullscreenToggled(bool toggledOn)
+	private void OnFullscreenToggled(bool isToggled)
     {
-        if (toggledOn)
-        {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-        }
-        else
-        {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-        }
+		DisplayServer.WindowSetMode(isToggled ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+
     }
 
-	private void OnVSyncToggled(bool toggledOn)
+	private void OnVSyncToggled(bool isToggled)
 	{
-		if (toggledOn)
-		{
-			DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);		}
-		else
-		{
-			DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Disabled);
-		}
-		
+		DisplayServer.WindowSetVsyncMode(isToggled ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
 	}
 	
 	private void OnBackPressed()

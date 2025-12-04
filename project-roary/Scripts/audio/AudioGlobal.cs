@@ -111,7 +111,6 @@ public partial class AudioGlobal : Node
 		float volumeDb = linear > 0 ? Mathf.LinearToDb(linear) : -80f;
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(busName), volumeDb);
 	}
-
 	private void OnSceneChanged(string sceneName)
 	{
 		currScene = sceneName;
@@ -137,9 +136,10 @@ public partial class AudioGlobal : Node
             "NaturePreserve" => "NaturePreserveMusic",
             "ParkingGarage" => "ParkingGarageMusic",
             "Stadium" => "StadiumMusic",
-            _ => "OverworldMusic"
+			"DiedScreen" => "RespawnScreenMusic",
+            _ => ""
 		};
-
+		
 		musicPlayer.Set("parameters/switch_to_clip", clipName);
 		GD.Print($"AudioGlobal: Switched to music clip {clipName} for scene {sceneName}");
 	}

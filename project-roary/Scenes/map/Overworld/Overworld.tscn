@@ -158,5 +158,5 @@ position = Vector2(7499, 8941)
 position = Vector2(2408, 9590)
 
 [node name="OverworldToNaturePreserve" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(5765, 2582)
-path = "res://Scenes/map/NaturePreserve/NaturePreserve.tscn"
+position = Vector2(8011, 8886)
+path = "res://Scenes/map/GranhamCenter/GrahamCenter.tscn"

@@ -11,8 +11,6 @@ size = Vector2(122, 135)
 script = ExtResource("1_d1y8q")
 
 [node name="ParkingSpot" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
 monitorable = false
 script = ExtResource("3_6fbye")
 

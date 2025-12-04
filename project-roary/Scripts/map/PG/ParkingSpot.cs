@@ -34,7 +34,7 @@ public partial class ParkingSpot : Area2D
 	
 	public async void EndMinigameWithSuccess(Node2D body)
 	{
-		if(body.IsInGroup("player") && body is DriveableCar car)
+		if(body.IsInGroup("player") || body is DriveableCar)
 		{
 			if(body.RotationDegrees >= 240 && body.RotationDegrees <= 300
 			 || body.RotationDegrees >= 60 && body.RotationDegrees <= 120)
@@ -44,7 +44,7 @@ public partial class ParkingSpot : Area2D
 
 				GD.Print("The player has reached the parking spot");
 				GD.Print("Speed Based Score: " + score);
-				GD.Print("Time Based Score: " + Math.Round(ParkingTimer.TimeLeft * 6000, 2));
+				GD.Print("Time Based Score: " + Math.Round(ParkingTimer.TimeLeft * 7000, 2));
 
 				score += (float)ParkingTimer.TimeLeft * 7000;
 				GD.Print("Total Score: " + Math.Round(score, 2));

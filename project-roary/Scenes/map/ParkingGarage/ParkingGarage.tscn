@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=25 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
@@ -16,13 +16,28 @@
 [ext_resource type="Texture2D" uid="uid://dq0r8ge3vlt23" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_left.png" id="10_shi2b"]
 [ext_resource type="Texture2D" uid="uid://dj0n8mxrpvo1t" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_right.png" id="10_vebei"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="12_5oly8"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="17_vebei"]
+[ext_resource type="Script" uid="uid://c220iuf2a0kll" path="res://Scripts/map/PG/TimerLabel.cs" id="17_wq2dn"]
 [ext_resource type="FontFile" uid="uid://bdnvsvp1g7xwi" path="res://Sprites/Wallpoet-Regular.ttf" id="19_slse4"]
+[ext_resource type="Script" uid="uid://cntw6675n18e3" path="res://Scripts/map/PG/InstructionLabel.cs" id="20_fi4eq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vebei"]
 size = Vector2(1043, 1224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slse4"]
 size = Vector2(1337, 910)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vebei"]
+font = ExtResource("17_vebei")
+font_size = 96
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_581fp"]
+font = ExtResource("17_vebei")
+font_size = 72
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
 
 [node name="ParkingGarage" type="Node2D"]
 
@@ -227,9 +242,9 @@ collision_mask = 18
 position = Vector2(6841.379, 3680.8696)
 polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621094, 973.1304, 3.6210938, 969.1304)
 
-[node name="InitialPlayerSpawn" parent="." instance=ExtResource("12_5oly8")]
+[node name="PlayerSpawnPoints" parent="." instance=ExtResource("12_5oly8")]
 
-[node name="fromNothing" type="Marker2D" parent="InitialPlayerSpawn"]
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(6325, 4171)
 
 [node name="reservedLabels" type="Control" parent="."]
@@ -246,7 +261,6 @@ rotation = -1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel10" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -267,30 +281,27 @@ offset_bottom = 1501.0
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel12" type="Label" parent="reservedLabels"]
 layout_mode = 0
-offset_left = 6542.0
+offset_left = 6607.0
 offset_top = 1340.0
-offset_right = 7436.0
-offset_bottom = 1510.0
+offset_right = 7423.0
+offset_bottom = 1488.0
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel13" type="Label" parent="reservedLabels"]
 layout_mode = 0
-offset_left = 8484.634
-offset_top = 8728.0
-offset_right = 9452.268
-offset_bottom = 8898.0
+offset_left = 8419.0
+offset_top = 8789.0
+offset_right = 9235.0
+offset_bottom = 8937.0
 rotation = -3.1415927
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel14" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -302,7 +313,6 @@ rotation = -3.1415927
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel15" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -314,7 +324,6 @@ rotation = -3.1415927
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel2" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -326,7 +335,6 @@ rotation = -1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel3" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -349,7 +357,6 @@ rotation = 1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel5" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -361,7 +368,6 @@ rotation = 1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel6" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -373,7 +379,6 @@ rotation = 1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel7" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -385,7 +390,6 @@ rotation = 1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel8" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -397,7 +401,6 @@ rotation = 1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="reserveLabel9" type="Label" parent="reservedLabels"]
 layout_mode = 0
@@ -409,7 +412,6 @@ rotation = 1.5707964
 theme_override_fonts/font = ExtResource("19_slse4")
 theme_override_font_sizes/font_size = 124
 text = "RESERVED"
-horizontal_alignment = 1
 
 [node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
 EnemySpawnTimerMin = 0.0
@@ -468,3 +470,33 @@ scale = Vector2(8, 8)
 [node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
 position = Vector2(6123, 4182)
 rotation = 3.1415927
+collision_layer = 1
+collision_mask = 1
+
+[node name="TimerLabel" type="Label" parent="."]
+top_level = true
+offset_left = -67.0
+offset_top = -256.0
+offset_right = 137.0
+offset_bottom = -140.0
+text = "Time:"
+label_settings = SubResource("LabelSettings_vebei")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_wq2dn")
+
+[node name="InstructionLabel" type="Label" parent="."]
+top_level = true
+offset_left = 191.0
+offset_top = 122.0
+offset_right = 231.0
+offset_bottom = 145.0
+text = "Find the available parking spot. (You'll know it when you see it)
+
+Controls:
+W: Accelerate in the current direction the car is facing 
+S: Decelerate in the opposite direction the car is facing
+A: Turn Left
+D: Turn Right"
+label_settings = SubResource("LabelSettings_581fp")
+script = ExtResource("20_fi4eq")

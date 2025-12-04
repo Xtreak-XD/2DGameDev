@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dpldemnr1bhj" path="res://audio/Background/Football Stadium.wav" id="6_5cbad"]
 
 [resource]
-clip_count = 7
+clip_count = 8
 clip_0/name = &"OverworldMusic"
 clip_0/stream = ExtResource("1_ekpeg")
 clip_0/auto_advance = 0
@@ -29,6 +29,10 @@ clip_5/auto_advance = 0
 clip_6/name = &"StadiumMusic"
 clip_6/stream = ExtResource("6_5cbad")
 clip_6/auto_advance = 0
+clip_7/name = &"RespawnScreenMusic"
+clip_7/stream = ExtResource("1_ekpeg")
+clip_7/auto_advance = 0
+initial_clip = 5
 _transitions = {
 Vector2i(-1, -1): {
 "fade_beats": 5.0,
@@ -39,6 +43,96 @@ Vector2i(-1, -1): {
 Vector2i(-1, 2): {
 "fade_beats": 3.0,
 "fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(3, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(4, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(5, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(6, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 6): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
 "from_time": 0,
 "to_time": 0
 }

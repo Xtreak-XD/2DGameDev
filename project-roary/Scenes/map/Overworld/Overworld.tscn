@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=30 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 [ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="13_6v34l"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="13_otqv2"]
+[ext_resource type="PackedScene" uid="uid://bg1222mjojdug" path="res://Scenes/Items/Coin.tscn" id="18_he2dp"]
 [ext_resource type="PackedScene" uid="uid://u57fr3yk2s5c" path="res://Scenes/Items/Pen.tscn" id="18_u5rod"]
 [ext_resource type="PackedScene" uid="uid://dy8gl83jijma" path="res://Scenes/Items/Pencil.tscn" id="19_41gww"]
 [ext_resource type="PackedScene" uid="uid://df8531tnyq760" path="res://Scenes/Items/StapleGun.tscn" id="20_5qpi0"]

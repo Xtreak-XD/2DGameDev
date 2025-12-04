@@ -26,6 +26,10 @@ public partial class Eventbus : Node
     [Signal]
     public delegate void finishedDisplayingEventHandler(); //this is emitted by text boxes when a set of text is done displaying.
 
+    //day night warning
+    [Signal] public delegate void dayStartedEventHandler();
+    [Signal] public delegate void nightStartedEventHandler();
+
     //UI Signals
     [Signal] public delegate void updateStaminaEventHandler(int value);
     [Signal] public delegate void updateHealthEventHandler(int value);

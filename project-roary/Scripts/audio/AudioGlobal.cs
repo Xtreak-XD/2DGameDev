@@ -12,12 +12,18 @@ public partial class AudioGlobal : Node
 
 	private AudioStreamPlayer musicPlayer;
 
+    public override void _EnterTree()
+    {
+        LoadAndApplySettings();
+    }
+
+
 	public override void _Ready()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.sceneChanged += OnSceneChanged;
 
-        LoadAndApplySettings();
+        //LoadAndApplySettings();
 
 		// Get or create the AudioStreamPlayer child
 		musicPlayer = GetNodeOrNull<AudioStreamPlayer>("MusicPlayer");

@@ -25,13 +25,13 @@ public partial class SettingsMenu : Control
 
 	public override void _Ready()
     {
+		ProcessMode = ProcessModeEnum.Always;
+		SetProcess(true);
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		sceneManager = GetNode<SceneManager>("/root/SceneManager");
 		audioGlobal = GetNode<AudioGlobal>("/root/AudioGlobal");
 
         Hide();
-
-		ProcessMode = ProcessModeEnum.Always;
 
 		// Audio settings nodes
 		masterSlider = GetNode<HSlider>("%MasterSlider");

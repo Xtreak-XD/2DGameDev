@@ -5,12 +5,12 @@ using Godot;
 public partial class SceneManager : Node
 {
     Node currentScene;
+    public Eventbus eventbus;
     Player player;
     public string comingFromName;
     Marker2D spawnPosition;
     PackedScene newPlayerInstance;
     Vector2 loadSpawnPosition = Vector2.Zero;
-    private Eventbus eventbus;
     private string[] scenesWithoutPlayer = {
         "MainMenu",
         "ParkingGarage",
@@ -20,6 +20,7 @@ public partial class SceneManager : Node
 
     public override void _Ready()
     {
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
         newPlayerInstance = GD.Load<PackedScene>("res://Scenes/entities/player/player.tscn");
         var root = GetTree().Root;
         currentScene = root.GetChild(root.GetChildCount() - 1);
@@ -55,7 +56,8 @@ public partial class SceneManager : Node
 
     public void goToScene(Node from, string scene, bool loading = false, Vector2 spawnPos = default)
     {
-        comingFromName = currentScene.Name;
+        comingFromName = ShouldSceneHavePlayer(currentScene) ? currentScene.Name : "";
+        if(from.Name == "ParkingGarage"){ comingFromName = "ParkingGarage";} //look at these 2 lines later
         
         Player existingPlayer = from.GetNodeOrNull<Player>("Player");
         if (existingPlayer != null)
@@ -77,6 +79,11 @@ public partial class SceneManager : Node
     {
         PackedScene packedScene = GD.Load<PackedScene>(path);
         Node newScene = packedScene.Instantiate();
+
+        if (newScene.Name == "MainMenu")
+        {
+            player = null;
+        }
 
         currentScene.Free();
 
@@ -109,6 +116,13 @@ public partial class SceneManager : Node
         }
         
         newScene.AddChild(player);
+        if (loading)
+        {
+            player.data.Health = player.data.MaxHealth;
+            player.data.Stamina = player.data.MaxStamina;
+            eventbus.EmitSignal(Eventbus.SignalName.updateHealth, player.data.Health);
+            eventbus.EmitSignal(Eventbus.SignalName.updateStamina, player.data.Stamina);
+        }
         player.CallDeferred(nameof(Player.setSpawnPosition), spawn);
 
         currentScene = newScene;

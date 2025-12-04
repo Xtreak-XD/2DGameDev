@@ -26,6 +26,10 @@ public partial class Alligator : Enemy
 
 	public override void _Ready()
 	{
+		if (data != null)
+		{
+			data = (GenericData)data.Duplicate();
+		}
 		stateMachine = GetNode<AlligatorStateMachine>("AlligatorStateMachine");
 		stateMachine.Initialize(this);
 

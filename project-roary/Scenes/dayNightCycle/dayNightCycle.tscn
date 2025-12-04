@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsvb4dww26unt"]
+[gd_scene load_steps=2 format=3 uid="uid://dsvb4dww26unt"]
 
 [ext_resource type="Script" uid="uid://yoendq5is783" path="res://Scripts/dayNight/DayNightCycle.cs" id="1_ioxtj"]
-[ext_resource type="Texture2D" uid="uid://bw8ajsv2c71mk" path="res://Resources/dayNight/dayNightCycleGradient.tres" id="2_e3g6d"]
 
 [node name="CanvasModulate" type="CanvasModulate"]
 script = ExtResource("1_ioxtj")
-gradient = ExtResource("2_e3g6d")

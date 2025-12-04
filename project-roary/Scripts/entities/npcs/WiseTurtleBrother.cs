@@ -36,10 +36,10 @@ public partial class WiseTurtleBrother : CharacterBody2D
         _anim.Play("idle");
 
         // Set up interaction callback
-        _interactionArea.interact = Callable.From(() => { _ = OnInteractAsync(); });
+        _interactionArea.interact = Callable.From(OnInteractAsync);
     }
 
-    private async Task OnInteractAsync()
+    private async void OnInteractAsync()
     {
         if (_isInteracting)
             return;

@@ -29,14 +29,21 @@ public partial class ParkState : CarState
 
     public override CarState HandleInput(InputEvent @event)
     {
-         if (@event.IsActionPressed("Up"))
+        bool throttlePressed = Input.GetActionStrength("throttle") > 0.1f || Input.IsActionPressed("Up");
+        
+        // Check for brake trigger or S key
+        bool brakePressed = Input.GetActionStrength("break") > 0.1f || Input.IsActionPressed("Down");
+
+        if (throttlePressed)
         {
             return DriveState;
         }
-        if (@event.IsActionPressed("Down"))
+
+        if (brakePressed)
         {
             return ReverseState;
         }
+
         return null;
     }
 }

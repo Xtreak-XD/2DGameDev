@@ -1,12 +1,13 @@
 shader_type canvas_item;
 
 uniform bool flash = false;
+uniform vec4 flash_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 
 void fragment() {
 	vec4 texture_color = texture(TEXTURE, UV);
-	
+
 	if (flash && texture_color.a > 0.0){
-		COLOR = vec4(0.961, 0.961, 0.961, texture_color.a);
+		COLOR = vec4(flash_color.rgb, texture_color.a);
 	}
 	else{
 		COLOR = texture_color;

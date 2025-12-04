@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_c2j0w")
-speed = 500.0
-lifeSpan = 1.5
+speed = 850.0
+lifeSpan = 2.5

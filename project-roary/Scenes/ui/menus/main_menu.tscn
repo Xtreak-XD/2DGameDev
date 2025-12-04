@@ -2,20 +2,19 @@
 
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_2ltg1"]
 [ext_resource type="Script" uid="uid://cj0mf7jo5oh5d" path="res://Scripts/ui/mainMenu/MainMenu.cs" id="1_tmkf4"]
-[ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="2_e6ll4"]
+[ext_resource type="Texture2D" uid="uid://bw4bj4g38pcd4" path="res://Sprites/Menus/ActualBackgroundImg.png" id="2_e6ll4"]
 [ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_nwkk3"]
 [ext_resource type="Shader" uid="uid://b8rda7k4x665p" path="res://Scenes/ui/menus/textShader.gdshader" id="3_idfjq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdbuc"]
 texture = ExtResource("2_e6ll4")
-modulate_color = Color(0.49411765, 1, 1, 0.22352941)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idfjq"]
 shader = ExtResource("2_nwkk3")
-shader_parameter/intensity = 1.0
-shader_parameter/base_water_color = Color(0.20578742, 0.25358602, 0.36399135, 1)
-shader_parameter/highlight_scale = 1.4500000656151202
-shader_parameter/clarity = 0.3750000178125
+shader_parameter/intensity = 0.50000002375
+shader_parameter/base_water_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_scale = 1.0
+shader_parameter/clarity = 0.102000004845
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e6ll4"]
 shader = ExtResource("3_idfjq")

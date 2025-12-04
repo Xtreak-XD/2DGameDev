@@ -1,5 +1,6 @@
-[gd_scene load_steps=45 format=3 uid="uid://v2ybqe80tyj4"]
+[gd_scene load_steps=47 format=3 uid="uid://v2ybqe80tyj4"]
 
+[ext_resource type="Shader" uid="uid://bqsqekh573hwo" path="res://Scripts/shaders/HitFlash.gdshader" id="1_afprn"]
 [ext_resource type="Script" uid="uid://djm14r0lfj6ec" path="res://Scripts/entities/player/Player.cs" id="1_yl34j"]
 [ext_resource type="Resource" uid="uid://uyep6yujeiow" path="res://Resources/entities/player/PlayerStats.tres" id="2_ah8g8"]
 [ext_resource type="Script" uid="uid://bnaxclisdkc0b" path="res://Scripts/entities/player/StateMachines/PlayerStateMachine.cs" id="3_7yyei"]
@@ -734,6 +735,11 @@ _data = {
 &"walk_up": SubResource("Animation_afprn")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_afprn"]
+shader = ExtResource("1_afprn")
+shader_parameter/flash = false
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3n3"]
 radius = 55.0
 height = 332.0
@@ -759,6 +765,7 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_afprn")
 sprite_frames = SubResource("SpriteFrames_votu1")
 animation = &"walk_left"
 

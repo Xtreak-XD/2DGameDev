@@ -63,7 +63,7 @@ public partial class dialogueManager : Node
         }
     }
 
-    private async Task HandleDialogAdvance()
+    private async void HandleDialogAdvance()
     {
         textBox.QueueFree();
         currentLineIndex++;

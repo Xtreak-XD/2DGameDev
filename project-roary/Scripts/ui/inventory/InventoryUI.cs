@@ -51,6 +51,12 @@ public partial class InventoryUI : Control
 		updateSlots();
 	}
 
+    public override void _ExitTree()
+    {
+        eventbus.inventoryUpdated -= updateSlots;
+    }
+
+
 	public override void _Process(double delta)
 	{
 		if (Input.IsActionJustPressed("I"))

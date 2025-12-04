@@ -7,7 +7,7 @@ public partial class TextBox : MarginContainer
     Timer timer;
     Label textLabel;
 
-    const int MAX_WIDTH = 256;
+    const int MAX_WIDTH = 256*4;
     string textToShow = "";
     int letterIndex = 0;
 
@@ -43,7 +43,7 @@ public partial class TextBox : MarginContainer
             await ToSignal(this, Control.SignalName.Resized);
             CustomMinimumSize = new Vector2(CustomMinimumSize.X, Size.Y);
         }
-        GlobalPosition = new Vector2(GlobalPosition.X - (Size.X / 2), GlobalPosition.Y - (Size.Y + 24));
+        GlobalPosition = GlobalPosition + new Vector2(-(Size.X / 2), -600);
 
         textLabel.Text = "";
         displayLetter();

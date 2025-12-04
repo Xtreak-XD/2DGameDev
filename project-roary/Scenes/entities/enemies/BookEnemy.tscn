@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cw02nndhlg7km" path="res://Scripts/audio/SfxPitchModifier.cs" id="6_ycb5m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p48v1"]
+resource_local_to_scene = true
 shader = ExtResource("3_5wo71")
 shader_parameter/flash = false
 

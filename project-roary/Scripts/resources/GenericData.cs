@@ -39,7 +39,7 @@ public partial class GenericData : Resource
 	public int MaxStamina { get; set; }
 
 	[Export] public bool dealKnockback;
-	[Export(PropertyHint.Range, "0.0, 100.0, 15.0")] public float knockBackAmount;
+	[Export(PropertyHint.Range, "0.0, 500.0, 15.0")] public float knockBackAmount;
 	
 
 }

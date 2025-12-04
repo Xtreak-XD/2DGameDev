@@ -7,7 +7,7 @@ public partial class SaveManager : Node
     private string save_file_name = "playerMetaData.tres";
     private Eventbus eventbus;
     private Inventory inv;
-    private MetaData metaData = new();
+    public MetaData metaData = new();
 
     public override void _Ready()
     {
@@ -40,12 +40,8 @@ public partial class SaveManager : Node
     public void Save(bool firstLoad = false)
     {
         // Get player
-        Player player = GetTree().Root.GetNodeOrNull<Player>("Player");
-        if (player == null)
-        {
-            var currentScene = GetTree().CurrentScene;
-            player = currentScene?.GetNodeOrNull<Player>("Player");
-        }
+        var currentScene = GetTree().CurrentScene;
+        Player player = currentScene?.GetNodeOrNull<Player>("Player");
 
         if (player != null)
         {
@@ -70,6 +66,23 @@ public partial class SaveManager : Node
         else
         {
             GD.PrintErr($"Failed to save game: {result}");
+        }
+    }
+
+    public void SaveNpcFlags()
+    {
+        VerifySaveDirectory(save_file_path);
+
+        string fullPath = save_file_path + save_file_name;
+        Error result = ResourceSaver.Save(metaData, fullPath);
+
+        if (result == Error.Ok)
+        {
+            GD.Print("NPC flags saved at " + fullPath);
+        }
+        else
+        {
+            GD.PrintErr($"Failed to save NPC flags: {result}");
         }
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://duifow0ycc63q"]
+[gd_scene load_steps=11 format=3 uid="uid://duifow0ycc63q"]
 
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="1_sepvu"]
 [ext_resource type="Script" uid="uid://dbtpphho2ue0c" path="res://Scripts/helperScripts/Save.cs" id="1_vu6fj"]
@@ -40,13 +40,17 @@ colors = PackedColorArray(1, 1, 1, 1, 0.684917, 0.684917, 0.684917, 1, 0.4614568
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oi58d"]
 gradient = SubResource("Gradient_v6fvv")
-width = 264
-height = 264
+width = 500
+height = 500
 fill = 1
 fill_from = Vector2(0.491453, 0.517094)
 fill_to = Vector2(0.8162393, 0.22222222)
 
-[node name="Save" type="Node2D" node_paths=PackedStringArray("lampLight", "animatedSprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6fvv"]
+radius = 57.870544
+
+[node name="Save" type="StaticBody2D" node_paths=PackedStringArray("lampLight", "animatedSprite")]
+y_sort_enabled = true
 script = ExtResource("1_vu6fj")
 lampLight = NodePath("PointLight2D")
 animatedSprite = NodePath("Save")
@@ -67,4 +71,8 @@ texture_filter = 1
 position = Vector2(0, -129.99998)
 scale = Vector2(30, 30)
 texture = SubResource("GradientTexture2D_oi58d")
-texture_scale = 0.15
+texture_scale = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, 161)
+shape = SubResource("CircleShape2D_v6fvv")

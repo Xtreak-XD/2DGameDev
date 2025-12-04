@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Save : Node2D
+public partial class Save : StaticBody2D
 {
     public interactionArea interactionArea;
     public Eventbus eventbus;

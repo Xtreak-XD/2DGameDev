@@ -39,8 +39,8 @@ public partial class Guide : CharacterBody2D
                     "There's been lots of trouble stirring around here recently.",
                     "So something tells me you're here for a reason.",
                     "If that's the case, there may still be time in our current situation.",
-                    "You must go across campus in order to put a stop to a certain panther.",
-                    "Do not fret anytime on your way for our paths will surely cross again."
+                    "You must go across campus in order to put a stop to a certain panther. But before that...",
+                    "PLEASE SAVE MY BROTHER!!! He is sorrounded by alligators in the Nature Preserve, pLease!",
                 }
             },
             {
@@ -49,7 +49,7 @@ public partial class Guide : CharacterBody2D
                 {
                     "Ah, we meet again.",
                     "I trust your search for my brother is still ongoing.",
-                    "Listen carefully, something strange is happening around the nature preserve..."
+                    "Listen carefully, something strange is happening around the Green Library..."
                 }
             },
             {

@@ -470,8 +470,6 @@ scale = Vector2(8, 8)
 [node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
 position = Vector2(6123, 4182)
 rotation = 3.1415927
-collision_layer = 1
-collision_mask = 1
 
 [node name="TimerLabel" type="Label" parent="."]
 top_level = true

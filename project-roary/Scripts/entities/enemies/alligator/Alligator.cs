@@ -30,8 +30,8 @@ public partial class Alligator : Enemy
 		{
 			data = (GenericData)data.Duplicate();
 		}
-		stateMachine = GetNode<AlligatorStateMachine>("AlligatorStateMachine");
-		stateMachine.Initialize(this);
+
+		target = (Player)GetTree().GetFirstNodeInGroup("player");
 
 		anim = GetNode<AnimationPlayer>("AnimationPlayer");
 
@@ -40,13 +40,13 @@ public partial class Alligator : Enemy
 		hitbox = GetNode<Area2D>("Hitbox");
 
 		homePositionTimer.Timeout += SetHomePos;
+		stateMachine = GetNode<AlligatorStateMachine>("AlligatorStateMachine");
+		stateMachine.Initialize(this);
 	}
 
 	public override void _EnterTree()
 	{
 		AddToGroup("enemy");
-
-		target = (Player)GetTree().GetFirstNodeInGroup("player");
 		homePositionTimer.Autostart = true;
     }
 

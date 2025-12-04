@@ -14,6 +14,7 @@
 resource_local_to_scene = true
 shader = ExtResource("3_4dy67")
 shader_parameter/flash = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dy67"]
 atlas = ExtResource("3_a1ped")
@@ -394,9 +395,8 @@ _data = {
 &"walk_up": SubResource("Animation_6nq1m")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nq1m"]
-radius = 97.0
-height = 330.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dy67"]
+radius = 58.077534
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hsg6v"]
 radius = 153.31015
@@ -409,7 +409,9 @@ radius = 952.0
 height = 1904.0
 
 [node name="Petitioner" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 16
+collision_mask = 3
 script = ExtResource("1_uqobr")
 PatrolSpeed = 100.0
 data = ExtResource("2_a1ped")
@@ -425,7 +427,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_6nq1m")
+position = Vector2(-2, 99)
+shape = SubResource("CircleShape2D_4dy67")
 
 [node name="Hitbox" parent="." instance=ExtResource("1_vq3ow")]
 position = Vector2(9, 76)

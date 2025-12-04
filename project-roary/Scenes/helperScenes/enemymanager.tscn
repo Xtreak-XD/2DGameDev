@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cj2hiqcvm4sy0" path="res://Scripts/helperScripts/EnemyManager.cs" id="1_7r3ax"]
 
-[node name="Enemymanager" type="Node" node_paths=PackedStringArray("EnemySpawnPoints")]
+[node name="Enemymanager" type="Node2D" node_paths=PackedStringArray("EnemySpawnPoints")]
+y_sort_enabled = true
 script = ExtResource("1_7r3ax")
-EnemySpawnTimerMin = null
-EnemySpawnTimerMax = null
 EnemySpawnPoints = []
-MaxEnemiesAlive = null
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0

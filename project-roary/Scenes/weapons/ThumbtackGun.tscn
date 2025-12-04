@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi6r7xl2wsrfk"]
+
+[ext_resource type="Script" uid="uid://bsdrksjsxc8m5" path="res://Scripts/weapons/ThumbtackGun.cs" id="1_vy7pq"]
+[ext_resource type="PackedScene" uid="uid://dpvkpknishd27" path="res://Scenes/weapons/projectiles/Thumbtack.tscn" id="2_f8pou"]
+[ext_resource type="Resource" uid="uid://dm77ajjn6ry2h" path="res://Resources/weapons/ThumbtackGun.tres" id="2_rav44"]
+[ext_resource type="Texture2D" uid="uid://b815bemr6djbm" path="res://Sprites/item/Thumbtack_Gun.png" id="2_utnin"]
+
+[node name="ThumbtackGun" type="Node2D"]
+script = ExtResource("1_vy7pq")
+projectile = ExtResource("2_f8pou")
+data = ExtResource("2_rav44")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5.9604645e-08, -1.1920929e-07)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_utnin")
+
+[node name="ProjectileSource" type="Marker2D" parent="."]

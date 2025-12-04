@@ -24,8 +24,10 @@ public partial class Player : CharacterBody2D
 	public Godot.Collections.Dictionary Equipables = new Godot.Collections.Dictionary
     {
 		//{ "", ""}, name , path to tscn
-        { "Pencil", "res://Scenes/weapons/PencilSword.tscn"},
-		{ "Thumbstack", "res://Scenes/weapons/StapleGun.tscn"}, //switch to staple gun
+        { "Pencil", "res://Scenes/weapons/PencilSword.tscn"}, 
+		{ "StapleGun", "res://Scenes/weapons/StapleGun.tscn"},
+		//{ "Pen", "res://Scenes/weapons/PenSword.tscn"}, FIX THE AUTO-SWAPPING RESOURCE
+		{ "Thumbstack", "res://Scenes/weapons/ThumbtackGun.tscn"},
     };
 
 	public bool usingStamina = false;

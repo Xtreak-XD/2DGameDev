@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class EnemyManager : Node
+public partial class EnemyManager : Node2D
 {
     [Export] public float EnemySpawnTimerMin = 0.1f;
     [Export] public float EnemySpawnTimerMax = 4.0f;

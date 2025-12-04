@@ -740,9 +740,8 @@ shader = ExtResource("1_afprn")
 shader_parameter/flash = false
 shader_parameter/flash_color = Color(1, 0, 0, 1)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3n3"]
-radius = 55.0
-height = 332.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_afprn"]
+radius = 61.294373
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyuh4"]
 radius = 141.1524
@@ -752,6 +751,7 @@ radius = 76.0
 height = 412.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 65
 script = ExtResource("1_yl34j")
@@ -770,8 +770,8 @@ sprite_frames = SubResource("SpriteFrames_votu1")
 animation = &"walk_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 28)
-shape = SubResource("CapsuleShape2D_qn3n3")
+position = Vector2(6, 116)
+shape = SubResource("CircleShape2D_afprn")
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("3_7yyei")

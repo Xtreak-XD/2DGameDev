@@ -17,6 +17,7 @@ offset_right = 62.5
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_gwmx4")
+theme_override_font_sizes/font_size = 128
 text = "[E] TO INTERACT"
 horizontal_alignment = 1
 vertical_alignment = 1

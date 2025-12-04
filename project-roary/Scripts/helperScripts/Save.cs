@@ -15,7 +15,7 @@ public partial class Save : Sprite2D
 
     void onInteract()
     {
-        eventbus.EmitSignal("save");
+        eventbus.EmitSignal("save", false);
         eventbus.EmitSignal("interactionComplete");
     }
 }

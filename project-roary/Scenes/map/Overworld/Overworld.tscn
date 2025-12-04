@@ -137,43 +137,25 @@ path = "res://Scenes/testScenes/TestScene.tscn"
 shape = SubResource("CircleShape2D_rm1pb")
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
-spawnsAvailable = [NodePath("fromNothing"), NodePath("fromGreenLibrary"), NodePath("fromGrahamCenter"), NodePath("fromParkingGarage"), NodePath("fromStadium"), NodePath("fromNaturePreserve")]
+spawnsAvailable = [NodePath("fromTestScene"), NodePath("fromNothing"), NodePath("fromParkingGarage"), NodePath("fromNaturePreserve"), NodePath("fromGreenLibrary"), NodePath("fromGranhamCenter")]
+
+[node name="fromTestScene" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(4729, 8931)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(1344, 5677)
-
-[node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(2411, 9590)
-
-[node name="fromGrahamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
-z_index = 4
-position = Vector2(7626, 8955)
+position = Vector2(6217, 4946)
 
 [node name="fromParkingGarage" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(8268, 6084)
-
-[node name="fromStadium" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(2816, 3733)
+position = Vector2(8264, 6060)
 
 [node name="fromNaturePreserve" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(5659, 2972)
+position = Vector2(5740, 2884)
 
-[node name="OverworldToGL" parent="." instance=ExtResource("9_ngc8d")]
-z_index = 3
-position = Vector2(1890, 9514)
-path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
+[node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(7499, 8941)
 
-[node name="OverworldToGC" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(8113, 8849)
-path = "res://Scenes/map/GranhamCenter/GrahamCenter.tscn"
-
-[node name="OverworldToStadium" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(2656, 3304)
-path = "res://Scenes/map/Stadium/Stadium.tscn"
-
-[node name="OverworldToPG" parent="." instance=ExtResource("9_ngc8d")]
-position = Vector2(8753, 5895)
-path = "res://Scenes/map/ParkingGarage/ParkingGarage.tscn"
+[node name="fromGranhamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2408, 9590)
 
 [node name="OverworldToNaturePreserve" parent="." instance=ExtResource("9_ngc8d")]
 position = Vector2(5765, 2582)

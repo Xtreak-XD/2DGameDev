@@ -1,9 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctmsfrqpks4es"]
+[gd_scene load_steps=12 format=3 uid="uid://ctmsfrqpks4es"]
 
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_2ltg1"]
 [ext_resource type="Script" uid="uid://cj0mf7jo5oh5d" path="res://Scripts/ui/mainMenu/MainMenu.cs" id="1_tmkf4"]
+[ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="2_e6ll4"]
+[ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_nwkk3"]
+[ext_resource type="Shader" uid="uid://b8rda7k4x665p" path="res://Scenes/ui/menus/textShader.gdshader" id="3_idfjq"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ltg1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdbuc"]
+texture = ExtResource("2_e6ll4")
+modulate_color = Color(0.49411765, 1, 1, 0.22352941)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idfjq"]
+shader = ExtResource("2_nwkk3")
+shader_parameter/intensity = 1.0
+shader_parameter/base_water_color = Color(0.20578742, 0.25358602, 0.36399135, 1)
+shader_parameter/highlight_scale = 1.4500000656151202
+shader_parameter/clarity = 0.3750000178125
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6ll4"]
+shader = ExtResource("3_idfjq")
+shader_parameter/height = 5.0
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmkf4"]
 bg_color = Color(0.09411765, 0.18039216, 0.43529412, 1)
@@ -33,16 +51,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tmkf4")
 
-[node name="Background" type="Panel" parent="."]
+[node name="backlayer" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_2ltg1")
+theme_override_styles/panel = SubResource("StyleBoxTexture_fdbuc")
+
+[node name="Background" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_idfjq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="Label" parent="."]
+material = SubResource("ShaderMaterial_e6ll4")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -22,11 +22,15 @@ public partial class CarStateMachine : Node
 		ChangeState(currentState?.Physics(delta));
 	}
 
+	public override void _UnhandledInput(InputEvent @event)
+    {
+        ChangeState(currentState?.HandleInput(@event));
+    }
+
 	public void Initialize(DriveableCar car)
 	{
 		states = new List<CarState>();
 		
-		GD.Print(GetChildCount());
 		foreach (Node node in GetChildren())
 		{
 			if(node is CarState state)

@@ -29,4 +29,9 @@ public partial class CarState : Node
 	{
 		return null;
 	}
+
+	public virtual CarState HandleInput(InputEvent @event)
+    {
+        return null;
+    }
 }

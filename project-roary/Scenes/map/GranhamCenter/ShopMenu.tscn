@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/world/Graham Center/TableTopDown2.png" id="1_jqod7"]
 [ext_resource type="Script" uid="uid://c8vsyptmaavtn" path="res://Scripts/ui/PowerUpShops/ShopMenu.cs" id="1_tgvhk"]
 [ext_resource type="Texture2D" uid="uid://uniuj28bgwht" path="res://Sprites/world/Graham Center/HealthInsideTable.tres" id="2_msshn"]
-[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_tgvhk"]
 [ext_resource type="PackedScene" uid="uid://bhlkfysakjm6t" path="res://Scenes/map/GranhamCenter/ShopMenuSlot.tscn" id="4_msshn"]
+[ext_resource type="Texture2D" uid="uid://cpdoqhdpqifxt" path="res://Sprites/world/DiningDollars.png" id="5_msshn"]
 [ext_resource type="FontFile" uid="uid://cbkp2sq5jjvfa" path="res://Sprites/Fonts/SpaceMono-Regular.ttf" id="8_0cfuo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fppcr"]
@@ -133,7 +133,7 @@ alignment = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_tgvhk")
+texture = ExtResource("5_msshn")
 expand_mode = 1
 stretch_mode = 4
 
@@ -142,7 +142,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("8_0cfuo")
-text = "5"
+text = "600"
 vertical_alignment = 1
 
 [node name="ReceiptContainer" type="VBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]

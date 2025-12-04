@@ -3,6 +3,7 @@ using Godot;
 public partial class DecelerateState : CarState
 {
     public DriveState DriveState;
+    public ReverseState ReverseState;
     public ParkState ParkState;
     public Timer parkTimer;
     private bool isParked = false;
@@ -12,7 +13,7 @@ public partial class DecelerateState : CarState
         DriveState = GetParent().GetNode<DriveState>("Drive");
         ParkState = GetParent().GetNode<ParkState>("Park");
         parkTimer = GetParent().GetNode<Timer>("ParkTimer");
-
+        ReverseState = GetParent().GetNode<ReverseState>("Reverse");
         parkTimer.Timeout += SetParked;
     }
 
@@ -28,11 +29,6 @@ public partial class DecelerateState : CarState
 
     public override CarState Process(double delta)
     {
-        if (ActiveCar.HasThrottle())
-        {
-            return DriveState;
-        }
-
         if (ActiveCar.IsParked() && parkTimer.IsStopped())
         {
             parkTimer.Start();
@@ -43,18 +39,13 @@ public partial class DecelerateState : CarState
             return ParkState;
         }
 
-        //GD.Print($"Car Velocity: ({ActiveCar.Velocity.X}," +
-        //$"{ActiveCar.Velocity.Y})");
-        //GD.Print("Car Speed: " + ActiveCar.GetVelocity().Length());
-
         Vector2 currentVelocity = ActiveCar.Velocity;
-        float decelerationAmount = ActiveCar.stats.Acceleration;
+        float decelerationAmount = ActiveCar.stats.Acceleration * 5 * (float)delta;
 
         if (currentVelocity.Length() > decelerationAmount)
         {
-            Vector2 decelerationVector = currentVelocity.Normalized()
-             * decelerationAmount;
-            ActiveCar.Velocity -= decelerationVector * (float)delta;
+            Vector2 decelerationVector = currentVelocity.Normalized() * decelerationAmount ;
+            ActiveCar.Velocity -= decelerationVector;
         }
         else
         {
@@ -71,5 +62,18 @@ public partial class DecelerateState : CarState
         {
             isParked = true;
         }
+    }
+
+    public override CarState HandleInput(InputEvent @event)
+    {
+         if (@event.IsActionPressed("Up"))
+        {
+            return DriveState;
+        }
+        if (@event.IsActionPressed("Down"))
+        {
+            return ReverseState;
+        }
+        return null;
     }
 }

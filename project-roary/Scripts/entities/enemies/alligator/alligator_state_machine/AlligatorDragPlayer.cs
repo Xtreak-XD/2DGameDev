@@ -25,13 +25,13 @@ public partial class AlligatorDragPlayer : AlligatorState
 
 		ActiveEnemy.MoveAndSlide();
 
-		ActiveEnemy.target.GlobalPosition = ActiveEnemy.hitbox.GlobalPosition;
+        ActiveEnemy.target.GlobalPosition = ActiveEnemy.hitbox.GlobalPosition;
 		ActiveEnemy.target.Velocity = Vector2.Zero;
 
 		GD.Print($"Distance to home at ({ActiveEnemy.homePosition.X}, " +
-		$"{ActiveEnemy.homePosition.Y}): " +
-		ActiveEnemy.GlobalPosition.DistanceTo(ActiveEnemy.homePosition));
-
+		 $"{ActiveEnemy.homePosition.Y}): " +
+		 ActiveEnemy.GlobalPosition.DistanceTo(ActiveEnemy.homePosition));
+	
 		// Insurance against glitches
 		if(!ActiveEnemy.IsPlayerInDeathRollRange())
 		{
@@ -40,7 +40,7 @@ public partial class AlligatorDragPlayer : AlligatorState
 			return AlligatorChase;
         }
 
-		if (ActiveEnemy.GlobalPosition.DistanceTo(ActiveEnemy.homePosition) <= 20)
+		if (ActiveEnemy.GlobalPosition.DistanceTo(ActiveEnemy.homePosition) <= 70)
 		{
 			return AlligatorDeathRoll;
 		}

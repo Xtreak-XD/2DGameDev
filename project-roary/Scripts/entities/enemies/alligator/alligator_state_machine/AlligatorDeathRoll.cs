@@ -38,7 +38,7 @@ public partial class AlligatorDeathRoll : AlligatorState
     public void Attack()
     {
         GD.Print("Alligator Death Roll attack occurred.");
-        
+
         deathRollTimer.Start();
     }
 }

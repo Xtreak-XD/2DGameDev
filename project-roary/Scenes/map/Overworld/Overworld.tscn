@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=30 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dy8gl83jijma" path="res://Scenes/Items/Pencil.tscn" id="19_41gww"]
 [ext_resource type="PackedScene" uid="uid://df8531tnyq760" path="res://Scenes/Items/StapleGun.tscn" id="20_5qpi0"]
 [ext_resource type="PackedScene" uid="uid://bb82tbqia4lde" path="res://Scenes/Items/Thumbstack.tscn" id="21_pmo8i"]
+[ext_resource type="PackedScene" uid="uid://dodiy3h22hmr3" path="res://Scenes/entities/enemies/alligator.tscn" id="22_41gww"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
 texture = ExtResource("1_pnd8i")
@@ -341,3 +342,6 @@ position = Vector2(8029, 6644)
 
 [node name="Items4" parent="." instance=ExtResource("21_pmo8i")]
 position = Vector2(8348, 6088)
+
+[node name="Alligator" parent="." instance=ExtResource("22_41gww")]
+position = Vector2(6168, 6925)

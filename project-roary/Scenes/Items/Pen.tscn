@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://u57fr3yk2s5c"]
 
 [ext_resource type="PackedScene" uid="uid://r6a6orujjhgt" path="res://Scenes/ui/inventory/Items.tscn" id="1_73xii"]
-[ext_resource type="Resource" uid="uid://jbi04iutyxhr" path="res://Resources/items/Pen.tres" id="2_bwtfk"]
+[ext_resource type="Resource" uid="uid://jbi04iutyxhr" path="res://Resources/weapons/PenSwordData.tres" id="2_bwtfk"]
 [ext_resource type="Texture2D" uid="uid://byln8174ny0mb" path="res://Sprites/item/Pen.png" id="2_jxrua"]
 
 [node name="Items" instance=ExtResource("1_73xii")]

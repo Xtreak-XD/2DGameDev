@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dm77ajjn6ry2h"]
+
+[ext_resource type="Script" uid="uid://bmpqybontvf4c" path="res://Scripts/resources/WeaponData.cs" id="1_gpsem"]
+
+[resource]
+script = ExtResource("1_gpsem")
+damage = 5
+attackRate = 0.5
+knockback = 400.0

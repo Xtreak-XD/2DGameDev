@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cypv6u2cdl7sy"]
+
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_o4cfu"]
+
+[resource]
+default_font = ExtResource("1_o4cfu")
+default_font_size = 20

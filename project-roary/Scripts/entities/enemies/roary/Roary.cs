@@ -43,6 +43,10 @@ public partial class Roary : Enemy
 
 	public const int ROAM_RANGE = 650;
 
+    public bool SummonedFirstStampede { get; set; } = false;
+    public bool SummonedSecondStampede { get; set; } = false;
+    public bool SummonedThirdStampede { get; set; } = false;
+
 	public override void _Ready()
     {
         stateMachine = GetNode<RoaryStateMachine>("RoaryStateMachine");
@@ -103,7 +107,7 @@ public partial class Roary : Enemy
 
     public float StatMultipler()
     {
-        return 1 + ((1 - GetHealthPercentage()) * 0.66f);
+        return 1 + ((1 - GetHealthPercentage()) * 0.4f);
     }
 
     public int TrueSpeed()

@@ -24,7 +24,15 @@ public partial class AlligatorRoam : AlligatorState
 
 	public override AlligatorState Process(double delta)
     {
-        Vector2 direction = (newPos - ActiveEnemy.GlobalPosition).Normalized();
+		Vector2 offset = newPos - ActiveEnemy.GlobalPosition;
+
+		if (offset.Length() < 5f)
+		{
+			ActiveEnemy.Velocity = Vector2.Zero;
+			return null;
+		}
+
+		Vector2 direction = offset.Normalized();
 		ActiveEnemy.animation(direction);
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * ((float)delta * (float)ActiveEnemy.data.Accel);
 		ActiveEnemy.MoveAndSlide();
@@ -39,11 +47,7 @@ public partial class AlligatorRoam : AlligatorState
 
 	public void PickPosition()
 	{
-		if (ActiveEnemy.GlobalPosition.DistanceTo(newPos) <= 50)
-		{
-			newPos = ActiveEnemy.GetRandomPositionInRoamRange();
-		}
-		
+		newPos = ActiveEnemy.GetRandomPositionInRoamRange();
 		timer.Start();
     }
 }

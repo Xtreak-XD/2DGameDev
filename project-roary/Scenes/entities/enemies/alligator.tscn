@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dodiy3h22hmr3"]
+[gd_scene load_steps=38 format=3 uid="uid://dodiy3h22hmr3"]
 
 [ext_resource type="Script" uid="uid://r0aeh5hhevg" path="res://Scripts/entities/enemies/alligator/Alligator.cs" id="1_rst6c"]
 [ext_resource type="Resource" uid="uid://ihh56dx23000" path="res://Resources/entities/ColorVariantData.tres" id="2_pw244"]
@@ -6,8 +6,8 @@
 [ext_resource type="Shader" uid="uid://bqsqekh573hwo" path="res://Scripts/shaders/HitFlash.gdshader" id="4_0d4qt"]
 [ext_resource type="Script" uid="uid://cmcwwbum6ngc4" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorStateMachine.cs" id="4_gfqp3"]
 [ext_resource type="Script" uid="uid://bd2j0wsuhgi72" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorRoam.cs" id="5_nqf2v"]
+[ext_resource type="Texture2D" uid="uid://c78gj2v0owbwj" path="res://Sprites/entities/enemies/Alligator_Sprite_.png" id="5_vph40"]
 [ext_resource type="Script" uid="uid://doidb6wq344on" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorChase.cs" id="6_gfqp3"]
-[ext_resource type="Texture2D" uid="uid://cm4kdv4e22k20" path="res://Sprites/entities/enemies/alligator.jpeg" id="6_pw244"]
 [ext_resource type="Script" uid="uid://cd7wkh52fyii8" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorDragPlayer.cs" id="7_tgotm"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="8_ml0gg"]
 [ext_resource type="Script" uid="uid://b8uc5v5u4h0gg" path="res://Scripts/entities/enemies/alligator/alligator_state_machine/AlligatorLunge.cs" id="8_yojey"]
@@ -18,54 +18,111 @@
 resource_local_to_scene = true
 shader = ExtResource("4_0d4qt")
 shader_parameter/flash = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yojey"]
-atlas = ExtResource("6_pw244")
-region = Rect2(0, 0, 275, 183)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml0gg"]
+atlas = ExtResource("5_vph40")
+region = Rect2(890, 1335, 445, 445)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0d4qt"]
-atlas = ExtResource("6_pw244")
-region = Rect2(0, 0, 275, 183)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd8lk"]
+atlas = ExtResource("5_vph40")
+region = Rect2(1335, 1335, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnhlt"]
+atlas = ExtResource("5_vph40")
+region = Rect2(1780, 1335, 445, 445)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vph40"]
-atlas = ExtResource("6_pw244")
-region = Rect2(0, 0, 275, 183)
+atlas = ExtResource("5_vph40")
+region = Rect2(890, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t82vk"]
+atlas = ExtResource("5_vph40")
+region = Rect2(1335, 445, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kysuv"]
+atlas = ExtResource("5_vph40")
+region = Rect2(1780, 439, 445, 439)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_farax"]
+atlas = ExtResource("5_vph40")
+region = Rect2(890, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e134c"]
+atlas = ExtResource("5_vph40")
+region = Rect2(1335, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yek8"]
+atlas = ExtResource("5_vph40")
+region = Rect2(1780, 890, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d4qt"]
+atlas = ExtResource("5_vph40")
+region = Rect2(890, 1780, 445, 445)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7lxy"]
-atlas = ExtResource("6_pw244")
-region = Rect2(0, 0, 275, 183)
+atlas = ExtResource("5_vph40")
+region = Rect2(1335, 1780, 445, 445)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8qq7"]
+atlas = ExtResource("5_vph40")
+region = Rect2(1780, 1780, 445, 445)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ml0gg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yojey")
+"texture": SubResource("AtlasTexture_ml0gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd8lk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnhlt")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk_down",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0d4qt")
+"texture": SubResource("AtlasTexture_vph40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t82vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kysuv")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk_left",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vph40")
+"texture": SubResource("AtlasTexture_farax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e134c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yek8")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk_right",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0d4qt")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v7lxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8qq7")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk_up",
 "speed": 5.0
 }]
@@ -123,6 +180,9 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_v7lxy"]
 resource_name = "walk_down"
+length = 0.5
+loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -154,10 +214,10 @@ tracks/2/path = NodePath("AnimatedSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -169,11 +229,13 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-2, 109)]
+"values": [Vector2(-1, 175)]
 }
 
 [sub_resource type="Animation" id="Animation_yojey"]
 resource_name = "walk_left"
+length = 0.5
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -205,10 +267,10 @@ tracks/2/path = NodePath("AnimatedSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -220,11 +282,13 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-155, 7)]
+"values": [Vector2(-214, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_0d4qt"]
 resource_name = "walk_right"
+length = 0.5
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -256,10 +320,10 @@ tracks/2/path = NodePath("AnimatedSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -271,11 +335,13 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(167, 3)]
+"values": [Vector2(230, 6)]
 }
 
 [sub_resource type="Animation" id="Animation_vph40"]
 resource_name = "walk_up"
+length = 0.5
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -307,10 +373,10 @@ tracks/2/path = NodePath("AnimatedSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -322,7 +388,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(6, -150)]
+"values": [Vector2(9, -235)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wd8lk"]
@@ -338,7 +404,7 @@ _data = {
 radius = 460.24445
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdsod"]
-radius = 532.1353
+radius = 1264.9885
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yojey"]
 radius = 135.18137
@@ -347,7 +413,9 @@ radius = 135.18137
 radius = 48.41309
 
 [node name="Alligator" type="CharacterBody2D" node_paths=PackedStringArray("homePositionTimer")]
+y_sort_enabled = true
 collision_layer = 16
+collision_mask = 3
 script = ExtResource("1_rst6c")
 colorVariant = ExtResource("2_pw244")
 homePositionTimer = NodePath("HomesetTimer")

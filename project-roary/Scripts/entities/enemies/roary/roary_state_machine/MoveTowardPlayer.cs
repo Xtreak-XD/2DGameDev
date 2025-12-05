@@ -47,7 +47,7 @@ public partial class MoveTowardPlayer : RoaryState
 
             if(!ActiveEnemy.CanAttack)
             {
-                //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+                ActiveEnemy.animation(direction);
                 ActiveEnemy.Velocity = -direction * ActiveEnemy.TrueSpeed() * 1.2f *
                 ((float)delta * ActiveEnemy.TrueAcceleration());
 
@@ -56,7 +56,7 @@ public partial class MoveTowardPlayer : RoaryState
                 return null;
             }
 
-            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+            ActiveEnemy.animation(direction);
             ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 
             ((float)delta * ActiveEnemy.TrueAcceleration());
             ActiveEnemy.MoveAndSlide();

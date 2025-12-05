@@ -44,7 +44,7 @@ public partial class RoaryDash : RoaryState
 
             Vector2 velocity = currentPos.Lerp(targetPos + targetVel, 200).Normalized();
 
-            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+            ActiveEnemy.animation(velocity);
             ActiveEnemy.Velocity = velocity * ActiveEnemy.TrueSpeed() * 
             2.5f * (ActiveEnemy.TrueAcceleration() * (float) delta);
             

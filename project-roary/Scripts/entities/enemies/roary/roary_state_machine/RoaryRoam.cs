@@ -49,7 +49,7 @@ public partial class RoaryRoam : RoaryState
         }
 
         Vector2 direction = (newPos - ActiveEnemy.GlobalPosition).Normalized();
-		//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+		ActiveEnemy.animation(direction);
 		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 
 		((float)delta * ActiveEnemy.TrueAcceleration());
 		ActiveEnemy.MoveAndSlide();

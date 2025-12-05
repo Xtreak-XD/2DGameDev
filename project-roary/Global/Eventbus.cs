@@ -63,4 +63,7 @@ public partial class Eventbus : Node
 
     // Audio
     [Signal] public delegate void sceneChangedEventHandler(string newSceneName);
+
+    //transitions
+    [Signal] public delegate void onTransitionFinishedEventHandler();
 }

@@ -63,15 +63,15 @@ one_shot = true
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.046080746, 0.049341306)
+scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_5f7fq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3.5689068, 4)
+scale = Vector2(2, 2.241)
 shape = SubResource("CircleShape2D_xrxrl")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_o8biw")]
-scale = Vector2(0.7692792, 1.0556647)
+scale = Vector2(0.569, 0.781)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 scale = Vector2(3.1481678, 2.192932)
@@ -79,6 +79,7 @@ shape = SubResource("CircleShape2D_qdifj")
 debug_color = Color(0.9776438, 0, 0.40619904, 0.41960785)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_yhc4g")]
+scale = Vector2(0.7, 0.7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 scale = Vector2(2.8986206, 2.943963)
@@ -86,7 +87,7 @@ shape = SubResource("CircleShape2D_p146o")
 debug_color = Color(0.5532109, 0.56299573, 9.62615e-07, 0.41960785)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(3.705194, 3.9260502)
+scale = Vector2(3, 3.179)
 
 [node name="SetTargetTimer" type="Timer" parent="."]
 wait_time = 0.05

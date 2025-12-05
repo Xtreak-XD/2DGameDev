@@ -30,6 +30,9 @@ public partial class Logo : Enemy
     public PackedScene mermaid;
     
     [Export] public LogoData Data { get; set; }
+
+    [Export]
+    public Marker2D[] starfishSpawns;
     
     public override void _Ready()
     {
@@ -76,6 +79,7 @@ public partial class Logo : Enemy
     {
         Mermaid phaseTwo = (Mermaid) mermaid.Instantiate();
         phaseTwo.GlobalPosition = GlobalPosition;
+        phaseTwo.starfishSpawns = starfishSpawns;
         GetParent().AddChild(phaseTwo);
         
         base.Die();

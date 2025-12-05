@@ -16,7 +16,6 @@ public partial class Mermaid : Enemy
 	public bool Shielded {get; set; } = true;
 	public bool HasTrident {get; set; } = true;
 
-	[Export]
 	public Marker2D[] starfishSpawns;
 
 	[Export]

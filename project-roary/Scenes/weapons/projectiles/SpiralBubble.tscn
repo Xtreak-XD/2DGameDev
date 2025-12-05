@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dtm6cwfhiwan3" path="res://Scripts/weapons/projectiles/SpiralBubble.cs" id="1_k1adf"]
 [ext_resource type="Resource" uid="uid://chhmqeuo2j4ph" path="res://Resources/weapons/projectiles/SpiralBubbleData.tres" id="2_gpw7c"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="2_nw0cm"]
-[ext_resource type="Texture2D" uid="uid://77mjladn77pa" path="res://Sprites/misc/projectiles/Starfish_Bubble.png" id="4_nw0cm"]
+[ext_resource type="Texture2D" uid="uid://c6yqrdb5sxkq7" path="res://Sprites/misc/projectiles/Logo_Coffee_Bubble.png" id="4_nw0cm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ndse"]
 

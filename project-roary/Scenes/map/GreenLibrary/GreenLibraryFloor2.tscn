@@ -1,0 +1,342 @@
+[gd_scene load_steps=15 format=3 uid="uid://bgg0o1pg1scr0"]
+
+[ext_resource type="Texture2D" uid="uid://dqx53q0r0k2x1" path="res://Sprites/world/Gl/floor 2/gl2_base.png" id="1_02ymr"]
+[ext_resource type="Script" uid="uid://juxexqwr52tm" path="res://Scripts/map/GL/GreenLibraryFloor2.cs" id="1_cnkg2"]
+[ext_resource type="Texture2D" uid="uid://qn5tqt4wk61o" path="res://Sprites/world/Gl/floor 2/gl2_walls.png" id="2_x1bt8"]
+[ext_resource type="Texture2D" uid="uid://d10fyxx3nwqy6" path="res://Sprites/world/Gl/floor 2/gl2_shelffront.png" id="4_suvje"]
+[ext_resource type="Texture2D" uid="uid://c1a867nxxfyum" path="res://Sprites/world/Gl/floor 2/gl2_shelftop.png" id="5_cp5j1"]
+[ext_resource type="Texture2D" uid="uid://bdlqfl45fj6u1" path="res://Sprites/world/Gl/floor 2/gl2_shelfdiagonal.png" id="6_m3jyu"]
+[ext_resource type="Texture2D" uid="uid://dvupyexfqdisu" path="res://Sprites/world/Gl/floor 2/gl2_table.png" id="7_om1sc"]
+[ext_resource type="Texture2D" uid="uid://cm6qvqgonyl0v" path="res://Sprites/world/Gl/floor 2/gl2_shelfback.png" id="8_kbe68"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_kbe68"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="10_a7ol5"]
+[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="11_jghat"]
+[ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="12_myx24"]
+
+[sub_resource type="Environment" id="Environment_5iehm"]
+background_mode = 3
+glow_normalized = true
+adjustment_enabled = true
+adjustment_saturation = 1.25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbe68"]
+size = Vector2(1464.5, 405)
+
+[node name="GreenLibraryFloor2" type="Node2D"]
+script = ExtResource("1_cnkg2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5iehm")
+
+[node name="mapBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mapBorder"]
+polygon = PackedVector2Array(5, -447, 99, 372, 96, 2082, 69, 4458, 270, 4459, 831, 4459, 1751, 4459, 1771, 5000, 3338, 5010, 3293, 4449, 4894, 4452, 4875, 3932, 4918, 1106, 4905, 244, 4310, 233, 3400, 246, 1448, 253, 188, 238, -1110, 4, -655, -1047, 2259, -755, 5694, -581, 6116, 1900, 6105, 4056, 6019, 5172, 4686, 5616, 1674, 5378, -255, 5465, -1197, 4587, -872, 1087, -1089, 296)
+
+[node name="Map" type="Node2D" parent="."]
+position = Vector2(195, 163)
+
+[node name="main" type="Sprite2D" parent="Map"]
+position = Vector2(-193, -161)
+texture = ExtResource("1_02ymr")
+centered = false
+
+[node name="foreground" type="Sprite2D" parent="Map/main"]
+texture = ExtResource("2_x1bt8")
+centered = false
+
+[node name="SHELFS" type="Node2D" parent="Map/main/foreground"]
+y_sort_enabled = true
+
+[node name="Gl2Shelffront" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2047, 839)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront2" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2438, 839)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront3" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2829, 839)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront4" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3214, 1169)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront18" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(4009, 2148)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront19" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(4394, 2331)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront20" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(4687, 2631)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront5" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3599, 1169)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront6" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1666, 1169)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront8" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1489, 3316)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront9" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1091, 3151)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront11" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1226, 4026)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront12" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1599, 4032)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront13" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1984, 4130)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront14" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2375, 4154)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront15" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2763, 4165)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront16" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3147, 4044)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront17" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3531, 4044)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront10" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(722, 2971)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelffront7" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1275, 1169)
+texture = ExtResource("4_suvje")
+
+[node name="Gl2Shelftop" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2624, 1166)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop2" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2624, 1576)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop3" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3774, 1533)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop4" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3774, 1924)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop5" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1041, 1312)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop6" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1041, 1697)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop7" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(493, 2708)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop10" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3974, 3633)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop11" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3974, 3249)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop8" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(864, 3581)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelftop9" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(864, 3581)
+texture = ExtResource("5_cp5j1")
+
+[node name="Gl2Shelfdiagonal" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3706, 2255)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal2" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3596, 2493)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal3" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3474, 2738)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal17" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(3819, 3910)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal9" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2984, 2023)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal10" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2874, 2261)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal11" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2752, 2506)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal12" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2642, 2738)
+texture = ExtResource("6_m3jyu")
+
+[node name="Gl2Shelfdiagonal13" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2140, 2066)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Shelfdiagonal14" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2232, 2273)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Shelfdiagonal15" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2330, 2500)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Shelfdiagonal16" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2441, 2750)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Shelfdiagonal5" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1114, 2053)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Shelfdiagonal6" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1248, 2284)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Shelfdiagonal7" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1359, 2530)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Shelfdiagonal8" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(925, 3876)
+texture = ExtResource("6_m3jyu")
+flip_h = true
+
+[node name="Gl2Table" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(2465, 3203)
+texture = ExtResource("7_om1sc")
+
+[node name="Gl2Shelfback" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1884, 3319)
+texture = ExtResource("8_kbe68")
+
+[node name="Gl2Shelfback2" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(1120, 3490)
+texture = ExtResource("8_kbe68")
+
+[node name="Gl2Shelfback3" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(625, 3496)
+texture = ExtResource("8_kbe68")
+
+[node name="Gl2Shelfback4" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(258, 3490)
+texture = ExtResource("8_kbe68")
+
+[node name="Gl2Shelfback5" type="Sprite2D" parent="Map/main/foreground/SHELFS"]
+position = Vector2(258, 3490)
+texture = ExtResource("8_kbe68")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Map/main/foreground/SHELFS"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/main/foreground/SHELFS/StaticBody2D"]
+polygon = PackedVector2Array(46, 3343, 54, 3648, 831, 3643, 810, 3898, 910, 4078, 1057, 4157, 1462, 4166, 1784, 4186, 1838, 4266, 2134, 4282, 2452, 4316, 2953, 4308, 2962, 4153, 3672, 4182, 3801, 4120, 4010, 3790, 4018, 3059, 3935, 3042, 3910, 3693, 3793, 3719, 3730, 3869, 2982, 3881, 2949, 3990, 2594, 3998, 2063, 3978, 1738, 3944, 1387, 3877, 1027, 3852, 927, 3622, 1282, 3631, 1291, 3368)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Map/main/foreground/SHELFS/StaticBody2D"]
+position = Vector2(389, -817)
+polygon = PackedVector2Array(46, 3343, 54, 3648, 153, 3926, 576, 4110, 970, 4271, 1454, 4277, 1782, 4243, 2121, 4243, 2427, 4193, 2477, 3965, 2327, 3843, 1999, 3832, 1348, 4010, 926, 3971, 876, 3849, 548, 3832, 498, 3659, 147, 3615, 153, 3326)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Map/main/foreground/SHELFS/StaticBody2D"]
+position = Vector2(1334, -1575)
+polygon = PackedVector2Array(728, 3425, 697, 3663, 970, 4300, 1127, 4558, 1309, 4527, 1454, 4277, 1755, 3627, 1744, 3369, 1653, 3314, 1348, 4010, 1213, 4259, 1051, 3971, 1001, 3845, 940, 3698, 859, 3542, 819, 3410)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Map/main/foreground/SHELFS/StaticBody2D"]
+position = Vector2(273, -1747)
+polygon = PackedVector2Array(728, 2884, 697, 3663, 970, 4300, 1112, 4532, 1188, 4516, 1213, 4259, 1051, 3971, 1001, 3845, 940, 3698, 859, 3542, 819, 3450, 829, 3076, 1582, 3056, 1562, 2778, 844, 2747)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Map/main/foreground/SHELFS/StaticBody2D"]
+position = Vector2(1092, -2101)
+polygon = PackedVector2Array(763, 3086, 1481, 3086, 1486, 3855, 1592, 3870, 1592, 3091, 1911, 3091, 1916, 2793, 784, 2798)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Map/main/foreground/SHELFS/StaticBody2D"]
+position = Vector2(2204, -1752)
+polygon = PackedVector2Array(824, 2904, 829, 3076, 1496, 3086, 1517, 3435, 1522, 3743, 1168, 4461, 1188, 4729, 1294, 4698, 1628, 4056, 1971, 4067, 2007, 4223, 2290, 4249, 2310, 4537, 2649, 4527, 2654, 4243, 2386, 4228, 2376, 3940, 2017, 3935, 1982, 3773, 1618, 3743, 1623, 3126, 1562, 2778, 844, 2747)
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("9_kbe68")]
+path = "res://Scenes/map/GreenLibrary/GreenLibraryBoss.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+position = Vector2(2484, 472)
+shape = SubResource("RectangleShape2D_kbe68")
+
+[node name="sceneSwitchArea2" parent="." instance=ExtResource("9_kbe68")]
+position = Vector2(90, 4522)
+path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea2"]
+position = Vector2(2463, 559)
+shape = SubResource("RectangleShape2D_kbe68")
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("10_a7ol5")]
+spawnsAvailable = [NodePath("fromGreenLibrary"), NodePath("fromNothing")]
+
+[node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2552, 4513)
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(362, 4149)
+
+[node name="BookSpawner" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("11_jghat")]
+EnemySpawnTimerMax = 0.5
+EnemySpawnPoints = [NodePath("EnemySpawns/Marker2D"), NodePath("EnemySpawns/Marker2D2"), NodePath("EnemySpawns/Marker2D3"), NodePath("EnemySpawns/Marker2D4")]
+EnemyScene = ExtResource("12_myx24")
+MaxEnemiesAlive = 5
+
+[node name="EntityContainer" type="Node2D" parent="BookSpawner"]
+y_sort_enabled = true
+
+[node name="EnemySpawns" type="Node2D" parent="BookSpawner"]
+
+[node name="Marker2D" type="Marker2D" parent="BookSpawner/EnemySpawns"]
+position = Vector2(1176, 1199)
+
+[node name="Marker2D2" type="Marker2D" parent="BookSpawner/EnemySpawns"]
+position = Vector2(525, 1813)
+
+[node name="Marker2D3" type="Marker2D" parent="BookSpawner/EnemySpawns"]
+position = Vector2(3634, 355)
+
+[node name="Marker2D4" type="Marker2D" parent="BookSpawner/EnemySpawns"]
+position = Vector2(4226, 888)

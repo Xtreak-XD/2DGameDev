@@ -86,8 +86,8 @@ public partial class PetitionerChase : EnemyState
             }
         }
 
-        // 6) Apply both components
         ActiveEnemy.Velocity = new Vector2(vx, vy);
+        
         ActiveEnemy.MoveAndSlide();
         return null;
     }

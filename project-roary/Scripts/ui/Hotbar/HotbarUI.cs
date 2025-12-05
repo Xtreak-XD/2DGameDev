@@ -29,12 +29,26 @@ public partial class HotbarUI : Control
 		}
 
 		eventbus.inventoryUpdated += UpdateHotBar;
+		UpdateHotBar(); // Initial update
 	}
 
-    public override void _ExitTree()
-    {
-        eventbus.inventoryUpdated -= UpdateHotBar;
-    }
+	public override void _EnterTree()
+	{
+		if (eventbus != null && inv != null)
+		{
+			eventbus.inventoryUpdated -= UpdateHotBar; // Unsubscribe first to avoid double subscription
+			eventbus.inventoryUpdated += UpdateHotBar;
+			UpdateHotBar(); // Update display when entering tree
+		}
+	}
+
+	public override void _ExitTree()
+	{
+		if (eventbus != null)
+		{
+			eventbus.inventoryUpdated -= UpdateHotBar;
+		}
+	}
 
 
 	public override void _Input(InputEvent @event)
@@ -63,9 +77,9 @@ public partial class HotbarUI : Control
 				selectedSlot = 3;
 			}
 			if (selectedSlot >= 0)
-            {
-                eventbus.EmitSignal(Eventbus.SignalName.itemEquipped, selectedSlot);
-            }	
+			{
+				eventbus.EmitSignal(Eventbus.SignalName.itemEquipped, selectedSlot);
+			}
 		}
 	}
 	public void UpdateHotBar()

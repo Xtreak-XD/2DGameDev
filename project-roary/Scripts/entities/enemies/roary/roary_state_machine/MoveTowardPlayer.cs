@@ -111,21 +111,25 @@ public partial class MoveTowardPlayer : RoaryState
                 stuckTimer = 0f;
             }
 
-            if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.65 && !ActiveEnemy.SummonedFirstStampede)
+            GD.Print($"Health: {ActiveEnemy.GetHealthPercentage():F2}, Phase: {ActiveEnemy.Phase}");
+            if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.75 && !ActiveEnemy.SummonedFirstStampede)
             {
-                ActiveEnemy.SummonedFirstStampede = true;
+                GD.Print("Phase 1 → 2 transition triggered at 75% HP");
+                ActiveEnemy.SummonedFirstStampede = true; 
                 return GoToCenter;
             }
 
-            if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.35 && !ActiveEnemy.SummonedSecondStampede)
+            if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.45 && !ActiveEnemy.SummonedSecondStampede)
             {
-                ActiveEnemy.SummonedSecondStampede = true;
+                GD.Print("Phase 2 → 3 transition triggered at 45% HP");
+                ActiveEnemy.SummonedSecondStampede = true; 
                 return GoToCenter;
             }
 
-            if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1 && !ActiveEnemy.SummonedThirdStampede)
+            if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.25 && !ActiveEnemy.SummonedThirdStampede)
             {
-                ActiveEnemy.SummonedThirdStampede = true;
+                GD.Print("Final stampede triggered at 25% HP");
+                ActiveEnemy.SummonedThirdStampede = true; 
                 return GoToCenter;
             }
 

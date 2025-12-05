@@ -26,7 +26,7 @@ public partial class GoToArenaCenter : RoaryState
     {
 		Attacks = [];
 
-		CENTER_POSITION = GetViewport().GetVisibleRect().GetCenter();
+		CENTER_POSITION = new Vector2(2472.0f, 2584.0f);
 
 		SummonFootballStampede = GetParent().
 		GetNode<SummonFootballStampede>("FootballPlayerStampede");
@@ -54,32 +54,34 @@ public partial class GoToArenaCenter : RoaryState
 
 	public override RoaryState Process(double delta)
     {
-		if(!ActiveEnemy.CanAttack)
-        {
-            return null;
-        }
-        
 		if(ActiveEnemy.GlobalPosition.DistanceTo(CENTER_POSITION) <= 20)
         {
             ActiveEnemy.Velocity = Vector2.Zero;
+			    
+			GD.Print($"At center - Phase: {ActiveEnemy.Phase}, HP: {ActiveEnemy.GetHealthPercentage():F2}");
+			GD.Print($"Flags - First: {ActiveEnemy.SummonedFirstStampede}, Second: {ActiveEnemy.SummonedSecondStampede}, Third: {ActiveEnemy.SummonedThirdStampede}");
 
-			if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.75 && !ActiveEnemy.SummonedFirstStampede)
+			// Check stampede conditions FIRST - these are phase transitions and should override attack cooldowns
+			if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.75 && ActiveEnemy.SummonedFirstStampede)
             {
-				ActiveEnemy.SummonedFirstStampede = true;
                 return SummonFootballStampede;
             }
 
-			if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.45 && !ActiveEnemy.SummonedSecondStampede)
+			if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.45 && ActiveEnemy.SummonedSecondStampede)
             {
-				ActiveEnemy.SummonedSecondStampede = true;
                 return SummonFootballStampede;
             }
 
-			if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1 && !ActiveEnemy.SummonedThirdStampede)
+			if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.25 && ActiveEnemy.SummonedThirdStampede)
             {
-				ActiveEnemy.SummonedThirdStampede = true;
                 return SummonFootballStampede;
             }
+
+			// Only check CanAttack for normal attacks
+			if(!ActiveEnemy.CanAttack)
+			{
+				return null;
+			}
 
             return PickAttack();
         }
@@ -91,8 +93,7 @@ public partial class GoToArenaCenter : RoaryState
 		}
 
 		ActiveEnemy.animation(direction);
-		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed *
-		((float)delta * (float)ActiveEnemy.data.Accel);
+		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 		ActiveEnemy.MoveAndSlide();
 
 		// Handle wall collisions
@@ -118,19 +119,41 @@ public partial class GoToArenaCenter : RoaryState
 
 		// Check if stuck on a wall - if stuck, teleport to center
 		if(ActiveEnemy.GlobalPosition.DistanceTo(stuckPosition) < 10f)
-		{
-			stuckTimer += (float)delta;
-			if(stuckTimer >= STUCK_THRESHOLD)
-			{
-				ActiveEnemy.GlobalPosition = CENTER_POSITION;
-				return PickAttack();
-			}
-		}
-		else
-		{
-			stuckPosition = ActiveEnemy.GlobalPosition;
-			stuckTimer = 0f;
-		}
+{
+    stuckTimer += (float)delta;
+    if(stuckTimer >= STUCK_THRESHOLD)
+    {
+        GD.Print("Roary stuck, teleporting to center");
+        ActiveEnemy.GlobalPosition = CENTER_POSITION;
+        
+        // After teleporting, check for stampede FIRST
+        if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.SummonedFirstStampede)
+        {
+            GD.Print("Triggering first stampede after teleport!");
+            return SummonFootballStampede;
+        }
+
+        if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.SummonedSecondStampede)
+        {
+            GD.Print("Triggering second stampede after teleport!");
+            return SummonFootballStampede;
+        }
+
+        if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.SummonedThirdStampede)
+        {
+            GD.Print("Triggering third stampede after teleport!");
+            return SummonFootballStampede;
+        }
+
+        // Only pick normal attack if no stampede pending
+        return PickAttack();
+    }
+}
+else
+{
+    stuckPosition = ActiveEnemy.GlobalPosition;
+    stuckTimer = 0f;
+}
 
 		return null;
     }

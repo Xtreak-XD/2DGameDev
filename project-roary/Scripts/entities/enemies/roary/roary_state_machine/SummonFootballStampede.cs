@@ -26,18 +26,39 @@ public partial class SummonFootballStampede : RoaryState
 		// Start the timer when entering this state
 		chargeDuration.Start();
 
-		Vector2 viewSize = GetViewport().GetVisibleRect().Size;
+		// Get the camera's position to spawn stampede in world space
+		Camera2D camera = GetViewport().GetCamera2D();
+		Vector2 worldPosition = Vector2.Zero;
 
-		// Football scene has some bugs still, so we have to put it part way into
-		// the viewport.
+		if (camera != null)
+		{
+			// Use camera's global position as the center of the visible area
+			worldPosition = camera.GetScreenCenterPosition();
+			GD.Print($"Spawning stampede at camera position: {worldPosition}");
+		}
+		else
+		{
+			// Fallback: use Roary's position if no camera found
+			worldPosition = ActiveEnemy.GlobalPosition;
+			GD.Print($"No camera found, spawning stampede at Roary's position: {worldPosition}");
+		}
+
 		footballScene = (FootballScene)ActiveEnemy.footballCharge.Instantiate();
 		ActiveEnemy.Owner.AddChild(footballScene);
-		footballScene.Position = GetViewport().GetVisibleRect().Position;
+		footballScene.GlobalPosition = worldPosition;
 	}
 
 	public override void ExitState()
     {
-        ActiveEnemy.AdvancePhase();
+        GD.Print("==================== STAMPEDE EXIT STATE ====================");
+		GD.Print($"Phase BEFORE AdvancePhase(): {ActiveEnemy.Phase}");
+		GD.Print($"Health: {ActiveEnemy.GetHealthPercentage():F2}");
+		
+		ActiveEnemy.AdvancePhase();
+		
+		GD.Print($"Phase AFTER AdvancePhase(): {ActiveEnemy.Phase}");
+		GD.Print($"AdvancePhase() completed successfully");
+		GD.Print("=============================================================");
 		chargeDuration.Stop();
     }
 

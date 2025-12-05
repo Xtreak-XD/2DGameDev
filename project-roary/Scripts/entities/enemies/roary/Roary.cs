@@ -49,6 +49,7 @@ public partial class Roary : Enemy
 
 	public override void _Ready()
     {
+        GD.Print($"========== ROARY _Ready() CALLED - Instance ID: {GetInstanceId()} ==========");
         stateMachine = GetNode<RoaryStateMachine>("RoaryStateMachine");
         stateMachine.Initialize(this);
 
@@ -105,7 +106,7 @@ public partial class Roary : Enemy
 
     public float GetHealthPercentage()
     {
-        return data.Health / data.MaxHealth;
+        return (float) data.Health / (float) data.MaxHealth;
     }
 
     public float StatMultipler()
@@ -136,21 +137,24 @@ public partial class Roary : Enemy
     public void AdvancePhase()
     {
         if(Phase == RoaryPhase.THIRD)
-        {
-            return;
-        }
-        
+    {
+        GD.Print("Already at THIRD phase, not advancing");
+        return;
+    }
+    
         if(Phase == RoaryPhase.FIRST)
         {
             Phase = RoaryPhase.SECOND;
+            GD.Print("Advanced from FIRST to SECOND");
         }
         else if(Phase == RoaryPhase.SECOND)
         {
             Phase = RoaryPhase.THIRD;
+            GD.Print("Advanced from SECOND to THIRD");
         }
 
-        GD.Print("Roary has advanced phases");
-    }
+            GD.Print("Roary has advanced phases");
+        }
 
 	public void animation(Vector2 direction)
     {

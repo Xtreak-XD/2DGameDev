@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1p5cxryw0kgj"]
+[gd_scene load_steps=8 format=3 uid="uid://b1p5cxryw0kgj"]
 
 [ext_resource type="Script" uid="uid://bqbelawyxqhao" path="res://Scenes/map/Stadium/ForegroundArea.cs" id="1_blkp5"]
 [ext_resource type="Texture2D" uid="uid://vvgpj4al5im3" path="res://Sprites/world/Stadium/stadium_background.png" id="1_cxkxa"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bmst5dixdbwxs" path="res://Sprites/world/Stadium/stadium_foreground.png" id="2_1yqim"]
 [ext_resource type="PackedScene" uid="uid://c40jqbolu6ucs" path="res://Scenes/entities/enemies/Roary.tscn" id="2_f5tiu"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="5_1yqim"]
+[ext_resource type="PackedScene" uid="uid://c3pagaejfyou0" path="res://Scenes/ui/Bosses/BossHealth.tscn" id="7_limuc"]
 
 [node name="Stadium" type="Node2D"]
+
+[node name="BossHealths" parent="." instance=ExtResource("7_limuc")]
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 

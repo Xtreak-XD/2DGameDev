@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctmsfrqpks4es"]
+[gd_scene load_steps=13 format=3 uid="uid://ctmsfrqpks4es"]
 
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_2ltg1"]
 [ext_resource type="Script" uid="uid://cj0mf7jo5oh5d" path="res://Scripts/ui/mainMenu/MainMenu.cs" id="1_tmkf4"]
 [ext_resource type="Texture2D" uid="uid://bw4bj4g38pcd4" path="res://Sprites/Menus/ActualBackgroundImg.png" id="2_e6ll4"]
 [ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_nwkk3"]
 [ext_resource type="Shader" uid="uid://b8rda7k4x665p" path="res://Scenes/ui/menus/textShader.gdshader" id="3_idfjq"]
+[ext_resource type="Texture2D" uid="uid://18d1uqs12w1x" path="res://Sprites/entities/player/Soundtrack-1024.png" id="6_fdbuc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdbuc"]
 texture = ExtResource("2_e6ll4")
@@ -67,6 +68,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+self_modulate = Color(1, 1, 1, 0.6392157)
+position = Vector2(1662, 760)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_fdbuc")
+centered = false
 
 [node name="Title" type="Label" parent="."]
 material = SubResource("ShaderMaterial_e6ll4")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ci4ly7wioromd" path="res://Scripts/weapons/projectiles/Staple.cs" id="1_ngjvi"]
 [ext_resource type="Resource" uid="uid://bjfhcchw7anup" path="res://Resources/weapons/projectiles/StapleData.tres" id="2_b4fku"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_vh7a8"]
-[ext_resource type="Texture2D" uid="uid://dge86i3rud80y" path="res://Sprites/misc/staples.jpg" id="4_b4fku"]
+[ext_resource type="Texture2D" uid="uid://bgqxsyeyt8mje" path="res://Sprites/misc/Untitled_Artwork_14.png" id="4_b4fku"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
 radius = 34.058773
@@ -32,5 +32,5 @@ shape = SubResource("CircleShape2D_5ny5u")
 shape = SubResource("CircleShape2D_b4fku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.095, 0.105)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_b4fku")

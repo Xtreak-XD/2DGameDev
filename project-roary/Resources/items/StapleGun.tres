@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="IndividualItem" load_steps=3 format=3 uid="uid://dpkkjng5xhthu"]
 
 [ext_resource type="Script" uid="uid://h7rsrpy6mpd2" path="res://Scripts/ui/inventory/Resources/IndividualItem.cs" id="1_2sfu4"]
-[ext_resource type="Texture2D" uid="uid://cugsv4km18tda" path="res://Sprites/misc/Stapler.jpeg" id="2_2sfu4"]
+[ext_resource type="Texture2D" uid="uid://dmwacryxenaeq" path="res://Sprites/item/Untitled_Artwork_16.png" id="2_2sfu4"]
 
 [resource]
 script = ExtResource("1_2sfu4")

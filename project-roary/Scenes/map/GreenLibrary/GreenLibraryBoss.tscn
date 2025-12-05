@@ -16,9 +16,8 @@ texture = ExtResource("1_puw3y")
 position = Vector2(2504, 2501)
 texture = ExtResource("2_xy52c")
 
-[node name="Logo" parent="." node_paths=PackedStringArray("starfishSpawns") instance=ExtResource("1_g1wpv")]
-position = Vector2(2440, 2184)
-starfishSpawns = [NodePath("../StarfishSpawnContainer/StarfishSpawn1"), NodePath("../StarfishSpawnContainer/StarfishSpawn2"), NodePath("../StarfishSpawnContainer/StarfishSpawn3"), NodePath("../StarfishSpawnContainer/StarfishSpawn4"), NodePath("../StarfishSpawnContainer/StarfishSpawn5"), NodePath("../StarfishSpawnContainer/StarfishSpawn6"), NodePath("../StarfishSpawnContainer/StarfishSpawn7"), NodePath("../StarfishSpawnContainer/StarfishSpawn8"), NodePath("../StarfishSpawnContainer/StarfishSpawn9")]
+[node name="Logo" parent="." instance=ExtResource("1_g1wpv")]
+position = Vector2(2513, 2267)
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("3_qfpo3")]
 spawnsAvailable = [NodePath("fromGreenLibrary"), NodePath("fromNothing")]

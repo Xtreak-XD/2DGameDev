@@ -57,8 +57,20 @@ public partial class HurtBox : Area2D
     {
         float flashDuration = 0.15f;
         AnimatedSprite2D sprite = parent.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
-        if (sprite.Material is ShaderMaterial shader)
+        ShaderMaterial shader = null;
+
+        if(sprite == null)
         {
+            Sprite2D staticSprite = parent.GetNodeOrNull<Sprite2D>("Sprite2D");
+            if (staticSprite.Material is ShaderMaterial)
+            {
+                shader = (ShaderMaterial)staticSprite.Material;
+                shader.SetShaderParameter("flash", true);
+            }
+        } 
+        else if (sprite.Material is ShaderMaterial)
+        {
+            shader = (ShaderMaterial)sprite.Material;
             shader.SetShaderParameter("flash", true);
         }
         else{ return; }
@@ -71,7 +83,11 @@ public partial class HurtBox : Area2D
 
         await ToSignal(flashT, Timer.SignalName.Timeout);
 
-        shader.SetShaderParameter("flash", false);
+        if(shader != null)
+        {
+            shader.SetShaderParameter("flash", false);
+        }
+        
         flashT.QueueFree();
     }
 

@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=3 uid="uid://bed4fyrobgykm"]
+[gd_scene load_steps=20 format=3 uid="uid://bed4fyrobgykm"]
 
-[ext_resource type="Texture2D" uid="uid://bq3pb7db1an04" path="res://Sprites/entities/enemies/coin.jpeg" id="1_5f7fq"]
 [ext_resource type="Script" uid="uid://ipdydiemqngx" path="res://Scripts/entities/enemies/Logo/Logo.cs" id="1_o8biw"]
 [ext_resource type="Resource" uid="uid://caiqo8ponws5c" path="res://Resources/entities/enemy/LogoData.tres" id="2_40s8x"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_o8biw"]
@@ -13,6 +12,8 @@
 [ext_resource type="Script" uid="uid://drqeas6dkwycy" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/LogoIdleState.cs" id="5_yxpio"]
 [ext_resource type="Script" uid="uid://b3k4lgo6mu42s" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/LogoStateMachine.cs" id="6_scbxm"]
 [ext_resource type="Script" uid="uid://54d1w6gohr58" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/RollState.cs" id="6_yxpio"]
+[ext_resource type="Shader" uid="uid://bqsqekh573hwo" path="res://Scripts/shaders/HitFlash.gdshader" id="11_4ih6o"]
+[ext_resource type="Texture2D" uid="uid://cw4kuy1pp8vd5" path="res://Sprites/entities/enemies/Mermaid_Logo.png" id="12_4ih6o"]
 
 [sub_resource type="Resource" id="Resource_p146o"]
 script = ExtResource("3_qdifj")
@@ -24,6 +25,12 @@ Accel = 250.0
 dealKnockback = true
 knockBackAmount = 4.5
 metadata/_custom_type_script = "uid://dkov12aknt46v"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc7a3"]
+resource_local_to_scene = true
+shader = ExtResource("11_4ih6o")
+shader_parameter/flash = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrxrl"]
 
@@ -64,8 +71,9 @@ one_shot = true
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("1_5f7fq")
+material = SubResource("ShaderMaterial_sc7a3")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_4ih6o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2.5, 2.801)

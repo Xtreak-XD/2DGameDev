@@ -1,13 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1p5cxryw0kgj"]
+[gd_scene load_steps=6 format=3 uid="uid://b1p5cxryw0kgj"]
 
-[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_f5tiu"]
-[ext_resource type="PackedScene" uid="uid://c40jqbolu6ucs" path="res://Scenes/entities/enemies/Roary.tscn" id="2_f5tiu"]
-[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="5_1yqim"]
+[ext_resource type="Texture2D" uid="uid://vvgpj4al5im3" path="res://Sprites/world/Stadium/stadium_background.png" id="1_cxkxa"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_f5tiu"]
+[ext_resource type="Texture2D" uid="uid://bmst5dixdbwxs" path="res://Sprites/world/Stadium/stadium_foreground.png" id="2_1yqim"]
+[ext_resource type="PackedScene" path="res://Scenes/entities/enemies/Roary.tscn" id="2_f5tiu"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="5_1yqim"]
 
 [node name="Stadium" type="Node2D"]
 
-[node name="Roary" parent="." instance=ExtResource("2_f5tiu")]
-position = Vector2(310, 492)
+[node name="Map" type="Node2D" parent="."]
+
+[node name="background" type="Sprite2D" parent="Map"]
+texture = ExtResource("1_cxkxa")
+
+[node name="foreground" type="Area2D" parent="Map"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/foreground"]
+texture = ExtResource("2_1yqim")
 
 [node name="PlayerSpawnPoints2" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_f5tiu")]
 spawnsAvailable = [null, null, null]
@@ -21,3 +32,6 @@ position = Vector2(793, 482)
 [node name="sceneSwitchArea" parent="." instance=ExtResource("5_1yqim")]
 position = Vector2(1484, 844)
 path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="Roary" parent="." instance=ExtResource("2_f5tiu")]
+position = Vector2(310, 492)

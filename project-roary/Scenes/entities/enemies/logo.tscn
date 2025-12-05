@@ -31,8 +31,8 @@ metadata/_custom_type_script = "uid://dkov12aknt46v"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p146o"]
 
-[node name="Logo" type="CharacterBody2D"]
-scale = Vector2(5.3203, 5.3203)
+[node name="Logo" type="CharacterBody2D" node_paths=PackedStringArray("starfishSpawns")]
+scale = Vector2(6, 6)
 disable_mode = 2
 collision_layer = 16
 collision_mask = 2
@@ -44,6 +44,7 @@ CoffeeShot = ExtResource("4_fa4y8")
 starfish = ExtResource("4_401u3")
 mermaid = ExtResource("5_scbxm")
 Data = ExtResource("2_40s8x")
+starfishSpawns = []
 data = SubResource("Resource_p146o")
 
 [node name="LogoStateMachine" type="Node" parent="."]
@@ -63,15 +64,15 @@ one_shot = true
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("1_5f7fq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 2.241)
+scale = Vector2(2.5, 2.801)
 shape = SubResource("CircleShape2D_xrxrl")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_o8biw")]
-scale = Vector2(0.569, 0.781)
+scale = Vector2(0.7, 0.961)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 scale = Vector2(3.1481678, 2.192932)
@@ -79,7 +80,7 @@ shape = SubResource("CircleShape2D_qdifj")
 debug_color = Color(0.9776438, 0, 0.40619904, 0.41960785)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_yhc4g")]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.9, 0.9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 scale = Vector2(2.8986206, 2.943963)
@@ -87,7 +88,7 @@ shape = SubResource("CircleShape2D_p146o")
 debug_color = Color(0.5532109, 0.56299573, 9.62615e-07, 0.41960785)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(3, 3.179)
+scale = Vector2(4, 4.239)
 
 [node name="SetTargetTimer" type="Timer" parent="."]
 wait_time = 0.05

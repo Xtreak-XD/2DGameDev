@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5kwme46hi108"
-path="res://.godot/imported/gl_boss_room.png-3d1daa1ee72864ee4a1c320f60720b74.ctex"
+uid="uid://dta6cpb7ie5yu"
+path="res://.godot/imported/gl3_walls.png-0990c61e28afe9bf85999fe518d61d73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/world/gl_boss_room.png"
-dest_files=["res://.godot/imported/gl_boss_room.png-3d1daa1ee72864ee4a1c320f60720b74.ctex"]
+source_file="res://Sprites/world/gl3_walls.png"
+dest_files=["res://.godot/imported/gl3_walls.png-0990c61e28afe9bf85999fe518d61d73.ctex"]
 
 [params]
 

@@ -28,7 +28,7 @@ public partial class PlayerStateMachine : Node
     }
 
 
-    public override void _UnhandledInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
         ChangeState(currState?.HandleInput(@event));
     }

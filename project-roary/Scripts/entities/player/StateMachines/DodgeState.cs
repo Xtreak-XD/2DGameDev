@@ -10,35 +10,46 @@ public partial class DodgeState : State
     public State walk;
     [Export] public float dodgeSpeed;
     [Export] public double dodgeDuration;
-    public Timer dodgeTimer;
 
     [Export] public int staminaCost;
 
     public bool dodging = false;
+    bool isSignalConnected = false;
     public override void _Ready()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         stateMachine = GetParent<PlayerStateMachine>();
         walk = GetNode<WalkState>("../walk");
         idle = GetNode<IdleState>("../idle");
-        dodgeTimer = new Timer();
-        AddChild(dodgeTimer);
-        dodgeTimer.WaitTime = dodgeDuration;
-        dodgeTimer.OneShot = true;
-        dodgeTimer.Timeout += Exit;
     }
+
+    public override void _ExitTree()
+    {
+        if (player.animationPlayer != null && isSignalConnected)
+        {
+            player.animationPlayer.AnimationFinished -= OnAnimFinished;
+            isSignalConnected = false;
+        }
+    }
+
 
 // what happens when player enters their new state
     public override void Enter()
     {
-        //play dodge animation
         if (player.data.Stamina >= staminaCost)
         {
             player.usingStamina = true;
             player.data.Stamina -= staminaCost;
             eventbus.EmitSignal("updateStamina",player.data.Stamina);
             dodging = true;
-            dodgeTimer.Start();
+
+            player.UpdateAnimation("dodge");
+
+            if(player.animationPlayer != null && !isSignalConnected)
+            {
+                player.animationPlayer.AnimationFinished += OnAnimFinished;
+                isSignalConnected = true;
+            }
         }
         else
         {
@@ -54,6 +65,14 @@ public partial class DodgeState : State
         dodging = false;
     }
 
+    private void OnAnimFinished(StringName animName)
+    {
+        if (animName == "dodge_down" || animName == "dodge_up" || animName == "dodge_left" || animName == "dodge_right")
+        {
+            Exit();
+        }
+    }
+
     public override State Process(double delta)
     {
         if (!dodging)
@@ -67,9 +86,7 @@ public partial class DodgeState : State
     {
         if (dodging)
         {
-            float time = Mathf.Clamp((float)dodgeTimer.TimeLeft / (float)dodgeTimer.WaitTime, 0.0f, 1.0f);
-            float speed = Mathf.Lerp(dodgeSpeed, player.data.Speed * 2, time);
-            player.Velocity = player.mousePosition * speed * 2 * (float)(player.data.Accel * delta);
+            player.Velocity = player.mousePosition * dodgeSpeed * 65 * (float)(player.data.Accel * delta);
         }
         return null;
     }

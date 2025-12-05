@@ -49,6 +49,7 @@ radius = 302.49792
 
 [node name="Overworld" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(-16, 127)
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 collision_mask = 0

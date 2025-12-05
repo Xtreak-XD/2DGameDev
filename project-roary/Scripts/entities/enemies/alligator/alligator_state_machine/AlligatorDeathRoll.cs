@@ -36,15 +36,17 @@ public partial class AlligatorDeathRoll : AlligatorState
     {
         // Player needs to be able to dodge out of this state
         // The alligator will return to chase if the player dodges successfully
-
-        ActiveEnemy.target.Velocity = Vector2.Zero;
-        ActiveEnemy.target.GlobalPosition = ActiveEnemy.hitbox.GlobalPosition;
-
-        if(times >= 7)
+        if(!(ActiveEnemy.target == null))
         {
-            ActiveEnemy.target.GlobalPosition += -ActiveEnemy.Velocity.Normalized() * 600;
+            ActiveEnemy.target.Velocity = Vector2.Zero;
+            ActiveEnemy.target.GlobalPosition = ActiveEnemy.hitbox.GlobalPosition;
 
-            return AlligatorRoam;
+            if(times >= 7)
+            {
+                ActiveEnemy.target.GlobalPosition += -ActiveEnemy.Velocity.Normalized() * 600;
+
+                return AlligatorRoam;
+            }
         }
        
         return null;

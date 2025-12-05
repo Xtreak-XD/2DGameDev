@@ -34,10 +34,10 @@ public partial class AlligatorRoam : AlligatorState
 
 		Vector2 direction = offset.Normalized();
 		ActiveEnemy.animation(direction);
-		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * ((float)delta * (float)ActiveEnemy.data.Accel);
+		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
 		ActiveEnemy.MoveAndSlide();
 
-		if (ActiveEnemy.IsPlayerInChaseRange())
+		if(ActiveEnemy.IsPlayerInChaseRange())
 		{
 			return AlligatorChase;
 		}

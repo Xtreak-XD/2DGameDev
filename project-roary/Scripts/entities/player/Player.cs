@@ -124,23 +124,42 @@ public partial class Player : CharacterBody2D
 		return true;
     }
 
-	public string SetAnimDir()
+	public string SetAnimDir(bool useMouseDir = false)
     {
-		if (Mathf.Abs(cardinalDirection.X) > Mathf.Abs(cardinalDirection.Y))
-		{
-			return cardinalDirection.X > 0 ? "right" : "left";
+		if (!useMouseDir)
+        {
+			if (Mathf.Abs(cardinalDirection.X) > Mathf.Abs(cardinalDirection.Y))
+			{
+				return cardinalDirection.X > 0 ? "right" : "left";
+			}
+			else
+			{
+				return cardinalDirection.Y > 0 ? "down" : "up";
+			}
 		}
-		else
-		{
-			return cardinalDirection.Y > 0 ? "down" : "up";
-		}
+        else
+        {
+            if (Mathf.Abs(mousePosition.X) > Mathf.Abs(mousePosition.Y))
+			{
+				return mousePosition.X > 0 ? "right" : "left";
+			}
+			else
+			{
+				return mousePosition.Y > 0 ? "down" : "up";
+			}
+        }
+		
     }
 	public void UpdateAnimation(string state)
 	{
-		if( state != "idle")
+		if( state != "idle" && state != "dodge")
 		{
 			animationPlayer.Play(state + "_" + SetAnimDir());
 		}
+        else if (state == "dodge")
+        {
+            animationPlayer.Play(state + "_" + SetAnimDir(true));
+        }
         else
         {
             animationPlayer.Play(state + "_" + SetAnimDir());

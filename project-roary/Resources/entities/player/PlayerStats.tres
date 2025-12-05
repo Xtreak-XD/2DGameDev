@@ -6,7 +6,7 @@
 script = ExtResource("1_pkxl8")
 _health = 100
 MaxHealth = 100
-Damage = 5
+Damage = 20
 Speed = 1000
 Accel = 50.0
 _stamina = 100

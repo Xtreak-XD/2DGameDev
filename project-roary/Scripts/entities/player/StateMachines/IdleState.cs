@@ -5,11 +5,13 @@ public partial class IdleState: State
 {
     public State walk;
     public State dodge;
+    public State attack;
 
     public override void _Ready()
     {
         walk = GetNode<WalkState>("../walk");
         dodge = GetNode<DodgeState>("../dodge");
+        attack = GetNode<Attack>("../attack");
     }
 
 // what happens when player enters their new state
@@ -48,6 +50,10 @@ public partial class IdleState: State
         if (@event.IsActionPressed("dodge"))
         {
             return dodge;
+        }
+        if (@event.IsActionPressed("attack"))
+        {
+            return attack;
         }
         return null;
     }

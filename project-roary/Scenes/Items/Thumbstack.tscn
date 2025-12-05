@@ -4,6 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b815bemr6djbm" path="res://Sprites/item/Thumbtack_Gun.png" id="2_d0ycu"]
 [ext_resource type="Resource" uid="uid://bth1ayk2kw5fx" path="res://Resources/items/Thumbstack.tres" id="3_ujxah"]
 
-[node name="Items" instance=ExtResource("1_ok1io")]
+[node name="Thumbstack" instance=ExtResource("1_ok1io")]
 texture = ExtResource("2_d0ycu")
 itemResource = ExtResource("3_ujxah")

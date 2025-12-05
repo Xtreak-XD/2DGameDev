@@ -7,4 +7,3 @@ script = ExtResource("1_bnatf")
 damage = 15
 attackRate = 0.8
 knockback = 1000.0
-metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

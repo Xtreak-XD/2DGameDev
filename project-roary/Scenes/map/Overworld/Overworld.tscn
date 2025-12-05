@@ -10,13 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://bw8ajsv2c71mk" path="res://Resources/dayNight/dayNightCycleGradient.tres" id="4_he2dp"]
 [ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
 [ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
-[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
-[ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
 [ext_resource type="PackedScene" uid="uid://ddq3hijvn1xf3" path="res://Scenes/entities/npcs/Guide.tscn" id="10_y80uk"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="11_otqv2"]
-[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
+[ext_resource type="PackedScene" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 [ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="13_6v34l"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="13_otqv2"]
+[ext_resource type="PackedScene" uid="uid://dy8gl83jijma" path="res://Scenes/Items/Pencil.tscn" id="19_41gww"]
+[ext_resource type="PackedScene" uid="uid://df8531tnyq760" path="res://Scenes/Items/StapleGun.tscn" id="20_5qpi0"]
+[ext_resource type="PackedScene" uid="uid://bb82tbqia4lde" path="res://Scenes/Items/Thumbstack.tscn" id="21_pmo8i"]
+[ext_resource type="PackedScene" uid="uid://u57fr3yk2s5c" path="res://Scenes/Items/Pen.tscn" id="21_u5rod"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
 texture = ExtResource("1_pnd8i")
@@ -325,3 +329,15 @@ position = Vector2(5689, 8644)
 
 [node name="Save4" parent="." instance=ExtResource("10_up40q")]
 position = Vector2(2981, 6562)
+
+[node name="Thumbstack" parent="." instance=ExtResource("21_pmo8i")]
+position = Vector2(7326, 6329)
+
+[node name="Stapler" parent="." instance=ExtResource("20_5qpi0")]
+position = Vector2(8059, 6659)
+
+[node name="Pencil" parent="." instance=ExtResource("19_41gww")]
+position = Vector2(7568, 6699)
+
+[node name="Pen" parent="." instance=ExtResource("21_u5rod")]
+position = Vector2(8166, 6128)

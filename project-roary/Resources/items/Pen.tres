@@ -7,7 +7,7 @@
 script = ExtResource("1_sb6hb")
 itemName = "Pen"
 texture = ExtResource("2_ihfa6")
-description = "Pen upgrade of a pencil"
+description = "Upgrade of the Pencil"
 maxStackSize = 1
 shopPrice = 20
 isSellableInShop = true

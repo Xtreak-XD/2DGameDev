@@ -5,6 +5,7 @@ public partial class AudioGlobal : Node
 {
 	public String currScene; // OverWorld, GC, PG, GL, Stadium, Boss
 	private Eventbus eventbus;
+	private String currentClip = "";
 	public float MasterVolume { get; private set; }
 	public float MusicVolume { get; private set; }
 	public float PlayerSFXVolume { get; private set; }
@@ -23,8 +24,6 @@ public partial class AudioGlobal : Node
         eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.sceneChanged += OnSceneChanged;
 
-        //LoadAndApplySettings();
-
 		// Get or create the AudioStreamPlayer child
 		musicPlayer = GetNodeOrNull<AudioStreamPlayer>("MusicPlayer");
 
@@ -32,6 +31,17 @@ public partial class AudioGlobal : Node
 		{
 			GD.PrintErr("AudioGlobal: MusicPlayer child not found. Please add an AudioStreamPlayer named 'MusicPlayer' as a child of AudioGlobal in the Godot editor.");
 			return;
+		}
+
+		string initialScene = GetTree().CurrentScene.Name;
+		string clipName = GetClipNameForScene(initialScene);
+		GD.Print("ClipName: " + clipName);
+
+		if (!string.IsNullOrEmpty(clipName))
+		{
+			musicPlayer.Set("parameters/switch_to_clip", clipName);
+			currentClip = clipName;
+			GD.Print($"AudioGlobal: Set initial music clip to {clipName} for scene {initialScene}");
 		}
 
 		// Start playing the music
@@ -127,20 +137,33 @@ public partial class AudioGlobal : Node
 			return;
 		}
 
-		string clipName = sceneName switch
+		string clipName = GetClipNameForScene(sceneName);
+		GD.Print("ClipName: " + clipName + "CurrentClip: " + currentClip);
+
+		if (currentClip == clipName)
 		{
-			"Overworld" => "OverworldMusic",
+			GD.Print("AudioGlobal: Music clip is already playing for this scene, no switch needed.");
+			return;
+		}
+
+		musicPlayer.Set("parameters/switch_to_clip", clipName);
+		currentClip = clipName;
+		GD.Print($"AudioGlobal: Switched to music clip {clipName} for scene {sceneName}");
+	}
+
+	private String GetClipNameForScene(String sceneName)
+    {
+        return sceneName switch
+		{
+			"Overworld" => "OverworldMusic", // ToDo Change the overWorld music later
             "GreenLibrary" => "GreenLibraryMusic",
             "GreenLibraryBoss" => "GreenLibraryBoss",
             "GrahamCenter" => "GrahamCenterMusic",
-            "NaturePreserve" => "NaturePreserveMusic",
+            "NaturePreserve" => "NaturePreserveMusic",// ToDo add the nature preserve music later in godot
             "ParkingGarage" => "ParkingGarageMusic",
             "Stadium" => "StadiumMusic",
 			"DiedScreen" => "RespawnScreenMusic",
-            _ => ""
+            _ => "" //ToDo change to menu music later
 		};
-		
-		musicPlayer.Set("parameters/switch_to_clip", clipName);
-		GD.Print($"AudioGlobal: Switched to music clip {clipName} for scene {sceneName}");
-	}
+    }
 }

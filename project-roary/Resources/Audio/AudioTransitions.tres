@@ -1,4 +1,4 @@
-[gd_resource type="AudioStreamInteractive" load_steps=8 format=3 uid="uid://xuqsa52jbu53"]
+[gd_resource type="AudioStreamInteractive" load_steps=9 format=3 uid="uid://xuqsa52jbu53"]
 
 [ext_resource type="AudioStream" uid="uid://c77tlt3vjt80v" path="res://audio/Background/Sadge.mp3" id="1_ekpeg"]
 [ext_resource type="AudioStream" uid="uid://4ks0n2aiwllh" path="res://audio/Background/Greens Library.wav" id="2_ciw46"]
@@ -7,9 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://ny3sdx2ih15x" path="res://audio/Background/Crossroads selection.wav" id="4_teg08"]
 [ext_resource type="AudioStream" uid="uid://dybprbidyciun" path="res://audio/Background/Garage.wav" id="5_tg7lf"]
 [ext_resource type="AudioStream" uid="uid://dpldemnr1bhj" path="res://audio/Background/Football Stadium.wav" id="6_5cbad"]
+[ext_resource type="AudioStream" uid="uid://ghsy0ko1jmmi" path="res://audio/Background/main menu with vocal.wav" id="8_rlrtr"]
 
 [resource]
-clip_count = 8
+clip_count = 9
 clip_0/name = &"OverworldMusic"
 clip_0/stream = ExtResource("4_teg08")
 clip_0/auto_advance = 0
@@ -33,6 +34,9 @@ clip_6/auto_advance = 0
 clip_7/name = &"RespawnScreenMusic"
 clip_7/stream = ExtResource("1_ekpeg")
 clip_7/auto_advance = 0
+clip_8/name = &"MenuMusic"
+clip_8/stream = ExtResource("8_rlrtr")
+clip_8/auto_advance = 0
 initial_clip = 5
 _transitions = {
 Vector2i(-1, -1): {

@@ -13,6 +13,7 @@
 resource_local_to_scene = true
 shader = ExtResource("3_5wo71")
 shader_parameter/flash = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oocn0"]
 atlas = ExtResource("3_xe1al")
@@ -553,9 +554,11 @@ radius = 9.055386
 radius = 13.038404
 
 [node name="BookEnemy" type="CharacterBody2D"]
+scale = Vector2(5, 5)
 collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_qyygv")
-HorizontalSpeed = 50.0
+HorizontalSpeed = 250.0
 data = ExtResource("2_fqjiw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

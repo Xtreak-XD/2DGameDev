@@ -10,6 +10,7 @@ public partial class Player : CharacterBody2D
 	public AnimationPlayer animationPlayer;
 	public PlayerStateMachine stateMachine;
 
+	public Camera2D camera;
 	public Vector2 cardinalDirection = Vector2.Down;
 	public Vector2 direction = Vector2.Zero;
 	public Vector2 lastDirection = Vector2.Zero;
@@ -54,6 +55,32 @@ public partial class Player : CharacterBody2D
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		stateMachine.Initialize(this);
+		camera = GetNode<Camera2D>("Camera2D");
+
+        switch (GetParent().Name)
+        {
+            case "Stadiumn":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "GreenLibrary":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "NaturePreserve":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "GrahamCenter":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "Overworld":
+				break;
+			case "ParkingGarage":
+				break;
+        }
+
 
 		inv = GetNode<Inventory>("/root/Inventory");
 	}

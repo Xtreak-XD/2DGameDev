@@ -10,16 +10,10 @@ public partial class Bird : CharacterBody2D
 
     private float _timeUntilDrop;
     private bool _hasDropped = false;
-    private AnimatedSprite2D _sprite;
+    private AnimationPlayer _sprite;
 
     public override void _EnterTree()
     {
-        float ySpawn = (float)GD.RandRange(30f, 120f);
-
-        if (Direction == FlyDirection.Right)
-            GlobalPosition = new Vector2(-50f, ySpawn);
-        else
-            GlobalPosition = new Vector2(GetViewportRect().Size.X + 50f, ySpawn);
     }
 
     public override void _Ready()
@@ -30,7 +24,7 @@ public partial class Bird : CharacterBody2D
             return;
         }
 
-        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _sprite = GetNode<AnimationPlayer>("AnimationPlayer");
 
         // Play appropriate animation
         if (Direction == FlyDirection.Right)
@@ -60,11 +54,6 @@ public partial class Bird : CharacterBody2D
                 _hasDropped = true;
             }
         }
-
-        // Remove bird if off-screen
-        if ((Direction == FlyDirection.Right && GlobalPosition.X > GetViewportRect().Size.X + 60) ||
-            (Direction == FlyDirection.Left && GlobalPosition.X < -60))
-            QueueFree();
     }
 
     private void DropPoop()

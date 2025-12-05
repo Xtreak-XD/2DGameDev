@@ -123,6 +123,8 @@ animations = [{
 radius = 34.0
 
 [node name="BirdPoop" type="CharacterBody2D"]
+z_index = 50
+scale = Vector2(3.5, 3.5)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_t4kfo")
@@ -130,17 +132,14 @@ FallSpeed = 300.0
 data = ExtResource("2_pgsji")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(232, 106)
 shape = SubResource("CircleShape2D_3qqau")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(228, 100.000015)
 scale = Vector2(1.6249999, 1.6249999)
 sprite_frames = SubResource("SpriteFrames_vdbyv")
 animation = &"PooGround"
 
 [node name="Hitbox" parent="." instance=ExtResource("5_3qqau")]
-position = Vector2(235, 103)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_pgsji")

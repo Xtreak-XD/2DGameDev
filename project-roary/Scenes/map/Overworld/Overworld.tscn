@@ -324,18 +324,3 @@ position = Vector2(5689, 8644)
 
 [node name="Save4" parent="." instance=ExtResource("10_up40q")]
 position = Vector2(2981, 6562)
-
-[node name="Items" parent="." instance=ExtResource("18_u5rod")]
-position = Vector2(7518, 6351)
-
-[node name="Items2" parent="." instance=ExtResource("19_41gww")]
-position = Vector2(7524, 6810)
-
-[node name="Items3" parent="." instance=ExtResource("20_5qpi0")]
-position = Vector2(8029, 6644)
-
-[node name="Items4" parent="." instance=ExtResource("21_pmo8i")]
-position = Vector2(8348, 6088)
-
-[node name="Coin" parent="." instance=ExtResource("18_he2dp")]
-position = Vector2(5076, 7769)

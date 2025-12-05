@@ -22,13 +22,11 @@ public partial class SettingsMenu : Control
 	public SceneManager sceneManager;
 	public Button back;
 	public Button apply;
-	private ConfigFile config;
-
 
 	public override void _EnterTree()
 	{
-		// Initialize and load config once
-		config = new ConfigFile();
+		// Load config fresh (don't store it)
+		var config = new ConfigFile();
 		var err = config.Load("user://settings.cfg");
 		
 		// If config doesn't exist, create it with defaults
@@ -39,7 +37,7 @@ public partial class SettingsMenu : Control
 			config.Save("user://settings.cfg");
 		}
 		
-		// Apply display settings
+		// Apply display settings EARLY (before window shows)
 		bool fullscreen = (bool)config.GetValue("display", "fullscreen", true);
 		bool vsync = (bool)config.GetValue("display", "vsync", true);
 		
@@ -102,18 +100,29 @@ public partial class SettingsMenu : Control
 	}
 
 	private void SaveSettings()
-    {
-		audioGlobal.SaveSettings(
-			(float)masterSlider.Value,
-			(float)musicSlider.Value,
-			(float)playerSFXSlider.Value,
-			(float)enemySFXSlider.Value
-		);
-       
+	{
+		var config = new ConfigFile();
+		config.Load("user://settings.cfg");
+		
+		// Save audio settings
+		config.SetValue("audio", "master_volume", (float)masterSlider.Value);
+		config.SetValue("audio", "music_volume", (float)musicSlider.Value);
+		config.SetValue("audio", "playerSFX_volume", (float)playerSFXSlider.Value);
+		config.SetValue("audio", "enemySFX_volume", (float)enemySFXSlider.Value);
+		
+		// Save display settings
 		config.SetValue("display", "fullscreen", fullscreenCheck.ButtonPressed);
 		config.SetValue("display", "vsync", vsyncCheck.ButtonPressed);
+		
+		// Single save operation
 		config.Save("user://settings.cfg");
-    }
+		
+		// Update AudioGlobal's internal state (but don't save again)
+		audioGlobal.SetVolume((float)masterSlider.Value, "Master");
+		audioGlobal.SetVolume((float)musicSlider.Value, "Music");
+		audioGlobal.SetVolume((float)playerSFXSlider.Value, "PlayerSFX");
+		audioGlobal.SetVolume((float)enemySFXSlider.Value, "EnemySFX");
+	}
 
 	private void LoadSettingsToUI()
 	{
@@ -129,6 +138,8 @@ public partial class SettingsMenu : Control
 		playerSFXValueLabel.Text = $"{(int)playerSFXSlider.Value}%";
 		enemySFXLabel.Text = $"{(int)enemySFXSlider.Value}%";
 		
+		var config = new ConfigFile();
+    	config.Load("user://settings.cfg");
 		fullscreenCheck.ButtonPressed = (bool)config.GetValue("display", "fullscreen", true);
 		vsyncCheck.ButtonPressed = (bool)config.GetValue("display", "vsync", true);
 	}

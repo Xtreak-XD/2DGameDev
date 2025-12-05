@@ -18,7 +18,7 @@
 script = ExtResource("3_qdifj")
 _health = 300
 MaxHealth = 300
-Damage = 7
+Damage = 16
 Speed = 550
 Accel = 250.0
 dealKnockback = true

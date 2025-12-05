@@ -10,9 +10,8 @@
 [node name="Logo" parent="." instance=ExtResource("1_g1wpv")]
 position = Vector2(571.99994, 544.99994)
 
-[node name="MermaidPhase2" parent="." node_paths=PackedStringArray("starfishSpawns") instance=ExtResource("2_qfpo3")]
+[node name="MermaidPhase2" parent="." instance=ExtResource("2_qfpo3")]
 position = Vector2(507, 159)
-starfishSpawns = [null, null, null, null, null]
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("3_qfpo3")]
 spawnsAvailable = [NodePath("fromGreenLibrary"), NodePath("fromNothing")]

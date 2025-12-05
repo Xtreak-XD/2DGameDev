@@ -6,8 +6,8 @@
 script = ExtResource("1_d0ssu")
 _health = 350
 MaxHealth = 350
-Damage = 10
-Speed = 140
+Damage = 14
+Speed = 150
 Accel = 50.0
 dealKnockback = true
 knockBackAmount = 4.0

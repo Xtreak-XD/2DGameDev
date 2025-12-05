@@ -1,10 +1,9 @@
 using Godot;
 using System;
 
-public partial class GreenLibraryBoss : Node2D
+public partial class Stadium : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    public override void _Ready()
     {
         var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
         dayNight.Visible = false;

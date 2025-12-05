@@ -18,7 +18,6 @@ public partial class AudioGlobal : Node
         LoadAndApplySettings();
     }
 
-
 	public override void _Ready()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
@@ -35,20 +34,19 @@ public partial class AudioGlobal : Node
 
 		string initialScene = GetTree().CurrentScene.Name;
 		string clipName = GetClipNameForScene(initialScene);
-		GD.Print("ClipName: " + clipName);
+
+		GD.Print("Volumes - Music 2: " + MusicVolume + ", Master: " + MasterVolume);
 
 		if (!string.IsNullOrEmpty(clipName))
 		{
 			musicPlayer.Set("parameters/switch_to_clip", clipName);
 			currentClip = clipName;
-			GD.Print($"AudioGlobal: Set initial music clip to {clipName} for scene {initialScene}");
 		}
 
 		// Start playing the music
 		if (!musicPlayer.Playing)
 		{
 			musicPlayer.Play();
-			GD.Print("AudioGlobal: Music player initialized and playing");
 		}
     }
 
@@ -163,7 +161,7 @@ public partial class AudioGlobal : Node
             "ParkingGarage" => "ParkingGarageMusic",
             "Stadium" => "StadiumMusic",
 			"DiedScreen" => "RespawnScreenMusic",
-            _ => "MenuMusic" //ToDo change to menu music later
+            _ => "MenuMusic"
 		};
     }
 }

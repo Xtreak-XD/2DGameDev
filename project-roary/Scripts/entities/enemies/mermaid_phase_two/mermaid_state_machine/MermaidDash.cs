@@ -49,7 +49,7 @@ public partial class MermaidDash : MermaidState
 
             Vector2 direction = (playerPos - currentPos).Normalized();
 
-            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+            ActiveEnemy.animation(direction);
             ActiveEnemy.Velocity = direction * (float)(ActiveEnemy.data.Speed * 2.5);
 
             ActiveEnemy.MoveAndSlide();

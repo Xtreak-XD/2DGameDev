@@ -6,15 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://be3o7x8inxdad" path="res://Sprites/misc/projectiles/Clamshell_Shield.png" id="4_s11ip"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
-radius = 12.0415945
+radius = 22.847849
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxgqv"]
-size = Vector2(8, 13.333336)
+size = Vector2(137.03702, 209.27977)
 
 [node name="MermaidShield" type="CharacterBody2D"]
 scale = Vector2(1.62, 1.62)
 script = ExtResource("1_s11ip")
 data = ExtResource("2_jmo8w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.384186e-07, 0)
+scale = Vector2(0.62000006, 0.62000006)
+texture = ExtResource("4_s11ip")
 
 [node name="LifespanTimer" type="Timer" parent="."]
 process_thread_group = 2
@@ -22,18 +27,15 @@ process_thread_group_order = 0
 process_thread_messages = 0
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-0.617284, -9.536743e-07)
 shape = SubResource("CircleShape2D_5ny5u")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_q0n7f")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-scale = Vector2(0.75, 0.75)
+position = Vector2(0, 1.7669822)
+scale = Vector2(0.7500003, 0.7500003)
 shape = SubResource("RectangleShape2D_nxgqv")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.3841858e-07, 0)
-scale = Vector2(0.08313941, 0.105)
-texture = ExtResource("4_s11ip")
 
 [node name="SetSpawnTimer" type="Timer" parent="."]
 wait_time = 0.05

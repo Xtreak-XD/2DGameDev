@@ -53,7 +53,7 @@ public partial class MermaidChase : MermaidState
 
             Vector2 direction = (playerPos - currentPos).Normalized();
 
-            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+            ActiveEnemy.animation(direction);
             ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed;
                 
             if(!ActiveEnemy.Shielded)

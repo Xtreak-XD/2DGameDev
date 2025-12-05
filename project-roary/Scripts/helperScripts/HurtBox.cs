@@ -37,12 +37,16 @@ public partial class HurtBox : Area2D
 
         if (targetData == null) return;
 
-        flash(); //hitflash 
-        
+        flash(); //hitflash
+
         targetData.Health -= dmg;
         if (parent.IsInGroup("player"))
         {
             eventbus.EmitSignal("updateHealth", targetData.Health);
+        }
+        else if (parent.IsInGroup("enemy"))
+        {
+            eventbus.EmitSignal("updateBossHealth", targetData.Health);
         }
         GD.Print($"{parent.Name} took {dmg} damage, from {dmgDealer.Name},remaining health: {targetData.Health}");
 

@@ -7,17 +7,23 @@ public partial class ThrowFirework : RoaryState
 	public GoToArenaCenter GoToCenter;
 	public MoveTowardPlayer MoveTowardPlayer;
 
+	private bool hasThrown = false;
+
 	public override void _Ready()
     {
 		GoToCenter = GetParent().GetNode<GoToArenaCenter>("GoToArenaCenter");
 		MoveTowardPlayer = GetParent().GetNode<MoveTowardPlayer>("MoveTowardPlayer");
-		
+
 		projectileSource = GetParent().GetParent().GetNode<Marker2D>("ProjectileSource");
 	}
 
 	public override void EnterState()
     {
 		GD.Print("Roary is throwing a firework at the player");
+
+		// Stop movement during attack
+		ActiveEnemy.Velocity = Vector2.Zero;
+		hasThrown = false;
 
 		if(ActiveEnemy.target != null)
         {
@@ -47,7 +53,18 @@ public partial class ThrowFirework : RoaryState
 	
 	public override RoaryState Process(double delta)
     {
-		return InBetweenAttack();	
+		// Keep Roary still during attack
+		ActiveEnemy.Velocity = Vector2.Zero;
+		ActiveEnemy.MoveAndSlide();
+
+		// Only throw once, then transition on next frame
+		if(!hasThrown)
+		{
+			hasThrown = true;
+			return null; // Wait one frame before transitioning
+		}
+
+		return InBetweenAttack();
     }
 
 	public RoaryState InBetweenAttack()

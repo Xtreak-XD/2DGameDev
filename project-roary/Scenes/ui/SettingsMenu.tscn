@@ -91,7 +91,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Setting Menu" type="CanvasLayer"]
-layer = 10
+layer = 11
 
 [node name="Setting Menu" type="Control" parent="."]
 layout_mode = 3

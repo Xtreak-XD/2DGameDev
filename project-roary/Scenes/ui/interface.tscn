@@ -15,6 +15,7 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7e7b"]
 
 [node name="Interface" type="CanvasLayer"]
+layer = 10
 follow_viewport_enabled = true
 script = ExtResource("1_efdi4")
 

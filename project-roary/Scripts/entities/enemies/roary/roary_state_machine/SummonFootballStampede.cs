@@ -13,29 +13,61 @@ public partial class SummonFootballStampede : RoaryState
 		chargeDuration = GetParent().GetNode<Timer>("FootballChargeDuration");
 
 		chargeDuration.Timeout += SetChange;
-		chargeDuration.Start();
 	}
 
 	public override void EnterState()
 	{
 		GD.Print("Roary has summoned a stampede of football players.");
 
-		Vector2 viewSize = GetViewport().GetVisibleRect().Size;
+		// Stop all movement during stampede
+		ActiveEnemy.Velocity = Vector2.Zero;
+		Change = false;
 
-		// Football scene has some bugs still, so we have to put it part way into
-		// the viewport.
+		// Start the timer when entering this state
+		chargeDuration.Start();
+
+		// Get the camera's position to spawn stampede in world space
+		Camera2D camera = GetViewport().GetCamera2D();
+		Vector2 worldPosition = Vector2.Zero;
+
+		if (camera != null)
+		{
+			// Use camera's global position as the center of the visible area
+			worldPosition = camera.GetScreenCenterPosition();
+			GD.Print($"Spawning stampede at camera position: {worldPosition}");
+		}
+		else
+		{
+			// Fallback: use Roary's position if no camera found
+			worldPosition = ActiveEnemy.GlobalPosition;
+			GD.Print($"No camera found, spawning stampede at Roary's position: {worldPosition}");
+		}
+
 		footballScene = (FootballScene)ActiveEnemy.footballCharge.Instantiate();
 		ActiveEnemy.Owner.AddChild(footballScene);
-		footballScene.Position = GetViewport().GetVisibleRect().Position;
+		footballScene.GlobalPosition = worldPosition;
 	}
 
 	public override void ExitState()
     {
-        ActiveEnemy.AdvancePhase();
+        GD.Print("==================== STAMPEDE EXIT STATE ====================");
+		GD.Print($"Phase BEFORE AdvancePhase(): {ActiveEnemy.Phase}");
+		GD.Print($"Health: {ActiveEnemy.GetHealthPercentage():F2}");
+		
+		ActiveEnemy.AdvancePhase();
+		
+		GD.Print($"Phase AFTER AdvancePhase(): {ActiveEnemy.Phase}");
+		GD.Print($"AdvancePhase() completed successfully");
+		GD.Print("=============================================================");
+		chargeDuration.Stop();
     }
 
     public override RoaryState Process(double delta)
     {
+		// Keep Roary still during stampede
+		ActiveEnemy.Velocity = Vector2.Zero;
+		ActiveEnemy.MoveAndSlide();
+
 		if(Change)
         {
             return Roam;

@@ -29,6 +29,9 @@ public partial class ThunderousRoar : RoaryState
         Activate = false;
         ActivationTimer.Start();
 
+        // Stop all movement while preparing to roar
+        ActiveEnemy.Velocity = Vector2.Zero;
+
         GD.Print("Roary is about to roar");
     }
 
@@ -40,6 +43,10 @@ public partial class ThunderousRoar : RoaryState
 
     public override RoaryState Process(double delta)
     {
+        // Keep Roary still while charging the roar
+        ActiveEnemy.Velocity = Vector2.Zero;
+        ActiveEnemy.MoveAndSlide();
+
         if(Activate)
         {
             Vector2 currentPos = projectileSource.GlobalPosition;

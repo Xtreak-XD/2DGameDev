@@ -49,6 +49,7 @@ public partial class Roary : Enemy
 
 	public override void _Ready()
     {
+        GD.Print($"========== ROARY _Ready() CALLED - Instance ID: {GetInstanceId()} ==========");
         stateMachine = GetNode<RoaryStateMachine>("RoaryStateMachine");
         stateMachine.Initialize(this);
 
@@ -63,6 +64,9 @@ public partial class Roary : Enemy
 
         targetTimer.Timeout += SetTarget;
         targetTimer.Start();
+
+        // Initialize animation to sync collision shapes with sprite
+        anim.Play("Walk_Right");
     }
 
     public override void _EnterTree()
@@ -102,7 +106,7 @@ public partial class Roary : Enemy
 
     public float GetHealthPercentage()
     {
-        return data.Health / data.MaxHealth;
+        return (float) data.Health / (float) data.MaxHealth;
     }
 
     public float StatMultipler()
@@ -133,63 +137,66 @@ public partial class Roary : Enemy
     public void AdvancePhase()
     {
         if(Phase == RoaryPhase.THIRD)
-        {
-            return;
-        }
-        
+    {
+        GD.Print("Already at THIRD phase, not advancing");
+        return;
+    }
+    
         if(Phase == RoaryPhase.FIRST)
         {
             Phase = RoaryPhase.SECOND;
+            GD.Print("Advanced from FIRST to SECOND");
         }
         else if(Phase == RoaryPhase.SECOND)
         {
             Phase = RoaryPhase.THIRD;
+            GD.Print("Advanced from SECOND to THIRD");
         }
 
-        GD.Print("Roary has advanced phases");
-    }
+            GD.Print("Roary has advanced phases");
+        }
 
 	public void animation(Vector2 direction)
     {
+        // If direction is too small (essentially zero), don't change animation
+        if (direction.LengthSquared() < 0.01f)
+        {
+            return;
+        }
+
         if (Mathf.Abs(direction.X) > Mathf.Abs(direction.Y))
         {
             if (direction.X > 0)
             {
-                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_right")
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "Walk_Right")
                 {
-                    anim.Play("walk_right");
+                    anim.Play("Walk_Right");
                 }
             }
             else if (direction.X < 0)
             {
-                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_left")
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "Walk_Left")
                 {
-                    anim.Play("walk_left");
-                }
-            }
-        }
-        else if (Mathf.Abs(direction.Y) > 0)
-        {
-            if (direction.Y > 0)
-            {
-                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_down")
-                {
-                    anim.Play("walk_down");
-                }
-            }
-            else if (direction.Y < 0)
-            {
-                if (!anim.IsPlaying() || anim.CurrentAnimation != "walk_up")
-                {
-                    anim.Play("walk_up");
+                    anim.Play("Walk_Left");
                 }
             }
         }
         else
         {
-            // Not moving, stop animation
-            if (anim.IsPlaying())
-                anim.Stop();
+            if (direction.Y > 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "Walk_Down")
+                {
+                    anim.Play("Walk_Down");
+                }
+            }
+            else if (direction.Y < 0)
+            {
+                if (!anim.IsPlaying() || anim.CurrentAnimation != "Walk_Up")
+                {
+                    anim.Play("Walk_Up");
+                }
+            }
         }
     }
 }

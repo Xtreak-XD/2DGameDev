@@ -9,6 +9,6 @@ itemName = "Pen"
 texture = ExtResource("2_ihfa6")
 description = "Upgrade of the Pencil"
 maxStackSize = 1
-shopPrice = 20
+shopPrice = 200
 isSellableInShop = true
 metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

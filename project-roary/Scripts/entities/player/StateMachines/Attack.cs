@@ -20,7 +20,11 @@ public partial class Attack : State
 
     public override void _ExitTree()
     {
-        player.animationPlayer.AnimationFinished -= OnAnimFinished;
+        if (player.animationPlayer != null && isSignalConnected)
+        {
+            player.animationPlayer.AnimationFinished -= OnAnimFinished;
+            isSignalConnected = false;
+        }
     }
 
     private void OnAnimFinished(StringName animName)

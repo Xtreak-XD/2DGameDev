@@ -6,6 +6,7 @@ public partial class SceneManager : Node
 {
     Node currentScene;
     public Eventbus eventbus;
+    public TransitionManager transitionManager;
     Player player;
     public string comingFromName;
     Marker2D spawnPosition;
@@ -26,6 +27,7 @@ public partial class SceneManager : Node
         var root = GetTree().Root;
         saveManager = GetNode<SaveManager>("/root/SaveManager");
         currentScene = root.GetChild(root.GetChildCount() - 1);
+        transitionManager = GetNode<TransitionManager>("/root/TransitionManager");
         
         if (!ShouldSceneHavePlayer(currentScene))
         {
@@ -54,7 +56,7 @@ public partial class SceneManager : Node
         return true;
     }
 
-    public void goToScene(Node from, string scene, bool loading = false, Vector2 spawnPos = default)
+    public async void goToScene(Node from, string scene, bool loading = false, Vector2 spawnPos = default)
     {
         comingFromName = ShouldSceneHavePlayer(currentScene) ? currentScene.Name : "";
         if(from.Name == "ParkingGarage" && !saveManager.metaData.playerBeatPG)
@@ -72,6 +74,26 @@ public partial class SceneManager : Node
         if (loading)
         {
             loadSpawnPosition = spawnPos;
+        }
+        
+        if (saveManager.metaData.playerBeatPG && !saveManager.metaData.openingWorldPlayed)
+        {
+            transitionManager.transition("Opening_World");
+            saveManager.metaData.openingWorldPlayed = true;
+            saveManager.SaveNpcFlags();
+            await ToSignal(eventbus, Eventbus.SignalName.onTransitionFinished);
+        }
+        else if(scene.Equals("res://Scenes/map/ParkingGarage/ParkingGarage.tscn") && !saveManager.metaData.introPlayed)
+        {
+            transitionManager.transition("Intro_Opening");
+            saveManager.metaData.introPlayed = true;
+            saveManager.SaveNpcFlags();
+            await ToSignal(eventbus, Eventbus.SignalName.onTransitionFinished);
+        }
+        else
+        {
+            transitionManager.transition();
+            await ToSignal(eventbus, Eventbus.SignalName.onTransitionFinished);
         }
         
         CallDeferred("_deferred_scene_switch", scene, loading);

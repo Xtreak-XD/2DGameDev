@@ -27,6 +27,7 @@ Effects="*res://Global/effects.tscn"
 SceneManager="*res://Global/SceneManager.cs"
 SettingsMenu="*res://Scenes/ui/SettingsMenu.tscn"
 AudioGlobal="*res://Scenes/map/AudioGlobal.tscn"
+TransitionManager="*res://Global/transition_manager.tscn"
 
 [display]
 

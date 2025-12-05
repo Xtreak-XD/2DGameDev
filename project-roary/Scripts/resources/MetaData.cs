@@ -54,4 +54,6 @@ public partial class MetaData : Resource
     [Export] public bool playerBeatPG { get; set; } = false;
     [Export] public bool justLeftPG { get; set; } = false;
     [Export] public bool CanEnterStadium { get; set; } = false;
+    [Export] public bool openingWorldPlayed { get; set; } = false;
+    [Export] public bool introPlayed { get; set; } = false;
 }

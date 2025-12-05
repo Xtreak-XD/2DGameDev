@@ -22,7 +22,30 @@ public partial class SettingsMenu : Control
 	public SceneManager sceneManager;
 	public Button back;
 	public Button apply;
+	private ConfigFile config;
 
+
+	public override void _EnterTree()
+	{
+		// Initialize and load config once
+		config = new ConfigFile();
+		var err = config.Load("user://settings.cfg");
+		
+		// If config doesn't exist, create it with defaults
+		if (err != Error.Ok)
+		{
+			config.SetValue("display", "fullscreen", true);
+			config.SetValue("display", "vsync", true);
+			config.Save("user://settings.cfg");
+		}
+		
+		// Apply display settings
+		bool fullscreen = (bool)config.GetValue("display", "fullscreen", true);
+		bool vsync = (bool)config.GetValue("display", "vsync", true);
+		
+		DisplayServer.WindowSetMode(fullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+		DisplayServer.WindowSetVsyncMode(vsync ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
+	}
 	public override void _Ready()
     {
 		ProcessMode = ProcessModeEnum.Always;
@@ -58,8 +81,9 @@ public partial class SettingsMenu : Control
 		back.Pressed += OnBackPressed;
 		apply.Pressed += SaveSettings;	
 
-		//eventbus.loadSettings += LoadSettings;
 		eventbus.showSettings += ShowSettings;
+
+		LoadSettingsToUI();
 	}
 
 	public override void _Input(InputEvent @event)
@@ -85,9 +109,7 @@ public partial class SettingsMenu : Control
 			(float)playerSFXSlider.Value,
 			(float)enemySFXSlider.Value
 		);
-
-        var config = new ConfigFile();
-		config.Load("user://settings.cfg");
+       
 		config.SetValue("display", "fullscreen", fullscreenCheck.ButtonPressed);
 		config.SetValue("display", "vsync", vsyncCheck.ButtonPressed);
 		config.Save("user://settings.cfg");
@@ -106,20 +128,9 @@ public partial class SettingsMenu : Control
 		musicValueLabel.Text = $"{(int)musicSlider.Value}%";
 		playerSFXValueLabel.Text = $"{(int)playerSFXSlider.Value}%";
 		enemySFXLabel.Text = $"{(int)enemySFXSlider.Value}%";
-
-		var config = new ConfigFile();
-		var err = config.Load("user://settings.cfg");
 		
-		if (err == Error.Ok)
-		{
-			fullscreenCheck.ButtonPressed = (bool)config.GetValue("display", "fullscreen", true);
-			vsyncCheck.ButtonPressed = (bool)config.GetValue("display", "vsync", true);
-		}
-		else
-		{
-			fullscreenCheck.ButtonPressed = true;
-			vsyncCheck.ButtonPressed = true;
-		}
+		fullscreenCheck.ButtonPressed = (bool)config.GetValue("display", "fullscreen", true);
+		vsyncCheck.ButtonPressed = (bool)config.GetValue("display", "vsync", true);
 	}
 
     private void OnMasterVolumeChanged(double value)
@@ -148,28 +159,15 @@ public partial class SettingsMenu : Control
 		audioGlobal.SetVolume((float)value, "EnemySFX");
 	}
 
-	private void OnFullscreenToggled(bool toggledOn)
+	private void OnFullscreenToggled(bool isToggled)
     {
-        if (toggledOn)
-        {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-        }
-        else
-        {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-        }
+		DisplayServer.WindowSetMode(isToggled ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+
     }
 
-	private void OnVSyncToggled(bool toggledOn)
+	private void OnVSyncToggled(bool isToggled)
 	{
-		if (toggledOn)
-		{
-			DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);		}
-		else
-		{
-			DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Disabled);
-		}
-		
+		DisplayServer.WindowSetVsyncMode(isToggled ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
 	}
 	
 	private void OnBackPressed()

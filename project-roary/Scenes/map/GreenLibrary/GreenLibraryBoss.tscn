@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd2hskwafvd0n"]
+[gd_scene load_steps=8 format=3 uid="uid://dd2hskwafvd0n"]
 
+[ext_resource type="Script" uid="uid://drtvjnjnblwwm" path="res://Scenes/map/GreenLibrary/GreenLibraryBoss.cs" id="1_6utow"]
 [ext_resource type="PackedScene" uid="uid://bed4fyrobgykm" path="res://Scenes/entities/enemies/logo.tscn" id="1_g1wpv"]
 [ext_resource type="Texture2D" uid="uid://xw5ejxtkea0l" path="res://Sprites/world/gl3_base.png" id="1_puw3y"]
 [ext_resource type="Texture2D" uid="uid://dta6cpb7ie5yu" path="res://Sprites/world/gl3_walls.png" id="2_xy52c"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c3pagaejfyou0" path="res://Scenes/ui/Bosses/BossHealth.tscn" id="6_xy52c"]
 
 [node name="GreenLibraryBoss" type="Node2D"]
+script = ExtResource("1_6utow")
 
 [node name="MapBase" type="Sprite2D" parent="."]
 position = Vector2(2497, 2500.9995)
@@ -22,9 +24,9 @@ position = Vector2(2513, 2267)
 starfishSpawns = [NodePath("../StarfishSpawnContainer/StarfishSpawn1"), NodePath("../StarfishSpawnContainer/StarfishSpawn2"), NodePath("../StarfishSpawnContainer/StarfishSpawn3"), NodePath("../StarfishSpawnContainer/StarfishSpawn4"), NodePath("../StarfishSpawnContainer/StarfishSpawn5"), NodePath("../StarfishSpawnContainer/StarfishSpawn6"), NodePath("../StarfishSpawnContainer/StarfishSpawn7"), NodePath("../StarfishSpawnContainer/StarfishSpawn8"), NodePath("../StarfishSpawnContainer/StarfishSpawn9")]
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("3_qfpo3")]
-spawnsAvailable = [NodePath("fromGreenLibrary"), NodePath("fromNothing")]
+spawnsAvailable = [NodePath("fromGreenLibraryFloor2"), NodePath("fromNothing")]
 
-[node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
+[node name="fromGreenLibraryFloor2" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(2645, 4353)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]

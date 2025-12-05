@@ -6,5 +6,5 @@
 [node name="CanvasModulate" type="CanvasModulate"]
 script = ExtResource("1_ioxtj")
 gradient = ExtResource("2_ioxtj")
-INGAME_SPEED = 50.0
+INGAME_SPEED = 15.0
 INITIAL_HOUR = 7

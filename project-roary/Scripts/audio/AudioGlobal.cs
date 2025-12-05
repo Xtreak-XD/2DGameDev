@@ -5,6 +5,7 @@ public partial class AudioGlobal : Node
 {
 	public String currScene; // OverWorld, GC, PG, GL, Stadium, Boss
 	private Eventbus eventbus;
+	private String currentClip = "";
 	public float MasterVolume { get; private set; }
 	public float MusicVolume { get; private set; }
 	public float PlayerSFXVolume { get; private set; }
@@ -17,13 +18,10 @@ public partial class AudioGlobal : Node
         LoadAndApplySettings();
     }
 
-
 	public override void _Ready()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.sceneChanged += OnSceneChanged;
-
-        //LoadAndApplySettings();
 
 		// Get or create the AudioStreamPlayer child
 		musicPlayer = GetNodeOrNull<AudioStreamPlayer>("MusicPlayer");
@@ -34,11 +32,21 @@ public partial class AudioGlobal : Node
 			return;
 		}
 
+		string initialScene = GetTree().CurrentScene.Name;
+		string clipName = GetClipNameForScene(initialScene);
+
+		GD.Print("Volumes - Music 2: " + MusicVolume + ", Master: " + MasterVolume);
+
+		if (!string.IsNullOrEmpty(clipName))
+		{
+			musicPlayer.Set("parameters/switch_to_clip", clipName);
+			currentClip = clipName;
+		}
+
 		// Start playing the music
 		if (!musicPlayer.Playing)
 		{
 			musicPlayer.Play();
-			GD.Print("AudioGlobal: Music player initialized and playing");
 		}
     }
 
@@ -111,7 +119,6 @@ public partial class AudioGlobal : Node
 		float volumeDb = linear > 0 ? Mathf.LinearToDb(linear) : -80f;
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(busName), volumeDb);
 	}
-
 	private void OnSceneChanged(string sceneName)
 	{
 		currScene = sceneName;
@@ -128,19 +135,33 @@ public partial class AudioGlobal : Node
 			return;
 		}
 
-		string clipName = sceneName switch
+		string clipName = GetClipNameForScene(sceneName);
+		GD.Print("ClipName: " + clipName + "CurrentClip: " + currentClip);
+
+		if (currentClip == clipName)
 		{
-			"Overworld" => "OverworldMusic",
+			GD.Print("AudioGlobal: Music clip is already playing for this scene, no switch needed.");
+			return;
+		}
+
+		musicPlayer.Set("parameters/switch_to_clip", clipName);
+		currentClip = clipName;
+		GD.Print($"AudioGlobal: Switched to music clip {clipName} for scene {sceneName}");
+	}
+
+	private String GetClipNameForScene(String sceneName)
+    {
+        return sceneName switch
+		{
+			"Overworld" => "OverworldMusic", 
             "GreenLibrary" => "GreenLibraryMusic",
             "GreenLibraryBoss" => "GreenLibraryBoss",
             "GrahamCenter" => "GrahamCenterMusic",
             "NaturePreserve" => "NaturePreserveMusic",
             "ParkingGarage" => "ParkingGarageMusic",
             "Stadium" => "StadiumMusic",
-            _ => "OverworldMusic"
+			"DiedScreen" => "RespawnScreenMusic",
+            _ => "MenuMusic"
 		};
-
-		musicPlayer.Set("parameters/switch_to_clip", clipName);
-		GD.Print($"AudioGlobal: Switched to music clip {clipName} for scene {sceneName}");
-	}
+    }
 }

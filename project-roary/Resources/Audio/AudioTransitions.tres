@@ -1,16 +1,27 @@
-[gd_resource type="AudioStreamInteractive" load_steps=7 format=3 uid="uid://xuqsa52jbu53"]
+[gd_resource type="AudioStreamInteractive" load_steps=12 format=3 uid="uid://xuqsa52jbu53"]
 
 [ext_resource type="AudioStream" uid="uid://c77tlt3vjt80v" path="res://audio/Background/Sadge.mp3" id="1_ekpeg"]
+[ext_resource type="AudioStream" uid="uid://cjxmv81a7qydl" path="res://audio/Background/GC.wav" id="1_teg08"]
+[ext_resource type="AudioStream" uid="uid://ny3sdx2ih15x" path="res://audio/Background/Overworld1.wav" id="1_tg7lf"]
+[ext_resource type="AudioStream" uid="uid://l4yykp7alwb6" path="res://audio/Background/Overworld2.wav" id="2_5cbad"]
 [ext_resource type="AudioStream" uid="uid://4ks0n2aiwllh" path="res://audio/Background/Greens Library.wav" id="2_ciw46"]
 [ext_resource type="AudioStream" uid="uid://bvsia71n1w6wu" path="res://audio/Background/mermaid boss theme.wav" id="3_rlrtr"]
-[ext_resource type="AudioStream" uid="uid://ny3sdx2ih15x" path="res://audio/Background/Crossroads selection.wav" id="4_teg08"]
+[ext_resource type="AudioStream" uid="uid://cq8sneg3y4npw" path="res://audio/Background/Nature Reserve.wav" id="4_ciw46"]
 [ext_resource type="AudioStream" uid="uid://dybprbidyciun" path="res://audio/Background/Garage.wav" id="5_tg7lf"]
 [ext_resource type="AudioStream" uid="uid://dpldemnr1bhj" path="res://audio/Background/Football Stadium.wav" id="6_5cbad"]
+[ext_resource type="AudioStream" uid="uid://c0cu4gbjiepel" path="res://audio/Background/main menu.wav" id="10_tg7lf"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5cbad"]
+shuffle = true
+fade_time = 0.5
+stream_count = 2
+stream_0 = ExtResource("1_tg7lf")
+stream_1 = ExtResource("2_5cbad")
 
 [resource]
-clip_count = 7
+clip_count = 9
 clip_0/name = &"OverworldMusic"
-clip_0/stream = ExtResource("1_ekpeg")
+clip_0/stream = SubResource("AudioStreamPlaylist_5cbad")
 clip_0/auto_advance = 0
 clip_1/name = &"GreenLibraryMusic"
 clip_1/stream = ExtResource("2_ciw46")
@@ -19,9 +30,10 @@ clip_2/name = &"GreenLibraryBoss"
 clip_2/stream = ExtResource("3_rlrtr")
 clip_2/auto_advance = 0
 clip_3/name = &"GrahamCenterMusic"
-clip_3/stream = ExtResource("4_teg08")
+clip_3/stream = ExtResource("1_teg08")
 clip_3/auto_advance = 0
 clip_4/name = &"NaturePreserveMusic"
+clip_4/stream = ExtResource("4_ciw46")
 clip_4/auto_advance = 0
 clip_5/name = &"ParkingGarageMusic"
 clip_5/stream = ExtResource("5_tg7lf")
@@ -29,6 +41,13 @@ clip_5/auto_advance = 0
 clip_6/name = &"StadiumMusic"
 clip_6/stream = ExtResource("6_5cbad")
 clip_6/auto_advance = 0
+clip_7/name = &"RespawnScreenMusic"
+clip_7/stream = ExtResource("1_ekpeg")
+clip_7/auto_advance = 0
+clip_8/name = &"MenuMusic"
+clip_8/stream = ExtResource("10_tg7lf")
+clip_8/auto_advance = 0
+initial_clip = 8
 _transitions = {
 Vector2i(-1, -1): {
 "fade_beats": 5.0,
@@ -39,6 +58,96 @@ Vector2i(-1, -1): {
 Vector2i(-1, 2): {
 "fade_beats": 3.0,
 "fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(3, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(4, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(5, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(6, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 6): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(7, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
 "from_time": 0,
 "to_time": 0
 }

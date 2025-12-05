@@ -1,19 +1,144 @@
-[gd_scene load_steps=3 format=3 uid="uid://23dp7aok7gvy"]
+[gd_scene load_steps=16 format=3 uid="uid://23dp7aok7gvy"]
 
+[ext_resource type="Script" uid="uid://wm8im0o4vm4a" path="res://Scripts/map/GC/GrahamCenter.cs" id="1_ip6iw"]
+[ext_resource type="Texture2D" uid="uid://gut2ajljg7m7" path="res://Sprites/world/Graham Center/gc_base.png" id="1_u0tbi"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="1_xaycd"]
+[ext_resource type="Texture2D" uid="uid://dfgxtxdxn6exq" path="res://Sprites/world/Graham Center/gc_walls.png" id="2_5r0h6"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="2_fcsqv"]
+[ext_resource type="Texture2D" uid="uid://b4rx2hwlkdrhr" path="res://Sprites/world/Graham Center/gc_vending.png" id="3_1piy5"]
+[ext_resource type="Script" uid="uid://bao4xk2d2prcx" path="res://Scripts/map/GC/VendingMachines.cs" id="5_f6gow"]
+[ext_resource type="PackedScene" uid="uid://dsxvnrdp3nf1i" path="res://Scenes/map/GranhamCenter/ShopKeeper.tscn" id="6_augan"]
+[ext_resource type="Resource" uid="uid://dvkbfxeeae2tp" path="res://Resources/Shop/WeaponShop.tres" id="7_dnkm4"]
+[ext_resource type="Resource" uid="uid://ds1hq3nvfq4rw" path="res://Resources/Shop/StrongWeaponShop.tres" id="8_0tf0g"]
+[ext_resource type="Resource" uid="uid://b47v75bgggb0b" path="res://Resources/Shop/BrokeShop.tres" id="9_hgitq"]
+[ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="11_wex28"]
+
+[sub_resource type="Environment" id="Environment_2xvsg"]
+background_mode = 3
+glow_normalized = true
+adjustment_enabled = true
+adjustment_saturation = 1.25
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6gow"]
+radius = 420.99997
+height = 2496.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6gow"]
+size = Vector2(440, 1368)
 
 [node name="GrahamCenter" type="Node2D"]
+script = ExtResource("1_ip6iw")
 
-[node name="GCToOverworld" parent="." instance=ExtResource("1_xaycd")]
-position = Vector2(1484, 844)
-path = "res://Scenes/map/Overworld/Overworld.tscn"
+[node name="mapBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mapBorder"]
+polygon = PackedVector2Array(5, -447, 5, 359, -5, 2073, 6, 5020, 4994, 5009, 5005, -1, -1110, 4, -655, -1047, 2259, -755, 5694, -581, 6116, 1900, 6105, 4056, 6019, 5172, 4686, 5616, 1674, 5378, -255, 5465, -1197, 4587, -872, 1087, -1089, 296)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2xvsg")
+
+[node name="Map" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="main" type="Sprite2D" parent="Map"]
+z_index = -1
+texture = ExtResource("1_u0tbi")
+centered = false
+
+[node name="foregroundTop" type="Sprite2D" parent="Map/main"]
+y_sort_enabled = true
+texture = ExtResource("2_5r0h6")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 2500)
+
+[node name="vendingMachines" type="Sprite2D" parent="Map/main/foregroundTop"]
+y_sort_enabled = true
+position = Vector2(252, 0)
+texture = ExtResource("3_1piy5")
+centered = false
+offset = Vector2(1500, 0)
+script = ExtResource("5_f6gow")
+
+[node name="InteractableArea" parent="Map/main/foregroundTop/vendingMachines" instance=ExtResource("11_wex28")]
+position = Vector2(2170, 340)
+actionName = "broken"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/main/foregroundTop/vendingMachines/InteractableArea"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_f6gow")
+
+[node name="foregroundBottom" type="Sprite2D" parent="Map/main"]
+y_sort_enabled = true
+texture = ExtResource("2_5r0h6")
+centered = false
+offset = Vector2(0, 2500)
+region_enabled = true
+region_rect = Rect2(0, 2500, 5000, 2500)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Map/main"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+polygon = PackedVector2Array(-3, 1936, 2862, 1945, 2862, 1399, 2880, 1014, 1260, 1050, 1269, -16, 6, -25)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+position = Vector2(196, 2171)
+polygon = PackedVector2Array(2186, 1661, 2192, 2092, 2432, 2094, 2437, 1667)
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+position = Vector2(712, 2653)
+polygon = PackedVector2Array(2097, 1855, 2089, 2100, 2513, 2101, 2506, 1860)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+position = Vector2(1213, 2179)
+polygon = PackedVector2Array(2173, 1665, 2175, 2087, 2437, 2084, 2425, 1661)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+position = Vector2(3304, 18)
+polygon = PackedVector2Array(-3, 1936, 1708, 1936, 1690, 1059, 1690, 11, 561, -43, 570, 1014, -3, 1014)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+position = Vector2(1474, -525)
+polygon = PackedVector2Array(1924, 1077, 1935, 530, 310, 511, 314, 1070)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+position = Vector2(-299, 2528)
+polygon = PackedVector2Array(2238, 2464, 2247, 513, 310, 511, 327, 2493)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Map/main/StaticBody2D"]
+position = Vector2(3769, 2518)
+polygon = PackedVector2Array(1203, 2474, 1262, 504, 310, 511, 327, 2493)
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("2_fcsqv")]
-spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing"), null]
+spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing")]
 
 [node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(784, 471)
+position = Vector2(697, 2511)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(793, 482)
+position = Vector2(4784, 2468)
+
+[node name="ShopKeeper" parent="." instance=ExtResource("6_augan")]
+y_sort_enabled = true
+position = Vector2(3398, 3857)
+shopConfig = ExtResource("7_dnkm4")
+
+[node name="ShopKeeper2" parent="." instance=ExtResource("6_augan")]
+y_sort_enabled = true
+position = Vector2(2390, 3850)
+shopConfig = ExtResource("8_0tf0g")
+
+[node name="ShopKeeper3" parent="." instance=ExtResource("6_augan")]
+y_sort_enabled = true
+position = Vector2(3212, 4513)
+rotation = 1.5707964
+shopConfig = ExtResource("9_hgitq")
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("1_xaycd")]
+path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+position = Vector2(-5, 2524)
+shape = SubResource("RectangleShape2D_f6gow")

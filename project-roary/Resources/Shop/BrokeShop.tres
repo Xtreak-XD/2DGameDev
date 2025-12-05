@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=6 format=3 uid="uid://b47v75bgggb0b"]
+
+[ext_resource type="Texture2D" uid="uid://cbfulynx7jegx" path="res://Sprites/world/Graham Center/RedBanner.tres" id="1_loi1t"]
+[ext_resource type="Script" uid="uid://cio6dcxoigeeo" path="res://Scripts/resources/ShopResource.cs" id="1_v2j26"]
+[ext_resource type="Texture2D" uid="uid://cwnvbn8mqq1oo" path="res://Sprites/world/Graham Center/RedSquare.tres" id="2_dp24x"]
+[ext_resource type="Texture2D" uid="uid://uniuj28bgwht" path="res://Sprites/world/Graham Center/HealthInsideTable.tres" id="3_mtm6g"]
+[ext_resource type="Texture2D" uid="uid://dad5phtf8rvew" path="res://Sprites/world/Graham Center/DownFacingHealthShop.tres" id="4_dp24x"]
+
+[resource]
+script = ExtResource("1_v2j26")
+ShopName = "Fill Out a Flyer"
+Items = Array[Object]([null, null, null, null])
+GreetingMessage = "Welcome!"
+TableTexture = ExtResource("3_mtm6g")
+SlotTexture = ExtResource("2_dp24x")
+BannerTexture = ExtResource("1_loi1t")
+WorldShopSprite = ExtResource("4_dp24x")
+metadata/_custom_type_script = "uid://cio6dcxoigeeo"

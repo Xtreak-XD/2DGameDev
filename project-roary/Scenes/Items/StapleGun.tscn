@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://df8531tnyq760"]
 
 [ext_resource type="PackedScene" uid="uid://r6a6orujjhgt" path="res://Scenes/ui/inventory/Items.tscn" id="1_b4cbg"]
-[ext_resource type="Texture2D" uid="uid://cugsv4km18tda" path="res://Sprites/misc/Stapler.jpeg" id="2_fq2fp"]
+[ext_resource type="Texture2D" uid="uid://dmwacryxenaeq" path="res://Sprites/item/Untitled_Artwork_16.png" id="2_fq2fp"]
 [ext_resource type="Resource" uid="uid://dpkkjng5xhthu" path="res://Resources/items/StapleGun.tres" id="2_xyf34"]
 
 [node name="Stapler" instance=ExtResource("1_b4cbg")]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_fq2fp")
 itemResource = ExtResource("2_xyf34")

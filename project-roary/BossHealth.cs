@@ -6,10 +6,12 @@ public partial class BossHealth : CanvasLayer
 	private TextureProgressBar health;
 	private CharacterBody2D boss;
 	private Label bossName; 
+	private Eventbus eventbus;
 	public override void _Ready()
     {
         health = GetNode<TextureProgressBar>("%BossHealth");
 		bossName = GetNode<Label>("%BossName");
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		var bossNodes = GetTree().GetNodesInGroup("enemy");
 
 		foreach (var bossNode in bossNodes)
@@ -25,11 +27,12 @@ public partial class BossHealth : CanvasLayer
 		if (boss == null)
         {
             GD.PrintErr("BossHealth: Parent boss not found!");
+			return;
         }
-		else
-		{
-			bossName.Text = boss.Name;
-		}
+
+		bossName.Text = boss.Name;
+
+		eventbus.updateBossHealth += updateHealth;
     }
 
 	private void updateHealth(int value)

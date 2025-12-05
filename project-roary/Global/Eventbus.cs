@@ -35,6 +35,7 @@ public partial class Eventbus : Node
     [Signal] public delegate void updateHealthEventHandler(int value);
     [Signal] public delegate void updateMoneyEventHandler(int value);
     [Signal] public delegate void updateAmmoEventHandler(int value);
+    [Signal] public delegate void updateBossHealthEventHandler(int value);
 
     //Inventory Signals
     [Signal] public delegate void inventoryUpdatedEventHandler(); //emitted when inventory changes

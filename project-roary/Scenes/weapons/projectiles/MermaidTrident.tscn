@@ -1,38 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmp7e6q6dgfsr"]
+[gd_scene load_steps=8 format=3 uid="uid://dmp7e6q6dgfsr"]
 
 [ext_resource type="Script" uid="uid://c2vmtpewp844w" path="res://Scripts/weapons/projectiles/MermaidTrident.cs" id="1_0exx6"]
-[ext_resource type="Texture2D" uid="uid://bngdqp5blkiiw" path="res://Sprites/misc/trident.jpg" id="2_etcah"]
 [ext_resource type="Resource" uid="uid://cts6fga3dapgt" path="res://Resources/weapons/projectiles/MermaidTridentData.tres" id="2_hywf5"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_w6af3"]
+[ext_resource type="Texture2D" uid="uid://smp7hd0vd6vd" path="res://Sprites/misc/projectiles/Trident.png" id="4_0exx6"]
+[ext_resource type="AudioStream" uid="uid://7pqh2tf7tlkd" path="res://audio/enemies/spear spawn.wav" id="4_hywf5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
-radius = 12.0415945
+radius = 34.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxgqv"]
-size = Vector2(8, 13.333336)
+size = Vector2(181.33334, 308.00003)
 
 [node name="MermaidTrident" type="CharacterBody2D"]
 script = ExtResource("1_0exx6")
 data = ExtResource("2_hywf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.3841858e-07, 0)
+scale = Vector2(1, 1.265)
+texture = ExtResource("4_0exx6")
 
 [node name="LifespanTimer" type="Timer" parent="."]
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-5, -81)
+stream = ExtResource("4_hywf5")
+autoplay = true
+bus = &"EnemySFX"
+
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-5, -81)
 shape = SubResource("CircleShape2D_5ny5u")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_w6af3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1.000001, -206.5)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_nxgqv")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.3841858e-07, 0)
-scale = Vector2(0.08313941, 0.105)
-texture = ExtResource("2_etcah")
 
 [node name="SetSpawnTimer" type="Timer" parent="."]
 wait_time = 0.05

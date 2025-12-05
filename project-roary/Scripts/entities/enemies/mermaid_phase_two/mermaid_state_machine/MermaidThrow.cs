@@ -27,12 +27,12 @@ public partial class MermaidThrow : MermaidState
 
 			if(ActiveEnemy.HasTrident)
 			{
-				if(new Random().Next(2) == 1)
+				if(new Random().Next(3) >= 1)
 				{
 					GD.Print("The mermaid is throwing its trident");
 
 					MermaidTrident tridentProjectile = (MermaidTrident)ActiveEnemy.trident.Instantiate();
-					ActiveEnemy.Owner.AddChild(tridentProjectile);
+					Owner.AddChild(tridentProjectile);
 
 					tridentProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
 					tridentProjectile.sprite.LookAt(targetPos);
@@ -43,12 +43,12 @@ public partial class MermaidThrow : MermaidState
 			} 
 			else if(ActiveEnemy.Shielded)
 			{
-				if(new Random().Next(2) == 1)
+				if(new Random().Next(3) >= 1)
 				{
 					GD.Print("The mermaid is throwing its shield");
 
 					MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
-					ActiveEnemy.Owner.AddChild(shieldProjectile);
+					Owner.AddChild(shieldProjectile);
 
 					shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
 					shieldProjectile.sprite.LookAt(targetPos);

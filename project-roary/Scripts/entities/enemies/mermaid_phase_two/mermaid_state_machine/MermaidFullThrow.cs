@@ -23,7 +23,7 @@ public partial class MermaidFullThrow : MermaidState
 			if(ActiveEnemy.HasTrident)
 			{
 				MermaidTrident tridentProjectile = (MermaidTrident)ActiveEnemy.trident.Instantiate();
-				ActiveEnemy.Owner.AddChild(tridentProjectile);
+				Owner.AddChild(tridentProjectile);
 
 				tridentProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
 				tridentProjectile.sprite.LookAt(targetPos);
@@ -35,7 +35,7 @@ public partial class MermaidFullThrow : MermaidState
 			if(ActiveEnemy.Shielded)
 			{
 				MermaidShield shieldProjectile = (MermaidShield)ActiveEnemy.shield.Instantiate();
-				ActiveEnemy.Owner.AddChild(shieldProjectile);
+				Owner.AddChild(shieldProjectile);
 
 				shieldProjectile.GlobalPosition = ActiveEnemy.projectileSource.GlobalPosition;
 				shieldProjectile.sprite.LookAt(targetPos);

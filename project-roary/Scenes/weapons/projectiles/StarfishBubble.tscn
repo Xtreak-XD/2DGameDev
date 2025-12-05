@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://blsek3wowar6t" path="res://Scripts/weapons/projectiles/StarfishBubble.cs" id="1_lfmk6"]
 [ext_resource type="Resource" uid="uid://b4v02mag4l3ia" path="res://Resources/weapons/projectiles/StarfishBubbleData.tres" id="2_cp2ht"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_b3b07"]
-[ext_resource type="Texture2D" uid="uid://dtgamg3s6nesf" path="res://Sprites/misc/bubble.jpg" id="4_b3b07"]
+[ext_resource type="Texture2D" uid="uid://77mjladn77pa" path="res://Sprites/misc/projectiles/Starfish_Bubble.png" id="4_lfmk6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
 radius = 34.058773
@@ -32,5 +32,5 @@ shape = SubResource("CircleShape2D_5ny5u")
 shape = SubResource("CircleShape2D_b4fku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.095, 0.105)
-texture = ExtResource("4_b3b07")
+scale = Vector2(0.8, 0.884)
+texture = ExtResource("4_lfmk6")

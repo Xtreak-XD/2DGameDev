@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dtm6cwfhiwan3" path="res://Scripts/weapons/projectiles/SpiralBubble.cs" id="1_k1adf"]
 [ext_resource type="Resource" uid="uid://chhmqeuo2j4ph" path="res://Resources/weapons/projectiles/SpiralBubbleData.tres" id="2_gpw7c"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="2_nw0cm"]
-[ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="3_gpw7c"]
+[ext_resource type="Texture2D" uid="uid://c6yqrdb5sxkq7" path="res://Sprites/misc/projectiles/Logo_Coffee_Bubble.png" id="4_nw0cm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ndse"]
 
@@ -16,6 +16,7 @@ script = ExtResource("1_k1adf")
 data = ExtResource("2_gpw7c")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_nw0cm")]
+scale = Vector2(1.2, 1.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 scale = Vector2(8.673077, 8.673077)
@@ -24,7 +25,7 @@ debug_color = Color(0.97509795, 0, 0.42542008, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -4)
-texture = ExtResource("3_gpw7c")
+texture = ExtResource("4_nw0cm")
 
 [node name="LifespanTimer" type="Timer" parent="."]
 

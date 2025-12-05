@@ -26,7 +26,7 @@ public partial class Player : CharacterBody2D
 		//{ "", ""}, name , path to tscn
         { "Pencil", "res://Scenes/weapons/PencilSword.tscn"}, 
 		{ "StapleGun", "res://Scenes/weapons/StapleGun.tscn"},
-		//{ "Pen", "res://Scenes/weapons/PenSword.tscn"}, FIX THE AUTO-SWAPPING RESOURCE
+		{ "Pen", "res://Scenes/weapons/PenSword.tscn"}, 
 		{ "Thumbstack", "res://Scenes/weapons/ThumbtackGun.tscn"},
     };
 

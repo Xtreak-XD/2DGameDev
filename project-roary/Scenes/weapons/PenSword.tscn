@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bl6k2y1j5roxy"]
 
 [ext_resource type="Script" uid="uid://cjcttopqca10j" path="res://Scripts/weapons/PenSword.cs" id="1_3750a"]
-[ext_resource type="Resource" uid="uid://b8qm7ywkj3xv5" path="res://Resources/weapons/PenSwordData.tres" id="2_4cutk"]
+[ext_resource type="Resource" uid="uid://dn514yodcckmv" path="res://Resources/weapons/PenSwordData.tres" id="2_4cutk"]
 [ext_resource type="Texture2D" uid="uid://byln8174ny0mb" path="res://Sprites/item/Pen.png" id="3_4cutk"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_rybp5"]
 

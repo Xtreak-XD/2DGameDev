@@ -155,15 +155,15 @@ public partial class AudioGlobal : Node
     {
         return sceneName switch
 		{
-			"Overworld" => "OverworldMusic", // ToDo Change the overWorld music later
+			"Overworld" => "OverworldMusic", 
             "GreenLibrary" => "GreenLibraryMusic",
             "GreenLibraryBoss" => "GreenLibraryBoss",
             "GrahamCenter" => "GrahamCenterMusic",
-            "NaturePreserve" => "NaturePreserveMusic",// ToDo add the nature preserve music later in godot
+            "NaturePreserve" => "NaturePreserveMusic",
             "ParkingGarage" => "ParkingGarageMusic",
             "Stadium" => "StadiumMusic",
 			"DiedScreen" => "RespawnScreenMusic",
-            _ => "" //ToDo change to menu music later
+            _ => "MenuMusic" //ToDo change to menu music later
 		};
     }
 }

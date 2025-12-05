@@ -8,8 +8,8 @@ public partial class BossHealth : CanvasLayer
 	private Label bossName; 
 	public override void _Ready()
     {
-        health = GetNode<TextureProgressBar>("Control/VBoxContainer/BossHealth");
-		bossName = GetNode<Label>("Control/VBoxContainer/BossName");
+        health = GetNode<TextureProgressBar>("%BossHealth");
+		bossName = GetNode<Label>("%BossName");
 		var bossNodes = GetTree().GetNodesInGroup("enemy");
 
 		foreach (var bossNode in bossNodes)

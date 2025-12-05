@@ -59,13 +59,13 @@ public partial class Player : CharacterBody2D
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		stateMachine.Initialize(this);
-		camera = GetNode<Camera2D>("Camera2D");
 
 		inv = GetNode<Inventory>("/root/Inventory");
 	}
 
 	public void setCam()
     {
+		camera = GetNode<Camera2D>("Camera2D");
         switch (currentScene)
         {
             case "Stadiumn":
@@ -85,8 +85,12 @@ public partial class Player : CharacterBody2D
 				camera.LimitRight = 5000;
 				break;
 			case "Overworld":
+				camera.LimitBottom = 10000;
+				camera.LimitRight = 10000;
 				break;
 			case "ParkingGarage":
+				camera.LimitBottom = 10000;
+				camera.LimitRight = 10000;
 				break;
         }
     }

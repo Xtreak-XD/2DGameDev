@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjmlx6ijljs1" path="res://Scenes/map/GranhamCenter/ShopMenu.tscn" id="4_nx1uv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx1uv"]
-size = Vector2(288, 432)
+size = Vector2(419, 601)
 
 [node name="ShopKeeper" type="Node2D"]
 script = ExtResource("1_v0fjq")
@@ -23,7 +23,7 @@ unique_name_in_owner = true
 actionName = "interact"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
-position = Vector2(120, 200)
+position = Vector2(121.5, 199.5)
 shape = SubResource("RectangleShape2D_nx1uv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

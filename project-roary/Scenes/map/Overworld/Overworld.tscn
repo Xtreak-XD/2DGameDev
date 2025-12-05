@@ -180,7 +180,7 @@ position = Vector2(5689, 5813)
 
 [node name="GcEntrance" parent="." instance=ExtResource("9_ngc8d")]
 position = Vector2(8407, 8640)
-path = "res://Scenes/map/GranhamCenter/GranhamCenter.tscn"
+path = "res://Scenes/map/GranhamCenter/GrahamCenter.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GcEntrance"]
 shape = SubResource("CircleShape2D_pnd8i")
@@ -290,7 +290,7 @@ position = Vector2(6654, 9541)
 position = Vector2(6654, 9541)
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
-spawnsAvailable = [NodePath("fromNothing"), NodePath("fromParkingGarage"), NodePath("fromNaturePreserve"), NodePath("fromGreenLibrary"), NodePath("fromGranhamCenter")]
+spawnsAvailable = [NodePath("fromGrahamCenter"), NodePath("fromNothing"), NodePath("fromParkingGarage"), NodePath("fromNaturePreserve"), NodePath("fromGreenLibrary")]
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(4429, 7699)
@@ -304,7 +304,7 @@ position = Vector2(5666, 2988)
 [node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(2634, 9656)
 
-[node name="fromGranhamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
+[node name="fromGrahamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(7300, 9044)
 
 [node name="Save" parent="." instance=ExtResource("10_up40q")]

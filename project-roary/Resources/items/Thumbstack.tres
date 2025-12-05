@@ -9,6 +9,6 @@ itemName = "Thumbstack"
 texture = ExtResource("2_yy286")
 description = "A thumbstack"
 maxStackSize = 1
-shopPrice = 40
+shopPrice = 120
 isSellableInShop = true
 metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

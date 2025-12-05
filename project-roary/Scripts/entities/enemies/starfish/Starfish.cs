@@ -69,6 +69,7 @@ public partial class Starfish : Enemy
 
 			bubble.GlobalPosition = currentPos;
 			bubble.target = target;
+			bubble.data.Damage = data.Damage;
 
 			Vector2 direction = (targetPos - currentPos).Normalized();
 			bubble.Velocity = direction * bubble.data.speed;

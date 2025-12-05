@@ -4,6 +4,7 @@ using Godot;
 public partial class ParkingSpot : Area2D
 {
 	public Node car;
+	public SaveManager saveManager;
 	public Timer ParkingTimer;
 	public Timer FlashingTimer;
 	public SceneManager sceneManager;
@@ -15,6 +16,7 @@ public partial class ParkingSpot : Area2D
 		ParkingTimer = GetParent().GetNode<Timer>("ParkingTimer");
 		FlashingTimer = GetParent().GetNode<Timer>("FlashTime");
 		sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		saveManager = GetNode<SaveManager>("/root/SaveManager");
 		BodyEntered += EndMinigameWithSuccess;
 		score = 0;
 
@@ -55,13 +57,20 @@ public partial class ParkingSpot : Area2D
 
 				//wait 3 secs
 				await ToSignal(GetTree().CreateTimer(3.0), SceneTreeTimer.SignalName.Timeout);
+
 				string path = "res://Scenes/map/Overworld/Overworld.tscn";
 				if (!ResourceLoader.Exists(path))
 				{
 					GD.PrintErr($"First scene not found: {path}");
 					return;
 				}
-				sceneManager.goToScene(GetParent().GetParent(), path, false);
+
+				saveManager.metaData.playerBeatPG = true;
+            	saveManager.metaData.SetSavePos(new Vector2(8264,6060));
+            	saveManager.metaData.SetCurScenePath(path);
+				saveManager.metaData.justLeftPG = true;
+            	saveManager.Save();
+				sceneManager.goToScene(GetParent().GetParent(), path, true, saveManager.metaData.savePos);
 			}
 		}
 		else

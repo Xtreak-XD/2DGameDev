@@ -122,6 +122,13 @@ public partial class SaveManager : Node
 
             // Load the scene
             string sceneToLoad = metaData.curScenepath;
+            if (metaData.justLeftPG)
+            {
+                metaData.curScenepath = "res://Scenes/map/Overworld/Overworld.tscn";
+                metaData.savePos = new Vector2(8264, 6060);
+                metaData.justLeftPG = false;
+                sceneToLoad = metaData.curScenepath;
+            }
             if (!string.IsNullOrEmpty(sceneToLoad) && ResourceLoader.Exists(sceneToLoad))
             {
                 var sceneManager = GetNode<SceneManager>("/root/SceneManager");

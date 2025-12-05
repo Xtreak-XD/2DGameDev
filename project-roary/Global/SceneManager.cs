@@ -11,6 +11,7 @@ public partial class SceneManager : Node
     Marker2D spawnPosition;
     PackedScene newPlayerInstance;
     Vector2 loadSpawnPosition = Vector2.Zero;
+    SaveManager saveManager;
     private string[] scenesWithoutPlayer = {
         "MainMenu",
         "ParkingGarage",
@@ -23,6 +24,7 @@ public partial class SceneManager : Node
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         newPlayerInstance = GD.Load<PackedScene>("res://Scenes/entities/player/player.tscn");
         var root = GetTree().Root;
+        saveManager = GetNode<SaveManager>("/root/SaveManager");
         currentScene = root.GetChild(root.GetChildCount() - 1);
         
         if (!ShouldSceneHavePlayer(currentScene))
@@ -55,7 +57,10 @@ public partial class SceneManager : Node
     public void goToScene(Node from, string scene, bool loading = false, Vector2 spawnPos = default)
     {
         comingFromName = ShouldSceneHavePlayer(currentScene) ? currentScene.Name : "";
-        if(from.Name == "ParkingGarage"){ comingFromName = "ParkingGarage";} //look at these 2 lines later
+        if(from.Name == "ParkingGarage" && !saveManager.metaData.playerBeatPG)
+        {
+            comingFromName = "ParkingGarage";
+        }
         
         Player existingPlayer = from.GetNodeOrNull<Player>("Player");
         if (existingPlayer != null)

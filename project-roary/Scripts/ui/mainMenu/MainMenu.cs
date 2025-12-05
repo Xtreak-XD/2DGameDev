@@ -23,6 +23,9 @@ public partial class MainMenu : Control
         sceneManager = GetNode<SceneManager>("/root/SceneManager");
         saveManager = GetNode<SaveManager>("/root/SaveManager");
 
+        var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
+        dayNight.Visible = false;
+
         checkForSaveFile();
 
         eventbus.leftSettings += onLeftSettings;
@@ -94,6 +97,9 @@ public partial class MainMenu : Control
         playContinue.Pressed -= onPlayContinuePressed;
         Options.Pressed -= onOptionsPressed;
         Exit.Pressed -= onExitPressed;
+
+        var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
+        dayNight.Visible = true;
     }
 
 

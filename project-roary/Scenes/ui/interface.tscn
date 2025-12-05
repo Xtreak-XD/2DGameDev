@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca3g24pmtocst"]
+[gd_scene load_steps=13 format=3 uid="uid://ca3g24pmtocst"]
 
 [ext_resource type="Script" uid="uid://yabi6bb7a31b" path="res://Scripts/ui/Interface.cs" id="1_efdi4"]
 [ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="2_dhmg6"]
@@ -8,7 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://b7hfl3picvwq7" path="res://Scenes/ui/MenuScreen.tscn" id="4_menu"]
 [ext_resource type="Texture2D" uid="uid://xrt1qlkwwj50" path="res://placeholderTestAssets/Day & Night.png" id="6_3a8bq"]
 [ext_resource type="PackedScene" uid="uid://uaqodhsl8ser" path="res://Scenes/ui/hotbar/Hotbar.tscn" id="6_hotbar"]
+[ext_resource type="Texture2D" uid="uid://bfcpvrx81s1m5" path="res://Sprites/inventory/Inventory Background.png" id="7_i7e7b"]
 [ext_resource type="PackedScene" uid="uid://cwohgp4x586qn" path="res://Scenes/ui/inventory/inventoryUI.tscn" id="7_inventory"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="8_tjt38"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7e7b"]
 
 [node name="Interface" type="CanvasLayer"]
 follow_viewport_enabled = true
@@ -133,18 +137,30 @@ theme_override_constants/margin_top = 25
 [node name="PanelContainer" type="PanelContainer" parent="HUD/day cycle"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i7e7b")
 
-[node name="TextureRect" type="TextureRect" parent="HUD/day cycle/PanelContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HUD/day cycle/PanelContainer"]
 layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HUD/day cycle/PanelContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/day cycle/PanelContainer/SubViewportContainer/SubViewport"]
+position = Vector2(99.65036, 99.475525)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_3a8bq")
-expand_mode = 4
+offset = Vector2(0.6992798, 1.0489502)
+flip_h = true
 
 [node name="cycleInfo" type="TextureRect" parent="HUD/day cycle/PanelContainer"]
-self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 8
-texture = ExtResource("2_dhmg6")
+texture = ExtResource("7_i7e7b")
 expand_mode = 1
 
 [node name="day" type="Label" parent="HUD/day cycle/PanelContainer/cycleInfo"]
@@ -154,7 +170,8 @@ offset_left = 0.3496437
 offset_top = 5.069933
 offset_right = 198.95103
 offset_bottom = 33.06993
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("8_tjt38")
+theme_override_font_sizes/font_size = 24
 text = "Monday"
 horizontal_alignment = 1
 
@@ -165,7 +182,8 @@ offset_left = 0.34965134
 offset_top = 35.839157
 offset_right = 198.95105
 offset_bottom = 63.839157
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("8_tjt38")
+theme_override_font_sizes/font_size = 24
 text = "10:25 AM"
 horizontal_alignment = 1
 
@@ -176,7 +194,8 @@ offset_left = 1.7482605
 offset_top = 66.6084
 offset_right = 198.95105
 offset_bottom = 94.6084
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("8_tjt38")
+theme_override_font_sizes/font_size = 24
 text = "98°"
 horizontal_alignment = 1
 

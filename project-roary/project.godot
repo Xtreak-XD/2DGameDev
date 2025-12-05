@@ -28,6 +28,7 @@ SceneManager="*res://Global/SceneManager.cs"
 SettingsMenu="*res://Scenes/ui/SettingsMenu.tscn"
 AudioGlobal="*res://Scenes/map/AudioGlobal.tscn"
 TransitionManager="*res://Global/transition_manager.tscn"
+DayNightCycle="*res://Scenes/dayNightCycle/dayNightCycle.tscn"
 
 [display]
 

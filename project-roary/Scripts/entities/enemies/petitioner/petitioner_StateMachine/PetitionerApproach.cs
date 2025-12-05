@@ -6,7 +6,7 @@ public partial class PetitionerApproach : EnemyState
     [Export] public bool  HorizontalOnly = false;
 
     // NEW: keep a little gap so we don’t stick to the player
-    [Export] public float StopDistance = 14f;   // pixels center-to-center
+    [Export] public float StopDistance = 200f;   // pixels center-to-center
     [Export] public float Decel = 900f;         // how fast we slow to a stop
     [Export] public float ExitDelay = 0.15f;    // anti-bounce when leaving zone
 
@@ -89,7 +89,14 @@ public partial class PetitionerApproach : EnemyState
             }
             else
             {
-                ActiveEnemy.Velocity = ActiveEnemy.Velocity.MoveToward(Vector2.Zero, Decel * (float)delta);
+                if(d <= StopDistance)
+                {
+                    ActiveEnemy.Velocity = Vector2.Zero;
+                }
+                else
+                {
+                    ActiveEnemy.Velocity = ActiveEnemy.Velocity.MoveToward(Vector2.Zero, Decel * (float)delta);
+                }
             }
         }
 

@@ -27,7 +27,7 @@ public partial class MermaidThrow : MermaidState
 
 			if(ActiveEnemy.HasTrident)
 			{
-				if(new Random().Next(2) == 1)
+				if(new Random().Next(3) >= 1)
 				{
 					GD.Print("The mermaid is throwing its trident");
 
@@ -43,7 +43,7 @@ public partial class MermaidThrow : MermaidState
 			} 
 			else if(ActiveEnemy.Shielded)
 			{
-				if(new Random().Next(2) == 1)
+				if(new Random().Next(3) >= 1)
 				{
 					GD.Print("The mermaid is throwing its shield");
 

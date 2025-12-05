@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=23 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
@@ -7,9 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dtook4le0doxv" path="res://Sprites/world/overworld_gc.png" id="3_depd0"]
 [ext_resource type="Texture2D" uid="uid://xvnrsto6o2h5" path="res://Sprites/world/overworld_pg.png" id="4_255qt"]
 [ext_resource type="Texture2D" uid="uid://cobka0qcnaod1" path="res://Sprites/world/overworld_gl.png" id="4_gknab"]
-[ext_resource type="Texture2D" uid="uid://bw8ajsv2c71mk" path="res://Resources/dayNight/dayNightCycleGradient.tres" id="4_he2dp"]
 [ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
-[ext_resource type="PackedScene" uid="uid://dsvb4dww26unt" path="res://Scenes/dayNightCycle/dayNightCycle.tscn" id="8_gqpsm"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
 [ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
 [ext_resource type="PackedScene" uid="uid://ddq3hijvn1xf3" path="res://Scenes/entities/npcs/Guide.tscn" id="10_y80uk"]
@@ -49,7 +47,6 @@ radius = 302.49792
 
 [node name="Overworld" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(-16, 127)
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -81,10 +78,6 @@ texture = ExtResource("1_pnd8i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uny04")
-
-[node name="CanvasModulate" parent="." instance=ExtResource("8_gqpsm")]
-gradient = ExtResource("4_he2dp")
-INGAME_SPEED = 50.0
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true

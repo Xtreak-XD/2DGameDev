@@ -26,6 +26,8 @@ public partial class Interface : CanvasLayer
     private Label moneyAmt;
     public MetaData playerMetaData;
 
+    public Sprite2D sunMoonSprite;
+
     public TextureProgressBar health;
     public TextureProgressBar stamina;
 
@@ -48,6 +50,8 @@ public partial class Interface : CanvasLayer
         Ammo = GetNode<Label>("HUD/playerinfo/HBoxContainer/VBoxContainer/HBoxContainer/AmmoAmount"); 
         stamina = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Stamina");
         health = GetNode<TextureProgressBar>("HUD/playerinfo/HBoxContainer/VBoxContainer/Health");
+
+        sunMoonSprite = GetNode<Sprite2D>("HUD/day cycle/PanelContainer/SubViewportContainer/SubViewport/Sprite2D");
 
         time = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/time");
         curDay = GetNode<Label>("HUD/day cycle/PanelContainer/cycleInfo/day");
@@ -83,14 +87,19 @@ public partial class Interface : CanvasLayer
     {
         //set temp in c
         this.temp.Text = ((int)temp).ToString() + "°F";
+
+        float timeOfDay = (hour + (min / 60f)) / 24f;
+        sunMoonSprite.Rotation = timeOfDay * Mathf.Tau;
+
+
         //setting time
         if (hour >= 12 && hour <= 23)
         {
-            time.Text = hour.ToString() + ":" + min.ToString() + " PM";
+            time.Text = hour.ToString() + ":" + min.ToString("D2") + " PM";
         }
         else
         {
-            time.Text = hour.ToString() + ":" + min.ToString() + " AM";
+            time.Text = hour.ToString() + ":" + min.ToString("D2") + " AM";
         }
 
         //setting day

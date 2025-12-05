@@ -77,7 +77,7 @@ public partial class GoToArenaCenter : RoaryState
         }
 
         Vector2 direction = (CENTER_POSITION - ActiveEnemy.GlobalPosition).Normalized();
-		//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+		ActiveEnemy.animation(direction);
 		ActiveEnemy.Velocity = direction * ActiveEnemy.data.Speed * 
 		((float)delta * (float)ActiveEnemy.data.Accel);
 		ActiveEnemy.MoveAndSlide();

@@ -23,8 +23,6 @@ public partial class AudioGlobal : Node
         eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.sceneChanged += OnSceneChanged;
 
-        //LoadAndApplySettings();
-
 		// Get or create the AudioStreamPlayer child
 		musicPlayer = GetNodeOrNull<AudioStreamPlayer>("MusicPlayer");
 

@@ -72,7 +72,7 @@ public partial class LateralDash : RoaryState
             return InBetweenAttack();
         }
 
-        //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+        ActiveEnemy.animation(direction);
 		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 
 		 1.8f * (ActiveEnemy.TrueAcceleration() * (float) delta);
 

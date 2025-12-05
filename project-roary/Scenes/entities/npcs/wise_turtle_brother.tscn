@@ -8,9 +8,10 @@
 radius = 13.152946
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4uly"]
-radius = 34.0147
+radius = 124.08163
 
 [node name="WiseTurtleBrother" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("1_xjdo7")

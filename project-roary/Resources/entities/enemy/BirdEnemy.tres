@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("2_0bog2")
-MinDropTime = 0.1
-MaxDropTime = 1.0
+Speed = 1500.0
 PoopScene = ExtResource("1_foyf4")
 metadata/_custom_type_script = "uid://bl58y7ylealem"

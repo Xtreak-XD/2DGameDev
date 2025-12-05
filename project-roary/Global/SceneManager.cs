@@ -4,7 +4,7 @@ using Godot;
 
 public partial class SceneManager : Node
 {
-    Node currentScene;
+    public Node currentScene;
     public Eventbus eventbus;
     public TransitionManager transitionManager;
     Player player;

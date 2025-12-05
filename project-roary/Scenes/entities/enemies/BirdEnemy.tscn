@@ -2,81 +2,216 @@
 
 [ext_resource type="Script" uid="uid://dtyikbhfasq7p" path="res://Scripts/entities/enemies/bird/Bird.cs" id="1_nipbw"]
 [ext_resource type="Resource" uid="uid://b74mdqacjepoq" path="res://Resources/entities/enemy/BirdEnemy.tres" id="2_dh5t2"]
-[ext_resource type="Texture2D" uid="uid://d2qwwai6k06v4" path="res://placeholderTestAssets/BIRDSPRITESHEET_Blue.png" id="2_k5r7w"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dh5t2"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(0, 224, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1nm6b"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(32, 224, 32, 32)
+[ext_resource type="Texture2D" uid="uid://bghrcu70c32mn" path="res://Sprites/entities/enemies/Complete_Spritesheet_of_Bird_Flying.png" id="3_1nm6b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3thx7"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(64, 224, 32, 32)
+atlas = ExtResource("3_1nm6b")
+region = Rect2(0, 0, 177, 122)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nipbw"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(96, 224, 32, 32)
+atlas = ExtResource("3_1nm6b")
+region = Rect2(177, 0, 177, 122)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w7pxh"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(0, 288, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5r7w"]
+atlas = ExtResource("3_1nm6b")
+region = Rect2(0, 122, 177, 122)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j8abi"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(32, 288, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2vhox"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(64, 288, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjlce"]
-atlas = ExtResource("2_k5r7w")
-region = Rect2(96, 288, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0gqy"]
+atlas = ExtResource("3_1nm6b")
+region = Rect2(177, 122, 177, 122)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dh5t2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dh5t2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1nm6b")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_3thx7")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nipbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5r7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0gqy")
 }],
 "loop": true,
-"name": &"FlyLeft",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w7pxh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j8abi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2vhox")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mjlce")
-}],
-"loop": true,
-"name": &"FlyRight",
+"name": &"FLY",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1nm6b"]
 radius = 24.0
 
+[sub_resource type="Animation" id="Animation_dh5t2"]
+resource_name = "FlyLeft"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SpriteFrames_dh5t2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"FLY"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1nm6b"]
+resource_name = "FlyRight"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SpriteFrames_dh5t2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"FLY"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3thx7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SpriteFrames_dh5t2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"FLY"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3thx7"]
+_data = {
+&"FlyLeft": SubResource("Animation_dh5t2"),
+&"FlyRight": SubResource("Animation_1nm6b"),
+&"RESET": SubResource("Animation_3thx7")
+}
+
 [node name="Bird" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_nipbw")
@@ -86,8 +221,14 @@ BirdProperties = ExtResource("2_dh5t2")
 position = Vector2(162, 98)
 scale = Vector2(3.1250002, 3.1250002)
 sprite_frames = SubResource("SpriteFrames_dh5t2")
-animation = &"FlyRight"
+animation = &"FLY"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(160, 104)
 shape = SubResource("CircleShape2D_1nm6b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3thx7")
+}

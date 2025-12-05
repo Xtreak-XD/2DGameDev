@@ -10,6 +10,7 @@ public partial class Player : CharacterBody2D
 	public AnimationPlayer animationPlayer;
 	public PlayerStateMachine stateMachine;
 
+	public Camera2D camera;
 	public Vector2 cardinalDirection = Vector2.Down;
 	public Vector2 direction = Vector2.Zero;
 	public Vector2 lastDirection = Vector2.Zero;
@@ -33,6 +34,8 @@ public partial class Player : CharacterBody2D
 	public bool usingStamina = false;
 	public bool recoveringStamina = false;
 
+	string currentScene;
+
 	[Export] public float rateOfStaminaRecovery;
 	[Export] public int amountOfStaminaRecovered;
 
@@ -43,6 +46,8 @@ public partial class Player : CharacterBody2D
     public override void _EnterTree()
     {
 		AddToGroup("player");
+		currentScene = GetParent().Name;
+		setCam();
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.itemDropped += spawnItemInWorld;
 		eventbus.itemEquipped += equipItem;
@@ -54,9 +59,37 @@ public partial class Player : CharacterBody2D
 		stateMachine = GetNode<PlayerStateMachine>("PlayerStateMachine");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		stateMachine.Initialize(this);
+		camera = GetNode<Camera2D>("Camera2D");
 
 		inv = GetNode<Inventory>("/root/Inventory");
 	}
+
+	public void setCam()
+    {
+        switch (currentScene)
+        {
+            case "Stadiumn":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "GreenLibrary":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "NaturePreserve":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "GrahamCenter":
+				camera.LimitBottom = 5000;
+				camera.LimitRight = 5000;
+				break;
+			case "Overworld":
+				break;
+			case "ParkingGarage":
+				break;
+        }
+    }
 
 	public override void _Process(double delta)
 	{

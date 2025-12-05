@@ -14,7 +14,8 @@ public partial class DiedScreen : Control
         sceneManager = GetNode<SceneManager>("/root/SceneManager");
         restart = GetNode<Button>("buttons/restart");
         mainMenu = GetNode<Button>("buttons/mainMenu");
-        
+        var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
+        dayNight.Visible = false;
 
         restart.Pressed += onRestart;
         mainMenu.Pressed += onMainMenu;
@@ -24,6 +25,9 @@ public partial class DiedScreen : Control
     {
         restart.Pressed -= onRestart;
         mainMenu.Pressed -= onMainMenu;
+
+        var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
+        dayNight.Visible = true;
     }
 
 

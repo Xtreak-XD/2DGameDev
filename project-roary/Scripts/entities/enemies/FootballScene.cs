@@ -45,7 +45,7 @@ public partial class FootballScene : Enemy
 
     public override void _Ready()
     {
-        PackedScene footballPlayer = GD.Load<PackedScene>("Scenes/entities/enemies/FootballPlayer.tscn");
+        PackedScene footballPlayer = GD.Load<PackedScene>("res://Scenes/entities/enemies/FootballPlayer.tscn");
         FootballPlayer footballPlayerInstance = (FootballPlayer)footballPlayer.Instantiate();
         Sprite2D footballPlayerSprite = footballPlayerInstance.GetNode<Sprite2D>("Sprite2D");
 
@@ -128,11 +128,11 @@ public partial class FootballScene : Enemy
             case SpawnLocation.North:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(footballPlayerWidth * i, 0);
+                    spawnPosition = new Vector2(footballPlayerWidth * i, -100);
                     FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
+                    footballPlayerDup.Position = spawnPosition;
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;
@@ -140,11 +140,11 @@ public partial class FootballScene : Enemy
             case SpawnLocation.East:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(viewportWidth, 0 + (footballPlayerHeight * (i + 1)));
+                    spawnPosition = new Vector2(viewportWidth + 100, footballPlayerHeight * i);
                     FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
+                    footballPlayerDup.Position = spawnPosition;
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;
@@ -152,11 +152,11 @@ public partial class FootballScene : Enemy
             case SpawnLocation.South:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(footballPlayerWidth * i, viewportHeight);
+                    spawnPosition = new Vector2(footballPlayerWidth * i, viewportHeight + 100);
                     FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
+                    footballPlayerDup.Position = spawnPosition;
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;
@@ -164,11 +164,11 @@ public partial class FootballScene : Enemy
             case SpawnLocation.West:
                 for (int i = 0; i < numberToSpawn; i++)
                 {
-                    spawnPosition = new Vector2(0, 0 + (footballPlayerHeight * (i + 1)));
+                    spawnPosition = new Vector2(-100, footballPlayerHeight * i);
                     FootballPlayer footballPlayerDup = (FootballPlayer)footballPlayerInstance.Duplicate(7);
                     footballPlayerDup.Name = $"footballPlayer{i + 1}";
-                    footballPlayerDup.GlobalPosition = spawnPosition;
                     AddChild(footballPlayerDup);
+                    footballPlayerDup.Position = spawnPosition;
                     footballPlayers.Add(footballPlayerDup);
                 }
                 break;

@@ -829,4 +829,4 @@ wait_time = 0.3
 one_shot = true
 
 [node name="RoaryGlobalAttackTimer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 1.5

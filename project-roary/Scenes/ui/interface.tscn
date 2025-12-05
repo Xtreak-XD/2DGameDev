@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cwohgp4x586qn" path="res://Scenes/ui/inventory/inventoryUI.tscn" id="7_inventory"]
 
 [node name="Interface" type="CanvasLayer"]
+layer = 10
 follow_viewport_enabled = true
 script = ExtResource("1_efdi4")
 

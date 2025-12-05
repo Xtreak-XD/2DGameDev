@@ -13,12 +13,18 @@ public partial class SummonFootballStampede : RoaryState
 		chargeDuration = GetParent().GetNode<Timer>("FootballChargeDuration");
 
 		chargeDuration.Timeout += SetChange;
-		chargeDuration.Start();
 	}
 
 	public override void EnterState()
 	{
 		GD.Print("Roary has summoned a stampede of football players.");
+
+		// Stop all movement during stampede
+		ActiveEnemy.Velocity = Vector2.Zero;
+		Change = false;
+
+		// Start the timer when entering this state
+		chargeDuration.Start();
 
 		Vector2 viewSize = GetViewport().GetVisibleRect().Size;
 
@@ -32,10 +38,15 @@ public partial class SummonFootballStampede : RoaryState
 	public override void ExitState()
     {
         ActiveEnemy.AdvancePhase();
+		chargeDuration.Stop();
     }
 
     public override RoaryState Process(double delta)
     {
+		// Keep Roary still during stampede
+		ActiveEnemy.Velocity = Vector2.Zero;
+		ActiveEnemy.MoveAndSlide();
+
 		if(Change)
         {
             return Roam;

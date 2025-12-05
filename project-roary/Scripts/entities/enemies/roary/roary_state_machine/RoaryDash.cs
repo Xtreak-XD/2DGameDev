@@ -42,13 +42,31 @@ public partial class RoaryDash : RoaryState
             Vector2 currentPos = ActiveEnemy.GlobalPosition;
             Vector2 targetVel = ActiveEnemy.target.Velocity;
 
-            Vector2 velocity = currentPos.Lerp(targetPos + targetVel, 200).Normalized();
+            Vector2 predictedPos = targetPos + (targetVel * .5f);
+            Vector2 velocity = (predictedPos + targetVel).Normalized();
+
+            Vector2 targetDir = (targetPos - currentPos).Normalized();
+            velocity = velocity.Lerp(targetDir,.2f);
 
             ActiveEnemy.animation(velocity);
-            ActiveEnemy.Velocity = velocity * ActiveEnemy.TrueSpeed() * 
+            ActiveEnemy.Velocity = velocity * ActiveEnemy.TrueSpeed() *
             2.5f * (ActiveEnemy.TrueAcceleration() * (float) delta);
-            
+
             ActiveEnemy.MoveAndSlide();
+
+            // Check if Roary hit a wall
+            if(ActiveEnemy.GetSlideCollisionCount() > 0)
+            {
+                for(int i = 0; i < ActiveEnemy.GetSlideCollisionCount(); i++)
+                {
+                    var collision = ActiveEnemy.GetSlideCollision(i);
+                    if(collision.GetCollider() is StaticBody2D) // Hit a wall
+                    {
+                        dashTimer.Stop();
+                        return InBetweenAttack();
+                    }
+                }
+            }
 
             if(EndChargeEarly)
             {
@@ -57,7 +75,7 @@ public partial class RoaryDash : RoaryState
             }
 
             if(targetPos.DistanceTo(currentPos) <= 90) // Change for attack radius.
-            {										  
+            {
                 dashTimer.Stop();
                 return InBetweenAttack();
             }

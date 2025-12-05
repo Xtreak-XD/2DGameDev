@@ -27,6 +27,9 @@ public partial class SummonOrbitalHeads : RoaryState
 		attackTimer.Start();
 		attackOver = false;
 
+		// Stop movement during orbital head summon
+		ActiveEnemy.Velocity = Vector2.Zero;
+
 		if(ActiveEnemy.target != null)
         {
             for(int i = 0; i <= 360; i += 90)

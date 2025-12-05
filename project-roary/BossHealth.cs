@@ -4,7 +4,7 @@ using System;
 public partial class BossHealth : CanvasLayer
 {
 	private TextureProgressBar health;
-	private CharacterBody2D boss;
+	private Enemy boss;
 	private Label bossName; 
 	private Eventbus eventbus;
 	public override void _Ready()
@@ -21,7 +21,7 @@ public partial class BossHealth : CanvasLayer
 
 		if (bossNodes.Count > 0)
         {
-            boss = bossNodes[0] as CharacterBody2D;
+            boss = bossNodes[0] as Enemy;
         }
 
 		if (boss == null)
@@ -30,8 +30,15 @@ public partial class BossHealth : CanvasLayer
 			return;
         }
 
-		bossName.Text = boss.Name;
+		if (boss.data == null)
+		{
+			GD.PrintErr("BossHealth: Boss data not found!");
+			return;
+		}
 
+		bossName.Text = boss.Name;
+		health.MaxValue = boss.data.MaxHealth;
+		health.Value = boss.data.Health;
 		eventbus.updateBossHealth += updateHealth;
     }
 
@@ -39,5 +46,12 @@ public partial class BossHealth : CanvasLayer
     {
         health.Value = value;
     }
-	
+
+	public override void _ExitTree()
+	{
+		if (eventbus != null)
+		{
+			eventbus.updateBossHealth -= updateHealth;
+		}
+	}
 }

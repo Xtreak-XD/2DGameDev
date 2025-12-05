@@ -73,8 +73,27 @@ public partial class LateralDash : RoaryState
         }
 
         ActiveEnemy.animation(direction);
-		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 
+		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() *
 		 1.8f * (ActiveEnemy.TrueAcceleration() * (float) delta);
+
+        ActiveEnemy.MoveAndSlide();
+
+        // Check if Roary hit a wall and bounce off
+        if(ActiveEnemy.GetSlideCollisionCount() > 0)
+        {
+            for(int i = 0; i < ActiveEnemy.GetSlideCollisionCount(); i++)
+            {
+                var collision = ActiveEnemy.GetSlideCollision(i);
+                if(collision.GetCollider() is StaticBody2D) // Hit a wall
+                {
+                    // Bounce off the wall using the collision normal
+                    Vector2 normal = collision.GetNormal();
+                    direction = direction.Bounce(normal);
+                    chargeDirection = (chargeDirection == Direction.East) ? Direction.West : Direction.East;
+                    break;
+                }
+            }
+        }
 
         return null;
     }

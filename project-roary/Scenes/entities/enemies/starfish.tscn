@@ -13,11 +13,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4k3sw"]
 radius = 77.82673
 
-[node name="Starfish" type="CharacterBody2D" node_paths=PackedStringArray("projectileTimer")]
+[node name="Starfish" type="CharacterBody2D"]
 scale = Vector2(0.9047619, 0.8888889)
 script = ExtResource("1_uif1x")
 bubbleProjectile = ExtResource("3_dehck")
-projectileTimer = NodePath("ProjectileTimer")
 data = ExtResource("2_hcr8f")
 
 [node name="StarfishCollider" type="CollisionShape2D" parent="."]

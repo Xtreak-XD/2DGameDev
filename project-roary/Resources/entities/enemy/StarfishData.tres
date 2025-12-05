@@ -6,4 +6,4 @@
 script = ExtResource("1_k5qs6")
 _health = 40
 MaxHealth = 40
-Damage = 8
+Damage = 10

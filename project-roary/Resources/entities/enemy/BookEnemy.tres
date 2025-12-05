@@ -6,5 +6,5 @@
 script = ExtResource("1_rv4it")
 _health = 50
 MaxHealth = 50
-Damage = 15
+Damage = 12
 metadata/_custom_type_script = "uid://dkov12aknt46v"

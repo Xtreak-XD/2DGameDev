@@ -9,88 +9,62 @@
 [node name="GreenLibraryBoss" type="Node2D"]
 
 [node name="MapBase" type="Sprite2D" parent="."]
-position = Vector2(4753, 4757)
-scale = Vector2(1.9, 1.9)
+position = Vector2(2497, 2500.9995)
 texture = ExtResource("1_puw3y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(4767, 4755.0005)
-scale = Vector2(1.9, 1.9)
+[node name="MapWall" type="Sprite2D" parent="."]
+position = Vector2(2504, 2501)
 texture = ExtResource("2_xy52c")
 
 [node name="Logo" parent="." node_paths=PackedStringArray("starfishSpawns") instance=ExtResource("1_g1wpv")]
-position = Vector2(4667, 4257)
+position = Vector2(2440, 2184)
 starfishSpawns = [NodePath("../StarfishSpawnContainer/StarfishSpawn1"), NodePath("../StarfishSpawnContainer/StarfishSpawn2"), NodePath("../StarfishSpawnContainer/StarfishSpawn3"), NodePath("../StarfishSpawnContainer/StarfishSpawn4"), NodePath("../StarfishSpawnContainer/StarfishSpawn5"), NodePath("../StarfishSpawnContainer/StarfishSpawn6"), NodePath("../StarfishSpawnContainer/StarfishSpawn7"), NodePath("../StarfishSpawnContainer/StarfishSpawn8"), NodePath("../StarfishSpawnContainer/StarfishSpawn9")]
 
 [node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("3_qfpo3")]
 spawnsAvailable = [NodePath("fromGreenLibrary"), NodePath("fromNothing")]
 
 [node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(4906, 8776)
+position = Vector2(2645, 4353)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(4902, 9031)
+position = Vector2(2623, 4661)
 
 [node name="StarfishSpawnContainer" type="Node" parent="."]
 
 [node name="StarfishSpawn1" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(8099, 2898)
+position = Vector2(3876, 1266)
 
 [node name="StarfishSpawn2" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(959, 6872)
+position = Vector2(901, 2272)
 
 [node name="StarfishSpawn3" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(8127, 7026)
+position = Vector2(3770, 3456)
 
 [node name="StarfishSpawn4" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(844, 2822)
+position = Vector2(873, 1077)
 
 [node name="StarfishSpawn5" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(7872, 5097)
+position = Vector2(3707, 2275)
 
 [node name="StarfishSpawn6" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(880, 4962)
+position = Vector2(822, 3350)
 
 [node name="StarfishSpawn7" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(6868, 1065)
+position = Vector2(3029, 796)
 
 [node name="StarfishSpawn8" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(2531, 1142)
+position = Vector2(1619, 709)
 
 [node name="StarfishSpawn9" type="Marker2D" parent="StarfishSpawnContainer"]
-position = Vector2(4796, 6939)
-
-[node name="MapColiisions" type="Node" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="MapColiisions"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapColiisions/StaticBody2D"]
-polygon = PackedVector2Array(-70, -3, 9519, 19, 9519, 712, 38, 680)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="MapColiisions"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapColiisions/StaticBody2D2"]
-position = Vector2(17.697266, 717.5813)
-polygon = PackedVector2Array(21.302734, 21.418701, 401.30273, 21.418701, 380.30273, 7030.419, 0.30273438, 7030.419)
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="MapColiisions"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapColiisions/StaticBody2D3"]
-position = Vector2(9121, 667)
-polygon = PackedVector2Array(21.302734, 21.418701, 401.30273, 21.418701, 382.07227, 6440.447, 380.30273, 7030.419, 0.30273438, 7030.419, 13.839844, 2512.444)
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="MapColiisions"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapColiisions/StaticBody2D4"]
-position = Vector2(17.704102, 7769.588)
-polygon = PackedVector2Array(-84.7041, 0.41210938, 3505.296, 0.41210938, 3505.296, 1731.4121, 0.29589844, 1731.4121)
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="MapColiisions"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapColiisions/StaticBody2D5"]
-position = Vector2(6331, 7770)
-polygon = PackedVector2Array(-84.7041, 0.41210938, 3505.296, 0.41210938, 3505.296, 1731.4121, 0.29589844, 1731.4121)
+position = Vector2(2589, 3887)
 
 [node name="BossToGL" parent="." instance=ExtResource("4_c1hed")]
-position = Vector2(4918, 9377)
+position = Vector2(2626, 4951)
 path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision"]
+polygon = PackedVector2Array(-12, -21, 11, 4999, 1840, 4988, 1841, 5502, 3068, 5510, 3064, 5008, 2107, 4994, 2101, 4783, 1845, 4777, 1851, 4088, 183, 4082, 233, 379, 4786, 368, 4786, 368, 4809, 4093, 3263, 4088, 3280, 4783, 3041, 4783, 3052, 4999, 5003, 4994, 5014, 1)

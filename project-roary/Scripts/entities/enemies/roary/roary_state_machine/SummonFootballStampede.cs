@@ -29,12 +29,15 @@ public partial class SummonFootballStampede : RoaryState
 		footballScene.Position = GetViewport().GetVisibleRect().Position;
 	}
 
+	public override void ExitState()
+    {
+        ActiveEnemy.AdvancePhase();
+    }
+
     public override RoaryState Process(double delta)
     {
 		if(Change)
         {
-			ActiveEnemy.AdvancePhase();
-			
             return Roam;
         }
 

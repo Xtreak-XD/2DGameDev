@@ -55,18 +55,21 @@ public partial class GoToArenaCenter : RoaryState
         {
             ActiveEnemy.Velocity = Vector2.Zero;
 
-			if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.65)
+			if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.65 && !ActiveEnemy.SummonedFirstStampede)
             {
+				ActiveEnemy.SummonedFirstStampede = true;
                 return SummonFootballStampede;
             }
 
-			if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.35)
+			if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.35 && !ActiveEnemy.SummonedSecondStampede)
             {
+				ActiveEnemy.SummonedSecondStampede = true;
                 return SummonFootballStampede;
             }
 
-			if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1)
+			if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1 && !ActiveEnemy.SummonedThirdStampede)
             {
+				ActiveEnemy.SummonedThirdStampede = true;
                 return SummonFootballStampede;
             }
 

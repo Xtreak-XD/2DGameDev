@@ -61,18 +61,21 @@ public partial class MoveTowardPlayer : RoaryState
             ((float)delta * ActiveEnemy.TrueAcceleration());
             ActiveEnemy.MoveAndSlide();
 
-            if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.65)
+            if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.65 && !ActiveEnemy.SummonedFirstStampede)
             {
+                ActiveEnemy.SummonedFirstStampede = true;
                 return GoToCenter;
             }
 
-            if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.35)
+            if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.35 && !ActiveEnemy.SummonedSecondStampede)
             {
+                ActiveEnemy.SummonedSecondStampede = true;
                 return GoToCenter;
             }
 
-            if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1)
+            if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1 && !ActiveEnemy.SummonedThirdStampede)
             {
+                ActiveEnemy.SummonedThirdStampede = true;
                 return GoToCenter;
             }
 

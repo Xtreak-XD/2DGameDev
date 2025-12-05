@@ -14,12 +14,15 @@ public partial class Items : Sprite2D
 	private Inventory inv;
 	private Eventbus eventbus;
 
+	private SaveManager saveManager;
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		interactionArea = GetNode<interactionArea>("InteractionArea");
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		saveManager = GetNode<SaveManager>("/root/SaveManager");
 		inv = GetNode<Inventory>("/root/Inventory");
 
 		if (interactionArea == null)
@@ -44,6 +47,15 @@ public partial class Items : Sprite2D
 
 	public void pickUpItem()
 	{
+		if(itemResource.itemName == "Coin")
+        {
+			saveManager.metaData.updateMoney(itemQuantity);
+			eventbus.EmitSignal(Eventbus.SignalName.updateMoney, saveManager.metaData.Money);
+			eventbus.EmitSignal(Eventbus.SignalName.interactionComplete);
+			QueueFree();
+            return;
+        }
+
 		if (inv == null)
 		{
 			GD.PrintErr("Inventory node not found!");

@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://con1q0nhgkj8i"]
 
 [ext_resource type="Script" uid="uid://c3of3utw4kpaw" path="res://Scripts/entities/car/DriveableCar.cs" id="1_n2rgb"]
-[ext_resource type="Texture2D" uid="uid://b1twhsk52s8ia" path="res://Sprites/entities/player/driveable_car.jpeg" id="1_u0rys"]
 [ext_resource type="Script" uid="uid://c5suem3u3axdw" path="res://Scripts/entities/car/car_state_machine/CarStateMachine.cs" id="2_0u1t5"]
 [ext_resource type="Resource" uid="uid://y0yi8axjpmqh" path="res://Resources/entities/player/CarStats.tres" id="2_sbjmw"]
 [ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="3_pc2um"]
 [ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="3_rrs41"]
+[ext_resource type="Texture2D" uid="uid://b3hy5a6t1vikh" path="res://Sprites/entities/player/Untitled_Artwork_17.png" id="4_8qdtk"]
 [ext_resource type="Script" uid="uid://y24dyjapjtlc" path="res://Scripts/entities/car/car_state_machine/ParkState.cs" id="4_hjrlu"]
 [ext_resource type="Script" uid="uid://qkt22wionkvp" path="res://Scripts/entities/car/car_state_machine/DriveState.cs" id="5_7i5lx"]
 [ext_resource type="Script" uid="uid://c60jcyd2mmvco" path="res://Scripts/entities/car/car_state_machine/DecelerateState.cs" id="6_7i5lx"]
@@ -43,8 +43,8 @@ rateOfStaminaRecovery = 1.0
 amountOfStaminaRecovered = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2027027)
-texture = ExtResource("1_u0rys")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_8qdtk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rrs41")

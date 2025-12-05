@@ -587,4 +587,5 @@ shape = SubResource("CapsuleShape2D_hsg6v")
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_6nq1m")
+bus = &"EnemySFX"
 script = ExtResource("11_24kyf")

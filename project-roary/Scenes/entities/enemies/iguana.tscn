@@ -988,4 +988,5 @@ shape = SubResource("CircleShape2D_vh2wc")
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_m7bow")
+bus = &"EnemySFX"
 script = ExtResource("12_vh2wc")

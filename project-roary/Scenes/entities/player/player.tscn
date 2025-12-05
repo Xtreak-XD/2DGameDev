@@ -1924,4 +1924,5 @@ follow_viewport_enabled = false
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ugpsk")
+bus = &"PlayerSFX"
 script = ExtResource("18_pdfve")

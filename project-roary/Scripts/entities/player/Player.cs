@@ -34,6 +34,8 @@ public partial class Player : CharacterBody2D
 	public bool usingStamina = false;
 	public bool recoveringStamina = false;
 
+	string currentScene;
+
 	[Export] public float rateOfStaminaRecovery;
 	[Export] public int amountOfStaminaRecovered;
 
@@ -44,6 +46,8 @@ public partial class Player : CharacterBody2D
     public override void _EnterTree()
     {
 		AddToGroup("player");
+		currentScene = GetParent().Name;
+		setCam();
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.itemDropped += spawnItemInWorld;
 		eventbus.itemEquipped += equipItem;
@@ -57,7 +61,12 @@ public partial class Player : CharacterBody2D
 		stateMachine.Initialize(this);
 		camera = GetNode<Camera2D>("Camera2D");
 
-        switch (GetParent().Name)
+		inv = GetNode<Inventory>("/root/Inventory");
+	}
+
+	public void setCam()
+    {
+        switch (currentScene)
         {
             case "Stadiumn":
 				camera.LimitBottom = 5000;
@@ -80,10 +89,7 @@ public partial class Player : CharacterBody2D
 			case "ParkingGarage":
 				break;
         }
-
-
-		inv = GetNode<Inventory>("/root/Inventory");
-	}
+    }
 
 	public override void _Process(double delta)
 	{

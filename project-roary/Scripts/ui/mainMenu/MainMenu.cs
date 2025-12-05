@@ -68,7 +68,6 @@ public partial class MainMenu : Control
             return;
         }
         saveManager.CreateNewSave(firstScenePath);
-        //add some animation story thing here!
         sceneManager.goToScene(this, firstScenePath, false);
     }
 

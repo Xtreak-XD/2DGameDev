@@ -1,0 +1,239 @@
+[gd_scene load_steps=11 format=3 uid="uid://5ik227pw3fu7"]
+
+[ext_resource type="Script" uid="uid://delcexq4iyx0b" path="res://Global/TransitionManager.cs" id="1_1yf5f"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="2_42olk"]
+[ext_resource type="Texture2D" uid="uid://bfcpvrx81s1m5" path="res://Sprites/inventory/Inventory Background.png" id="3_m46bv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i1uqr"]
+texture = ExtResource("3_m46bv")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="Animation" id="Animation_42olk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.09411765, 0.18039216, 0.43529412, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RichTextLabel:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["A new school. A fresh start. The morning sun warms the campus as you pull in, engine humming with a mix of nerves and excitement. 
+
+Students are already drifting between buildings, backpacks slung over their shoulders, the day just beginning. And somewhere in this crowded parking lot, a spot is waiting for you…........
+
+probably."]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RichTextLabel:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_15xgf"]
+resource_name = "fade_to_blue"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(1920, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.09411765, 0.18039216, 0.43529412, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1yf5f"]
+resource_name = "fade_to_normal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1920, 1080), Vector2(0, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.9372549, 0.7490196, 0.015686275, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m46bv"]
+resource_name = "Intro_Opening"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["A new school. A fresh start. The morning sun warms the campus as you pull in, engine humming with a mix of nerves and excitement. 
+
+Students are already drifting between buildings, backpacks slung over their shoulders, the day just beginning. And somewhere in this crowded parking lot, a spot is waiting for you…........
+
+probably."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_i1uqr"]
+resource_name = "Opening_World"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["You did it. You actually found a parking spot. Miracles happen.
+But now the real chaos begins.
+
+Welcome to campus—where everyone is in a rush, nothing makes sense, and even the squirrels look like they want to fight you. If you want to stand a chance out here, you’ll probably need some supplies. Luckily, the GC sells… well, everything. Mostly.
+
+Good luck. You’re gonna need it."]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_42olk"]
+_data = {
+&"Intro_Opening": SubResource("Animation_m46bv"),
+&"Opening_World": SubResource("Animation_i1uqr"),
+&"RESET": SubResource("Animation_42olk"),
+&"fade_to_blue": SubResource("Animation_15xgf"),
+&"fade_to_normal": SubResource("Animation_1yf5f")
+}
+
+[node name="TransitionManager" type="CanvasLayer" node_paths=PackedStringArray("fadeScreen", "animationPlayer", "textLabel")]
+layer = 0
+script = ExtResource("1_1yf5f")
+fadeScreen = NodePath("ColorRect")
+animationPlayer = NodePath("AnimationPlayer")
+textLabel = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/line_separation = 20
+theme_override_fonts/normal_font = ExtResource("2_42olk")
+theme_override_font_sizes/normal_font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_i1uqr")
+text = "A new school. A fresh start. The morning sun warms the campus as you pull in, engine humming with a mix of nerves and excitement. 
+
+Students are already drifting between buildings, backpacks slung over their shoulders, the day just beginning. And somewhere in this crowded parking lot, a spot is waiting for you…........
+
+probably."
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09411765, 0.18039216, 0.43529412, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_42olk")
+}

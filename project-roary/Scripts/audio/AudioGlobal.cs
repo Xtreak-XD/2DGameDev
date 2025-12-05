@@ -13,13 +13,10 @@ public partial class AudioGlobal : Node
 
 	private AudioStreamPlayer musicPlayer;
 
-    public override void _EnterTree()
-    {
-        LoadAndApplySettings();
-    }
-
 	public override void _Ready()
     {
+		LoadAndApplySettings();
+
         eventbus = GetNode<Eventbus>("/root/Eventbus");
 		eventbus.sceneChanged += OnSceneChanged;
 
@@ -86,16 +83,32 @@ public partial class AudioGlobal : Node
 		GD.Print($"Loaded settings - Music: {musicVolume}, Master: {masterVolume}");
 	}
 
-	public void SaveSettings(float master, float music, float playerSFX, float enemySFX)
-    {
-        var config = new ConfigFile();
-		config.Load("user://settings.cfg");
-		config.SetValue("audio", "master_volume", master);
-		config.SetValue("audio", "music_volume", music);
-		config.SetValue("audio", "playerSFX_volume", playerSFX);
-		config.SetValue("audio", "enemySFX_volume", enemySFX);
-		config.Save("user://settings.cfg");
-    }
+	// public void SaveSettings(float master, float music, float playerSFX, float enemySFX)
+    // {
+    //     var config = new ConfigFile();
+	// 	var err = config.Load("user://settings.cfg");
+
+	// 	// If config doesn't exist, it will be created when we save
+	// 	if (err != Error.Ok)
+	// 	{
+	// 		GD.Print("AudioGlobal: Creating new settings.cfg file");
+	// 	}
+
+	// 	config.SetValue("audio", "master_volume", master);
+	// 	config.SetValue("audio", "music_volume", music);
+	// 	config.SetValue("audio", "playerSFX_volume", playerSFX);
+	// 	config.SetValue("audio", "enemySFX_volume", enemySFX);
+
+	// 	var saveErr = config.Save("user://settings.cfg");
+	// 	if (saveErr != Error.Ok)
+	// 	{
+	// 		GD.PrintErr($"AudioGlobal: Failed to save settings.cfg - Error: {saveErr}");
+	// 	}
+	// 	else
+	// 	{
+	// 		GD.Print($"AudioGlobal: Settings saved - Master: {master}, Music: {music}, PlayerSFX: {playerSFX}, EnemySFX: {enemySFX}");
+	// 	}
+    // }
 
 	public void SetVolume(float value, string busName)
 	{

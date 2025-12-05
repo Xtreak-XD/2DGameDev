@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://d2v13hglqa2h0" path="res://Resources/items/Coin.tres" id="3_rtwpw"]
 
 [node name="Coin" instance=ExtResource("1_u2qj6")]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_t1eb3")
 itemResource = ExtResource("3_rtwpw")
 

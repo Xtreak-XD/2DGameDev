@@ -24,9 +24,8 @@ size = Vector2(4, 3)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x2xg"]
 size = Vector2(5, 5)
 
-[node name="MermaidPhase2" type="CharacterBody2D" node_paths=PackedStringArray("starfishSpawns")]
+[node name="Mermaid" type="CharacterBody2D"]
 script = ExtResource("1_5ihpc")
-starfishSpawns = []
 trident = ExtResource("2_jucnh")
 shield = ExtResource("3_3g5tb")
 starfishEnemy = ExtResource("4_5ejdx")

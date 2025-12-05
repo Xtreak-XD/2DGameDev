@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2ytf1v7y24q7"]
+[gd_scene load_steps=26 format=3 uid="uid://d2ytf1v7y24q7"]
 
 [ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
+[ext_resource type="Script" uid="uid://b75dymlryxtg" path="res://Scripts/map/PG/ParkingGarage.cs" id="1_581fp"]
 [ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
 [ext_resource type="PackedScene" uid="uid://con1q0nhgkj8i" path="res://Scenes/entities/player/DriveableCar.tscn" id="2_5wdrb"]
 [ext_resource type="PackedScene" uid="uid://dx7ll3dt60806" path="res://Scenes/entities/obstacles/dummy_car.tscn" id="2_wq2dn"]
@@ -40,6 +41,7 @@ outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ParkingGarage" type="Node2D"]
+script = ExtResource("1_581fp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4995, 5003)

@@ -27,6 +27,9 @@ public partial class SummonOrbitalHeads : RoaryState
 		attackTimer.Start();
 		attackOver = false;
 
+		// Stop movement during orbital head summon
+		ActiveEnemy.Velocity = Vector2.Zero;
+
 		if(ActiveEnemy.target != null)
         {
             for(int i = 0; i <= 360; i += 90)
@@ -61,7 +64,7 @@ public partial class SummonOrbitalHeads : RoaryState
 
 			Vector2 velocity = currentPos.Lerp(targetPos + targetVel, 200).Normalized();
 
-			//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
+			ActiveEnemy.animation(velocity);
 			ActiveEnemy.Velocity = velocity * ActiveEnemy.TrueSpeed() * 
 			(ActiveEnemy.TrueAcceleration() * (float) delta);
 			

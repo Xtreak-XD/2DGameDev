@@ -7,17 +7,23 @@ public partial class ShadowPaw : RoaryState
 	public GoToArenaCenter GoToCenter;
 	public MoveTowardPlayer MoveTowardPlayer;
 
+	private bool hasSpawned = false;
+
 	public override void _Ready()
     {
 		GoToCenter = GetParent().GetNode<GoToArenaCenter>("GoToArenaCenter");
 		MoveTowardPlayer = GetParent().GetNode<MoveTowardPlayer>("MoveTowardPlayer");
-		
+
 		projectileSource = GetParent().GetParent().GetNode<Marker2D>("ProjectileSource");
 	}
 
 	public override void EnterState()
     {
 		GD.Print("Roary summoned his shadow paw at the player");
+
+		// Stop movement during attack
+		ActiveEnemy.Velocity = Vector2.Zero;
+		hasSpawned = false;
 
 		if(ActiveEnemy.target != null)
         {
@@ -49,7 +55,17 @@ public partial class ShadowPaw : RoaryState
 	
 	public override RoaryState Process(double delta)
     {
-		return InBetweenAttack();	
+		// Keep Roary still during attack
+		ActiveEnemy.Velocity = Vector2.Zero;
+		ActiveEnemy.MoveAndSlide();
+
+		// Only spawn once, then transition on next frame
+		if(!hasSpawned)
+		{
+			hasSpawned = true;
+			return null;
+		}
+		return InBetweenAttack();
     }
 
 	public RoaryState InBetweenAttack()

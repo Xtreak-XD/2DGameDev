@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3pagaejfyou0"]
+
+[ext_resource type="Script" uid="uid://qrgk4tutng25" path="res://BossHealth.cs" id="1_846mg"]
+[ext_resource type="Theme" uid="uid://cxtctvyuxxeoi" path="res://Resources/misc/OptionsTitle.tres" id="2_w5y17"]
+[ext_resource type="Texture2D" uid="uid://j1gc51ng1reu" path="res://icon.svg" id="3_n8uce"]
+
+[node name="BossHealths" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_846mg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -477.0
+offset_top = 20.0
+offset_right = 477.0
+offset_bottom = 120.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="BossName" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_w5y17")
+horizontal_alignment = 1
+
+[node name="BossHealth" type="TextureProgressBar" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("3_n8uce")
+texture_progress = ExtResource("3_n8uce")
+tint_under = Color(1.0562959, 0.008885365, 0.008885365, 1)
+tint_progress = Color(2.7243412, 0, 0.44115412, 1)

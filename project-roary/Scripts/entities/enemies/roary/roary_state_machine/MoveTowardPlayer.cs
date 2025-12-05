@@ -11,8 +11,13 @@ public partial class MoveTowardPlayer : RoaryState
 	public ThrowFootball ThrowFootball;
     public RoaryRoam Roam;
     public ThrowFirework ThrowFirework;
-    
+
     public List<RoaryState> Attacks;
+
+    private Vector2 stuckPosition = Vector2.Zero;
+    private float stuckTimer = 0f;
+    private const float STUCK_THRESHOLD = 0.5f; // If stuck for 0.5 seconds
+    private bool backingIntoWall = false;
 
 	public override void _Ready()
     {
@@ -34,6 +39,9 @@ public partial class MoveTowardPlayer : RoaryState
     public override void EnterState()
     {
         GD.Print("Roary is moving towards the player.");
+        stuckPosition = ActiveEnemy.GlobalPosition;
+        stuckTimer = 0f;
+        backingIntoWall = false;
     }
 
     public override RoaryState Process(double delta)
@@ -47,35 +55,81 @@ public partial class MoveTowardPlayer : RoaryState
 
             if(!ActiveEnemy.CanAttack)
             {
-                //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
-                ActiveEnemy.Velocity = -direction * ActiveEnemy.TrueSpeed() * 1.2f *
-                ((float)delta * ActiveEnemy.TrueAcceleration());
+                ActiveEnemy.animation(direction);
+
+                // Only try to back away if not already against a wall
+                if(!backingIntoWall)
+                {
+                    ActiveEnemy.Velocity = -direction * ActiveEnemy.TrueSpeed() * 1.2f *
+                    ((float)delta * ActiveEnemy.TrueAcceleration());
+                }
+                else
+                {
+                    // If against wall, move sideways along the wall
+                    Vector2 perpendicular = new Vector2(-direction.Y, direction.X);
+                    ActiveEnemy.Velocity = perpendicular * ActiveEnemy.TrueSpeed() * 0.8f *
+                    ((float)delta * ActiveEnemy.TrueAcceleration());
+                }
 
                 ActiveEnemy.MoveAndSlide();
+
+                // Check if backing into a wall
+                backingIntoWall = false; // Reset each frame
+                if(ActiveEnemy.GetSlideCollisionCount() > 0)
+                {
+                    for(int i = 0; i < ActiveEnemy.GetSlideCollisionCount(); i++)
+                    {
+                        var collision = ActiveEnemy.GetSlideCollision(i);
+                        if(collision.GetCollider() is StaticBody2D)
+                        {
+                            backingIntoWall = true;
+                            break;
+                        }
+                    }
+                }
 
                 return null;
             }
 
-            //ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
-            ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 
+            ActiveEnemy.animation(direction);
+            ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() *
             ((float)delta * ActiveEnemy.TrueAcceleration());
             ActiveEnemy.MoveAndSlide();
 
-            if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.65 && !ActiveEnemy.SummonedFirstStampede)
+            // Check if stuck on a wall
+            if(ActiveEnemy.GlobalPosition.DistanceTo(stuckPosition) < 10f)
             {
-                ActiveEnemy.SummonedFirstStampede = true;
+                stuckTimer += (float)delta;
+                if(stuckTimer >= STUCK_THRESHOLD)
+                {
+                    return GoToCenter;
+                }
+            }
+            else
+            {
+                stuckPosition = ActiveEnemy.GlobalPosition;
+                stuckTimer = 0f;
+            }
+
+            GD.Print($"Health: {ActiveEnemy.GetHealthPercentage():F2}, Phase: {ActiveEnemy.Phase}");
+            if(ActiveEnemy.Phase == RoaryPhase.FIRST && ActiveEnemy.GetHealthPercentage() <= 0.75 && !ActiveEnemy.SummonedFirstStampede)
+            {
+                GD.Print("Phase 1 → 2 transition triggered at 75% HP");
+                ActiveEnemy.SummonedFirstStampede = true; 
                 return GoToCenter;
             }
 
-            if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.35 && !ActiveEnemy.SummonedSecondStampede)
+            if(ActiveEnemy.Phase == RoaryPhase.SECOND && ActiveEnemy.GetHealthPercentage() <= 0.45 && !ActiveEnemy.SummonedSecondStampede)
             {
-                ActiveEnemy.SummonedSecondStampede = true;
+                GD.Print("Phase 2 → 3 transition triggered at 45% HP");
+                ActiveEnemy.SummonedSecondStampede = true; 
                 return GoToCenter;
             }
 
-            if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.1 && !ActiveEnemy.SummonedThirdStampede)
+            if(ActiveEnemy.Phase == RoaryPhase.THIRD && ActiveEnemy.GetHealthPercentage() <= 0.25 && !ActiveEnemy.SummonedThirdStampede)
             {
-                ActiveEnemy.SummonedThirdStampede = true;
+                GD.Print("Final stampede triggered at 25% HP");
+                ActiveEnemy.SummonedThirdStampede = true; 
                 return GoToCenter;
             }
 

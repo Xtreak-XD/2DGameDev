@@ -49,10 +49,26 @@ public partial class RoaryRoam : RoaryState
         }
 
         Vector2 direction = (newPos - ActiveEnemy.GlobalPosition).Normalized();
-		//ActiveEnemy.animation(direction); COMMENTED OUT BECAUSE WE DO NOT HAVE ANIMATIONS
-		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() * 
+		ActiveEnemy.animation(direction);
+		ActiveEnemy.Velocity = direction * ActiveEnemy.TrueSpeed() *
 		((float)delta * ActiveEnemy.TrueAcceleration());
 		ActiveEnemy.MoveAndSlide();
+
+		// Check if Roary hit a wall while roaming
+		if(ActiveEnemy.GetSlideCollisionCount() > 0)
+		{
+			for(int i = 0; i < ActiveEnemy.GetSlideCollisionCount(); i++)
+			{
+				var collision = ActiveEnemy.GetSlideCollision(i);
+				if(collision.GetCollider() is StaticBody2D) // Hit a wall
+				{
+					Vector2 normal = collision.GetNormal();
+					Vector2 reflectedDirection = direction.Bounce(normal);
+					newPos = ActiveEnemy.GlobalPosition + (reflectedDirection * 300f);
+					break; // Only need to handle one collision
+				}
+			}
+		}
 
 		return null;
     }

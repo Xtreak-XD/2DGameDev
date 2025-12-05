@@ -12,7 +12,9 @@ radius = 10.392611
 size = Vector2(108, 110)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_xf8fa")
 data = ExtResource("2_x153l")
 

@@ -3,14 +3,19 @@
 [ext_resource type="Script" uid="uid://bx06nwhngrjh3" path="res://Scripts/weapons/projectiles/RoaryFootball.cs" id="1_nxgqv"]
 [ext_resource type="Resource" uid="uid://wqb4un48ga6s" path="res://Resources/weapons/projectiles/RoaryFootballData.tres" id="2_dh4ub"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_45e0k"]
-[ext_resource type="Texture2D" uid="uid://bkmbq5u08pl3r" path="res://Sprites/misc/roary_football.jpeg" id="4_ps7qt"]
+[ext_resource type="Texture2D" uid="uid://u7witpt5yf1m" path="res://Sprites/entities/enemies/Stadium/Football.png" id="3_nxgqv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nxgqv"]
+radius = 84.0
+height = 304.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxgqv"]
-size = Vector2(20, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dh4ub"]
+radius = 109.333336
+height = 402.6667
 
 [node name="RoaryFootball" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
 script = ExtResource("1_nxgqv")
 data = ExtResource("2_dh4ub")
 
@@ -19,18 +24,22 @@ process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("3_nxgqv")
+
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5ny5u")
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_nxgqv")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_45e0k")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4.0000005)
+rotation = 1.5707964
 scale = Vector2(0.75, 0.75)
-shape = SubResource("RectangleShape2D_nxgqv")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.095, 0.105)
-texture = ExtResource("4_ps7qt")
+shape = SubResource("CapsuleShape2D_dh4ub")
 
 [node name="SetSpawnTimer" type="Timer" parent="."]
 wait_time = 0.05

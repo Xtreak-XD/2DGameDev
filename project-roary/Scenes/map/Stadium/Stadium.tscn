@@ -1,23 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1p5cxryw0kgj"]
+[gd_scene load_steps=8 format=3 uid="uid://b1p5cxryw0kgj"]
 
+[ext_resource type="Texture2D" uid="uid://vvgpj4al5im3" path="res://Sprites/world/Stadium/stadium_background.png" id="1_cxkxa"]
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_f5tiu"]
+[ext_resource type="Texture2D" uid="uid://bmst5dixdbwxs" path="res://Sprites/world/Stadium/stadium_foreground.png" id="2_1yqim"]
 [ext_resource type="PackedScene" uid="uid://c40jqbolu6ucs" path="res://Scenes/entities/enemies/Roary.tscn" id="2_f5tiu"]
+[ext_resource type="Script" uid="uid://bqbelawyxqhao" path="res://Scripts/map/Stadium/ForegroundArea.cs" id="2_limuc"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="5_1yqim"]
+[ext_resource type="PackedScene" uid="uid://c3pagaejfyou0" path="res://Scenes/ui/Bosses/BossHealth.tscn" id="7_limuc"]
 
 [node name="Stadium" type="Node2D"]
 
-[node name="Roary" parent="." instance=ExtResource("2_f5tiu")]
-position = Vector2(310, 492)
+[node name="BossHealths" parent="." instance=ExtResource("7_limuc")]
 
-[node name="PlayerSpawnPoints2" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_f5tiu")]
-spawnsAvailable = [null, null, null]
+[node name="WorldBorder" type="StaticBody2D" parent="."]
 
-[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints2"]
-position = Vector2(784, 471)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+position = Vector2(2500, 2500)
+polygon = PackedVector2Array(-2265, -807, -2319, 2441, 2268, 2460, 2276, -764, -2262, -807, -2972, -3094, 3516, -3159, 3531, 2420, 3386, 3547, -3457, 3639, -3011, -3099)
 
-[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints2"]
-position = Vector2(793, 482)
+[node name="Map" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="foregroundArea" type="Area2D" parent="Map"]
+z_index = -1
+collision_layer = 0
+collision_mask = 18
+script = ExtResource("2_limuc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/foregroundArea"]
+position = Vector2(2500, 2500)
+polygon = PackedVector2Array(-2502, 1176, -1882, 1355, -1802, 1333, -1731, 1303, -1738, 1119, -1416, 1263, -1540, 1434, -1035, 1528, -649, 1581, -284, 1612, -229, 1550, -174, 1541, -163, 1356, -103, 1340, 178, 1457, 182, 1498, 14, 1613, 506, 1587, 999, 1532, 962, 1449, 993, 1392, 1061, 1390, 1043, 1211, 1443, 1330, 1454, 1379, 1192, 1491, 1257, 1502, 1748, 1381, 2251, 1236, 2386, 1186, 2350, 1084, 2471, 1053, 2501, 1071, 2490, 2494, -2505, 2498)
+
+[node name="background" type="Sprite2D" parent="Map"]
+position = Vector2(2500, 2500)
+texture = ExtResource("1_cxkxa")
+
+[node name="foreground" type="Sprite2D" parent="Map"]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(2500, 2500)
+texture = ExtResource("2_1yqim")
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_f5tiu")]
+spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing")]
+
+[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2616, 2448)
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(3408, 3096)
 
 [node name="sceneSwitchArea" parent="." instance=ExtResource("5_1yqim")]
-position = Vector2(1484, 844)
+position = Vector2(1896, 2784)
 path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="Roary" parent="." instance=ExtResource("2_f5tiu")]
+position = Vector2(2472, 2584)

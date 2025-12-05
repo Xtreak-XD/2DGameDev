@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://t58rn2h4ucp5"]
+[gd_scene load_steps=16 format=3 uid="uid://t58rn2h4ucp5"]
 
 [ext_resource type="Script" uid="uid://dtyikbhfasq7p" path="res://Scripts/entities/enemies/bird/Bird.cs" id="1_nipbw"]
 [ext_resource type="Resource" uid="uid://b74mdqacjepoq" path="res://Resources/entities/enemy/BirdEnemy.tres" id="2_dh5t2"]
 [ext_resource type="Texture2D" uid="uid://bghrcu70c32mn" path="res://Sprites/entities/enemies/Complete_Spritesheet_of_Bird_Flying.png" id="3_1nm6b"]
+[ext_resource type="Script" uid="uid://cw02nndhlg7km" path="res://Scripts/audio/SfxPitchModifier.cs" id="4_1nm6b"]
+[ext_resource type="AudioStream" uid="uid://5o66mklswv63" path="res://Scripts/audio/bird.wav" id="4_3thx7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3thx7"]
 atlas = ExtResource("3_1nm6b")
@@ -96,6 +98,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sfx:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_3thx7")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sfx:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1nm6b"]
 resource_name = "FlyRight"
@@ -150,6 +176,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sfx:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_3thx7")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sfx:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_3thx7"]
 length = 0.001
@@ -201,6 +251,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sfx:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_3thx7")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sfx:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3thx7"]
 _data = {
@@ -232,3 +306,7 @@ shape = SubResource("CircleShape2D_1nm6b")
 libraries = {
 &"": SubResource("AnimationLibrary_3thx7")
 }
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3thx7")
+script = ExtResource("4_1nm6b")

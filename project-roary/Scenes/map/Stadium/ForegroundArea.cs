@@ -21,11 +21,13 @@ public partial class ForegroundArea : Area2D
     {
         if (body is Player player)
         {
+            GD.Print("PLAYER====================================================");
             foreground.SelfModulate = new Color(1, 1, 1, 0.5f);
         }
 
         if (body is Roary roary)
         {
+            GD.Print("Roary============================================================");
             foreground.SelfModulate = new Color(1, 1, 1, 0.5f);
         }
     }

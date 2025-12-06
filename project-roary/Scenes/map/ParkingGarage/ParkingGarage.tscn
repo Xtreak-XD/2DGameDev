@@ -1,0 +1,502 @@
+[gd_scene load_steps=26 format=3 uid="uid://d2ytf1v7y24q7"]
+
+[ext_resource type="Texture2D" uid="uid://c50r7hdu1hfmr" path="res://Sprites/world/pg_base.png" id="1_5wdrb"]
+[ext_resource type="Script" uid="uid://b75dymlryxtg" path="res://Scripts/map/PG/ParkingGarage.cs" id="1_581fp"]
+[ext_resource type="PackedScene" uid="uid://bn75wnkurbkmk" path="res://Scenes/map/ParkingGarage/GoalTimerAndIndicator.tscn" id="1_aywsj"]
+[ext_resource type="PackedScene" uid="uid://con1q0nhgkj8i" path="res://Scenes/entities/player/DriveableCar.tscn" id="2_5wdrb"]
+[ext_resource type="PackedScene" uid="uid://dx7ll3dt60806" path="res://Scenes/entities/obstacles/dummy_car.tscn" id="2_wq2dn"]
+[ext_resource type="Texture2D" uid="uid://7u02swqak463" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_up.png" id="2_yosyq"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_slse4"]
+[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="4_ie86c"]
+[ext_resource type="Texture2D" uid="uid://dgffmm8g3vtsi" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_down.png" id="4_wq2dn"]
+[ext_resource type="PackedScene" uid="uid://c6i3fao4yxrbg" path="res://Scenes/entities/enemies/CarEnemy.tscn" id="5_a1t8p"]
+[ext_resource type="Texture2D" uid="uid://rowkec0a17b4" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_down.png" id="6_slse4"]
+[ext_resource type="Texture2D" uid="uid://bluy0qp8psjqu" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_down.png" id="7_fi4eq"]
+[ext_resource type="Texture2D" uid="uid://j07h24a14hbk" path="res://Sprites/entities/enemies/CarEnemy/pg_car1_left.png" id="8_581fp"]
+[ext_resource type="Texture2D" uid="uid://dky5wwls7pm0h" path="res://Sprites/entities/enemies/CarEnemy/pg_car2_right.png" id="9_dvqmy"]
+[ext_resource type="Texture2D" uid="uid://dq0r8ge3vlt23" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_left.png" id="10_shi2b"]
+[ext_resource type="Texture2D" uid="uid://dj0n8mxrpvo1t" path="res://Sprites/entities/enemies/CarEnemy/pg_car3_right.png" id="10_vebei"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="12_5oly8"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="17_vebei"]
+[ext_resource type="Script" uid="uid://c220iuf2a0kll" path="res://Scripts/map/PG/TimerLabel.cs" id="17_wq2dn"]
+[ext_resource type="FontFile" uid="uid://bdnvsvp1g7xwi" path="res://Sprites/Wallpoet-Regular.ttf" id="19_slse4"]
+[ext_resource type="Script" uid="uid://cntw6675n18e3" path="res://Scripts/map/PG/InstructionLabel.cs" id="20_fi4eq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vebei"]
+size = Vector2(1043, 1224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slse4"]
+size = Vector2(1337, 910)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vebei"]
+font = ExtResource("17_vebei")
+font_size = 96
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_581fp"]
+font = ExtResource("17_vebei")
+font_size = 72
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ParkingGarage" type="Node2D"]
+script = ExtResource("1_581fp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4995, 5003)
+texture = ExtResource("1_5wdrb")
+
+[node name="DummyCarContainer" type="Node" parent="."]
+
+[node name="DummyCar13" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(6860, 9091)
+car = ExtResource("7_fi4eq")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar13" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar13/Hitbox"]
+position = Vector2(67.5, 47)
+shape = SubResource("RectangleShape2D_vebei")
+
+[node name="DummyCar14" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(3975, 9091)
+car = ExtResource("4_wq2dn")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar14" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar14/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
+
+[node name="DummyCar15" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(4929, 9056)
+car = ExtResource("6_slse4")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar15" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar15/Hitbox"]
+position = Vector2(67.5, 47)
+shape = SubResource("RectangleShape2D_vebei")
+
+[node name="DummyCar16" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(9023, 4997)
+car = ExtResource("8_581fp")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar16" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar16/Hitbox"]
+position = Vector2(143, 66)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar25" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(730, 3915)
+car = ExtResource("8_581fp")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar25" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar25/Hitbox"]
+position = Vector2(143, 66)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar17" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(877, 5945)
+car = ExtResource("9_dvqmy")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar17" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar17/Hitbox"]
+position = Vector2(-7, 0)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar23" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(844, 8055)
+car = ExtResource("9_dvqmy")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar23" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar23/Hitbox"]
+position = Vector2(-83, -11)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar18" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(900, 4967)
+car = ExtResource("10_shi2b")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar18" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar18/Hitbox"]
+position = Vector2(-35, -19)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar19" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(865, 3061)
+car = ExtResource("10_vebei")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar19" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar19/Hitbox"]
+position = Vector2(-8, -74)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar24" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(9156, 7084)
+car = ExtResource("10_vebei")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar24" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar24/Hitbox"]
+position = Vector2(-8, -74)
+shape = SubResource("RectangleShape2D_slse4")
+
+[node name="DummyCar12" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(3039, 941)
+car = ExtResource("2_yosyq")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar12" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar12/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
+
+[node name="DummyCar20" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(8045, 931)
+car = ExtResource("4_wq2dn")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar20" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar20/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
+
+[node name="DummyCar21" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(5972, 955)
+car = ExtResource("6_slse4")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar21" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar21/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
+
+[node name="DummyCar22" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
+position = Vector2(4053, 950)
+car = ExtResource("4_wq2dn")
+
+[node name="Hitbox" parent="DummyCarContainer/DummyCar22" instance=ExtResource("3_slse4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyCarContainer/DummyCar22/Hitbox"]
+position = Vector2(32, 2)
+shape = SubResource("RectangleShape2D_vebei")
+
+[node name="MapCollisions" type="Node" parent="."]
+
+[node name="WorldBorder" type="StaticBody2D" parent="MapCollisions"]
+position = Vector2(208, 207)
+collision_mask = 18
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
+polygon = PackedVector2Array(-190, -208, -216, 28, -181, 8, 9734, 2, 9748, -195)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
+polygon = PackedVector2Array(-6, -12, -208, -2, -190, 9774, -2, 9774)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
+position = Vector2(-37.090942, 9590.181)
+polygon = PackedVector2Array(16.090942, -14.180664, 9817.091, -8.180664, 9820.091, 202.81934, -40.909058, 202.81934)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="MapCollisions/WorldBorder"]
+position = Vector2(9589.643, -64.680664)
+polygon = PackedVector2Array(-2.6425781, -2.319336, -20.642578, 9815.681, 186.35742, 9815.681, 164.35742, -26.319336)
+
+[node name="Barrier" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/Barrier"]
+position = Vector2(3097.3196, 3597.0962)
+polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
+
+[node name="Barrier2" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/Barrier2"]
+position = Vector2(3079, 5927)
+polygon = PackedVector2Array(-0.31958008, -2.0961914, 3751.6804, -3.0961914, 3760.6804, 75.90381, -2.31958, 66.90381)
+
+[node name="WiderBarrier" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/WiderBarrier"]
+position = Vector2(3075.156, 4661.5396)
+polygon = PackedVector2Array(-11.156006, -3.5395508, 3784.844, 0.46044922, 3792.844, 121.46045, -3.1560059, 116.46045)
+
+[node name="SmallBarrier1" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/SmallBarrier1"]
+position = Vector2(3053.1313, 4780.95)
+polygon = PackedVector2Array(1.8686523, 0.049804688, -1.1313477, 1140.0498, 44.868652, 1134.0498, 36.868652, -0.9501953)
+
+[node name="SmallBarrier2" type="StaticBody2D" parent="MapCollisions"]
+collision_mask = 18
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapCollisions/SmallBarrier2"]
+position = Vector2(6841.379, 3680.8696)
+polygon = PackedVector2Array(-4.3789063, -6.869629, 32.621094, -3.869629, 36.621094, 973.1304, 3.6210938, 969.1304)
+
+[node name="PlayerSpawnPoints" parent="." instance=ExtResource("12_5oly8")]
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(6325, 4171)
+
+[node name="reservedLabels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="reserveLabel" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1327.0
+offset_top = 4413.0
+offset_right = 2143.0
+offset_bottom = 4561.0
+rotation = -1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel10" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1535.0
+offset_top = 1346.0
+offset_right = 2351.0
+offset_bottom = 1494.0
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel11" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 4643.0
+offset_top = 1353.0
+offset_right = 5459.0
+offset_bottom = 1501.0
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel12" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 6607.0
+offset_top = 1340.0
+offset_right = 7423.0
+offset_bottom = 1488.0
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel13" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8419.0
+offset_top = 8789.0
+offset_right = 9235.0
+offset_bottom = 8937.0
+rotation = -3.1415927
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel14" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 6357.0
+offset_top = 8741.0
+offset_right = 7173.0
+offset_bottom = 8889.0
+rotation = -3.1415927
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel15" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 3425.0
+offset_top = 8681.0
+offset_right = 4328.343
+offset_bottom = 8851.0
+rotation = -3.1415927
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel2" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1291.0
+offset_top = 7323.0
+offset_right = 2107.0
+offset_bottom = 7471.0
+rotation = -1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel3" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 1264.0
+offset_top = 2354.0
+offset_right = 2080.0
+offset_bottom = 2502.0
+rotation = -1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel4" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8725.0
+offset_top = 3633.9236
+offset_right = 9610.046
+offset_bottom = 3803.9236
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel5" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8689.0
+offset_top = 6556.7627
+offset_right = 9618.744
+offset_bottom = 6726.7627
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel6" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8662.0
+offset_top = 1622.0
+offset_right = 9540.658
+offset_bottom = 1792.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel7" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8679.0
+offset_top = 2623.2004
+offset_right = 9595.079
+offset_bottom = 2793.2004
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel8" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8712.0
+offset_top = 5564.582
+offset_right = 9624.076
+offset_bottom = 5734.582
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="reserveLabel9" type="Label" parent="reservedLabels"]
+layout_mode = 0
+offset_left = 8696.0
+offset_top = 7682.0
+offset_right = 9512.0
+offset_bottom = 7830.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("19_slse4")
+theme_override_font_sizes/font_size = 124
+text = "RESERVED"
+
+[node name="Enemymanager" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("4_ie86c")]
+EnemySpawnTimerMin = 0.0
+EnemySpawnTimerMax = 0.2
+EnemySpawnPoints = [NodePath("EnemySpawnPointContainer2/CarSpawn5"), NodePath("EnemySpawnPointContainer2/CarSpawn6"), NodePath("EnemySpawnPointContainer2/CarSpawn8"), NodePath("EnemySpawnPointContainer2/CarSpawn11"), NodePath("EnemySpawnPointContainer2/CarSpawn15"), NodePath("EnemySpawnPointContainer2/CarSpawn16"), NodePath("EnemySpawnPointContainer2/CarSpawn17"), NodePath("EnemySpawnPointContainer2/CarSpawn18"), NodePath("EnemySpawnPointContainer2/CarSpawn21"), NodePath("EnemySpawnPointContainer2/CarSpawn22"), NodePath("EnemySpawnPointContainer2/CarSpawn25"), NodePath("EnemySpawnPointContainer2/CarSpawn26"), NodePath("EnemySpawnPointContainer2/CarSpawn27")]
+EnemyScene = ExtResource("5_a1t8p")
+MaxEnemiesAlive = 10
+
+[node name="EnemySpawnPointContainer2" type="Node2D" parent="Enemymanager"]
+
+[node name="CarSpawn5" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9192, 3292)
+
+[node name="CarSpawn6" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(5950, 9137)
+
+[node name="CarSpawn8" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(730, 6885)
+
+[node name="CarSpawn11" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(6934, 996)
+
+[node name="CarSpawn15" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(1990, 944)
+
+[node name="CarSpawn16" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(5004, 944)
+
+[node name="CarSpawn17" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(981, 2153)
+
+[node name="CarSpawn18" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(2988, 8928)
+
+[node name="CarSpawn21" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9166, 2163)
+
+[node name="CarSpawn22" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9015, 4111)
+
+[node name="CarSpawn25" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(8036, 9082)
+
+[node name="CarSpawn26" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9052, 7855)
+
+[node name="CarSpawn27" type="Marker2D" parent="Enemymanager/EnemySpawnPointContainer2"]
+position = Vector2(9156, 5900)
+
+[node name="EntityContainer" type="Node2D" parent="Enemymanager"]
+
+[node name="GoalTimerAndIndicator" parent="." instance=ExtResource("1_aywsj")]
+position = Vector2(1914, 9094)
+scale = Vector2(8, 8)
+
+[node name="DriveableCar" parent="." instance=ExtResource("2_5wdrb")]
+position = Vector2(6123, 4182)
+rotation = 3.1415927
+
+[node name="TimerLabel" type="Label" parent="."]
+top_level = true
+offset_left = -67.0
+offset_top = -256.0
+offset_right = 137.0
+offset_bottom = -140.0
+text = "Time:"
+label_settings = SubResource("LabelSettings_vebei")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_wq2dn")
+
+[node name="InstructionLabel" type="Label" parent="."]
+top_level = true
+offset_left = 191.0
+offset_top = 122.0
+offset_right = 231.0
+offset_bottom = 145.0
+text = "Find the available parking spot. (You'll know it when you see it)
+
+Controls:
+W: Accelerate in the current direction the car is facing 
+S: Decelerate in the opposite direction the car is facing
+A: Turn Left
+D: Turn Right"
+label_settings = SubResource("LabelSettings_581fp")
+script = ExtResource("20_fi4eq")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="IndividualItem" load_steps=3 format=3 uid="uid://nlw0o6c6hk6n"]
+
+[ext_resource type="Script" uid="uid://h7rsrpy6mpd2" path="res://Scripts/ui/inventory/Resources/IndividualItem.cs" id="1_epn3b"]
+[ext_resource type="Texture2D" uid="uid://bo1dmtwo784qa" path="res://Sprites/item/Banana.png" id="2_rphwq"]
+
+[resource]
+script = ExtResource("1_epn3b")
+itemName = "Banana"
+texture = ExtResource("2_rphwq")
+isStackable = true
+shopPrice = 6
+isSellableInShop = true
+shopQuantity = 100
+metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

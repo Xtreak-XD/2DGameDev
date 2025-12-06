@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl6k2y1j5roxy"]
+
+[ext_resource type="Script" uid="uid://cjcttopqca10j" path="res://Scripts/weapons/PenSword.cs" id="1_3750a"]
+[ext_resource type="Resource" uid="uid://dn514yodcckmv" path="res://Resources/weapons/PenSwordData.tres" id="2_4cutk"]
+[ext_resource type="Texture2D" uid="uid://byln8174ny0mb" path="res://Sprites/item/Pen.png" id="3_4cutk"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_rybp5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ilxvl"]
+radius = 66.16432
+height = 434.39178
+
+[node name="PenSword" type="Node2D"]
+script = ExtResource("1_3750a")
+data = ExtResource("2_4cutk")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_rybp5")]
+scale = Vector2(0.9, 0.9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 0.710349
+shape = SubResource("CapsuleShape2D_ilxvl")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.5258789e-05)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_4cutk")

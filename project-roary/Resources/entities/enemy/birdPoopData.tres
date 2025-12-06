@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GenericData" load_steps=2 format=3 uid="uid://crg1p28u4yx70"]
+
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="1_cy6h4"]
+
+[resource]
+script = ExtResource("1_cy6h4")
+Damage = 50
+metadata/_custom_type_script = "uid://dkov12aknt46v"

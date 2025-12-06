@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb7hge3byayh8"]
+
+[ext_resource type="ButtonGroup" uid="uid://gpa1mlk11dl3" path="res://Resources/inventory/hotbarButtonPress.tres" id="1_paspa"]
+[ext_resource type="Texture2D" uid="uid://7sujwy1jegmd" path="res://Sprites/Hotbar/2D_Game_Dev_Inventory_Boarder.png" id="1_q1j3q"]
+[ext_resource type="Texture2D" uid="uid://ckw43fhj05hes" path="res://Sprites/inventory/Selected Inventory.png" id="3_paspa"]
+[ext_resource type="Script" uid="uid://cdajyfoafblku" path="res://Scripts/ui/Hotbar/HotbarUISlot.cs" id="4_paspa"]
+
+[node name="HotbarSlot" type="TextureButton"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 48.0
+offset_bottom = 48.0
+toggle_mode = true
+button_group = ExtResource("1_paspa")
+texture_normal = ExtResource("1_q1j3q")
+texture_pressed = ExtResource("3_paspa")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("4_paspa")
+
+[node name="ItemDisplay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="QuantityLabel" type="Label" parent="ItemDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 40.0
+offset_right = 22.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 2

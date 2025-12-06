@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hoxxysfo02l4"]
+
+[ext_resource type="Script" uid="uid://cjgad145mg80j" path="res://Scripts/helperScripts/Hitbox.cs" id="1_sv4nt"]
+
+[node name="Hitbox" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_sv4nt")

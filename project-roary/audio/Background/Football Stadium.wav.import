@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dpldemnr1bhj"
+path="res://.godot/imported/Football Stadium.wav-8600c625d03f8b19f84584c30e74791f.sample"
+
+[deps]
+
+source_file="res://audio/Background/Football Stadium.wav"
+dest_files=["res://.godot/imported/Football Stadium.wav-8600c625d03f8b19f84584c30e74791f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

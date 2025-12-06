@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=8 format=3 uid="uid://ds1hq3nvfq4rw"]
+
+[ext_resource type="Script" uid="uid://cio6dcxoigeeo" path="res://Scripts/resources/ShopResource.cs" id="1_bjss5"]
+[ext_resource type="Resource" uid="uid://jbi04iutyxhr" path="res://Resources/items/Pen.tres" id="1_rdwr4"]
+[ext_resource type="Texture2D" uid="uid://4g8dx7k85s3a" path="res://Sprites/world/Graham Center/GreenBanner.tres" id="1_xcvxt"]
+[ext_resource type="Resource" uid="uid://dpkkjng5xhthu" path="res://Resources/items/StapleGun.tres" id="2_o0jf0"]
+[ext_resource type="Texture2D" uid="uid://d3fi3yqvki1b6" path="res://Sprites/world/Graham Center/GreenSquare.tres" id="4_jha8h"]
+[ext_resource type="Texture2D" uid="uid://blg60fbd4ston" path="res://Sprites/world/Graham Center/WeaponInsideTable.tres" id="5_1wdv6"]
+[ext_resource type="Texture2D" uid="uid://4rj4suw15iu4" path="res://Sprites/world/Graham Center/RightFacingWeaponTable.tres" id="6_jha8h"]
+
+[resource]
+script = ExtResource("1_bjss5")
+ShopName = "Weapons Lvl2"
+Items = Array[Object]([ExtResource("1_rdwr4"), null, ExtResource("2_o0jf0"), null])
+GreetingMessage = "Welcome!"
+TableTexture = ExtResource("5_1wdv6")
+SlotTexture = ExtResource("4_jha8h")
+BannerTexture = ExtResource("1_xcvxt")
+WorldShopSprite = ExtResource("6_jha8h")
+metadata/_custom_type_script = "uid://cio6dcxoigeeo"

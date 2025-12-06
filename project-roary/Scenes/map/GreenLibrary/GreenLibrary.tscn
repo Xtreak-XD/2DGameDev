@@ -1,0 +1,172 @@
+[gd_scene load_steps=18 format=3 uid="uid://b7j1lsbdli03x"]
+
+[ext_resource type="Script" uid="uid://bwjyng2guwv4o" path="res://Scripts/map/GL/GreenLibrary.cs" id="1_1rai3"]
+[ext_resource type="Texture2D" uid="uid://den3841rkbmcx" path="res://Sprites/world/Gl/gl1_base.png" id="1_6agjo"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="1_ict7c"]
+[ext_resource type="Texture2D" uid="uid://c6o3qy7j6y3jj" path="res://Sprites/world/Gl/gl1_walls.png" id="2_ict7c"]
+[ext_resource type="Texture2D" uid="uid://c6e4klb0ok7wr" path="res://Sprites/world/Gl/gl1_cafecenter.png" id="3_pynll"]
+[ext_resource type="Texture2D" uid="uid://dcs56p1xmw5ld" path="res://Sprites/world/Gl/gl1_cafecounter.png" id="4_ovpjc"]
+[ext_resource type="Texture2D" uid="uid://dhxh0oedsxeuc" path="res://Sprites/world/Gl/gl1_table1.png" id="5_brcu7"]
+[ext_resource type="Texture2D" uid="uid://bn7oxwg77g3xn" path="res://Sprites/world/Gl/gl1_table2.png" id="6_5rrx5"]
+[ext_resource type="Texture2D" uid="uid://5daepnvk1r6i" path="res://Sprites/world/Gl/gl1_table3.png" id="7_1vo5c"]
+[ext_resource type="Texture2D" uid="uid://bnon6sxjtsre7" path="res://Sprites/world/Gl/gl1_table4.png" id="8_pluaw"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_1vo5c"]
+
+[sub_resource type="Environment" id="Environment_wljyb"]
+background_mode = 3
+glow_normalized = true
+adjustment_enabled = true
+adjustment_saturation = 1.25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vo5c"]
+size = Vector2(725.5, 793)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pluaw"]
+size = Vector2(1588, 1539)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rai3"]
+size = Vector2(5017.5, 881)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pfcf"]
+size = Vector2(1416, 642)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skk47"]
+size = Vector2(2135, 539)
+
+[node name="GreenLibrary" type="Node2D"]
+script = ExtResource("1_1rai3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wljyb")
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="main" type="Sprite2D" parent="Map"]
+texture = ExtResource("1_6agjo")
+centered = false
+
+[node name="foregroundTop" type="Sprite2D" parent="Map/main"]
+position = Vector2(2357, 463)
+texture = ExtResource("2_ict7c")
+centered = false
+offset = Vector2(-2357, -463)
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 2500)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Map/main/foregroundTop"]
+y_sort_enabled = true
+position = Vector2(2268, 1065)
+texture = ExtResource("7_1vo5c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/main/foregroundTop"]
+y_sort_enabled = true
+position = Vector2(-1982, 1065)
+texture = ExtResource("5_brcu7")
+
+[node name="startbucks" type="Sprite2D" parent="Map/main/foregroundTop"]
+z_index = 5
+y_sort_enabled = true
+position = Vector2(143, 2037)
+texture = ExtResource("3_pynll")
+
+[node name="foregroundBottom" type="Sprite2D" parent="Map/main"]
+position = Vector2(2553, 4004)
+texture = ExtResource("2_ict7c")
+centered = false
+offset = Vector2(-2553, -1504)
+region_enabled = true
+region_rect = Rect2(0, 2500, 5000, 2500)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Map/main/foregroundBottom"]
+y_sort_enabled = true
+position = Vector2(2072, -1393)
+texture = ExtResource("8_pluaw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Map/main/foregroundBottom"]
+y_sort_enabled = true
+position = Vector2(-2178, -1393)
+texture = ExtResource("6_5rrx5")
+
+[node name="server" type="Sprite2D" parent="Map/main/foregroundBottom"]
+y_sort_enabled = true
+position = Vector2(-53, -698)
+texture = ExtResource("4_ovpjc")
+
+[node name="tables2" type="StaticBody2D" parent="Map/main"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/main/tables2"]
+position = Vector2(367.25, 1534.5)
+shape = SubResource("RectangleShape2D_1vo5c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/main/tables2"]
+position = Vector2(367, 2599)
+shape = SubResource("RectangleShape2D_1vo5c")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map/main/tables2"]
+position = Vector2(4636, 2611)
+shape = SubResource("RectangleShape2D_1vo5c")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map/main/tables2"]
+position = Vector2(4630, 1528)
+shape = SubResource("RectangleShape2D_1vo5c")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map/main/tables2"]
+position = Vector2(4630, 1528)
+shape = SubResource("RectangleShape2D_1vo5c")
+
+[node name="main" type="StaticBody2D" parent="Map/main"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/main/main"]
+position = Vector2(2502, 2874.5)
+shape = SubResource("RectangleShape2D_pluaw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Map/main"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/main/StaticBody2D"]
+position = Vector2(2499.25, 427.5)
+shape = SubResource("RectangleShape2D_1rai3")
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("9_1vo5c")]
+path = "res://Scenes/map/GreenLibrary/GreenLibraryFloor2.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+position = Vector2(2355, 1183)
+shape = SubResource("RectangleShape2D_4pfcf")
+
+[node name="mapBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mapBorder"]
+polygon = PackedVector2Array(5, -447, 5, 359, -5, 2073, 6, 5020, 4994, 5009, 5005, -1, -1110, 4, -655, -1047, 2259, -755, 5694, -581, 6116, 1900, 6105, 4056, 6019, 5172, 4686, 5616, 1674, 5378, -255, 5465, -1197, 4587, -872, 1087, -1089, 296)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="mapBorder"]
+position = Vector2(1207, 393)
+polygon = PackedVector2Array(-392, 3886, 385, 3884, 372, 4629, -1195, 4619, -1205, 3452, -409, 3470)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="mapBorder"]
+position = Vector2(4712, 401)
+polygon = PackedVector2Array(-1191, 3876, -444, 3884, -423, 3458, 296, 3479, 351, 4604, -1195, 4619)
+
+[node name="sceneSwitchArea2" parent="." instance=ExtResource("9_1vo5c")]
+path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea2"]
+position = Vector2(2535, 5091)
+shape = SubResource("RectangleShape2D_skk47")
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("1_ict7c")]
+spawnsAvailable = [NodePath("fromNothing"), NodePath("fromOverworld"), NodePath("fromGreenLibraryFloor2")]
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(546, 3628)
+
+[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2530, 4313)
+
+[node name="fromGreenLibraryFloor2" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2374, 1940)

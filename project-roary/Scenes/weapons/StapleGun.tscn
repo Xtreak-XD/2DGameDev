@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxe3uowu2sita"]
+
+[ext_resource type="Script" uid="uid://duekwcdtalk4g" path="res://Scripts/weapons/StaplerGun.cs" id="1_1bd1l"]
+[ext_resource type="PackedScene" uid="uid://ru0aqml0mlrd" path="res://Scenes/weapons/projectiles/Staple.tscn" id="2_1bd1l"]
+[ext_resource type="Resource" uid="uid://beylivn64y0pn" path="res://Resources/weapons/StapleGunStats.tres" id="3_1bd1l"]
+[ext_resource type="Texture2D" uid="uid://dmwacryxenaeq" path="res://Sprites/item/Untitled_Artwork_16.png" id="4_1bd1l"]
+
+[node name="StapleGun" type="Node2D"]
+script = ExtResource("1_1bd1l")
+projectile = ExtResource("2_1bd1l")
+data = ExtResource("3_1bd1l")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5.9604645e-08, -1.1920929e-07)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_1bd1l")
+
+[node name="ProjectileSource" type="Marker2D" parent="."]

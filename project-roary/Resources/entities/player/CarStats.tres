@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://y0yi8axjpmqh"]
+
+[ext_resource type="Script" uid="uid://vsays2g27nlv" path="res://Scripts/resources/CarStats.cs" id="1_mqb3x"]
+
+[resource]
+script = ExtResource("1_mqb3x")
+TopSpeed = 850.0
+Acceleration = 300.0
+SteeringSpeed = 4.0

@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb82tbqia4lde"]
+
+[ext_resource type="PackedScene" uid="uid://r6a6orujjhgt" path="res://Scenes/ui/inventory/Items.tscn" id="1_ok1io"]
+[ext_resource type="Texture2D" uid="uid://b815bemr6djbm" path="res://Sprites/item/Thumbtack_Gun.png" id="2_d0ycu"]
+[ext_resource type="Resource" uid="uid://bth1ayk2kw5fx" path="res://Resources/items/Thumbstack.tres" id="3_ujxah"]
+
+[node name="Thumbstack" instance=ExtResource("1_ok1io")]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_d0ycu")
+itemResource = ExtResource("3_ujxah")

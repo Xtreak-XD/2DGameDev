@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BirdData" load_steps=3 format=3 uid="uid://b74mdqacjepoq"]
+
+[ext_resource type="PackedScene" uid="uid://jf2a17qgsrd5" path="res://Scenes/entities/enemies/BirdPoop.tscn" id="1_foyf4"]
+[ext_resource type="Script" uid="uid://bl58y7ylealem" path="res://Scripts/entities/enemies/bird/BirdData.cs" id="2_0bog2"]
+
+[resource]
+script = ExtResource("2_0bog2")
+Speed = 1500.0
+PoopScene = ExtResource("1_foyf4")
+metadata/_custom_type_script = "uid://bl58y7ylealem"

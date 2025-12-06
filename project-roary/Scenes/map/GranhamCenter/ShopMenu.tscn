@@ -1,0 +1,172 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjmlx6ijljs1"]
+
+[ext_resource type="Texture2D" uid="uid://l4ahf6q21lu0" path="res://Sprites/world/Graham Center/TableTopDown2.png" id="1_jqod7"]
+[ext_resource type="Script" uid="uid://c8vsyptmaavtn" path="res://Scripts/ui/PowerUpShops/ShopMenu.cs" id="1_tgvhk"]
+[ext_resource type="Texture2D" uid="uid://uniuj28bgwht" path="res://Sprites/world/Graham Center/HealthInsideTable.tres" id="2_msshn"]
+[ext_resource type="PackedScene" uid="uid://bhlkfysakjm6t" path="res://Scenes/map/GranhamCenter/ShopMenuSlot.tscn" id="4_msshn"]
+[ext_resource type="Texture2D" uid="uid://cpdoqhdpqifxt" path="res://Sprites/world/DiningDollars.png" id="5_msshn"]
+[ext_resource type="FontFile" uid="uid://cbkp2sq5jjvfa" path="res://Sprites/Fonts/SpaceMono-Regular.ttf" id="8_0cfuo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fppcr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_msshn"]
+texture = ExtResource("2_msshn")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vx4ud"]
+texture = ExtResource("1_jqod7")
+
+[node name="ShopMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tgvhk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.46666667)
+
+[node name="ShopMenuPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -721.5
+offset_top = -312.0
+offset_right = -240.5
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+theme_override_styles/panel = SubResource("StyleBoxTexture_fppcr")
+
+[node name="ShopMenuContainer" type="HBoxContainer" parent="ShopMenuPanel"]
+layout_mode = 2
+alignment = 1
+
+[node name="TableMarginContainer" type="MarginContainer" parent="ShopMenuPanel/ShopMenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="TableContainer" type="PanelContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(325, 223)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_msshn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer"]
+layout_mode = 2
+theme_override_constants/separation = 23
+alignment = 1
+
+[node name="TopContainer" type="HBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ItemSlot" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("4_msshn")]
+layout_mode = 2
+
+[node name="TextureButton2" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("4_msshn")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="ItemSlot2" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("4_msshn")]
+layout_mode = 2
+
+[node name="TextureButton4" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/TopContainer" instance=ExtResource("4_msshn")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="BotContainer" type="HBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TextureButton5" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("4_msshn")]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(70, 64)
+layout_mode = 2
+
+[node name="ItemSlot" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("4_msshn")]
+layout_mode = 2
+
+[node name="TextureButton7" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("4_msshn")]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(58, 64)
+layout_mode = 2
+
+[node name="ItemSlot2" parent="ShopMenuPanel/ShopMenuContainer/TableMarginContainer/TableContainer/VBoxContainer/BotContainer" instance=ExtResource("4_msshn")]
+layout_mode = 2
+
+[node name="ReceiptMarginContainer" type="MarginContainer" parent="ShopMenuPanel/ShopMenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinsContainer" type="PanelContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vx4ud")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/CoinsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinIcon" type="TextureRect" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/CoinsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_msshn")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Coins" type="Label" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/CoinsContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("8_0cfuo")
+text = "600"
+vertical_alignment = 1
+
+[node name="ReceiptContainer" type="VBoxContainer" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(127, 126)
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Receipt" type="Label" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer/ReceiptContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_0cfuo")
+theme_override_font_sizes/font_size = 10
+text = "No items selected"
+horizontal_alignment = 1
+
+[node name="Total" type="Label" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_0cfuo")
+text = "Total: $0"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="ShopMenuPanel/ShopMenuContainer/ReceiptMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "BUY"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="IndividualItem" load_steps=3 format=3 uid="uid://bth1ayk2kw5fx"]
+
+[ext_resource type="Script" uid="uid://h7rsrpy6mpd2" path="res://Scripts/ui/inventory/Resources/IndividualItem.cs" id="1_y888n"]
+[ext_resource type="Texture2D" uid="uid://b815bemr6djbm" path="res://Sprites/item/Thumbtack_Gun.png" id="2_yy286"]
+
+[resource]
+script = ExtResource("1_y888n")
+itemName = "Thumbstack"
+texture = ExtResource("2_yy286")
+description = "A thumbstack"
+maxStackSize = 1
+shopPrice = 120
+isSellableInShop = true
+metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

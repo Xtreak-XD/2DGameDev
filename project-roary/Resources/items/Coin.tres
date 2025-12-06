@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="IndividualItem" load_steps=3 format=3 uid="uid://d2v13hglqa2h0"]
+
+[ext_resource type="Script" uid="uid://h7rsrpy6mpd2" path="res://Scripts/ui/inventory/Resources/IndividualItem.cs" id="1_d3n8e"]
+[ext_resource type="Texture2D" uid="uid://cpdoqhdpqifxt" path="res://Sprites/world/DiningDollars.png" id="2_xi7be"]
+
+[resource]
+script = ExtResource("1_d3n8e")
+itemName = "Coin"
+texture = ExtResource("2_xi7be")
+description = "Dining Dollars to buy Items"
+maxStackSize = 1
+metadata/_custom_type_script = "uid://h7rsrpy6mpd2"

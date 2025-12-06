@@ -1,0 +1,102 @@
+[gd_scene load_steps=20 format=3 uid="uid://bed4fyrobgykm"]
+
+[ext_resource type="Script" uid="uid://ipdydiemqngx" path="res://Scripts/entities/enemies/Logo/Logo.cs" id="1_o8biw"]
+[ext_resource type="Resource" uid="uid://caiqo8ponws5c" path="res://Resources/entities/enemy/LogoData.tres" id="2_40s8x"]
+[ext_resource type="PackedScene" uid="uid://cabq84yevl4wd" path="res://Scenes/helperScenes/hurtbox.tscn" id="2_o8biw"]
+[ext_resource type="PackedScene" uid="uid://5cxp70bjjaps" path="res://Scenes/weapons/projectiles/SpiralBubble.tscn" id="3_fa4y8"]
+[ext_resource type="Script" uid="uid://dkov12aknt46v" path="res://Scripts/resources/GenericData.cs" id="3_qdifj"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_yhc4g"]
+[ext_resource type="PackedScene" uid="uid://bvws016o4cklc" path="res://Scenes/entities/enemies/starfish.tscn" id="4_401u3"]
+[ext_resource type="PackedScene" uid="uid://dmv2gjetynro5" path="res://Scenes/weapons/projectiles/CoffeeShot.tscn" id="4_fa4y8"]
+[ext_resource type="PackedScene" uid="uid://blca23bgqgc6k" path="res://Scenes/entities/enemies/MermaidPhase2.tscn" id="5_scbxm"]
+[ext_resource type="Script" uid="uid://drqeas6dkwycy" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/LogoIdleState.cs" id="5_yxpio"]
+[ext_resource type="Script" uid="uid://b3k4lgo6mu42s" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/LogoStateMachine.cs" id="6_scbxm"]
+[ext_resource type="Script" uid="uid://54d1w6gohr58" path="res://Scripts/entities/enemies/Logo/LogoStateMachine/RollState.cs" id="6_yxpio"]
+[ext_resource type="Shader" uid="uid://bqsqekh573hwo" path="res://Scripts/shaders/HitFlash.gdshader" id="11_4ih6o"]
+[ext_resource type="Texture2D" uid="uid://cw4kuy1pp8vd5" path="res://Sprites/entities/enemies/Mermaid/Mermaid_Logo.png" id="12_4ih6o"]
+
+[sub_resource type="Resource" id="Resource_p146o"]
+script = ExtResource("3_qdifj")
+_health = 300
+MaxHealth = 300
+Damage = 16
+Speed = 550
+Accel = 250.0
+dealKnockback = true
+knockBackAmount = 4.5
+metadata/_custom_type_script = "uid://dkov12aknt46v"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc7a3"]
+resource_local_to_scene = true
+shader = ExtResource("11_4ih6o")
+shader_parameter/flash = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrxrl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdifj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p146o"]
+
+[node name="Logo" type="CharacterBody2D"]
+scale = Vector2(6, 6)
+disable_mode = 2
+collision_layer = 16
+collision_mask = 2
+motion_mode = 1
+up_direction = Vector2(0.7071068, 0.7071068)
+script = ExtResource("1_o8biw")
+SBAttack = ExtResource("3_fa4y8")
+CoffeeShot = ExtResource("4_fa4y8")
+starfish = ExtResource("4_401u3")
+mermaid = ExtResource("5_scbxm")
+Data = ExtResource("2_40s8x")
+data = SubResource("Resource_p146o")
+
+[node name="LogoStateMachine" type="Node" parent="."]
+script = ExtResource("6_scbxm")
+
+[node name="LogoIdleState" type="Node" parent="LogoStateMachine"]
+script = ExtResource("5_yxpio")
+
+[node name="RollState" type="Node" parent="LogoStateMachine"]
+script = ExtResource("6_yxpio")
+
+[node name="RollTimer" type="Timer" parent="LogoStateMachine"]
+wait_time = 3.0
+one_shot = true
+
+[node name="IdleTimer" type="Timer" parent="LogoStateMachine"]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sc7a3")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_4ih6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.5, 2.801)
+shape = SubResource("CircleShape2D_xrxrl")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_o8biw")]
+scale = Vector2(0.7, 0.961)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(3.1481678, 2.192932)
+shape = SubResource("CircleShape2D_qdifj")
+debug_color = Color(0.9776438, 0, 0.40619904, 0.41960785)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_yhc4g")]
+scale = Vector2(0.9, 0.9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(2.8986206, 2.943963)
+shape = SubResource("CircleShape2D_p146o")
+debug_color = Color(0.5532109, 0.56299573, 9.62615e-07, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(4, 4.239)
+
+[node name="SetTargetTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true

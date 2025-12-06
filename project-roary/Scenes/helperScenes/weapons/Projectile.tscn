@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ecd7336bii4p"]
+
+[ext_resource type="Script" uid="uid://chv4uvnbqggbk" path="res://Scripts/helperScripts/weapons/Projectile.cs" id="1_sxb8i"]
+[ext_resource type="Resource" uid="uid://ku63eyafcurx" path="res://Resources/misc/ProjectileData.tres" id="2_5ny5u"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="2_n1wiq"]
+[ext_resource type="Texture2D" uid="uid://c7us7ck5j1me" path="res://Sprites/misc/arrow.png" id="4_5ny5u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ny5u"]
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_sxb8i")
+data = ExtResource("2_5ny5u")
+
+[node name="LifespanTimer" type="Timer" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ny5u")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_n1wiq")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.095, 0.105)
+texture = ExtResource("4_5ny5u")
+
+[node name="SetSpawnTimer" type="Timer" parent="."]
+wait_time = 0.05

@@ -1,0 +1,158 @@
+[gd_scene load_steps=13 format=3 uid="uid://ctmsfrqpks4es"]
+
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_2ltg1"]
+[ext_resource type="Script" uid="uid://cj0mf7jo5oh5d" path="res://Scripts/ui/mainMenu/MainMenu.cs" id="1_tmkf4"]
+[ext_resource type="Texture2D" uid="uid://bw4bj4g38pcd4" path="res://Sprites/Menus/ActualBackgroundImg.png" id="2_e6ll4"]
+[ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_nwkk3"]
+[ext_resource type="Shader" uid="uid://b8rda7k4x665p" path="res://Scenes/ui/menus/textShader.gdshader" id="3_idfjq"]
+[ext_resource type="Texture2D" uid="uid://18d1uqs12w1x" path="res://Sprites/entities/player/Soundtrack-1024.png" id="6_fdbuc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdbuc"]
+texture = ExtResource("2_e6ll4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idfjq"]
+shader = ExtResource("2_nwkk3")
+shader_parameter/intensity = 0.50000002375
+shader_parameter/base_water_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_scale = 1.0
+shader_parameter/clarity = 0.102000004845
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6ll4"]
+shader = ExtResource("3_idfjq")
+shader_parameter/height = 5.0
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmkf4"]
+bg_color = Color(0.09411765, 0.18039216, 0.43529412, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ltg1"]
+bg_color = Color(0.09411765, 0.18039216, 0.43529412, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ltg1"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tmkf4")
+
+[node name="backlayer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fdbuc")
+
+[node name="Background" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_idfjq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+self_modulate = Color(1, 1, 1, 0.6392157)
+position = Vector2(1662, 760)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_fdbuc")
+centered = false
+
+[node name="Title" type="Label" parent="."]
+material = SubResource("ShaderMaterial_e6ll4")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.5
+offset_top = -387.0
+offset_right = 354.5
+offset_bottom = -234.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 128
+text = "Project Roary"
+
+[node name="buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -123.0
+offset_right = 256.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="playContinue" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_focus_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_hover_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ltg1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ltg1")
+text = "Play"
+
+[node name="Options" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_focus_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_hover_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ltg1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ltg1")
+text = "Options
+"
+
+[node name="Exit" type="Button" parent="buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_focus_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_hover_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ltg1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ltg1")
+action_mode = 0
+text = "Exit
+"

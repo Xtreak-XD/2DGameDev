@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dihrarpptbfsb"]
+
+[ext_resource type="Script" uid="uid://tfqvnqcste34" path="res://Scripts/weapons/projectiles/RoaryFirework.cs" id="1_h1sx3"]
+[ext_resource type="Resource" uid="uid://cvnf1pi64prl3" path="res://Resources/weapons/projectiles/RoaryFireworkData.tres" id="2_46bee"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_aqage"]
+[ext_resource type="Texture2D" uid="uid://cdvwu1shdmoeq" path="res://Sprites/entities/enemies/Stadium/Firework.png" id="4_46bee"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_46bee"]
+radius = 37.0
+height = 290.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxgqv"]
+size = Vector2(96, 280)
+
+[node name="RoaryFirework" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_h1sx3")
+data = ExtResource("2_46bee")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5707964
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("4_46bee")
+
+[node name="LifespanTimer" type="Timer" parent="."]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(1, -8)
+shape = SubResource("CapsuleShape2D_46bee")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_aqage")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, -43)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_nxgqv")
+
+[node name="SetSpawnTimer" type="Timer" parent="."]
+wait_time = 0.05

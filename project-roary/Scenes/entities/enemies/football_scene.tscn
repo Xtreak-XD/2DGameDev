@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxhyvguf25h57"]
+
+[ext_resource type="Script" uid="uid://dk6awuk5dyrfq" path="res://Scripts/entities/enemies/FootballScene.cs" id="1_8ek2u"]
+[ext_resource type="Resource" uid="uid://si4oydcqx0vr" path="res://Resources/entities/enemy/FootBallPlayers.tres" id="2_8ek2u"]
+
+[node name="FootballScene" type="CharacterBody2D"]
+script = ExtResource("1_8ek2u")
+waitTimer = 1.0
+data = ExtResource("2_8ek2u")
+OffScreenDespawnTime = 0.5
+
+[node name="StampedeTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true

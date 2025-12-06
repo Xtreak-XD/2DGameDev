@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://duifow0ycc63q"]
+
+[ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="1_sepvu"]
+[ext_resource type="Script" uid="uid://dbtpphho2ue0c" path="res://Scripts/helperScripts/Save.cs" id="1_vu6fj"]
+[ext_resource type="Texture2D" uid="uid://j87tyiay20hx" path="res://Sprites/world/Complete_Spritesheet_of_Lamp_Post.png" id="2_v6fvv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6fvv"]
+atlas = ExtResource("2_v6fvv")
+region = Rect2(0, 0, 202, 502)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi58d"]
+atlas = ExtResource("2_v6fvv")
+region = Rect2(202, 0, 202, 502)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vu6fj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6fvv")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi58d")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sepvu"]
+radius = 248.0
+
+[sub_resource type="Gradient" id="Gradient_v6fvv"]
+offsets = PackedFloat32Array(0, 0.13087249, 0.26510066, 0.44966444, 0.62416106, 0.9362416)
+colors = PackedColorArray(1, 1, 1, 1, 0.684917, 0.684917, 0.684917, 1, 0.46145684, 0.46145684, 0.46145684, 1, 0.25167784, 0.25167784, 0.25167784, 1, 0.12797178, 0.12797178, 0.12797178, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oi58d"]
+gradient = SubResource("Gradient_v6fvv")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.491453, 0.517094)
+fill_to = Vector2(0.8162393, 0.22222222)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6fvv"]
+radius = 57.870544
+
+[node name="Save" type="StaticBody2D" node_paths=PackedStringArray("lampLight", "animatedSprite")]
+y_sort_enabled = true
+script = ExtResource("1_vu6fj")
+lampLight = NodePath("PointLight2D")
+animatedSprite = NodePath("Save")
+
+[node name="Save" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_vu6fj")
+animation = &"off"
+
+[node name="InteractableArea" parent="." instance=ExtResource("1_sepvu")]
+actionName = "Save"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+shape = SubResource("CircleShape2D_sepvu")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -129.99998)
+scale = Vector2(30, 30)
+texture = SubResource("GradientTexture2D_oi58d")
+texture_scale = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, 161)
+shape = SubResource("CircleShape2D_v6fvv")

@@ -1,0 +1,318 @@
+[gd_scene load_steps=22 format=3 uid="uid://t15gbo5dlajo"]
+
+[ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_8r1pk"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="2_8r1pk"]
+[ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_mjj1t"]
+[ext_resource type="Texture2D" uid="uid://dk47ha2tvrnea" path="res://Sprites/world/Np/mp_base.png" id="3_mjj1t"]
+[ext_resource type="Texture2D" uid="uid://b8jhpu4efyx6o" path="res://Sprites/world/Np/np_walls.png" id="4_xduju"]
+[ext_resource type="Texture2D" uid="uid://4v28s8yukc2m" path="res://Sprites/world/Np/np_tree1.png" id="5_xx2h5"]
+[ext_resource type="Texture2D" uid="uid://b8cassnhckkf4" path="res://Sprites/world/Np/np_bush.png" id="6_g0ae6"]
+[ext_resource type="Texture2D" uid="uid://u16xxlhtwok2" path="res://Sprites/world/Np/np_bush2.png" id="7_ilqip"]
+[ext_resource type="Texture2D" uid="uid://rw8qa5wply8" path="res://Sprites/world/Np/np_rockbig.png" id="8_ilqip"]
+[ext_resource type="PackedScene" uid="uid://dbc0ewvo0k63x" path="res://Scenes/entities/npcs/wise_turtle_brother.tscn" id="9_t7bpt"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="10_ovbwn"]
+[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="12_kjqtl"]
+[ext_resource type="PackedScene" uid="uid://dodiy3h22hmr3" path="res://Scenes/entities/enemies/alligator.tscn" id="13_td5ur"]
+[ext_resource type="PackedScene" uid="uid://t58rn2h4ucp5" path="res://Scenes/entities/enemies/BirdEnemy.tscn" id="14_adfx3"]
+[ext_resource type="PackedScene" uid="uid://bg1222mjojdug" path="res://Scenes/Items/Coin.tscn" id="15_wib10"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xduju"]
+texture = ExtResource("1_8r1pk")
+modulate_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xx2h5"]
+shader = ExtResource("2_mjj1t")
+shader_parameter/intensity = 0.250000011875
+shader_parameter/base_water_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_scale = 1.25000005611512
+shader_parameter/clarity = 0.0430000020425
+
+[sub_resource type="Environment" id="Environment_8r1pk"]
+background_mode = 3
+glow_normalized = true
+adjustment_enabled = true
+adjustment_saturation = 1.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ilqip"]
+radius = 84.40379
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t7bpt"]
+radius = 121.016525
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1n6jx"]
+radius = 351.8096
+
+[node name="NaturePreserve" type="Node2D"]
+
+[node name="mapBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mapBorder"]
+polygon = PackedVector2Array(5, -447, 5, 359, -5, 2073, 6, 5020, 4994, 5009, 5005, -1, -1110, 4, -655, -1047, 2259, -755, 5694, -581, 6116, 1900, 6105, 4056, 6019, 5172, 4686, 5616, 1674, 5378, -255, 5465, -1197, 4587, -872, 1087, -1089, 296)
+
+[node name="LakeBottom" type="Panel" parent="."]
+z_index = -1
+offset_left = 111.0
+offset_top = 54.0
+offset_right = 4883.0
+offset_bottom = 4749.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_xduju")
+
+[node name="lakeShader" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_xx2h5")
+position = Vector2(2419.9998, 2216)
+scale = Vector2(0.7733333, 1.0385)
+texture = ExtResource("1_8r1pk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8r1pk")
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="main" type="Sprite2D" parent="Map"]
+texture = ExtResource("3_mjj1t")
+centered = false
+
+[node name="foreground" type="Sprite2D" parent="Map/main"]
+z_index = 10
+texture = ExtResource("4_xduju")
+centered = false
+
+[node name="trees" type="Node2D" parent="Map/main/foreground"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(845, 2249)
+texture = ExtResource("5_xx2h5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(4377, 3652)
+texture = ExtResource("5_xx2h5")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(1813, 921)
+texture = ExtResource("5_xx2h5")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(713, 3489)
+texture = ExtResource("5_xx2h5")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(2859, 3468)
+texture = ExtResource("5_xx2h5")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(3197, 2047)
+texture = ExtResource("5_xx2h5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(3622, 2906)
+texture = ExtResource("6_g0ae6")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(382, 2108)
+texture = ExtResource("6_g0ae6")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(1367, 1311)
+texture = ExtResource("6_g0ae6")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(1538, 2866)
+texture = ExtResource("6_g0ae6")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(3117, 1002)
+texture = ExtResource("6_g0ae6")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(3988, 1385)
+texture = ExtResource("6_g0ae6")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(2067, 221)
+texture = ExtResource("6_g0ae6")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(3719, 1743)
+texture = ExtResource("7_ilqip")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(162, 1906)
+texture = ExtResource("7_ilqip")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(3011, 4299)
+texture = ExtResource("7_ilqip")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(4598, 4120)
+texture = ExtResource("7_ilqip")
+
+[node name="Sprite2D19" type="Sprite2D" parent="Map/main/foreground/trees"]
+position = Vector2(642, 3843)
+texture = ExtResource("7_ilqip")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Map/main/foreground/trees"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/main/foreground/trees/StaticBody2D"]
+position = Vector2(1842, 1180)
+shape = SubResource("CircleShape2D_ilqip")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/main/foreground/trees/StaticBody2D"]
+position = Vector2(3227, 2302)
+shape = SubResource("CircleShape2D_ilqip")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map/main/foreground/trees/StaticBody2D"]
+position = Vector2(862, 2524)
+shape = SubResource("CircleShape2D_ilqip")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map/main/foreground/trees/StaticBody2D"]
+position = Vector2(741, 3772)
+shape = SubResource("CircleShape2D_ilqip")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map/main/foreground/trees/StaticBody2D"]
+position = Vector2(2880, 3738)
+shape = SubResource("CircleShape2D_ilqip")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Map/main/foreground/trees/StaticBody2D"]
+position = Vector2(4406, 3903)
+shape = SubResource("CircleShape2D_ilqip")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Map/main/foreground/trees/StaticBody2D"]
+position = Vector2(4406, 3903)
+shape = SubResource("CircleShape2D_ilqip")
+
+[node name="rocks" type="Node2D" parent="Map/main/foreground"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/main/foreground/rocks"]
+position = Vector2(1213, 4062)
+texture = ExtResource("8_ilqip")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Map/main/foreground/rocks"]
+position = Vector2(1864, 2263)
+texture = ExtResource("8_ilqip")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Map/main/foreground/rocks"]
+position = Vector2(4192, 1709)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_ilqip")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Map/main/foreground/rocks"]
+position = Vector2(1416, 919)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_ilqip")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Map/main/foreground/rocks"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/main/foreground/rocks/StaticBody2D"]
+position = Vector2(1056, 4107)
+shape = SubResource("CircleShape2D_t7bpt")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Map/main/foreground/rocks/StaticBody2D"]
+position = Vector2(1616, 2282)
+shape = SubResource("CircleShape2D_t7bpt")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Map/main/foreground/rocks/StaticBody2D"]
+position = Vector2(4169, 1721)
+shape = SubResource("CircleShape2D_t7bpt")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Map/main/foreground/rocks/StaticBody2D"]
+position = Vector2(1379, 922)
+shape = SubResource("CircleShape2D_t7bpt")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Map/main/foreground/rocks/StaticBody2D"]
+position = Vector2(1967, 2362)
+shape = SubResource("CircleShape2D_t7bpt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/main/foreground/rocks/StaticBody2D"]
+position = Vector2(1264, 4170)
+shape = SubResource("CircleShape2D_t7bpt")
+
+[node name="WiseTurtleBrother" parent="." instance=ExtResource("9_t7bpt")]
+y_sort_enabled = true
+position = Vector2(2872, 785)
+
+[node name="sceneSwitchArea" parent="." instance=ExtResource("10_ovbwn")]
+position = Vector2(2543, 5079)
+path = "res://Scenes/map/Overworld/Overworld.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
+shape = SubResource("CircleShape2D_1n6jx")
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("2_8r1pk")]
+spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing")]
+
+[node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2534, 4513)
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2203, 4477)
+
+[node name="alligatorSpawner" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("12_kjqtl")]
+EnemySpawnTimerMax = 10.0
+EnemySpawnPoints = [NodePath("EnemySpawns/Marker2D"), NodePath("EnemySpawns/Marker2D2"), NodePath("EnemySpawns/Marker2D3"), NodePath("EnemySpawns/Marker2D4"), NodePath("EnemySpawns/Marker2D5"), NodePath("EnemySpawns/Marker2D6"), NodePath("EnemySpawns/Marker2D7")]
+EnemyScene = ExtResource("13_td5ur")
+SpawnPointCooldown = 15.0
+
+[node name="EntityContainer" type="Node2D" parent="alligatorSpawner"]
+y_sort_enabled = true
+
+[node name="EnemySpawns" type="Node2D" parent="alligatorSpawner"]
+
+[node name="Marker2D" type="Marker2D" parent="alligatorSpawner/EnemySpawns"]
+position = Vector2(511, 1725)
+
+[node name="Marker2D2" type="Marker2D" parent="alligatorSpawner/EnemySpawns"]
+position = Vector2(703, 1207)
+
+[node name="Marker2D3" type="Marker2D" parent="alligatorSpawner/EnemySpawns"]
+position = Vector2(4137, 2014)
+
+[node name="Marker2D4" type="Marker2D" parent="alligatorSpawner/EnemySpawns"]
+position = Vector2(4093, 2547)
+
+[node name="Marker2D5" type="Marker2D" parent="alligatorSpawner/EnemySpawns"]
+position = Vector2(977, 3072)
+
+[node name="Marker2D6" type="Marker2D" parent="alligatorSpawner/EnemySpawns"]
+position = Vector2(2746, 1474)
+
+[node name="Marker2D7" type="Marker2D" parent="alligatorSpawner/EnemySpawns"]
+position = Vector2(3708, 3383)
+
+[node name="birdSpawner" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("12_kjqtl")]
+EnemySpawnTimerMax = 15.0
+EnemySpawnPoints = [NodePath("EnemySpawns/Marker2D"), NodePath("EnemySpawns/Marker2D2"), NodePath("EnemySpawns/Marker2D3")]
+EnemyScene = ExtResource("14_adfx3")
+MaxEnemiesAlive = 3
+SpawnPointCooldown = 10.0
+
+[node name="EntityContainer" type="Node2D" parent="birdSpawner"]
+y_sort_enabled = true
+
+[node name="EnemySpawns" type="Node2D" parent="birdSpawner"]
+
+[node name="Marker2D" type="Marker2D" parent="birdSpawner/EnemySpawns"]
+position = Vector2(1652, 1620)
+
+[node name="Marker2D2" type="Marker2D" parent="birdSpawner/EnemySpawns"]
+position = Vector2(560, 2325)
+
+[node name="Marker2D3" type="Marker2D" parent="birdSpawner/EnemySpawns"]
+position = Vector2(1316, 3191)
+
+[node name="Coin" parent="." instance=ExtResource("15_wib10")]
+position = Vector2(4809, 4402)
+
+[node name="Coin2" parent="." instance=ExtResource("15_wib10")]
+position = Vector2(4863, 4259)
+
+[node name="Coin3" parent="." instance=ExtResource("15_wib10")]
+position = Vector2(4639, 4375)
+
+[node name="Coin4" parent="." instance=ExtResource("15_wib10")]
+position = Vector2(4845, 4053)

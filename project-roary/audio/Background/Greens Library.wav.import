@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://4ks0n2aiwllh"
+path="res://.godot/imported/Greens Library.wav-1db4c14a72f511b996b13c8055e70576.sample"
+
+[deps]
+
+source_file="res://audio/Background/Greens Library.wav"
+dest_files=["res://.godot/imported/Greens Library.wav-1db4c14a72f511b996b13c8055e70576.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

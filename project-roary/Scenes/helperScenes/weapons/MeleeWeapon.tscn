@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5p2ijmjx088"]
+
+[ext_resource type="Script" uid="uid://eb4vo7pq6a2l" path="res://Scripts/helperScripts/weapons/MeleeWeapon.cs" id="1_48mus"]
+[ext_resource type="Resource" uid="uid://bb78x0t10yldt" path="res://Resources/misc/WeaponData.tres" id="2_y227l"]
+[ext_resource type="Texture2D" uid="uid://bqoetwccqj8i0" path="res://Sprites/misc/weapon.jpg" id="3_744ao"]
+[ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_y227l"]
+
+[node name="MeleeWeapon" type="Node2D"]
+script = ExtResource("1_48mus")
+data = ExtResource("2_y227l")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_y227l")]
+scale = Vector2(5, 5)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 7.275958e-12)
+scale = Vector2(0.045410153, 0.05664063)
+texture = ExtResource("3_744ao")

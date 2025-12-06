@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwohgp4x586qn"]
+
+[ext_resource type="Script" uid="uid://gcqgiehykydw" path="res://Scripts/ui/inventory/InventoryUI.cs" id="1_7u8lk"]
+[ext_resource type="Texture2D" uid="uid://bfcpvrx81s1m5" path="res://Sprites/inventory/Inventory Background.png" id="2_7u8lk"]
+[ext_resource type="PackedScene" uid="uid://8pvee488ohwq" path="res://Scenes/ui/inventory/inventoryUISlot.tscn" id="2_tyu5d"]
+
+[sub_resource type="FontVariation" id="FontVariation_7u8lk"]
+
+[node name="InventoryUI" type="Control"]
+custom_minimum_size = Vector2(312, 336)
+layout_mode = 3
+anchor_right = 0.2421875
+anchor_bottom = 0.36481482
+offset_right = 312.0
+offset_bottom = 336.0
+script = ExtResource("1_7u8lk")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 782.0
+offset_bottom = 738.0
+texture = ExtResource("2_7u8lk")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 30.0
+offset_right = 755.0
+offset_bottom = 113.0
+theme_override_fonts/font = SubResource("FontVariation_7u8lk")
+theme_override_font_sizes/font_size = 30
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InventoryGrid" type="GridContainer" parent="NinePatchRect"]
+custom_minimum_size = Vector2(268, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.462
+anchor_top = 0.35300002
+anchor_right = 0.462
+anchor_bottom = 0.35300002
+offset_left = -244.05002
+offset_top = -133.514
+offset_right = 330.716
+offset_bottom = 251.486
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 4
+
+[node name="InventoryUISlot1" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot2" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot3" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot4" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot5" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot6" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot7" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot8" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot9" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot10" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot11" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot12" parent="NinePatchRect/InventoryGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HotBarGrid" type="GridContainer" parent="NinePatchRect"]
+custom_minimum_size = Vector2(268, 64)
+layout_mode = 0
+offset_left = 117.0
+offset_top = 556.0
+offset_right = 691.0
+offset_bottom = 686.0
+columns = 4
+
+[node name="InventoryUISlot1" parent="NinePatchRect/HotBarGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot2" parent="NinePatchRect/HotBarGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot3" parent="NinePatchRect/HotBarGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUISlot4" parent="NinePatchRect/HotBarGrid" instance=ExtResource("2_tyu5d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

@@ -1,0 +1,320 @@
+[gd_scene load_steps=23 format=3 uid="uid://bcml7nmxbu4j4"]
+
+[ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
+[ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
+[ext_resource type="Texture2D" uid="uid://ccibbsncsdid5" path="res://Sprites/world/overworld_stadium.png" id="2_gknab"]
+[ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_otqv2"]
+[ext_resource type="Texture2D" uid="uid://dtook4le0doxv" path="res://Sprites/world/overworld_gc.png" id="3_depd0"]
+[ext_resource type="Texture2D" uid="uid://xvnrsto6o2h5" path="res://Sprites/world/overworld_pg.png" id="4_255qt"]
+[ext_resource type="Texture2D" uid="uid://cobka0qcnaod1" path="res://Sprites/world/overworld_gl.png" id="4_gknab"]
+[ext_resource type="Texture2D" uid="uid://nq0lkefd53m6" path="res://Sprites/world/overworld_np.png" id="6_255qt"]
+[ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_ngc8d"]
+[ext_resource type="PackedScene" uid="uid://duifow0ycc63q" path="res://Scenes/helperScenes/save.tscn" id="10_up40q"]
+[ext_resource type="PackedScene" uid="uid://ddq3hijvn1xf3" path="res://Scenes/entities/npcs/Guide.tscn" id="10_y80uk"]
+[ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="11_otqv2"]
+[ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
+[ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="13_6v34l"]
+[ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="13_otqv2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
+texture = ExtResource("1_pnd8i")
+modulate_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lmre"]
+shader = ExtResource("2_otqv2")
+shader_parameter/intensity = 0.250000011875
+shader_parameter/base_water_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_scale = 1.25000005611512
+shader_parameter/clarity = 0.0430000020425
+
+[sub_resource type="Environment" id="Environment_uny04"]
+background_mode = 3
+glow_normalized = true
+adjustment_enabled = true
+adjustment_saturation = 1.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnd8i"]
+radius = 477.12683
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_otqv2"]
+radius = 497.01608
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lmre"]
+radius = 509.08643
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6v34l"]
+radius = 302.49792
+
+[node name="Overworld" type="Node2D"]
+y_sort_enabled = true
+
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+polygon = PackedVector2Array(-9, -8, 9996, -1, 10027, 10018, -11, 10018, -1, 33, -2, -58, -53, 163, -500, 6315, -500, 11016, 6807, 11297, 11866, 10786, 11584, 7312, 11278, 950, 10895, -608, 6858, -864, 471, -353, -2, -57)
+
+[node name="lakeBorder" type="StaticBody2D" parent="."]
+z_index = -1
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lakeBorder"]
+polygon = PackedVector2Array(2345, 6197, 2226, 6182, 2144, 6147, 2042, 6083, 1934, 5990, 1842, 5736, 1934, 5387, 2066, 5138, 2179, 4999, 2288, 4928, 2516, 4740, 2708, 4653, 2921, 4493, 3048, 4446, 3813, 4003, 4500, 3557, 4740, 3434, 4957, 3375, 5164, 3357, 5385, 3375, 5592, 3476, 5797, 3604, 5917, 3733, 6002, 3842, 6072, 3987, 6098, 4120, 6090, 4249, 6057, 4371, 6031, 4465, 5971, 4574, 5891, 4768, 5828, 4887, 5800, 4952, 5770.7974, 5032.782, 5764, 5152, 5828, 5440, 5885, 5601, 5870, 5785, 5797, 5951, 5704, 6042, 5553, 6108, 5276, 6389, 5133, 6659, 4950, 6921, 4705, 7123, 4519, 7271, 4320, 7380, 4132, 7429, 3980, 7393, 3829, 7214, 3702, 6934, 3580, 6511, 3429, 6335, 3250, 6267, 3050, 6270, 2789, 6283)
+
+[node name="LakeBottom" type="Panel" parent="."]
+z_index = -1
+offset_left = 1454.0
+offset_top = 3098.0
+offset_right = 6828.0
+offset_bottom = 7793.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_otqv2")
+
+[node name="lakeShader" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_1lmre")
+position = Vector2(3982.5002, 5386)
+scale = Vector2(0.7355, 1.061)
+texture = ExtResource("1_pnd8i")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uny04")
+
+[node name="Map" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Map"]
+z_index = -1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D5"]
+polygon = PackedVector2Array(2223, 3568, 2306, 3561, 2343, 3239, 2280, 2920, 2195, 3146)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Map"]
+z_index = -1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D4"]
+polygon = PackedVector2Array(3212, 3340, 3238, 2912, 2913, 2782, 2926, 3052, 3152, 3343)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Map"]
+z_index = -1
+position = Vector2(2231, 1788)
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D"]
+polygon = PackedVector2Array(-2184, 1691, -1324, 1732, -396, 1631, -33, 1580, 504, 1429, 1037, 1259, 1717, 942, 1943, 785, 2003, 738, 2087, 759, 2126, 783, 2287, 824, 2441, 890, 2550, 868, 2729, 817, 2776, 711, 2939, 677, 3154, 701, 3380, 605, 3714, 617, 3845, 725, 4119, 748, 4500, 832, 4632, 1011, 4584, 1189, 4715, 1273, 5025, 1380, 5180, 1404, 5382, 1547, 5394, 1750, 5275, 2024, 5156, 2262, 4941, 2584, 4667, 3013, 4357, 3394, 4512, 3573, 4858, 3680, 5263, 3680, 5549, 3704, 5597, 3859, 5811, 3978, 6407, 4050, 7575, 4074, 7730, 4085, 7849, 4074, 7766, -2005, -2615, -2005, -2388, 1630)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Map"]
+z_index = -1
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D2"]
+polygon = PackedVector2Array(-10, 6583, 969, 7485, 2024, 7811, 2293, 8080, 2466, 8176, 2696, 8560, 2792, 8944, 1391, 10057, -68, 10230, -279, 9251, -375, 6506)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Map"]
+z_index = -1
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/StaticBody2D3"]
+polygon = PackedVector2Array(8646, 9155, 9241, 9519, 9798, 9596, 10009, 9462, 10149, 7346, 9721, 7350, 7611, 7361, 7322, 7427, 6443, 7938, 6140, 8399, 6025, 8702, 7744, 8713, 8090, 8579, 8704, 8848)
+
+[node name="ChunkTL" type="Sprite2D" parent="Map"]
+y_sort_enabled = true
+texture = ExtResource("1_rxqxp")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 5000)
+
+[node name="stadium" type="Sprite2D" parent="Map/ChunkTL"]
+position = Vector2(2231, 1788)
+texture = ExtResource("2_gknab")
+
+[node name="NP" type="Sprite2D" parent="Map/ChunkTL"]
+position = Vector2(6584, 1615)
+texture = ExtResource("6_255qt")
+
+[node name="ChunkTR" type="Sprite2D" parent="Map"]
+y_sort_enabled = true
+texture = ExtResource("1_rxqxp")
+centered = false
+offset = Vector2(5000, 0)
+region_enabled = true
+region_rect = Rect2(5000, 0, 5000, 5000)
+
+[node name="NP" type="Sprite2D" parent="Map/ChunkTR"]
+position = Vector2(6584, 1615)
+texture = ExtResource("6_255qt")
+
+[node name="PG" type="Sprite2D" parent="Map/ChunkTR"]
+position = Vector2(8904, 4357)
+texture = ExtResource("4_255qt")
+
+[node name="ChunkBL" type="Sprite2D" parent="Map"]
+y_sort_enabled = true
+texture = ExtResource("1_rxqxp")
+centered = false
+offset = Vector2(0, 5000)
+region_enabled = true
+region_rect = Rect2(0, 5000, 5000, 5000)
+
+[node name="GL" type="Sprite2D" parent="Map/ChunkBL"]
+position = Vector2(1608, 8126)
+texture = ExtResource("4_gknab")
+
+[node name="ChunkBR" type="Sprite2D" parent="Map"]
+y_sort_enabled = true
+texture = ExtResource("1_rxqxp")
+centered = false
+offset = Vector2(5000, 5000)
+region_enabled = true
+region_rect = Rect2(5000, 5000, 5000, 5000)
+
+[node name="PG" type="Sprite2D" parent="Map/ChunkBR"]
+position = Vector2(8904, 4357)
+texture = ExtResource("4_255qt")
+
+[node name="GC" type="Sprite2D" parent="Map/ChunkBR"]
+position = Vector2(8065, 7984)
+texture = ExtResource("3_depd0")
+
+[node name="WiseTurtle" parent="." instance=ExtResource("10_y80uk")]
+position = Vector2(5689, 5813)
+
+[node name="GcEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(8407, 8640)
+path = "res://Scenes/map/GranhamCenter/GrahamCenter.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GcEntrance"]
+shape = SubResource("CircleShape2D_pnd8i")
+
+[node name="GlEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(1635, 9508)
+path = "res://Scenes/map/GreenLibrary/GreenLibrary.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlEntrance"]
+position = Vector2(0, -118)
+shape = SubResource("CircleShape2D_otqv2")
+
+[node name="StadiumEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(2663, 3140)
+path = "res://Scenes/map/Stadium/Stadium.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StadiumEntrance"]
+position = Vector2(-54, -119)
+shape = SubResource("CircleShape2D_1lmre")
+
+[node name="NpEntrance" parent="." instance=ExtResource("9_ngc8d")]
+position = Vector2(5777, 2435)
+path = "res://Scenes/map/NaturePreserve/NaturePreserve.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NpEntrance"]
+shape = SubResource("CircleShape2D_6v34l")
+
+[node name="petitionerSpawner" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("11_otqv2")]
+EnemySpawnTimerMax = 5.0
+EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4"), NodePath("EnemySpawnPointsContainer/Marker2D5"), NodePath("EnemySpawnPointsContainer/Marker2D6")]
+EnemyScene = ExtResource("13_otqv2")
+
+[node name="EntityContainer" type="Node2D" parent="petitionerSpawner"]
+y_sort_enabled = true
+
+[node name="EnemySpawnPointsContainer" type="Node2D" parent="petitionerSpawner"]
+
+[node name="Marker2D" type="Marker2D" parent="petitionerSpawner/EnemySpawnPointsContainer"]
+position = Vector2(2466, 7209)
+
+[node name="Marker2D2" type="Marker2D" parent="petitionerSpawner/EnemySpawnPointsContainer"]
+position = Vector2(3309, 9614)
+
+[node name="Marker2D3" type="Marker2D" parent="petitionerSpawner/EnemySpawnPointsContainer"]
+position = Vector2(3496, 8090)
+
+[node name="Marker2D4" type="Marker2D" parent="petitionerSpawner/EnemySpawnPointsContainer"]
+position = Vector2(4599, 9778)
+
+[node name="Marker2D5" type="Marker2D" parent="petitionerSpawner/EnemySpawnPointsContainer"]
+position = Vector2(7447, 9636)
+
+[node name="Marker2D6" type="Marker2D" parent="petitionerSpawner/EnemySpawnPointsContainer"]
+position = Vector2(7850, 6450)
+
+[node name="IguanaSpawner" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("11_otqv2")]
+EnemySpawnTimerMax = 5.0
+EnemySpawnPoints = [NodePath("EnemySpawnPointsContainer/Marker2D"), NodePath("EnemySpawnPointsContainer/Marker2D2"), NodePath("EnemySpawnPointsContainer/Marker2D3"), NodePath("EnemySpawnPointsContainer/Marker2D4"), NodePath("EnemySpawnPointsContainer/Marker2D5"), NodePath("EnemySpawnPointsContainer/Marker2D6"), NodePath("EnemySpawnPointsContainer/Marker2D7"), NodePath("EnemySpawnPointsContainer/Marker2D8"), NodePath("EnemySpawnPointsContainer/Marker2D9"), NodePath("EnemySpawnPointsContainer/Marker2D10"), NodePath("EnemySpawnPointsContainer/Marker2D11"), NodePath("EnemySpawnPointsContainer/Marker2D12"), NodePath("EnemySpawnPointsContainer/Marker2D13"), NodePath("EnemySpawnPointsContainer/Marker2D14")]
+EnemyScene = ExtResource("13_6v34l")
+MaxEnemiesAlive = 6
+
+[node name="EntityContainer" type="Node2D" parent="IguanaSpawner"]
+y_sort_enabled = true
+
+[node name="EnemySpawnPointsContainer" type="Node2D" parent="IguanaSpawner"]
+
+[node name="Marker2D" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(6642, 6238)
+
+[node name="Marker2D2" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(5591, 7462)
+
+[node name="Marker2D3" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(3912, 8242)
+
+[node name="Marker2D4" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(3186, 7180)
+
+[node name="Marker2D5" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(1680, 7364)
+
+[node name="Marker2D6" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(1485, 5739)
+
+[node name="Marker2D7" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(250, 5522)
+
+[node name="Marker2D8" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(662, 4200)
+
+[node name="Marker2D9" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(2981, 4027)
+
+[node name="Marker2D10" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(4032, 3225)
+
+[node name="Marker2D11" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(5831, 3398)
+
+[node name="Marker2D12" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(7987, 6941)
+
+[node name="Marker2D13" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(6654, 9541)
+
+[node name="Marker2D14" type="Marker2D" parent="IguanaSpawner/EnemySpawnPointsContainer"]
+position = Vector2(6654, 9541)
+
+[node name="PlayerSpawnPoints" parent="." node_paths=PackedStringArray("spawnsAvailable") instance=ExtResource("11_rm1pb")]
+spawnsAvailable = [NodePath("fromGrahamCenter"), NodePath("fromNothing"), NodePath("fromParkingGarage"), NodePath("fromNaturePreserve"), NodePath("fromGreenLibrary")]
+
+[node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(4429, 7699)
+
+[node name="fromParkingGarage" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(8264, 6060)
+
+[node name="fromNaturePreserve" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(5666, 2988)
+
+[node name="fromGreenLibrary" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(2634, 9656)
+
+[node name="fromGrahamCenter" type="Marker2D" parent="PlayerSpawnPoints"]
+position = Vector2(7300, 9044)
+
+[node name="Save" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(6635, 3367)
+
+[node name="Save2" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(2015, 3907)
+
+[node name="Save3" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(5689, 8644)
+
+[node name="Save4" parent="." instance=ExtResource("10_up40q")]
+position = Vector2(2981, 6562)

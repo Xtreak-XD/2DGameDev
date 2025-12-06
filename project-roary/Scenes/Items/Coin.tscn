@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg1222mjojdug"]
+
+[ext_resource type="PackedScene" uid="uid://r6a6orujjhgt" path="res://Scenes/ui/inventory/Items.tscn" id="1_u2qj6"]
+[ext_resource type="Texture2D" uid="uid://cpdoqhdpqifxt" path="res://Sprites/world/DiningDollars.png" id="2_t1eb3"]
+[ext_resource type="Resource" uid="uid://d2v13hglqa2h0" path="res://Resources/items/Coin.tres" id="3_rtwpw"]
+
+[node name="Coin" instance=ExtResource("1_u2qj6")]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_t1eb3")
+itemResource = ExtResource("3_rtwpw")
+
+[node name="InteractionArea" parent="." index="0"]
+actionName = "interact"

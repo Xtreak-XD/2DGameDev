@@ -40,7 +40,7 @@ public partial class Guide : CharacterBody2D
                     "So something tells me you're here for a reason.",
                     "If that's the case, there may still be time in our current situation.",
                     "You must go across campus in order to put a stop to a certain panther. But before that...",
-                    "PLEASE SAVE MY BROTHER!!! He is sorrounded by alligators in the Nature Preserve, pLease!",
+                    "PLEASE SAVE MY BROTHER!!! He is sorrounded by alligators in the Nature Preserve, please!",
                 }
             },
             {
@@ -58,7 +58,7 @@ public partial class Guide : CharacterBody2D
                 {
                     "You saved my brother!",
                     "Words cannot express my gratitude.",
-                    "You must continue forward — the mission is not over."
+                    "You must continue forward — Go! now you can fight the MERMAID in the GREEN LIBRARY."
                 }
             }
         };
@@ -91,6 +91,12 @@ public partial class Guide : CharacterBody2D
 
         await dialogueManager.startDialog(GlobalPosition, chosenLines);
         await ToSignal(eventbus, "finishedDisplaying");
+
+        if (md.SavedYoungerTurtleBrother)
+        {
+            md.CanEnterMermaidRoom = true;
+            sm.SaveNpcFlags();
+        }
 
         if (!md.TalkedToWiseTurtleAboutBrother)
         {

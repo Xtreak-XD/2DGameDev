@@ -15,6 +15,7 @@ public partial class Enemy : CharacterBody2D
 
 	private Vector2 knockBackVelocity = Vector2.Zero;
 	private const float KnockBackDecay = 750.0f;
+	public Eventbus eventbus;
 	public override void _EnterTree()
 	{
 		AddToGroup("enemy");
@@ -22,6 +23,7 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _Ready()
 	{
+		eventbus = GetNode<Eventbus>("/root/Eventbus");
 		if (data != null)
 		{
 			data = (GenericData)data.Duplicate();

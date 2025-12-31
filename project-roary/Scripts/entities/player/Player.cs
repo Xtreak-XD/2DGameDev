@@ -114,6 +114,8 @@ public partial class Player : CharacterBody2D
         eventbus.itemDropped -= spawnItemInWorld;
 		eventbus.itemEquipped -= equipItem;
 		eventbus.inventoryUpdated -= checkIfEquipped;
+
+		stateMachine.ChangeState(stateMachine.states[0]);
     }
 
 

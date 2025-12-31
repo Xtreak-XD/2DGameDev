@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgg0o1pg1scr0"]
+[gd_scene load_steps=18 format=3 uid="uid://bgg0o1pg1scr0"]
 
 [ext_resource type="Texture2D" uid="uid://dqx53q0r0k2x1" path="res://Sprites/world/Gl/floor 2/gl2_base.png" id="1_02ymr"]
 [ext_resource type="Script" uid="uid://juxexqwr52tm" path="res://Scripts/map/GL/GreenLibraryFloor2.cs" id="1_cnkg2"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="10_a7ol5"]
 [ext_resource type="PackedScene" uid="uid://cl63x62myysqf" path="res://Scenes/helperScenes/enemymanager.tscn" id="11_jghat"]
 [ext_resource type="PackedScene" uid="uid://bf7x4f3mkvl4y" path="res://Scenes/entities/enemies/BookEnemy.tscn" id="12_myx24"]
+[ext_resource type="Script" uid="uid://do46acb7wa0ab" path="res://Scenes/map/GreenLibrary/AreaLocked.cs" id="13_8friu"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="13_myx24"]
 
 [sub_resource type="Environment" id="Environment_5iehm"]
 background_mode = 3
@@ -21,6 +23,9 @@ adjustment_saturation = 1.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbe68"]
 size = Vector2(1464.5, 405)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jghat"]
+size = Vector2(1542, 390)
 
 [node name="GreenLibraryFloor2" type="Node2D"]
 script = ExtResource("1_cnkg2")
@@ -316,7 +321,7 @@ spawnsAvailable = [NodePath("fromGreenLibrary"), NodePath("fromNothing")]
 position = Vector2(2552, 4513)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(362, 4149)
+position = Vector2(333, 4089)
 
 [node name="BookSpawner" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("11_jghat")]
 EnemySpawnTimerMax = 0.5
@@ -340,3 +345,24 @@ position = Vector2(3634, 355)
 
 [node name="Marker2D4" type="Marker2D" parent="BookSpawner/EnemySpawns"]
 position = Vector2(4226, 888)
+
+[node name="areaLocked" type="Area2D" parent="."]
+position = Vector2(2465, 497)
+collision_mask = 2
+monitorable = false
+script = ExtResource("13_8friu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaLocked"]
+position = Vector2(-2, -23)
+shape = SubResource("RectangleShape2D_jghat")
+debug_color = Color(0.9408419, 0.34569326, 0.8273279, 0.41960785)
+
+[node name="Label" type="Label" parent="areaLocked"]
+visible = false
+offset_left = -631.0
+offset_top = 16.0
+offset_right = 780.0
+offset_bottom = 169.0
+theme_override_fonts/font = ExtResource("13_myx24")
+theme_override_font_sizes/font_size = 128
+text = "Talk to wise turtle!"

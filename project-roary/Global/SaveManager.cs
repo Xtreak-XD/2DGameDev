@@ -14,12 +14,13 @@ public partial class SaveManager : Node
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         inv = GetNode<Inventory>("/root/Inventory");
 
-        //metaData.Money = 5000;
+        //metaData.SavedYoungerTurtleBrother = true;
         //metaData.Ammo = 500;
         //change metadata info here to test!
         //metadata.... = ...;
 
         eventbus.save += Save;
+        eventbus.deleteSave += Reset;
         eventbus.load += Load;
 
         VerifySaveDirectory(save_file_path);
@@ -28,13 +29,58 @@ public partial class SaveManager : Node
     public override void _ExitTree()
     {
         eventbus.save -= Save;
+        eventbus.deleteSave -= Reset;
         eventbus.load -= Load;
     }
 
     public bool SaveFileExists()
     {
         string fullPath = save_file_path + save_file_name;
-        return ResourceLoader.Exists(fullPath);
+        return FileAccess.FileExists(fullPath);
+    }
+
+    public void Reset()
+    {
+        string fullPath = save_file_path + save_file_name;
+        //check the path
+        if (!ResourceLoader.Exists(fullPath))
+        {
+            GD.Print("No save file found at " + fullPath);
+            eventbus.EmitSignal(Eventbus.SignalName.deleted);
+            return;
+        }
+        //delete file
+        try
+        {
+            if (ResourceLoader.HasCached(fullPath))
+            {
+                metaData = new MetaData();
+                ResourceLoader.Load<MetaData>(fullPath).TakeOverPath(fullPath);
+            }
+            Error deletingSave = DirAccess.RemoveAbsolute(fullPath);
+            if (deletingSave == Error.Ok)
+            {
+                GD.Print("deleted save");
+
+                inv.slots.Clear();
+                for (int i = 0; i< Inventory.TOTAL_SIZE; i++)
+                {
+                    inv.slots.Add(new InventorySlot());
+                }
+
+                metaData = new MetaData();
+
+                eventbus.EmitSignal(Eventbus.SignalName.deleted);
+            }
+            else
+            {
+                GD.Print("failed to delete save");
+            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Error deleting save: {e.Message}");
+        }
     }
 
     public void Save(bool firstLoad = false)

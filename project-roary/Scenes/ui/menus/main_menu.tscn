@@ -126,6 +126,21 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_2ltg1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2ltg1")
 text = "Play"
 
+[node name="Reset" type="Button" parent="buttons"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_focus_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_hover_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ltg1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ltg1")
+text = "New Game"
+
 [node name="Options" type="Button" parent="buttons"]
 layout_mode = 2
 size_flags_vertical = 3

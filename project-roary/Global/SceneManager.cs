@@ -7,7 +7,7 @@ public partial class SceneManager : Node
     public Node currentScene;
     public Eventbus eventbus;
     public TransitionManager transitionManager;
-    Player player;
+    public Player player;
     public string comingFromName;
     Marker2D spawnPosition;
     PackedScene newPlayerInstance;
@@ -89,6 +89,12 @@ public partial class SceneManager : Node
             saveManager.metaData.introPlayed = true;
             saveManager.SaveNpcFlags();
             await ToSignal(eventbus, Eventbus.SignalName.onTransitionFinished);
+        }
+        else if (saveManager.metaData.DefeatedRoary)
+        {
+            transitionManager.transition("demo_finished");
+            //delete save aka reset it all
+            await ToSignal(eventbus,Eventbus.SignalName.onTransitionFinished);
         }
         else
         {

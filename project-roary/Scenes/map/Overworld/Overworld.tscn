@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bcml7nmxbu4j4"]
+[gd_scene load_steps=27 format=3 uid="uid://bcml7nmxbu4j4"]
 
 [ext_resource type="Texture2D" uid="uid://dlywiusgkqmd1" path="res://Sprites/world/lakeBottom/green-textured-stucco-wall-background.jpg" id="1_pnd8i"]
 [ext_resource type="Texture2D" uid="uid://bw2t6wny2qbku" path="res://Sprites/world/overworld_base.png" id="1_rxqxp"]
+[ext_resource type="Script" uid="uid://coaegmyfnj6xy" path="res://Scripts/map/OW/OverworldController.cs" id="1_y80uk"]
 [ext_resource type="Texture2D" uid="uid://ccibbsncsdid5" path="res://Sprites/world/overworld_stadium.png" id="2_gknab"]
 [ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_otqv2"]
 [ext_resource type="Texture2D" uid="uid://dtook4le0doxv" path="res://Sprites/world/overworld_gc.png" id="3_depd0"]
@@ -15,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://c67q3xn3rrumy" path="res://Scenes/helperScenes/playerSpawn.tscn" id="11_rm1pb"]
 [ext_resource type="PackedScene" uid="uid://drfioqbhwrfpj" path="res://Scenes/entities/enemies/iguana.tscn" id="13_6v34l"]
 [ext_resource type="PackedScene" uid="uid://cb03afcepoioc" path="res://Scenes/entities/enemies/petitioner.tscn" id="13_otqv2"]
+[ext_resource type="Script" uid="uid://bgx56r7iwhtlo" path="res://Scenes/map/Overworld/StadiumUnavailable.cs" id="17_he2dp"]
+[ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="17_wywh7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otqv2"]
 texture = ExtResource("1_pnd8i")
@@ -45,8 +48,12 @@ radius = 509.08643
 [sub_resource type="CircleShape2D" id="CircleShape2D_6v34l"]
 radius = 302.49792
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y80uk"]
+radius = 584.1104
+
 [node name="Overworld" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_y80uk")
 
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -318,3 +325,23 @@ position = Vector2(5689, 8644)
 
 [node name="Save4" parent="." instance=ExtResource("10_up40q")]
 position = Vector2(2981, 6562)
+
+[node name="stadiumUnavailable" type="Area2D" parent="."]
+position = Vector2(2616, 3059)
+collision_mask = 2
+monitorable = false
+script = ExtResource("17_he2dp")
+
+[node name="UnavailableLabel" type="Label" parent="stadiumUnavailable"]
+visible = false
+offset_left = -345.0
+offset_top = 287.0
+offset_right = 523.0
+offset_bottom = 440.0
+rotation = -0.3036873
+theme_override_fonts/font = ExtResource("17_wywh7")
+theme_override_font_sizes/font_size = 128
+text = "DEFEAT MERMAID"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stadiumUnavailable"]
+shape = SubResource("CircleShape2D_y80uk")

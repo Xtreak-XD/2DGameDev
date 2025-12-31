@@ -41,6 +41,10 @@ public partial class TransitionManager : CanvasLayer
                 eventbus.EmitSignal(Eventbus.SignalName.onTransitionFinished);
                 textLabel.Visible = false;
                 break;
+            case "demo_finished":
+                eventbus.EmitSignal(Eventbus.SignalName.onTransitionFinished);
+                textLabel.Visible = false;
+                break;
         }
     }
 
@@ -55,6 +59,10 @@ public partial class TransitionManager : CanvasLayer
             case "Opening_World":
                 textLabel.Visible = true;
                 animationPlayer.Play("Opening_World");
+                break;
+            case "demo_finished":
+                textLabel.Visible = true;
+                animationPlayer.Play("demo_finished");
                 break;
             default:
                 fadeScreen.Visible = true;

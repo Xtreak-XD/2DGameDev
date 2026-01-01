@@ -5,6 +5,7 @@ using System.Linq;
 public partial class InteractionManager : Node2D
 {
     public Player player;
+    public dialogueManager dialogueManager;
     public Label label;
 
     const string labelText = "[E] to ";
@@ -15,7 +16,7 @@ public partial class InteractionManager : Node2D
 
     public override void _Ready()
     {
-    
+        dialogueManager = GetNode<dialogueManager>("/root/DialogueManager");
         label = GetNode<Label>("Label");
         
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
@@ -61,13 +62,12 @@ public partial class InteractionManager : Node2D
 
     public void unregisterArea(interactionArea area)
     {
+        if(dialogueManager.isDialogActive)
+        {
+            dialogueManager.HandleDialogAdvance(true);
+        }
+        
         activeAreas.Remove(area);
-        // int index = activeAreas.IndexOf(area);
-        // if (index != -1)
-        // {
-        //     activeAreas.RemoveAt(index);
-        //     canInteract = true;
-        // }
     }
 
     public override void _Input(InputEvent @event)
@@ -78,7 +78,6 @@ public partial class InteractionManager : Node2D
             {
                 canInteract = false;
                 label.Hide();
-
                 activeAreas[0].interact.Call();
             }
         }

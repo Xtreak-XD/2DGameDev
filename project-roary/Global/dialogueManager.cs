@@ -63,11 +63,15 @@ public partial class dialogueManager : Node
         }
     }
 
-    private async void HandleDialogAdvance()
+    public async void HandleDialogAdvance(bool finishEarly = false)
     {
         textBox.QueueFree();
         currentLineIndex++;
 
+        if (finishEarly)
+        {
+            currentLineIndex = dialogLines.Length;
+        }
         if (currentLineIndex >= dialogLines.Length)
         {
             isDialogActive = false;

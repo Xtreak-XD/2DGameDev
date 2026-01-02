@@ -72,4 +72,5 @@ public partial class Eventbus : Node
 
     //transitions
     [Signal] public delegate void onTransitionFinishedEventHandler();
+    [Signal] public delegate void DefeatedMermaidEventHandler();
 }

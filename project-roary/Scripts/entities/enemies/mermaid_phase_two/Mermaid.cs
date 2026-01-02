@@ -186,6 +186,7 @@ public partial class Mermaid : Enemy
         saveManager.metaData.DefeatedMermaid = true;
         saveManager.metaData.CanEnterStadium = true;
         saveManager.SaveNpcFlags();
+        eventbus.EmitSignal(Eventbus.SignalName.DefeatedMermaid);
         base.Die();
     }
 }

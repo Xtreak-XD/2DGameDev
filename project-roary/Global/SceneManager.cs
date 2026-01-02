@@ -126,6 +126,10 @@ public partial class SceneManager : Node
         if (!ShouldSceneHavePlayer(newScene))
         {
             currentScene = newScene;
+            if (saveManager.metaData.DefeatedRoary)
+            {
+                eventbus.EmitSignal(Eventbus.SignalName.deleteSave);
+            }
             return;
         }
 

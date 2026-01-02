@@ -8,7 +8,7 @@ public partial class GreenLibraryFloor2 : Node2D
     public override void _Ready()
     {
         saveManager = GetNode<SaveManager>("/root/SaveManager");
-        unlockMermaidBoss(saveManager.metaData.CanEnterMermaidRoom);
+        unlockMermaidBoss(saveManager.metaData.CanEnterMermaidRoom, saveManager.metaData.DefeatedMermaid);
         var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
         dayNight.Visible = false;
     }
@@ -19,9 +19,9 @@ public partial class GreenLibraryFloor2 : Node2D
         dayNight.Visible = true;
     }
 
-    void unlockMermaidBoss(bool canFight)
+    void unlockMermaidBoss(bool canFight, bool alreadyDefeated)
     {
-        if (canFight)
+        if (canFight && !alreadyDefeated)
         {
             GetNode<Area2D>("areaLocked").Monitoring = false;
             GetNode<Area2D>("sceneSwitchArea").Monitoring = true;

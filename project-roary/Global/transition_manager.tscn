@@ -153,7 +153,7 @@ tracks/0/path = NodePath("RichTextLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10),
+"times": PackedFloat32Array(0, 25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -173,26 +173,29 @@ Now FIU can be at peace once more.
 
 
 --CREDITS--
-Team Leads
-   -Cristian
-   -Miguel
 
-Programmers
-   -Cristian
-   -Miguel
-   -Max
-   -Monica
-   -Christian
-   -Alex
-   -Anhel
-   ...
+--Team Leads--
+Cristian P.
+Miguel A.
 
-Artists
-   -Monica
-   -Fer
+--Programmers--
+Cristian P.
+Miguel A.
+Max
+Monica
+Cristian A.
+Alex P.
+Alex V.
+Iadd C.
+Anhel
 
-Music
-   -Haruki
+--Artists--
+Monica
+Fer
+Matthew
+
+--Music--
+Haruki
 
 
 ALL ART, CODE, and MUSIC was done in house. Please check out some of the main songs in the youtube playlist by scanning the QR code in the main menu!

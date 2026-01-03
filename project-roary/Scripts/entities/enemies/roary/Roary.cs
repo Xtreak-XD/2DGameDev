@@ -51,7 +51,7 @@ public partial class Roary : Enemy
 	public override void _Ready()
     {
         saveManager = GetNode<SaveManager>("/root/SaveManager");
-
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
         stateMachine = GetNode<RoaryStateMachine>("RoaryStateMachine");
         stateMachine.Initialize(this);
 

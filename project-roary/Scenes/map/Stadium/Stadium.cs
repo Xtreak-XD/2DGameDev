@@ -25,6 +25,7 @@ public partial class Stadium : Node2D
 
     async void beatGame()
     {
+        GD.Print("beat game");
         bossHealth.Visible = false;
         await ToSignal(GetTree().CreateTimer(1.5f), SceneTreeTimer.SignalName.Timeout);
         sceneManager.goToScene(this, "res://Scenes/ui/menus/main_menu.tscn");

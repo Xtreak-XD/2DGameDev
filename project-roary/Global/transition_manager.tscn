@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5ik227pw3fu7"]
+[gd_scene load_steps=12 format=3 uid="uid://5ik227pw3fu7"]
 
 [ext_resource type="Script" uid="uid://delcexq4iyx0b" path="res://Global/TransitionManager.cs" id="1_1yf5f"]
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="2_42olk"]
@@ -130,6 +130,92 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RichTextLabel:scroll_following_visible_characters")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pxdde"]
+resource_name = "demo_finished"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Well Done! Roary is defeated!
+Now FIU can be at peace once more.
+
+
+--CREDITS--
+
+--Team Leads--
+Cristian P.
+Miguel A.
+
+--Programmers--
+Cristian P.
+Miguel A.
+Max
+Monica
+Cristian A.
+Alex P.
+Alex V.
+Iadd C.
+Anhel
+
+--Artists--
+Monica
+Fer
+Matthew
+
+--Music--
+Haruki
+
+
+ALL ART, CODE, and MUSIC was done in house. Please check out some of the main songs in the youtube playlist by scanning the QR code in the main menu!
+
+
+--THANKS FOR PLAYING--
+"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RichTextLabel:scroll_following_visible_characters")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1.9318753),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_15xgf"]
 resource_name = "fade_to_blue"
@@ -190,6 +276,7 @@ _data = {
 &"Intro_Opening": SubResource("Animation_m46bv"),
 &"Opening_World": SubResource("Animation_i1uqr"),
 &"RESET": SubResource("Animation_42olk"),
+&"demo_finished": SubResource("Animation_pxdde"),
 &"fade_to_blue": SubResource("Animation_15xgf"),
 &"fade_to_normal": SubResource("Animation_1yf5f")
 }
@@ -218,6 +305,7 @@ Students are already drifting between buildings, backpacks slung over their shou
 
 probably."
 scroll_active = false
+scroll_following_visible_characters = true
 shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1

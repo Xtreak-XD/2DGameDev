@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7j1lsbdli03x"]
+[gd_scene load_steps=19 format=3 uid="uid://b7j1lsbdli03x"]
 
 [ext_resource type="Script" uid="uid://bwjyng2guwv4o" path="res://Scripts/map/GL/GreenLibrary.cs" id="1_1rai3"]
 [ext_resource type="Texture2D" uid="uid://den3841rkbmcx" path="res://Sprites/world/Gl/gl1_base.png" id="1_6agjo"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://5daepnvk1r6i" path="res://Sprites/world/Gl/gl1_table3.png" id="7_1vo5c"]
 [ext_resource type="Texture2D" uid="uid://bnon6sxjtsre7" path="res://Sprites/world/Gl/gl1_table4.png" id="8_pluaw"]
 [ext_resource type="PackedScene" uid="uid://csvvyp0m34s0m" path="res://Scenes/helperScenes/scene_switch_area.tscn" id="9_1vo5c"]
+[ext_resource type="PackedScene" uid="uid://djv5t3lqncu6" path="res://Scenes/entities/npcs/basi_cnpc.tscn" id="10_4pfcf"]
 
 [sub_resource type="Environment" id="Environment_wljyb"]
 background_mode = 3
@@ -34,6 +35,7 @@ size = Vector2(1416, 642)
 size = Vector2(2135, 539)
 
 [node name="GreenLibrary" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_1rai3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -130,6 +132,22 @@ position = Vector2(2499.25, 427.5)
 shape = SubResource("RectangleShape2D_1rai3")
 
 [node name="NPCs" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="BASICnpc" parent="NPCs" instance=ExtResource("10_4pfcf")]
+position = Vector2(1169, 1796)
+
+[node name="BASICnpc2" parent="NPCs" instance=ExtResource("10_4pfcf")]
+position = Vector2(3769, 1737)
+
+[node name="BASICnpc3" parent="NPCs" instance=ExtResource("10_4pfcf")]
+position = Vector2(1109, 3457)
+
+[node name="BASICnpc4" parent="NPCs" instance=ExtResource("10_4pfcf")]
+position = Vector2(2083, 3956)
+
+[node name="BASICnpc5" parent="NPCs" instance=ExtResource("10_4pfcf")]
+position = Vector2(3930, 3338)
 
 [node name="sceneSwitchArea" parent="." instance=ExtResource("9_1vo5c")]
 path = "res://Scenes/map/GreenLibrary/GreenLibraryFloor2.tscn"

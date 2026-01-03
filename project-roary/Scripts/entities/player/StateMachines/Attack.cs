@@ -37,7 +37,7 @@ public partial class Attack : State
 
     public override void Enter()
     {
-        if (player.equippedItem == null)
+        if (player.equippedItem == null || player.equippedItem.quantity < 1)
         {
             attacking = true;
 

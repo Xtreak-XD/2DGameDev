@@ -97,6 +97,22 @@ theme_override_fonts/font = ExtResource("1_2ltg1")
 theme_override_font_sizes/font_size = 128
 text = "Project Roary"
 
+[node name="version" type="Label" parent="."]
+material = SubResource("ShaderMaterial_e6ll4")
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -151.0
+offset_right = 709.0
+offset_bottom = 2.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 32
+text = "Beta 1.0"
+vertical_alignment = 2
+
 [node name="buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -125,6 +141,21 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_tmkf4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2ltg1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2ltg1")
 text = "Play"
+
+[node name="Reset" type="Button" parent="buttons"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_focus_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_colors/font_hover_color = Color(0.9372549, 0.7490196, 0.015686275, 1)
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tmkf4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ltg1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ltg1")
+text = "New Game"
 
 [node name="Options" type="Button" parent="buttons"]
 layout_mode = 2

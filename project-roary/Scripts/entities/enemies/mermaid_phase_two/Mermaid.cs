@@ -26,9 +26,11 @@ public partial class Mermaid : Enemy
 
     [Export]
     public PackedScene starfishEnemy;
+    SaveManager saveManager;
 
 	public override void _Ready()
 	{
+        saveManager = GetNode<SaveManager>("/root/SaveManager");
 		stateMachine = GetNode<MermaidStateMachine>("MermaidStateMachine");
 		stateMachine.Initialize(this);
 
@@ -177,5 +179,14 @@ public partial class Mermaid : Enemy
             if (anim.IsPlaying())
                 anim.Stop();
         }
+    }
+
+    public override void Die()
+    {
+        saveManager.metaData.DefeatedMermaid = true;
+        saveManager.metaData.CanEnterStadium = true;
+        saveManager.SaveNpcFlags();
+        eventbus.EmitSignal(Eventbus.SignalName.DefeatedMermaid);
+        base.Die();
     }
 }

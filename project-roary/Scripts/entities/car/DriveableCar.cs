@@ -39,6 +39,11 @@ public partial class DriveableCar : Player
 		}
 	}
 
+    public override void _ExitTree()
+    {
+        return;
+    }
+
 	public bool IsParked()
 	{
 		return Velocity.Length() == 0;

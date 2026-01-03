@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://23dp7aok7gvy"]
+[gd_scene load_steps=17 format=3 uid="uid://23dp7aok7gvy"]
 
 [ext_resource type="Script" uid="uid://wm8im0o4vm4a" path="res://Scripts/map/GC/GrahamCenter.cs" id="1_ip6iw"]
 [ext_resource type="Texture2D" uid="uid://gut2ajljg7m7" path="res://Sprites/world/Graham Center/gc_base.png" id="1_u0tbi"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://ds1hq3nvfq4rw" path="res://Resources/Shop/StrongWeaponShop.tres" id="8_0tf0g"]
 [ext_resource type="Resource" uid="uid://b47v75bgggb0b" path="res://Resources/Shop/BrokeShop.tres" id="9_hgitq"]
 [ext_resource type="PackedScene" uid="uid://dii1rr3g0rwfm" path="res://Scenes/helperScenes/interactable_area.tscn" id="11_wex28"]
+[ext_resource type="PackedScene" uid="uid://djv5t3lqncu6" path="res://Scenes/entities/npcs/basi_cnpc.tscn" id="13_y1iho"]
 
 [sub_resource type="Environment" id="Environment_2xvsg"]
 background_mode = 3
@@ -27,6 +28,7 @@ height = 2496.0
 size = Vector2(440, 1368)
 
 [node name="GrahamCenter" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ip6iw")
 
 [node name="mapBorder" type="StaticBody2D" parent="."]
@@ -142,3 +144,18 @@ path = "res://Scenes/map/Overworld/Overworld.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitchArea"]
 position = Vector2(-5, 2524)
 shape = SubResource("RectangleShape2D_f6gow")
+
+[node name="BASICnpc" parent="." instance=ExtResource("13_y1iho")]
+position = Vector2(1122, 2287)
+
+[node name="BASICnpc2" parent="." instance=ExtResource("13_y1iho")]
+position = Vector2(2161, 2545)
+
+[node name="BASICnpc3" parent="." instance=ExtResource("13_y1iho")]
+position = Vector2(3772, 2379)
+
+[node name="BASICnpc4" parent="." instance=ExtResource("13_y1iho")]
+position = Vector2(2899, 3363)
+
+[node name="BASICnpc5" parent="." instance=ExtResource("13_y1iho")]
+position = Vector2(2555, 750)

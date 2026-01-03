@@ -7,6 +7,7 @@ public partial class MainMenu : Control
     public Button  playContinue;
     public Button Options;
     public Button Exit;
+    public Button Reset;
 
     public Eventbus eventbus;
     public SceneManager sceneManager;
@@ -16,12 +17,13 @@ public partial class MainMenu : Control
 
     public override void _Ready()
     {
-        playContinue = GetNode<Button>("buttons/playContinue");
+        saveManager = GetNode<SaveManager>("/root/SaveManager");
         Options = GetNode<Button>("buttons/Options");
         Exit = GetNode<Button>("buttons/Exit");
+        playContinue = GetNode<Button>("buttons/playContinue");
+        Reset = GetNode<Button>("buttons/Reset");
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         sceneManager = GetNode<SceneManager>("/root/SceneManager");
-        saveManager = GetNode<SaveManager>("/root/SaveManager");
 
         var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
         dayNight.Visible = false;
@@ -29,9 +31,11 @@ public partial class MainMenu : Control
         checkForSaveFile();
 
         eventbus.leftSettings += onLeftSettings;
+        eventbus.deleted += saveDeleted;
         playContinue.Pressed += onPlayContinuePressed;
         Options.Pressed += onOptionsPressed;
         Exit.Pressed += onExitPressed;
+        Reset.Pressed += onResetPressed;
     }
 
     void checkForSaveFile()
@@ -41,10 +45,14 @@ public partial class MainMenu : Control
         if (hasSavedFile)
         {
             playContinue.Text = "Continue";
+            Reset.Show();
+            GD.Print("file exists");
         }
         else
         {
-            playContinue.Text = "New Game";
+            playContinue.Text = "Play";
+            Reset.Hide();
+            GD.Print("file doesn't exist");
         }
     }
 
@@ -52,13 +60,23 @@ public partial class MainMenu : Control
     {
         if (hasSavedFile)
         {
-            //load file
             eventbus.EmitSignal("load");
         }
         else
         {
             StartNewGame();
         }
+    }
+
+    void onResetPressed()
+    {
+        eventbus.EmitSignal(Eventbus.SignalName.deleteSave);
+    }
+
+    void saveDeleted()
+    {
+        _ExitTree();
+        _Ready();
     }
 
     void StartNewGame()
@@ -70,6 +88,10 @@ public partial class MainMenu : Control
             GD.PrintErr($"First scene not found: {firstScenePath}");
             return;
         }
+
+        sceneManager.player?.QueueFree();
+        sceneManager.player = null;
+
         saveManager.CreateNewSave(firstScenePath);
         sceneManager.goToScene(this, firstScenePath, false);
     }
@@ -97,6 +119,8 @@ public partial class MainMenu : Control
         playContinue.Pressed -= onPlayContinuePressed;
         Options.Pressed -= onOptionsPressed;
         Exit.Pressed -= onExitPressed;
+        Reset.Pressed -= onResetPressed;
+        eventbus.deleted -= saveDeleted;
 
         var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
         dayNight.Visible = true;

@@ -54,7 +54,7 @@ public partial class DayNightCycle : CanvasModulate
             
             float darkenFactor = CalculateDarkenFactor(hour, mins);
             
-            Color darkenedColor = newColor.Darkened(0.75f);
+            Color darkenedColor = newColor.Darkened(0.5f);
             Color = newColor.Lerp(darkenedColor, darkenFactor);
         }
         
@@ -68,7 +68,7 @@ public partial class DayNightCycle : CanvasModulate
         
         if (totalMinutes >= 300 && totalMinutes < 420)
         {
-            return 1.0f - ((totalMinutes - 300) / 120.0f);
+            return 0.5f - ((totalMinutes - 300) / 120.0f) * 0.5f;
         }
         else if (totalMinutes >= 420 && totalMinutes < 1080)
         {
@@ -76,11 +76,11 @@ public partial class DayNightCycle : CanvasModulate
         }
         else if (totalMinutes >= 1080 && totalMinutes < 1200)
         {
-            return (totalMinutes - 1080) / 120.0f;
+            return ((totalMinutes - 1080) / 120.0f) * 0.5f;
         }
         else
         {
-            return 1.0f; 
+            return 0.5f; 
         }
     }
     

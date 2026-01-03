@@ -17,6 +17,10 @@ public partial class Eventbus : Node
         OnEnemyDeath?.Invoke(enemy);
     }
 
+    [Signal] public delegate void beatRoaryEventHandler();
+
+    [Signal] public delegate void deletedEventHandler();
+
     [Signal]
     public delegate void applyDamageEventHandler(Node dmgReceiverName, Node dmgDealerName, int dmg); //this is emitted by hitbox and used by hurtbox to pass dmg and information to deal dmg and apply effects.
 
@@ -56,6 +60,7 @@ public partial class Eventbus : Node
     [Signal] public delegate void shopItemSelectedEventHandler(IndividualItem item);
     //save and load
     [Signal] public delegate void saveEventHandler(bool firstLoad = false);
+    [Signal] public delegate void deleteSaveEventHandler();
     [Signal] public delegate void loadEventHandler();
     [Signal] public delegate void loadSettingsEventHandler();
 
@@ -67,4 +72,5 @@ public partial class Eventbus : Node
 
     //transitions
     [Signal] public delegate void onTransitionFinishedEventHandler();
+    [Signal] public delegate void DefeatedMermaidEventHandler();
 }

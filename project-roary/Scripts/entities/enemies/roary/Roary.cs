@@ -47,9 +47,11 @@ public partial class Roary : Enemy
     public bool SummonedSecondStampede { get; set; } = false;
     public bool SummonedThirdStampede { get; set; } = false;
 
+    SaveManager saveManager;
 	public override void _Ready()
     {
-        GD.Print($"========== ROARY _Ready() CALLED - Instance ID: {GetInstanceId()} ==========");
+        saveManager = GetNode<SaveManager>("/root/SaveManager");
+
         stateMachine = GetNode<RoaryStateMachine>("RoaryStateMachine");
         stateMachine.Initialize(this);
 
@@ -198,5 +200,13 @@ public partial class Roary : Enemy
                 }
             }
         }
+    }
+
+    public override void Die()
+    {
+        saveManager.metaData.DefeatedRoary = true;
+        saveManager.SaveNpcFlags();
+        eventbus.EmitSignal(Eventbus.SignalName.beatRoary);
+        base.Die();
     }
 }

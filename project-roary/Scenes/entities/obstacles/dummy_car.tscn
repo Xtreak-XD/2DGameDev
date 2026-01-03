@@ -10,14 +10,16 @@ MaxHealth = 10000
 Damage = 10000
 metadata/_custom_type_script = "uid://dkov12aknt46v"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_migvi"]
-radius = 78.26238
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cb2e"]
+size = Vector2(1382, 1086)
 
 [node name="DummyCar" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_a1bd6")
 data = SubResource("Resource_sevpv")
 
 [node name="DummyCar" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_migvi")
+position = Vector2(-5, 2)
+shape = SubResource("RectangleShape2D_6cb2e")

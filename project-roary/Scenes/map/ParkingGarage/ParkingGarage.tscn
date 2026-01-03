@@ -80,7 +80,7 @@ position = Vector2(67.5, 47)
 shape = SubResource("RectangleShape2D_vebei")
 
 [node name="DummyCar16" parent="DummyCarContainer" instance=ExtResource("2_wq2dn")]
-position = Vector2(9023, 4997)
+position = Vector2(9148, 5063)
 car = ExtResource("8_581fp")
 
 [node name="Hitbox" parent="DummyCarContainer/DummyCar16" instance=ExtResource("3_slse4")]

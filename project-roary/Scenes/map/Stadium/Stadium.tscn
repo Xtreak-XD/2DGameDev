@@ -47,7 +47,7 @@ texture = ExtResource("2_1yqim")
 spawnsAvailable = [NodePath("fromOverworld"), NodePath("fromNothing")]
 
 [node name="fromOverworld" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(2616, 2448)
+position = Vector2(672, 2764)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
 position = Vector2(3408, 3096)
@@ -57,4 +57,4 @@ position = Vector2(1896, 2784)
 path = "res://Scenes/map/Overworld/Overworld.tscn"
 
 [node name="Roary" parent="." instance=ExtResource("2_f5tiu")]
-position = Vector2(2472, 2584)
+position = Vector2(3905, 2443)

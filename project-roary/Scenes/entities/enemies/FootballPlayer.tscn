@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://nahwbbkosusi"]
 
 [ext_resource type="Script" uid="uid://dtre8qjovrhcf" path="res://Scripts/entities/enemies/FootballPlayer.cs" id="1_xf8fa"]
-[ext_resource type="Texture2D" uid="uid://b206l0eaqgys" path="res://Sprites/entities/enemies/Enemy.png" id="2_8obdt"]
 [ext_resource type="Resource" uid="uid://gow7qtuk2f71" path="res://Resources/entities/GenericData.tres" id="2_x153l"]
+[ext_resource type="Texture2D" uid="uid://u7witpt5yf1m" path="res://Sprites/entities/enemies/Stadium/Football.png" id="3_8obdt"]
 [ext_resource type="PackedScene" uid="uid://hoxxysfo02l4" path="res://Scenes/helperScenes/hitbox.tscn" id="3_x153l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xf8fa"]
@@ -21,7 +21,7 @@ data = ExtResource("2_x153l")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.861023e-06, 9.536743e-07)
 scale = Vector2(0.52277774, 0.52277774)
-texture = ExtResource("2_8obdt")
+texture = ExtResource("3_8obdt")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_x153l")]
 position = Vector2(9.1552734e-05, 7.6293945e-06)

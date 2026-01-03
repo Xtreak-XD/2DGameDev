@@ -110,7 +110,7 @@ grow_vertical = 0
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_2ltg1")
 theme_override_font_sizes/font_size = 32
-text = "Beta 1.0"
+text = "Beta 1.0.2"
 vertical_alignment = 2
 
 [node name="buttons" type="VBoxContainer" parent="."]

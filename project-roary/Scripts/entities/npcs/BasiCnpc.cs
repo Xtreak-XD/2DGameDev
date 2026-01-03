@@ -141,7 +141,7 @@ public partial class BasiCnpc : CharacterBody2D
 
     public async Task onInteract()
     {
-        chosenDialogue = dialogues[rand.RandiRange(0,dialogues.Length)];
+        chosenDialogue = dialogues[rand.RandiRange(0,dialogues.Length - 1)];
         wait.Start();
         currentState = STATE.talking;
 

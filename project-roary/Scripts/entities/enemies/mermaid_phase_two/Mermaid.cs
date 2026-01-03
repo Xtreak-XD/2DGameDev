@@ -30,6 +30,7 @@ public partial class Mermaid : Enemy
 
 	public override void _Ready()
 	{
+        eventbus = GetNode<Eventbus>("/root/Eventbus");
         saveManager = GetNode<SaveManager>("/root/SaveManager");
 		stateMachine = GetNode<MermaidStateMachine>("MermaidStateMachine");
 		stateMachine.Initialize(this);
@@ -183,10 +184,22 @@ public partial class Mermaid : Enemy
 
     public override void Die()
     {
-        saveManager.metaData.DefeatedMermaid = true;
-        saveManager.metaData.CanEnterStadium = true;
-        saveManager.SaveNpcFlags();
-        eventbus.EmitSignal(Eventbus.SignalName.DefeatedMermaid);
+        CallDeferred(MethodName.DeferredDie);
+    }
+
+    private void DeferredDie()
+    {
+        if (saveManager != null)
+        {
+            saveManager.metaData.DefeatedMermaid = true;
+            saveManager.metaData.CanEnterStadium = true;
+            saveManager.SaveNpcFlags();
+        }
+        else
+        {
+            GD.Print("Mermaid Die Error: saveManager not found!");
+        }
+        eventbus?.EmitSignal(Eventbus.SignalName.DefeatedMermaid);
         base.Die();
     }
 }

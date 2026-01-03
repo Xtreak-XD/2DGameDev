@@ -321,7 +321,7 @@ spawnsAvailable = [NodePath("fromGreenLibrary"), NodePath("fromNothing")]
 position = Vector2(2552, 4513)
 
 [node name="fromNothing" type="Marker2D" parent="PlayerSpawnPoints"]
-position = Vector2(333, 4089)
+position = Vector2(422, 592)
 
 [node name="BookSpawner" parent="." node_paths=PackedStringArray("EnemySpawnPoints") instance=ExtResource("11_jghat")]
 EnemySpawnTimerMax = 0.5

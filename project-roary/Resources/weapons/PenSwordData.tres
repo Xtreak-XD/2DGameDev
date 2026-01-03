@@ -6,4 +6,4 @@
 script = ExtResource("1_bnatf")
 damage = 15
 attackRate = 0.8
-knockback = 1000.0
+knockback = 250.0

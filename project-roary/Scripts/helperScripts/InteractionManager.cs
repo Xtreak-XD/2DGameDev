@@ -20,7 +20,12 @@ public partial class InteractionManager : Node2D
         label = GetNode<Label>("Label");
         
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
-        eventbus.interactionComplete += () => { canInteract = true; };
+        eventbus.interactionComplete += () => { _on_interaction_complete(); };
+    }
+
+    void _on_interaction_complete()
+    {
+        canInteract = true;
     }
 
     public override void _Process(double delta)
@@ -62,9 +67,14 @@ public partial class InteractionManager : Node2D
 
     public void unregisterArea(interactionArea area)
     {
-        if(dialogueManager.isDialogActive)
+        if(activeAreas.Contains(area))
         {
-            dialogueManager.HandleDialogAdvance(true);
+            if(activeAreas[0] == area && dialogueManager.isDialogActive) 
+             {
+                 dialogueManager.ForceEndDialog();
+                 canInteract = true;
+                 label.Show();
+             }
         }
         
         activeAreas.Remove(area);
@@ -76,6 +86,8 @@ public partial class InteractionManager : Node2D
         {
             if (activeAreas.Count() > 0)
             {
+                if (dialogueManager.isDialogActive) return;
+
                 canInteract = false;
                 label.Hide();
                 activeAreas[0].interact.Call();

@@ -24,35 +24,38 @@ public partial class Weapon : Node2D
 		attackTimer = GetNode<Timer>("AttackTimer");
 		sprite = GetNode<Sprite2D>("Sprite2D");
 
-		attackCallback = () => Attack(mousePosition);
-		eventbus.triggerAttack += attackCallback;
-
+		eventbus.triggerAttack += HandleAttackSignal;
 		attackTimer.WaitTime = data.attackRate;
-		attackTimer.Timeout += SetCanAttack;
 
-		if(GetParent() != null)
-        {
-			if(GetParent() is Node2D)
-            {
-                parent = GetParent<Node2D>();
-            }
-        }
+		if (!attackTimer.IsConnected(Timer.SignalName.Timeout, Callable.From(SetCanAttack)))
+		{
+			attackTimer.Timeout += SetCanAttack;
+		}
 
+		if (GetParent() is Node2D p) parent = p;
+
+		mousePosition = GetGlobalMousePosition();
 		canAttack = true;
 	}
 
+	void HandleAttackSignal()
+	{
+		if (!IsInsideTree()) return;
+		Attack(mousePosition);
+	}
+
 	public override void _ExitTree()
-    {
-        if (eventbus != null && attackCallback != null)
-        {
-            eventbus.triggerAttack -= attackCallback;
-        }
-        
-        if (attackTimer != null)
-        {
-            attackTimer.Timeout -= SetCanAttack;
-        }
-    }
+	{
+		if (IsInstanceValid(eventbus))
+		{
+			eventbus.triggerAttack -= HandleAttackSignal;
+		}
+
+		if (IsInstanceValid(attackTimer) && attackTimer.IsConnected(Timer.SignalName.Timeout, Callable.From(SetCanAttack)))
+		{
+			attackTimer.Timeout -= SetCanAttack;
+		}
+	}
 
 	// DO NOT OVERRIDE THIS
 	public override void _Input(InputEvent @event)

@@ -18,6 +18,7 @@ public partial class interactionArea : Area2D
     public void x()
     {
         GD.Print("Default callable!");
+        GetNode<Eventbus>("/root/Eventbus").EmitSignal(Eventbus.SignalName.interactionComplete);
     }
 
     public void onBodyEntered(Node2D body)

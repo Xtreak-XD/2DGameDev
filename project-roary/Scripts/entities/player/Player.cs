@@ -47,8 +47,8 @@ public partial class Player : CharacterBody2D
     {
 		AddToGroup("player");
 		currentScene = GetParent().Name;
-		setCam();
 		eventbus = GetNode<Eventbus>("/root/Eventbus");
+		setCam();
 		eventbus.itemDropped += spawnItemInWorld;
 		eventbus.itemEquipped += equipItem;
 		eventbus.inventoryUpdated += checkIfEquipped;
@@ -61,14 +61,17 @@ public partial class Player : CharacterBody2D
 		stateMachine.Initialize(this);
 
 		inv = GetNode<Inventory>("/root/Inventory");
+
+		CallDeferred(nameof(SyncInventory));
 	}
 
 	public void setCam()
     {
 		camera = GetNode<Camera2D>("Camera2D");
-        switch (currentScene)
+
+		switch (currentScene)
         {
-            case "Stadiumn":
+            case "Stadium":
 				camera.LimitBottom = 5000;
 				camera.LimitRight = 5000;
 				break;
@@ -83,6 +86,7 @@ public partial class Player : CharacterBody2D
 			case "GrahamCenter":
 				camera.LimitBottom = 5000;
 				camera.LimitRight = 5000;
+				eventbus.EmitSignal(Eventbus.SignalName.resetShops);
 				break;
 			case "Overworld":
 				camera.LimitBottom = 10000;
@@ -220,6 +224,22 @@ public partial class Player : CharacterBody2D
 		GetTree().GetCurrentScene().AddChild(itemInstance);
 	}
 
+	public void SyncInventory()
+	{
+		if(equippedSlot >= 0)
+		{
+			int slotToRestore = equippedSlot;
+
+			if(equippedItemInstance != null)
+			{
+				equippedItemInstance.QueueFree();
+				equippedItemInstance = null;
+			}
+			equippedSlot = -1;
+			equipItem(slotToRestore);
+		}
+	}
+
 	public async void equipItem(int slotIndex)
 	{
 		if (slotIndex < -1 || slotIndex >= inv.slots.Count)
@@ -245,9 +265,11 @@ public partial class Player : CharacterBody2D
 			return;
 		}
 
+		if (inv.slots == null || slotIndex >= inv.slots.Count) return;
+
 		equippedItem = inv.slots[slotIndex];
 
-		if (equippedItem.item != null && equippedItem.quantity > 0)
+		if (equippedItem != null && equippedItem.item != null && equippedItem.quantity > 0)
 		{
 			string itemName = equippedItem.item.itemName;
 			GD.Print($"Equipped: {itemName}");
@@ -256,33 +278,61 @@ public partial class Player : CharacterBody2D
                 PackedScene item = ResourceLoader.Load<PackedScene>((string)Equipables[itemName]);
 				equippedItemInstance = item.Instantiate();
 				AddChild(equippedItemInstance);
-            }
-		}
-		else
-		{
-			GD.Print("Empty slot equipped");
+				if (equippedItemInstance is Weapon w)
+				{
+					w.mousePosition = GetGlobalMousePosition();
+					w.canAttack = true;
+				}
+			}
 		}
 	}
 
 	public void checkIfEquipped()
 	{
-		if (equippedSlot < 0) return;
+		if (equippedSlot < 0)
+		{
+			if (equippedItemInstance != null) UnequipVisualWeapon();
+			return;
+		}
+			
 
-		if (equippedSlot >= inv.slots.Count)
+		if (inv.slots == null || equippedSlot >= inv.slots.Count)
 		{
 			GD.PrintErr("Invalid equipped slot index");
+			UnequipVisualWeapon();
 			return;
 		}
 
-		InventorySlot equipItem = inv.slots[equippedSlot];
-		if (equipItem.item == null || equipItem.quantity == 0)
+		InventorySlot equipItemm = inv.slots[equippedSlot];
+		if (equipItemm.item == null || equipItemm.quantity <= 0)
 		{
 			GD.Print("Equipped slot is now empty");
+			UnequipVisualWeapon();
+		}
+		else if(equippedItemInstance != null)
+		{
+			if(equipItemm.item.itemName != equippedItem.item?.itemName)
+			{
+				int currentSlot = equippedSlot;
+                UnequipVisualWeapon();
+                equipItem(currentSlot);
+			}
+		}
+	}
+
+	public void UnequipVisualWeapon()
+	{
+		equippedSlot = -1;
+		equippedItem = null;
+		if (equippedItemInstance != null)
+		{
+			equippedItemInstance.QueueFree();
+			equippedItemInstance = null;
 		}
 	}
 
 	//for testing
-    public override void _Input(InputEvent @event)
+	public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("load"))
         {
@@ -293,6 +343,7 @@ public partial class Player : CharacterBody2D
 	public void Die()
     {
 		GD.Print("player died / lost!");
+		UnequipVisualWeapon();
 		var deadScene = "res://Scenes/ui/died_screen.tscn";
         //play dead animation idk maybe..
 		sceneManager.goToScene(GetParent(), deadScene, false);

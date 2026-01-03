@@ -8,6 +8,8 @@ public partial class TransitionManager : CanvasLayer
     [Export] AnimationPlayer animationPlayer;
     [Export] RichTextLabel textLabel;
 
+    public Node currentScene;
+
     public override void _Ready()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
@@ -27,6 +29,8 @@ public partial class TransitionManager : CanvasLayer
         switch (animName)
         {
             case "fade_to_blue":
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 0);
                 eventbus.EmitSignal(Eventbus.SignalName.onTransitionFinished);
                 animationPlayer.Play("fade_to_normal");
                 break;
@@ -34,14 +38,20 @@ public partial class TransitionManager : CanvasLayer
                 fadeScreen.Visible = false;
                 break;
             case "Intro_Opening":
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 0);
                 eventbus.EmitSignal(Eventbus.SignalName.onTransitionFinished);
                 textLabel.Visible = false;
                 break;
             case "Opening_World":
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 0);
                 eventbus.EmitSignal(Eventbus.SignalName.onTransitionFinished);
                 textLabel.Visible = false;
                 break;
             case "demo_finished":
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 0);
                 eventbus.EmitSignal(Eventbus.SignalName.onTransitionFinished);
                 textLabel.Visible = false;
                 break;
@@ -55,18 +65,26 @@ public partial class TransitionManager : CanvasLayer
             case "Intro_Opening":
                 textLabel.Visible = true;
                 animationPlayer.Play("Intro_Opening");
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 4);
                 break;
             case "Opening_World":
                 textLabel.Visible = true;
                 animationPlayer.Play("Opening_World");
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 4);
                 break;
             case "demo_finished":
                 textLabel.Visible = true;
                 animationPlayer.Play("demo_finished");
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 4);
                 break;
             default:
                 fadeScreen.Visible = true;
                 animationPlayer.Play("fade_to_blue");
+                currentScene = GetTree().Root.GetChild(GetTree().Root.GetChildCount() - 1);
+                currentScene.CallDeferred(Node.MethodName.SetProcessMode, 4);
                 break;
         }
     }

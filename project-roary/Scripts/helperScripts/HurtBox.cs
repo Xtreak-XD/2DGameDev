@@ -52,47 +52,43 @@ public partial class HurtBox : Area2D
 
         if (targetData.Health <= 0 && IsInstanceValid(parent))
         {
+
+            ResetFlash();
+
             if (Owner is Enemy enemy) { enemy.Die(); }
             else if(Owner is Player player) { player.Die(); }
+        }
+    }
+
+    void ResetFlash()
+    {
+        CanvasItem sprite = parent.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+        if(sprite == null ) sprite = parent.GetNodeOrNull<Sprite2D>("Sprite2D");
+
+        if (sprite?.Material is ShaderMaterial shader)
+        {
+            shader.SetShaderParameter("flash", false);
         }
     }
 
     public async void flash()
     {
         float flashDuration = 0.15f;
-        AnimatedSprite2D sprite = parent.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
-        ShaderMaterial shader = null;
+        CanvasItem sprite = parent.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+        if (sprite == null) sprite = parent.GetNodeOrNull<Sprite2D>("Sprite2D");
 
-        if(sprite == null)
+        if (sprite?.Material is ShaderMaterial shader)
         {
-            Sprite2D staticSprite = parent.GetNodeOrNull<Sprite2D>("Sprite2D");
-            if (staticSprite.Material is ShaderMaterial)
-            {
-                shader = (ShaderMaterial)staticSprite.Material;
-                shader.SetShaderParameter("flash", true);
-            }
-        } 
-        else if (sprite.Material is ShaderMaterial)
-        {
-            shader = (ShaderMaterial)sprite.Material;
             shader.SetShaderParameter("flash", true);
+
+            GetTree().CreateTween().TweenCallback(Callable.From(() =>
+            {
+                if (IsInstanceValid(sprite) && sprite.Material is ShaderMaterial s)
+                {
+                    s.SetShaderParameter("flash", false);
+                }
+            })).SetDelay(flashDuration);
         }
-        else{ return; }
-
-        Timer flashT = new Timer();
-        flashT.OneShot = true;
-        flashT.Autostart = false;
-        AddChild(flashT);
-        flashT.Start(flashDuration);
-
-        await ToSignal(flashT, Timer.SignalName.Timeout);
-
-        if(shader != null)
-        {
-            shader.SetShaderParameter("flash", false);
-        }
-        
-        flashT.QueueFree();
     }
 
     public override void _ExitTree()

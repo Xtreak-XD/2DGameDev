@@ -20,6 +20,8 @@ public partial class dialogueManager : Node
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         textBoxScene = GD.Load<PackedScene>("res://Scenes/Dialogue/text_box.tscn");
+
+        eventbus.finishedDisplaying += onTextBoxFinishedDisplaying;
     }
 
     public async Task startDialog(Vector2 position, string[] lines)
@@ -31,19 +33,21 @@ public partial class dialogueManager : Node
 
         dialogLines = lines;
         textBoxPosition = position;
-        await showTextBox();
-
         isDialogActive = true;
+
+        canAdvanceLine = false;
+
+        await showTextBox();
     }
 
     public async Task showTextBox()
     {
         textBox = (TextBox)textBoxScene.Instantiate();
-        eventbus.finishedDisplaying += onTextBoxFinishedDisplaying;
         GetTree().Root.AddChild(textBox);
         textBox.GlobalPosition = textBoxPosition;
-        await textBox.displayText(dialogLines[currentLineIndex]);
+
         canAdvanceLine = false;
+        await textBox.displayText(dialogLines[currentLineIndex]);
     }
 
     public void onTextBoxFinishedDisplaying()
@@ -63,24 +67,32 @@ public partial class dialogueManager : Node
         }
     }
 
-    public async void HandleDialogAdvance(bool finishEarly = false)
+    public async void HandleDialogAdvance()
     {
         textBox.QueueFree();
         currentLineIndex++;
 
-        if (finishEarly)
-        {
-            currentLineIndex = dialogLines.Length;
-        }
         if (currentLineIndex >= dialogLines.Length)
         {
             isDialogActive = false;
             currentLineIndex = 0;
-            eventbus.EmitSignal("finishedDisplaying");
+            eventbus.EmitSignal("interactionComplete");
             return;
         }
 
         await showTextBox();
+    }
+
+    public void ForceEndDialog()
+    {
+        if (textBox != null && IsInstanceValid(textBox))
+        {
+            textBox.QueueFree();
+            eventbus.EmitSignal(Eventbus.SignalName.finishedDisplaying);
+        }
+        
+        isDialogActive = false;
+        currentLineIndex = 0;
     }
 
     public override void _ExitTree()

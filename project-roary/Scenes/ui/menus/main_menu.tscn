@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctmsfrqpks4es"]
+[gd_scene load_steps=14 format=3 uid="uid://ctmsfrqpks4es"]
 
 [ext_resource type="FontFile" uid="uid://cqh47byd6y2cy" path="res://placeholderTestAssets/Super Joyful.ttf" id="1_2ltg1"]
 [ext_resource type="Script" uid="uid://cj0mf7jo5oh5d" path="res://Scripts/ui/mainMenu/MainMenu.cs" id="1_tmkf4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://do4ah0u4ddj0r" path="res://Scripts/shaders/lakeShader.gdshader" id="2_nwkk3"]
 [ext_resource type="Shader" uid="uid://b8rda7k4x665p" path="res://Scenes/ui/menus/textShader.gdshader" id="3_idfjq"]
 [ext_resource type="Texture2D" uid="uid://18d1uqs12w1x" path="res://Sprites/entities/player/Soundtrack-1024.png" id="6_fdbuc"]
+[ext_resource type="Script" uid="uid://ycctfuuy3536" path="res://Scenes/ui/menus/SurveyAnDbugs.cs" id="7_1sc22"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdbuc"]
 texture = ExtResource("2_e6ll4")
@@ -110,8 +111,27 @@ grow_vertical = 0
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_2ltg1")
 theme_override_font_sizes/font_size = 32
-text = "Beta 1.0"
+text = "Beta 1.0.2"
 vertical_alignment = 2
+
+[node name="surveyANDbugs" type="LinkButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = -0.001
+anchor_right = 0.008
+anchor_bottom = -0.001
+offset_left = 1129.0001
+offset_top = 301.00003
+offset_right = 1407.0001
+offset_bottom = 341.00003
+rotation = 0.26796493
+theme_override_fonts/font = ExtResource("1_2ltg1")
+theme_override_font_sizes/font_size = 32
+text = "survey & BUG REPORT"
+underline = 1
+uri = "https://docs.google.com/forms/d/e/1FAIpQLSdZXKfk6byYDdyJo_t522yojcuAWgVzTjkicERpeRP4N2qCUQ/viewform?usp=sharing&ouid=115403930989660878128"
+script = ExtResource("7_1sc22")
 
 [node name="buttons" type="VBoxContainer" parent="."]
 layout_mode = 1

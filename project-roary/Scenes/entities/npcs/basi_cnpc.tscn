@@ -541,7 +541,6 @@ radius = 373.25864
 [node name="BASICnpc" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 64
-collision_mask = 3
 script = ExtResource("1_g8mle")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -17,6 +17,8 @@ public partial class Eventbus : Node
         OnEnemyDeath?.Invoke(enemy);
     }
 
+    [Signal] public delegate void resetShopsEventHandler();
+
     [Signal] public delegate void beatRoaryEventHandler();
 
     [Signal] public delegate void deletedEventHandler();

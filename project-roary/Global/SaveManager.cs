@@ -15,7 +15,8 @@ public partial class SaveManager : Node
         inv = GetNode<Inventory>("/root/Inventory");
 
         //metaData.SavedYoungerTurtleBrother = true;
-        //metaData.Ammo = 500;
+        //metaData.CanEnterMermaidRoom = true;
+        metaData.Money = 500;
         //change metadata info here to test!
         //metadata.... = ...;
 
@@ -42,45 +43,37 @@ public partial class SaveManager : Node
     public void Reset()
     {
         string fullPath = save_file_path + save_file_name;
-        //check the path
-        if (!ResourceLoader.Exists(fullPath))
+
+        metaData = new MetaData();
+        if (FileAccess.FileExists(fullPath))
         {
-            GD.Print("No save file found at " + fullPath);
-            eventbus.EmitSignal(Eventbus.SignalName.deleted);
-            return;
-        }
-        //delete file
-        try
-        {
-            if (ResourceLoader.HasCached(fullPath))
-            {
-                metaData = new MetaData();
-                ResourceLoader.Load<MetaData>(fullPath).TakeOverPath(fullPath);
-            }
+            ResourceLoader.Load<MetaData>(fullPath).TakeOverPath(fullPath);
+
             Error deletingSave = DirAccess.RemoveAbsolute(fullPath);
-            if (deletingSave == Error.Ok)
-            {
-                GD.Print("deleted save");
-
-                inv.slots.Clear();
-                for (int i = 0; i< Inventory.TOTAL_SIZE; i++)
-                {
-                    inv.slots.Add(new InventorySlot());
-                }
-
-                metaData = new MetaData();
-
-                eventbus.EmitSignal(Eventbus.SignalName.deleted);
-            }
-            else
-            {
-                GD.Print("failed to delete save");
-            }
+            GD.Print(deletingSave == Error.Ok ? "Deleted save file" : "Failed to delete");
         }
-        catch (Exception e)
+
+        if(inv != null)
         {
-            GD.PrintErr($"Error deleting save: {e.Message}");
+            inv.slots.Clear();
+            for(int i = 0; i < Inventory.TOTAL_SIZE; i++)
+            {
+                inv.slots.Add(new InventorySlot());
+            }
         }
+        var currentScene = GetTree().CurrentScene;
+        Player player = currentScene?.GetNodeOrNull<Player>("Player");
+        if (player != null)
+        {
+            var sprite = player.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+            if (sprite?.Material is ShaderMaterial shader)
+            {
+                shader.SetShaderParameter("flash", false);
+            }
+        }
+
+        eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
+        eventbus.EmitSignal(Eventbus.SignalName.deleted);
     }
 
     public void Save(bool firstLoad = false)
@@ -222,19 +215,20 @@ public partial class SaveManager : Node
     {
         metaData = new MetaData();
         metaData.Money = 0;
+        metaData.Ammo = 0;
         metaData.savePos = Vector2.Zero; //imma change this to the starting location later
         metaData.SetCurScenePath(startingScenePath);
 
-        var inv = GetNode<Inventory>("/root/Inventory");
-        inv.slots = new Godot.Collections.Array<InventorySlot>();
+        inv.slots.Clear();
         for (int i = 0; i < Inventory.TOTAL_SIZE; i++)
         {
             inv.slots.Add(new InventorySlot());
         }
 
         metaData.updateInventory(inv);
-
         Save(true);
+
+        eventbus.EmitSignal(Eventbus.SignalName.inventoryUpdated);
     }
 
     private void VerifySaveDirectory(string saveFilePath)

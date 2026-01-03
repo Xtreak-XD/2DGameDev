@@ -77,11 +77,26 @@ public partial class Logo : Enemy
 
     public override void Die()
     {
-        Mermaid phaseTwo = (Mermaid) mermaid.Instantiate();
-        phaseTwo.GlobalPosition = GlobalPosition;
-        phaseTwo.starfishSpawns = starfishSpawns;
-        GetParent().AddChild(phaseTwo);
-        
+        CallDeferred(MethodName.DeferredDie);
+    }
+
+    private void DeferredDie()
+    {
+        if (mermaid != null)
+        {
+            Mermaid phaseTwo = (Mermaid)mermaid.Instantiate();
+            phaseTwo.GlobalPosition = GlobalPosition;
+            phaseTwo.starfishSpawns = starfishSpawns;
+
+            phaseTwo.Scale = Vector2.Zero;
+
+            GetParent().AddChild(phaseTwo);
+
+            Tween popTween = phaseTwo.CreateTween();
+
+            popTween.TweenProperty(phaseTwo, "scale", Vector2.One, 0.5f).SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+        }
+
         base.Die();
     }
 }

@@ -204,9 +204,21 @@ public partial class Roary : Enemy
 
     public override void Die()
     {
-        saveManager.metaData.DefeatedRoary = true;
-        saveManager.SaveNpcFlags();
-        eventbus.EmitSignal(Eventbus.SignalName.beatRoary);
+        CallDeferred(MethodName.DeferredDie);
+    }
+
+    public void DeferredDie()
+    {
+        if(saveManager!= null)
+        {
+            saveManager.metaData.DefeatedRoary = true;
+            saveManager.SaveNpcFlags();
+        }
+        else
+        {
+            GD.Print("error killing roary!");
+        }
+        eventbus?.EmitSignal(Eventbus.SignalName.beatRoary);
         base.Die();
     }
 }

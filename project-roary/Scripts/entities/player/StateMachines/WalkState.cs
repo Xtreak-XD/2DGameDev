@@ -60,7 +60,6 @@ public partial class WalkState: State
         }
         if (@event.IsActionPressed("attack"))
         {
-            GD.Print("here");
             return attack;
         }
         return null;

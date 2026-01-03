@@ -48,6 +48,8 @@ public partial class ShopMenu : Control
 
 		shopItems = new List<ShopMenuSlot>();
 		GetShopSlots(this);
+
+		eventbus.resetShops += ResetAllShops;
 	}
 
     public override void _ExitTree()
@@ -55,6 +57,7 @@ public partial class ShopMenu : Control
 		eventbus.openShopMenu -= OpenShop;
 		eventbus.shopItemSelected -= AddItemToShoppingCart;
 		buyButton.Pressed -= OnBuyPress;
+		eventbus.resetShops -= ResetAllShops;
     }
 
     public override void _Input(InputEvent @event)
@@ -283,4 +286,10 @@ public partial class ShopMenu : Control
 		UpdateReceipt();
 		UpdateCoinDisplay();
     }
+
+	public void ResetAllShops()
+	{
+		soldItemsByShop.Clear();
+		GD.Print("All shop stock has been replenished!");
+	}
 }

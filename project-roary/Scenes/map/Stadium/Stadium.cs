@@ -5,11 +5,12 @@ public partial class Stadium : Node2D
 {
     Eventbus eventbus;
     SceneManager sceneManager;
+    CanvasLayer bossHealth;
     public override void _Ready()
     {
         eventbus = GetNode<Eventbus>("/root/Eventbus");
         sceneManager = GetNode<SceneManager>("/root/SceneManager");
-
+        bossHealth = GetNode<CanvasLayer>("BossHealths");
         eventbus.beatRoary += beatGame;
         var dayNight = GetNode<DayNightCycle>("/root/DayNightCycle");
         dayNight.Visible = false;
@@ -22,8 +23,10 @@ public partial class Stadium : Node2D
         eventbus.beatRoary -= beatGame;
     }
 
-    void beatGame()
+    async void beatGame()
     {
+        bossHealth.Visible = false;
+        await ToSignal(GetTree().CreateTimer(1.5f), SceneTreeTimer.SignalName.Timeout);
         sceneManager.goToScene(this, "res://Scenes/ui/menus/main_menu.tscn");
     }
 }

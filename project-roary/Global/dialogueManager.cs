@@ -88,6 +88,7 @@ public partial class dialogueManager : Node
         if (textBox != null && IsInstanceValid(textBox))
         {
             textBox.QueueFree();
+            eventbus.EmitSignal(Eventbus.SignalName.finishedDisplaying);
         }
         
         isDialogActive = false;

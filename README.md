@@ -1,4 +1,4 @@
-# 🦁 Project Roary
+# Project Roary
 ### A 2D FIU-Themed RPG Built in Godot 4
 
 > *Explore a Florida International University-inspired world, battle bosses, manage your inventory, and uncover the story of FIU.*
@@ -15,28 +15,28 @@ The project was presented at **INIT Demo Day (December 2025)** as a fully playab
 
 ## 🎮 Gameplay Features
 
-### 🧍 Player
+### Player
 - Smooth movement with stamina and health systems
 - Dodge mechanic for combat evasion
 - Real-time HUD displaying health, stamina, time, and temperature
 
-### 🎒 Inventory & Hotbar
+### Inventory & Hotbar
 - 16-slot inventory with drag-and-drop and item stacking
 - 4-slot hotbar with `1–4` shortcuts
 - Press `I` to open/close the inventory
 - Items can be dropped back into the world
 
-### 🛒 Shop
+### Shop
 - Interactable ShopKeeper NPC located in the Graham Center
 - Coin-based economy with live balance display
 - Cart/receipt system for purchasing multiple items at once
 
-### 💬 Dialogue & NPCs
+### Dialogue & NPCs
 - Interactable NPCs with multi-line dialogue sequences
 - Unique characters like the WiseTurtleBrother scattered throughout the world
 - Proximity-based interaction prompts
 
-### 🐉 Bosses
+### Bosses
 
 | Boss | Description |
 |---|---|
@@ -49,16 +49,16 @@ The project was presented at **INIT Demo Day (December 2025)** as a fully playab
 - Direct charges and lateral dashes at the player
 - Telegraphed ground slams, firework spreads, orbital hazards, and a football stampede
 
-### 🌙 Day/Night Cycle
+### Day/Night Cycle
 - Dynamic in-game clock with days of the week, hours, minutes, and temperature
 - Visual lighting transitions between day and night
 - All displayed live on the HUD
 
-### ⏸️ Menus
+### Menus
 - FIU-themed pause menu, main menu, and death screen
 - Animated transitions between states
 
-### 🔊 Audio
+### Audio
 - Scene-specific background music that changes as you move through areas
 - Sound effects for combat, item pickups, and UI interactions
 
